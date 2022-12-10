@@ -1,0 +1,27 @@
+unit UdataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes;
+
+type
+  Tdm = class(TDataModule)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dm: Tdm;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses ULogin, UPrincipalPetrotorque;
+
+{$R *.dfm}
+
+end.

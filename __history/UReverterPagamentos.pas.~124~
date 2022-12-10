@@ -1,0 +1,428 @@
+unit UReverterPagamentos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.Buttons, Vcl.StdCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.Client, FireDAC.Comp.DataSet,
+  Vcl.DBCtrls;
+
+type
+  TfrmReverterPagamentos = class(TForm)
+    PainelTopo: TPanel;
+    labelTituloParcelas: TLabel;
+    PainelCentral: TPanel;
+    gbPesquisaPosto: TGroupBox;
+    labelNF: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    labelVencimento: TLabel;
+    editPesquisaNF: TEdit;
+    Panel1: TPanel;
+    PainelConsultar: TPanel;
+    btnConsultar: TSpeedButton;
+    DateVencimentoDE: TMaskEdit;
+    DateVencimentoATE: TMaskEdit;
+    painelBotoes: TPanel;
+    painelBtnReverterPagamento: TPanel;
+    btnPagar: TSpeedButton;
+    painelGrid: TPanel;
+    gridReverterPagamentos: TDBGrid;
+    qryReverterParcelas: TFDQuery;
+    dsReverterParcelas: TDataSource;
+    tcReverterParcelas: TFDTransaction;
+    qryEstoqueUsina: TFDQuery;
+    qryEstoqueUsinaESTOQUEID: TFDAutoIncField;
+    qryEstoqueUsinaUSINAID: TIntegerField;
+    qryEstoqueUsinaPRODUTOID: TIntegerField;
+    qryEstoqueUsinaESTOQUE: TFMTBCDField;
+    dsEstoqueUsina: TDataSource;
+    dsUsina: TDataSource;
+    qryUsina: TFDQuery;
+    qryUsinaUSINAID: TFDAutoIncField;
+    qryUsinaRAZAO_SOCIAL: TStringField;
+    qryUsinaNOME_FANTASIA: TStringField;
+    qryUsinaENDERECO: TStringField;
+    qryUsinaBAIRRO: TStringField;
+    qryUsinaCIDADE: TStringField;
+    qryUsinaUF: TStringField;
+    qryUsinaTELEFONE: TStringField;
+    qryVendas: TFDQuery;
+    qryVendasVENDAID: TFDAutoIncField;
+    qryVendasREPRESENTANTEID: TIntegerField;
+    qryVendasPOSTOID: TIntegerField;
+    qryVendasPRODUTOID: TIntegerField;
+    qryVendasMOTORISTAID: TIntegerField;
+    qryVendasCORRETORID: TIntegerField;
+    qryVendasUSINAID: TIntegerField;
+    qryVendasNF: TIntegerField;
+    qryVendasVALOR_NF: TFMTBCDField;
+    qryVendasDATA_EMISSAO_NF: TDateField;
+    qryVendasVOLUME: TFMTBCDField;
+    qryVendasTAXA_FRETE: TBCDField;
+    qryVendasVALOR_TOTAL_FRETE: TFMTBCDField;
+    qryVendasTAXA_CORRETAGEM: TBCDField;
+    qryVendasVALOR_TOTAL_CORRETAGEM: TFMTBCDField;
+    qryVendasVENCIMENTO_NF_ATUAL: TDateField;
+    qryVendasSTATUS: TStringField;
+    qryVendasATUALIZAR_PARCELA: TIntegerField;
+    qryVendasPARCELAS_GERADAS: TStringField;
+    qryVendasTOTAL_NF_RECEBIDO: TFMTBCDField;
+    qryVendasVOLUME_TOTAL_RETIRADO: TFMTBCDField;
+    qryVendasVALOR_RECEBIDO_MES: TFMTBCDField;
+    qryVendasVOLUME_RECEBIDO_MES: TFMTBCDField;
+    dsVendas: TDataSource;
+    qryReverterParcelasPARCELAID: TFDAutoIncField;
+    qryReverterParcelasVENDAID: TIntegerField;
+    qryReverterParcelasFORMA_PGTO_ID: TIntegerField;
+    qryReverterParcelasSTATUS: TStringField;
+    qryReverterParcelasQTDE_PARCELAS: TIntegerField;
+    qryReverterParcelasVALOR_TOTAL_NF: TFMTBCDField;
+    qryReverterParcelasVALOR_PARCELA: TFMTBCDField;
+    qryReverterParcelasDATA_PARCELA: TDateField;
+    qryReverterParcelasVOLUME_VENDA_TOTAL: TFMTBCDField;
+    qryReverterParcelasVOLUME_PARCELADO: TFMTBCDField;
+    qryReverterParcelasDOCUMENTO: TStringField;
+    qryReverterParcelasVOLUME_RESTANTE: TFMTBCDField;
+    qryReverterParcelasNF: TIntegerField;
+    qryReverterParcelasEMISSAO_NF: TDateField;
+    qryReverterParcelasACESSO: TStringField;
+    qryReverterParcelasPARCELA: TStringField;
+    qryReverterParcelasDATA_PGTO_PARCELA: TDateField;
+    qryReverterParcelasFORMAID: TIntegerField;
+    qryReverterParcelasDESCRICAO: TStringField;
+    qryReverterParcelasHABILITAR_PARCELA: TStringField;
+    Image1: TImage;
+    qryMovimento: TFDQuery;
+    qryMovimentoMOVIMENTOID: TIntegerField;
+    qryMovimentoPRODUTOID: TIntegerField;
+    qryMovimentoESTOQUEID: TIntegerField;
+    qryMovimentoUSINAID: TIntegerField;
+    qryMovimentoDATA: TDateField;
+    qryMovimentoTIPO: TStringField;
+    qryMovimentoVOLUME: TFMTBCDField;
+    qryMovimentoVALOR: TFMTBCDField;
+    qryMovimentoMOTIVO: TStringField;
+    qryMovimentoESTOQUE_ANTERIOR: TFMTBCDField;
+    dsMovimento: TDataSource;
+    cbExcluir: TCheckBox;
+    qryLiberarParaExcluir: TFDQuery;
+    dsLiberarParaExcluir: TDataSource;
+    qryLiberarParaExcluirPARCELAID: TIntegerField;
+    qryLiberarParaExcluirVENDAID: TIntegerField;
+    qryLiberarParaExcluirFORMA_PGTO_ID: TIntegerField;
+    qryLiberarParaExcluirSTATUS: TStringField;
+    qryLiberarParaExcluirQTDE_PARCELAS: TIntegerField;
+    qryLiberarParaExcluirVALOR_TOTAL_NF: TFMTBCDField;
+    qryLiberarParaExcluirVALOR_PARCELA: TFMTBCDField;
+    qryLiberarParaExcluirDATA_PARCELA: TDateField;
+    qryLiberarParaExcluirVOLUME_VENDA_TOTAL: TFMTBCDField;
+    qryLiberarParaExcluirVOLUME_PARCELADO: TFMTBCDField;
+    qryLiberarParaExcluirDOCUMENTO: TStringField;
+    qryLiberarParaExcluirVOLUME_RESTANTE: TFMTBCDField;
+    qryLiberarParaExcluirNF: TIntegerField;
+    qryLiberarParaExcluirEMISSAO_NF: TDateField;
+    qryLiberarParaExcluirACESSO: TStringField;
+    qryLiberarParaExcluirPARCELA: TStringField;
+    qryLiberarParaExcluirDATA_PGTO_PARCELA: TDateField;
+    memoMotivo: TEdit;
+    qryEstoqueUsinaREPRESENTANTEID: TIntegerField;
+    qryMovimentoREPRESENTANTEID: TIntegerField;
+    qryVendasESTOQUEID: TIntegerField;
+    DataPagamentoAnterior: TMaskEdit;
+    labelCaracteres: TLabel;
+    labelDataAnterior: TLabel;
+    qryVendasVALOR_COMBUSTIVEL: TFMTBCDField;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnConsultarClick(Sender: TObject);
+    procedure editPesquisaNFKeyPress(Sender: TObject; var Key: Char);
+    procedure btnPagarClick(Sender: TObject);
+    procedure cbExcluirClick(Sender: TObject);
+    procedure memoMotivoChange(Sender: TObject);
+
+
+  private
+    { Private declarations }
+
+    procedure EditarEstoqueUsina(Action : string; usina, produto, estoqueid : integer);
+    procedure RegistrarMovimentoEstoque( TypeAction : string);
+
+  public
+    { Public declarations }
+  end;
+
+var
+  frmReverterPagamentos: TfrmReverterPagamentos;
+
+implementation
+
+{$R *.dfm}
+
+uses UGerarParcelas, UPrincipalPetrotorque;
+
+procedure TfrmReverterPagamentos.btnConsultarClick(Sender: TObject);
+begin
+  if editPesquisaNF.Text = '' then
+      try
+       with qryReverterParcelas do
+          begin
+            Close;
+            SQL.Clear;
+            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where (PARC.forma_pgto_id = FP.formaid) and  (data_parcela between :DE and :ATE) and  (status = ''PAGO  '')');
+            ParamByName('DE').AsDate :=  StrToDate(DateVencimentoDE.EditText);
+            ParamByName('ATE').AsDate := StrToDate(DateVencimentoATE.EditText);
+            Open();
+          end;
+      except
+         on E : Exception do
+             MessageDlg('Informe uma data válida',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+      end
+        else
+       with qryReverterParcelas do
+          begin
+            Close;
+            SQL.Clear;
+            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF like ' + QuotedStr('%' + editPesquisaNF.Text + '%')
+                  + 'and (PARC.forma_pgto_id = FP.formaid) and  (status = ''PAGO'')');
+            Open();
+          end;
+end;
+
+procedure TfrmReverterPagamentos.btnPagarClick(Sender: TObject);
+  var AuxiliarErro, fornecedor, ValorParcelado, Parcela : String;
+      NF, i, QtdeParcelas : integer;
+      VolumeParcelado, teste : Currency;
+      DataParcela : TDate;
+begin
+ if DataPagamentoAnterior.EditText <> '__/__/____' then
+  begin
+        qryVendas.Locate('vendaid', qryReverterParcelas['VENDAID'], []);
+        qryUsina.Locate('usinaid', qryVendas['USINAID'], []);
+        EditarEstoqueUsina('editando', qryUsina['USINAID'], qryVendas['PRODUTOID'], qryVendas['ESTOQUEID']);
+
+
+        fornecedor      := qryUsina['NOME_FANTASIA'];
+        NF              := qryReverterParcelas['NF'];
+        VolumeParcelado := qryReverterParcelas['VOLUME_PARCELADO'];
+        ValorParcelado  := FormatFloat('R$ #,0.00', qryReverterParcelas['VALOR_PARCELA']);
+        Parcela         := qryReverterParcelas['PARCELA'];
+        DataParcela     := qryReverterParcelas['DATA_PARCELA'];
+        QtdeParcelas := 0;
+
+     if MessageBox( Application.Handle, PChar('Você está prestes a reverter o pagamento da seguinte parcela: ' + #13 + #13
+                                  + 'NF: '               + IntToStr(NF) + '  |  Parcela ' + Parcela + '  |  De ' + DateToStr(DataParcela) + #13
+                                  + 'Fornecedor: '       + fornecedor + #13
+                                  + 'Valor Parcelado: '  + ValorParcelado + #13
+                                  + 'Volume Parcelado: ' + CurrToStr(VolumeParcelado) + #13 + #13 + ''
+                                  + 'Isso implicará na devolução do estoque da parcela ao fornecedor ' + #13 + #13 + ''
+                                  + 'Deseja continuar? '),
+                                    'Atenção', MB_YESNO + MB_ICONQUESTION) = mrYes then
+    begin
+
+      try
+
+        qryEstoqueUsina.Edit;
+        qryEstoqueUsina['ESTOQUE'] := qryEstoqueUsina['ESTOQUE'] + qryReverterParcelas['VOLUME_PARCELADO'];
+
+      //procedure que registra a movimentação de entrada do estoque mediante a reversão da parcela.
+      //Está neste trecho para captura a ID da tabela "Estoque_usina" que está na procedure logo acima...
+        RegistrarMovimentoEstoque('excluindo');
+
+        qryEstoqueUsina.Post;
+
+        qryReverterParcelas.Edit;
+        qryReverterParcelas['STATUS']            := 'ABERTO';
+        qryReverterParcelas['DATA_PGTO_PARCELA'] := Null;
+        qryReverterParcelas.Post;
+
+
+        with qryLiberarParaExcluir do
+           begin
+             Close;
+             ParamByName('venda').AsInteger := qryReverterParcelas['VENDAID'];
+             Open();
+           end;
+        QtdeParcelas := qryLiberarParaExcluir['QTDE_PARCELAS'];
+        if QtdeParcelas = qryLiberarParaExcluir.RecordCount then
+            begin
+              qryLiberarParaExcluir.First;
+              for I := 1 to QtdeParcelas do
+               begin
+                 qryLiberarParaExcluir.Edit;
+                 qryLiberarParaExcluir['ACESSO'] := 'PERMITIDO';
+                 qryLiberarParaExcluir.Post;
+                 qryLiberarParaExcluir.Next;
+               end;
+            end;
+
+
+      Except
+         on E : Exception do
+           begin
+             AuxiliarErro := Copy(E.Message,0,500);
+             MessageDlg('Erro ao cancelar o pagamento. Motivo: ' + #13 + AuxiliarErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+           end;
+      end;
+
+      EditarEstoqueUsina('concluido', 0, 0, 0);
+
+      qryVendas.Edit;
+      qryVendas['VALOR_RECEBIDO_MES']    := qryVendas['VALOR_RECEBIDO_MES'] - qryReverterParcelas['VALOR_PARCELA'];
+      qryVendas['TOTAL_NF_RECEBIDO']     := qryVendas['TOTAL_NF_RECEBIDO'] -  qryReverterParcelas['VALOR_PARCELA'];
+      qryVendas['VOLUME_TOTAL_RETIRADO'] := qryVendas['VOLUME_TOTAL_RETIRADO'] - qryReverterParcelas['VOLUME_PARCELADO'];
+      qryVendas['VOLUME_RECEBIDO_MES']   := qryVendas['VOLUME_RECEBIDO_MES'] - qryReverterParcelas['VOLUME_PARCELADO'];
+      qryVendas['VENCIMENTO_NF_ATUAL']   := StrToDate(DataPagamentoAnterior.Text);
+      qryVendas.Post;
+
+
+      try
+        tcReverterParcelas.CommitRetaining;
+      finally
+         tcReverterParcelas.RollbackRetaining;
+      end;
+          qryReverterParcelas.Close;
+          qryUsina.Close;
+          qryVendas.Close;
+          qryEstoqueUsina.Close;
+          qryLiberarParaExcluir.Close;
+          qryLiberarParaExcluir.Open();
+          qryReverterParcelas.Open();
+          qryUsina.Open();
+          qryVendas.Open();
+          qryEstoqueUsina.Open();
+
+          painelBtnReverterPagamento.Visible := False;
+          memoMotivo.Visible := False;
+          memoMotivo.Clear;
+          cbExcluir.Checked := False;
+    end;
+  end
+    else
+          MessageDlg('Atenção! ' + #13 + 'Informe a data da última parcela paga antes de reverter este pagamento',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+
+
+end;
+
+procedure TfrmReverterPagamentos.cbExcluirClick(Sender: TObject);
+begin
+  if cbExcluir.Checked = true then
+     begin
+      memoMotivo.Visible := true;
+      labelCaracteres.Visible := True;
+     end;
+  if cbExcluir.Checked = false then
+     begin
+      labelCaracteres.Visible := false;
+      memoMotivo.Clear;
+      painelBtnReverterPagamento.Visible := False;
+      memoMotivo.Visible := False;
+     end;
+end;
+
+procedure TfrmReverterPagamentos.EditarEstoqueUsina(Action: string; usina, produto, estoqueid: integer);
+var estid : integer
+begin
+
+        if Action = 'editando' then
+            begin
+             with qryEstoqueUsina do
+                 begin
+                   Close;
+                   SQL.Clear;
+                   SQL.Add('select * from estoque_usina where (usinaid = :usina) and (produtoid = :produto) and (estoqueid = :estoqueid)');
+                   ParamByName('usina').AsInteger := usina;
+                   ParamByName('produto').AsInteger := produto;
+                   ParamByName('estoqueid').AsInteger := estoqueid;
+                   open;
+                 end;
+            end;
+
+            estid := qryEstoqueUsina['ESTOQUEID'];
+
+        if Action = 'concluido' then
+            begin
+              with qryEstoqueUsina do
+                 begin
+                   Close;
+                   SQL.Clear;
+                   SQL.Add('select * from estoque_usina ');
+                   open;
+                 end;
+            end;
+
+end;
+
+procedure TfrmReverterPagamentos.editPesquisaNFKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if Key = #13 then
+      begin
+        btnConsultar.Click;
+        Key := #0;
+      end;
+end;
+
+procedure TfrmReverterPagamentos.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+    qryReverterParcelas.Close;
+  qryUsina.Close;
+  qryVendas.Close;
+  qryEstoqueUsina.Close;
+end;
+
+procedure TfrmReverterPagamentos.FormShow(Sender: TObject);
+begin
+  qryReverterParcelas.Open();
+  qryUsina.Open();
+  qryVendas.Open();
+  qryEstoqueUsina.Open();
+end;
+
+
+
+procedure TfrmReverterPagamentos.memoMotivoChange(Sender: TObject);
+begin
+  if ( memoMotivo.GetTextLen > 9 ) then
+       begin
+         painelBtnReverterPagamento.Visible := True;
+         DataPagamentoAnterior.Visible      := True;
+         labelDataAnterior.Visible          := True;
+       end
+      else
+       begin
+         painelBtnReverterPagamento.Visible := False;
+         DataPagamentoAnterior.Visible      := False;
+         labelDataAnterior.Visible          := False;
+       end;
+
+end;
+
+procedure TfrmReverterPagamentos.RegistrarMovimentoEstoque(TypeAction: string);
+ var NF  : string;
+begin
+  if qryMovimento.Active = false then qryMovimento.Open();
+    if TypeAction = 'excluindo' then
+         begin
+           NF := qryReverterParcelas['NF'];
+           qryMovimento.Insert;
+           qryMovimento['REPRESENTANTEID']    := qryVendas['REPRESENTANTEID'];
+           qryMovimento['ESTOQUEID']          := qryEstoqueUsina['ESTOQUEID'];
+           qryMovimento['USINAID']            := qryEstoqueUsina['USINAID'];
+           qryMovimento['PRODUTOID']          := qryEstoqueUsina['PRODUTOID'];
+           qryMovimento['DATA']               := Date;
+           qryMovimento['VALOR']              := qryReverterParcelas['VALOR_PARCELA'];
+           qryMovimento['VOLUME']             := qryReverterParcelas['VOLUME_PARCELADO'];
+           qryMovimento['ESTOQUE_ANTERIOR']   := qryEstoqueUsina['ESTOQUE'];
+           qryMovimento['TIPO']               := 'E';
+           qryMovimento['MOTIVO']             := 'Revernsão pgto parcela ref. NF : ' + NF + ' | ' + 'Motivo:' + memoMotivo.Text;
+           qryMovimento.Post;
+         end;
+end;
+
+end.

@@ -1,0 +1,194 @@
+unit UrelatorioCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.Client, frxClass, FireDAC.Comp.DataSet, Vcl.StdCtrls,
+  Vcl.ExtCtrls, Vcl.Buttons, Vcl.Mask, Vcl.Imaging.pngimage, Vcl.Grids,
+  Vcl.DBGrids, frxDBSet;
+
+type
+  TfrmRelatorioClientes = class(TForm)
+    dbRelCliente: TfrxDBDataset;
+    gridRelatorioCliente: TDBGrid;
+    PainelCentral: TPanel;
+    Image1: TImage;
+    gbPesquisaPosto: TGroupBox;
+    labelPesquisa: TLabel;
+    labelDe: TLabel;
+    labelATE: TLabel;
+    editPesquisa: TEdit;
+    DateVencimentoDE: TMaskEdit;
+    DateVencimentoATE: TMaskEdit;
+    painelFundobtn: TPanel;
+    PainelConsultar: TPanel;
+    btnConsultar: TSpeedButton;
+    painelBotoes: TPanel;
+    painelImprimir: TPanel;
+    btnImprimir: TSpeedButton;
+    gbStatus: TRadioGroup;
+    rbTodos: TRadioButton;
+    rbPago: TRadioButton;
+    rbAberto: TRadioButton;
+    gbMudarStatus: TGroupBox;
+    btnConfirmarStatus: TSpeedButton;
+    rbPagar: TRadioButton;
+    rbPgtoAberto: TRadioButton;
+    rbPagarTodos: TRadioButton;
+    PainelTopo: TPanel;
+    labelTitulo: TLabel;
+    qryCliente: TFDQuery;
+    qryVendaPosto: TFDQuery;
+    qryVendaPostoVENDAID: TFDAutoIncField;
+    qryVendaPostoDATA_EMISSAO_NF: TDateField;
+    qryVendaPostoREPRESENTANTEID: TIntegerField;
+    qryVendaPostoPOSTOID: TIntegerField;
+    qryVendaPostoPRODUTOID: TIntegerField;
+    qryVendaPostoMOTORISTAID: TIntegerField;
+    qryVendaPostoCORRETORID: TIntegerField;
+    qryVendaPostoUSINAID: TIntegerField;
+    qryVendaPostoNF: TIntegerField;
+    qryVendaPostoVALOR_NF: TFMTBCDField;
+    qryVendaPostoVENCIMENTO_NF_ATUAL: TDateField;
+    qryVendaPostoVOLUME: TFMTBCDField;
+    qryVendaPostoTAXA_FRETE: TBCDField;
+    qryVendaPostoVALOR_TOTAL_FRETE: TFMTBCDField;
+    qryVendaPostoTAXA_CORRETAGEM: TBCDField;
+    qryVendaPostoVALOR_TOTAL_CORRETAGEM: TFMTBCDField;
+    qryVendaPostoSTATUS: TStringField;
+    qryVendaPostoATUALIZAR_PARCELA: TIntegerField;
+    qryVendaPostoPARCELAS_GERADAS: TStringField;
+    qryVendaPostoTOTAL_NF_RECEBIDO: TFMTBCDField;
+    qryVendaPostoVOLUME_TOTAL_RETIRADO: TFMTBCDField;
+    qryVendaPostoVALOR_RECEBIDO_MES: TFMTBCDField;
+    qryVendaPostoVOLUME_RECEBIDO_MES: TFMTBCDField;
+    qryVendaPostoCORRETOR: TStringField;
+    qryVendaPostoMOTORISTA: TStringField;
+    qryVendaPostoPOSTO: TStringField;
+    qryVendaPostoPRODUTO: TStringField;
+    qryVendaPostoREPRESENTANTE: TStringField;
+    qryVendaPostoUSINA: TStringField;
+    qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField;
+    qryVendaPostoESTOQUEID: TIntegerField;
+    qryVendaPostoSTATUS_CORRETAGEM: TStringField;
+    reportCcliente: TfrxReport;
+    tcRelatorioCliente: TFDTransaction;
+    qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField;
+    dsCliente: TDataSource;
+    dsVendaPosto: TDataSource;
+    qryClientePOSTOID: TIntegerField;
+    qryClienteNOME_FANTASIA: TStringField;
+    qryClienteRAZAO_SOCIAL: TStringField;
+    qryClienteCNPJ: TStringField;
+    procedure btnConsultarClick(Sender: TObject);
+    procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRelatorioClientes: TfrmRelatorioClientes;
+
+implementation
+
+{$R *.dfm}
+
+uses UVendaPosto, Uposto;
+
+procedure TfrmRelatorioClientes.btnConsultarClick(Sender: TObject);
+ var filtroStatus: String;
+begin
+
+       if editPesquisa.Text <> '' then
+        begin
+
+              if rbTodos.Checked then
+                 FiltroStatus := '';
+              if rbPago.Checked then
+                 FiltroStatus := ' and (v.status_corretagem = ''PGO'') ';
+              if rbAberto.Checked then
+                 FiltroStatus := ' and (v.status_corretagem = ''ABT'') ';
+
+           with qryVendaPosto do
+             begin
+               Close;
+               SQL.Clear;
+               SQL.Add('select '
+
+                  + 'v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, '
+
+                  +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
+                  +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
+                  +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_CORRETAGEM, '
+
+                  +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
+                  +' eu.estoqueid '
+
+
+                  +' from '
+
+                  +' venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, estoque_usina eu '
+
+
+                  +' where '
+
+                  +' (v.representanteid = re.representanteid) and '
+                  +' (v.postoid = p.postoid) and '
+                  +' (v.produtoid = pr.produtoid) and '
+                  +' (v.motoristaid = m.motoristaid) and '
+                  +' (v.corretorid = c.corretorid) and '
+                  +' (v.usinaid = u.usinaid) and '
+                  +' (v.estoqueid = eu.estoqueid) and '
+                  +' (v.corretorid = :CORRETOR) and '
+                  +' (v.data_emissao_nf between :DE and :ATE) '
+                  +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+
+               ParamByName('CORRETOR').AsInteger := qryCliente['POSTOID'];
+               ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);
+               ParamByName('ATE').AsDate          := StrToDate(DateVencimentoATE.Text);
+               Open();
+             end;
+        end;
+
+end;
+
+procedure TfrmRelatorioClientes.editPesquisaKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+      begin
+        try
+          Application.CreateForm( TfrmPosto, frmPosto );
+          frmPosto.DuploClickNaGrid := 'relatoriocliente';
+          frmPosto.ShowModal;
+        finally
+           FreeAndNil( frmPosto );
+        end;
+      end;
+end;
+
+procedure TfrmRelatorioClientes.FormShow(Sender: TObject);
+begin
+   qryCliente.Open();
+   qryVendaPosto.Open();
+
+   DateVencimentoDE.Text   := DateToStr(Date);
+   DateVencimentoATE.Text  := DateToStr(Date);
+end;
+
+initialization
+RegisterClass(TfrmRelatorioClientes);
+
+finalization
+UnRegisterClass(TfrmRelatorioClientes);
+
+
+end.

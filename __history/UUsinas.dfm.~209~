@@ -1,0 +1,1316 @@
+object frmUsinas: TfrmUsinas
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Usinas'
+  ClientHeight = 772
+  ClientWidth = 1077
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PainelTopo: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 1071
+    Height = 394
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    object Image1: TImage
+      Left = 10
+      Top = 79
+      Width = 139
+      Height = 125
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000820000
+        008208060000008A0310FD000000017352474200AECE1CE900000A1A49444154
+        78DAED9D7F6C1B571DC0BFEF1C27717E353FDBD849D3A4691AC6BAB56B4B9A64
+        0B74A89D9A740346195A99041409B17685A562500D01DA3F9B2624D4745B5352
+        10486C302D6220408C21360D923469A11BFBA94D9D06436D12B74DB3FCB013C7
+        B1FDF8BED78426CED9CED9F72BC9F7239D9CDCF99DBFF7DEE7DD7DEFDDF9CC80
+        2010667500843D201108098940484804424222984C6BAF773F30DEB1C8B7F399
+        57C699B2EF78FD9ABF1A151789603247FABC7771E07FD05A8E71DE7CACD1F3A2
+        517191082643221012128190900884844420242402212111080989B04439D27B
+        C1153DCF9FEE90F5961D0C73B532A19140E4C9969A29D5F591084B10CE59EB19
+        EF24FE95A1A91CE3CFB6D57BBEA4B68844588A24290256EAF3C71ADC5F505BD6
+        7AD6FB6988F097B586422258499222E0F1E2C5E30DEE66B565AD7D833BF1E515
+        ADA19008564222101212819090088484442024240221B19108B8D67D6D0D9EDF
+        1AB5A924423C6C24020776EFF186D2E78CDA5412211E2402213140846FF55E6A
+        5458E4B4E65048040B314084236707B6F308FBA7E65048040B21110809894048
+        92BD0CCDA1BBADD1FD49B54524C252245911007ADA1ADC4D6A0B4884A5088940
+        4896B208187BE19367735D0A73F61FDE7135D1DB4984782C21113C1DE7B222A1
+        A91B15C6EFE43861811B70F6ECFD96C39108B45C3ADC7436567912211E361561
+        C3132F64F894BC0DD87ACD8CF1CFE2ACCD38E5265C4544A91A3C7CEB7FD516EA
+        2642EB99C187788417E9B53EBD501CF0C2B11D9EEEA40A1B20426B5FFF568CEA
+        D5C587C0C11F0CC13BDEE1A73F1C1E2FC15975381540126DC719BCEC3DD8B44B
+        6D997E22F40DBE8F2F1BF45A9F5E30060F1DAB77FF38A9C20688F0604F7F2D73
+        28EFA97E1C4E81E9105CF64D42FF881F86FC01F93F07DD18193CD454A05A4F7A
+        7D0289308F98227CBB77E06361C6DE157F4F85C270151BFBE2A81F2E8F4FC084
+        68741D5B7D415D008C0E1C6ACA8FB14C1F488479CC1701D75370EAA5BCF448FA
+        3697C3795F7A9AE36BBEA969B9DB37B52E480473450885237DBF79EB8356C6D9
+        5D18C15E5C91C8E0332DAF0B12C1381122D8ABC7B1770FE2EEBD1FA791C92084
+        F05CCD8E9008C98A706DBBFCF89225FE168D3E8119FC253C9E8BE3FA301EDF83
+        617B36BA6A5D90084988F00857CA0AFFE6F94475D979ECE9AE21FF244C4D87F5
+        CCE093DF269C0A329DB0BD34175AD617C1AD65F9D0F8AB73301DE189CA910889
+        DE57FA44578992A634608DDC8D49DCED38AB1C2787D5F10B729C0ED85492037B
+        2A0BE1F68A02A85CE502A732BFE9D6759C2611E26E7CB408733278C61D9F63C0
+        EFC04A588F55E8B43A5641669A0235F959B0ABB20076AF2B84DAC26C70E1BC44
+        D8498437F0E56693EB2D218150F8FBBF7BE33F2F290AFB0C5A80193CD4820D32
+        78411AF6EA8ADC4CD859910FCD55C57033F6FADCF4E47642F611E18CF75FD8DB
+        B61859718910C9DC580033F8313F0CD82C835770D7B4262B1D1ACB5661A31741
+        9D3B0F8A5C4EDD1A60C58A109919831719BC188E1D9EB04F063F9BCC6D5B930B
+        CD98CCDD86C99C3B271D1CCCB86B7C2B4204310037393B068F3D7D085FC5F0AC
+        1D32F8B9DC50940D2777D742659E0B669EAE631ACB5204D1C8E282CBC5119F6C
+        FC4983C7E0B590E1C064AEC005EF0CF91788F8A9B5F9F0EC9D9B2C89ABFAA7BD
+        30198ABF47B4B508D3B83B1F9E98C29EEE03EFD804F88221D3C7E0632176E56B
+        7333B0810BE42E7E8B48E632D264A555600F0C45F5402B45A8F9591FF8A7C371
+        DF631B1144E2368A099CD8BD8B844E2476119B34BA382D2F76A543BD270FF6AE
+        2F867A4CE68A31B98B554124420CA245088B31F840101B7C4236FCA88D3278B1
+        D179D8B337630F173D5DF4F8F29C0C793AB7584804353ACE39BF5253F21A2671
+        9B44A38B0C7EDA2619BC400CC88881993B2A0B61D7BA42798C17C7FA5420113A
+        3B1D9E8FDC659110ECC443E8DD38A711A7629C52AB599D1043AF157999722876
+        4F6511DC94C2204D3C569C089EF69E5ADCE56FE50CC457B8768A5960933178B1
+        275F3D3348D352552C07690AF1FC5DC31E3E69568C0825275EC971B2B4D77153
+        AB2DD9B245F06853351CD8E4B6E4B3578C08A5ED5DEF3360965C441241E5E0EE
+        5C8CBD8BE1D80D055970EF1FDF5EF0BEC75084AFDA48845B56E7C29FF66DB624
+        1E434428FFC9DF6BC211E5BC591B317BC56D37267322A1DB880D9F39E78ADBC5
+        F129A87B66E157014884EB2C4604647CF050539EDA025511DC277A3E0F8C3F6F
+        44C0E214AD5C0CD294CF0CD2ACCE81BCF4B4B8652EF98370CB2FFFB160FEC33B
+        2AE19B5BCB8D08332155A77A612AEACC68098830812264AB2D5015A1B4BDFB1E
+        5CD0996A70FF1FA4C124AEA57A669006FFD79ACCC512E168DD3A7870DB5A9DAA
+        521B24421C44CF163D5C0ED2608F173D5FCB204D2C4884C45826823886D7165C
+        3BAE8B3B69361666A53C48130B1221319688D0BD7F1BACCF7799F60D5A2F8AB0
+        9544888B2522BCF6E53A28CD4E376D234984C4182282A7BDFB009E18FD3CD6DA
+        CC16810E0D89314404F789AEAF0363A762AD8D44B09F081B5104DF7217E1A3C0
+        34DCF88B850FFB2011AE23EA47D4530296A70807B794C10F1AAA4C8B632E2402
+        D84784FB51841F92081212C14622DC549C037FB9C79AAF76582242836795E6DB
+        B5C7A61226323111B7BDBD79C5B760BEB817A12C47EB332CF4E1F52BE30BEEAC
+        CECF4883BDD5C531CB88F78F0743297FB6D0CF17B59ED3FDA30B2E82A9A0791C
+        E1015CF094FED547588C5611BABEC380FDC8EAA809DD21110809894048480442
+        4222101212819068BEFA7814CF481FB73A6A4277340E28B5F73C0AC0BF6775D4
+        84EE90088484442024240221211108C9F210213C360241EF059DD68627C80E1D
+        BFD4AD289059556B49BD6840AB085D8FE1A287AD8E3A9AD0F015087C68DA5732
+        35C11407646FA9B73A8C44681D47E869E7C00F5A1D75342442CA900846432298
+        088990322482D1900826121AB90A817FBF97FA8A0C80443091D0E830043E78D7
+        EA305421114C84444819CDB7B33F038CDD6775D4D1900829A3518493DDBF060E
+        FBAD8E3A1A1221654804A3618A822234581D46224804A3A13D82899008294322
+        180D8960222442CA68BE9DFDF70CC4EF24DA0B7B8BB02492C5008AE0528D5F6D
+        A6BBBDFBCFF8B2C7EAA8A3B1B308E2C6941CFB8B104411549F234022E8058960
+        1E2442CA900886432298078990322482E19008E611F68DC2E4F9B7535F91112C
+        47114ADBBB1FC70547AD8E3A9AB06F0C4578CBEA30D4598E22147774B99D6136
+        6075D4D1900829338622AC525B10F361899E13DDCF71065FB43AF2B9900829C2
+        A163F081A6FBD516C57E6A6667A7C33DE47E13FFFAB8D5F1CF4222A4C4058FC3
+        55FDEA37B6AB3E9E35FEE35339679E933DDFE50007F03FE74C01F9784FAEE1E7
+        84F52A334F0445F56783F8F5E273D625BFE318EBA3D94C197EED0D8C0153E2FF
+        EA1C16E1334518133F5F8465C4E4AA89FDE39F16D6DB184E4F0F5EBEAD0D1E61
+        9138E50882442066201108098940484804424222101212819090088484442024
+        2402212111080989404848044242221012128190FC0F7CFB4DEC0A4620750000
+        000049454E44AE426082}
+    end
+    object Label9: TLabel
+      Left = 10
+      Top = 10
+      Width = 334
+      Height = 37
+      Caption = 'Cadastro de Fornecedores'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clSilver
+      Font.Height = -27
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object gbUsina: TGroupBox
+      Left = 173
+      Top = 67
+      Width = 548
+      Height = 238
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -11
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 10
+        Top = 12
+        Width = 83
+        Height = 13
+        Caption = 'NOME FANTASIA'
+        FocusControl = editNomeFantasia
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 10
+        Top = 56
+        Width = 74
+        Height = 13
+        Caption = 'RAZ'#195'O SOCIAL'
+        FocusControl = editRazaoSocial
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 10
+        Top = 139
+        Width = 56
+        Height = 13
+        Caption = 'ENDERECO'
+        FocusControl = editEndereco
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label5: TLabel
+        Left = 10
+        Top = 97
+        Width = 39
+        Height = 13
+        Caption = 'CIDADE'
+        FocusControl = editCidade
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 492
+        Top = 97
+        Width = 14
+        Height = 13
+        Caption = 'UF'
+        FocusControl = editUF
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label7: TLabel
+        Left = 10
+        Top = 181
+        Width = 39
+        Height = 13
+        Caption = 'BAIRRO'
+        FocusControl = editBairro
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 376
+        Top = 181
+        Width = 51
+        Height = 13
+        Caption = 'TELEFONE'
+        FocusControl = editTelefone
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object editNomeFantasia: TDBEdit
+        Left = 10
+        Top = 28
+        Width = 519
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'NOME_FANTASIA'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 0
+      end
+      object editRazaoSocial: TDBEdit
+        Left = 10
+        Top = 71
+        Width = 519
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'RAZAO_SOCIAL'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+      end
+      object editEndereco: TDBEdit
+        Left = 10
+        Top = 154
+        Width = 519
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'ENDERECO'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 4
+      end
+      object editCidade: TDBEdit
+        Left = 10
+        Top = 112
+        Width = 463
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'CIDADE'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+      object editUF: TDBEdit
+        Left = 492
+        Top = 112
+        Width = 37
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'UF'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+      end
+      object editBairro: TDBEdit
+        Left = 10
+        Top = 197
+        Width = 351
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'BAIRRO'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 5
+      end
+      object editTelefone: TDBEdit
+        Left = 376
+        Top = 197
+        Width = 153
+        Height = 21
+        CharCase = ecUpperCase
+        DataField = 'TELEFONE'
+        DataSource = dsUsina
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 6
+      end
+    end
+    object gbEstoque: TGroupBox
+      Left = 727
+      Top = 67
+      Width = 330
+      Height = 194
+      Enabled = False
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -11
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 1
+      object Label3: TLabel
+        Left = 205
+        Top = 99
+        Width = 48
+        Height = 13
+        Caption = 'ESTOQUE'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object labelProduto: TLabel
+        Left = 11
+        Top = 98
+        Width = 51
+        Height = 13
+        Caption = 'PRODUTO'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object labelrotuloAcao: TLabel
+        Left = 16
+        Top = 6
+        Width = 95
+        Height = 17
+        Caption = 'labelrotuloAcao'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clSilver
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        Visible = False
+      end
+      object labelRepresentante: TLabel
+        Left = 11
+        Top = 56
+        Width = 84
+        Height = 13
+        Caption = 'REPRESENTANTE'
+      end
+      object editProduto: TEdit
+        Left = 11
+        Top = 113
+        Width = 188
+        Height = 21
+        CharCase = ecUpperCase
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 0
+        OnKeyDown = editProdutoKeyDown
+        OnKeyPress = editProdutoKeyPress
+      end
+      object painelBotoes: TPanel
+        Left = 3
+        Top = 135
+        Width = 81
+        Height = 37
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 1
+        object painelBtnAdicionar: TPanel
+          Left = 8
+          Top = 8
+          Width = 57
+          Height = 25
+          BevelOuter = bvNone
+          Caption = 'OK'
+          Color = 11360274
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -12
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          object btnOK: TSpeedButton
+            Left = 0
+            Top = 0
+            Width = 57
+            Height = 25
+            Align = alClient
+            Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnOKClick
+            ExplicitTop = -3
+          end
+        end
+      end
+      object editEstoque: TEdit
+        Left = 205
+        Top = 113
+        Width = 102
+        Height = 21
+        CharCase = ecUpperCase
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10461087
+        Font.Height = -11
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+      object editRepresentante: TEdit
+        Left = 11
+        Top = 71
+        Width = 296
+        Height = 21
+        ReadOnly = True
+        TabOrder = 3
+        OnKeyDown = editRepresentanteKeyDown
+      end
+    end
+    object gbPesquisaUsina: TGroupBox
+      Left = 10
+      Top = 314
+      Width = 1045
+      Height = 72
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -11
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 2
+      object editPesquisaUsina: TEdit
+        Left = 5
+        Top = 39
+        Width = 981
+        Height = 21
+        CharCase = ecUpperCase
+        TabOrder = 0
+        OnChange = editPesquisaUsinaChange
+        OnKeyDown = editPesquisaUsinaKeyDown
+        OnKeyPress = editPesquisaUsinaKeyPress
+      end
+      object rbNomeFantasia: TRadioButton
+        Left = 10
+        Top = 16
+        Width = 111
+        Height = 17
+        Caption = 'NOME FANTASIA'
+        Checked = True
+        TabOrder = 1
+        TabStop = True
+        OnClick = rbNomeFantasiaClick
+      end
+      object rbRazaoSocial: TRadioButton
+        Left = 146
+        Top = 16
+        Width = 103
+        Height = 17
+        Caption = 'RAZ'#195'O SOCIAL'
+        TabOrder = 2
+        OnClick = rbRazaoSocialClick
+      end
+      object rbCidade: TRadioButton
+        Left = 303
+        Top = 16
+        Width = 88
+        Height = 17
+        Caption = 'CIDADE'
+        TabOrder = 3
+        OnClick = rbCidadeClick
+      end
+    end
+    object painelBotoesEstoque: TPanel
+      Left = 727
+      Top = 264
+      Width = 311
+      Height = 38
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 3
+      object painelEditarEstoque: TPanel
+        Left = 75
+        Top = 8
+        Width = 73
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Ed. Estoque'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object SpeedButton2: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 73
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = SpeedButton2Click
+          ExplicitLeft = 2
+          ExplicitWidth = 89
+        end
+      end
+      object PainelNovoEstoqueUsina: TPanel
+        Left = 7
+        Top = 8
+        Width = 66
+        Height = 25
+        BevelOuter = bvNone
+        Caption = '+ Estoque'
+        Color = clSilver
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        object btnNovoEstoqueUsina: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 66
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnNovoEstoqueUsinaClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object painelCancelarEstoque: TPanel
+        Left = 150
+        Top = 8
+        Width = 75
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Cancelar'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        object btnAdicionar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 75
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnAdicionarClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object painelExcluirEstoque: TPanel
+        Left = 227
+        Top = 8
+        Width = 72
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Excluir'
+        Color = clSilver
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 3
+        object btnConsultar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 72
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnConsultarClick
+          ExplicitTop = -3
+          ExplicitWidth = 73
+          ExplicitHeight = 27
+        end
+      end
+    end
+    object Panel1: TPanel
+      Left = 517
+      Top = 11
+      Width = 549
+      Height = 50
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 4
+      object painelBtnNovo: TPanel
+        Left = 8
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Novo'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object btnNovo: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnNovoClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object PainelCancelar: TPanel
+        Left = 115
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Cancelar'
+        Color = 14869218
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        object btnCancelar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnCancelarClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object painelSalvar: TPanel
+        Left = 327
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Salvar [F12]'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        object btnSalvar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnSalvarClick
+          ExplicitLeft = -4
+          ExplicitWidth = 120
+        end
+      end
+      object PainelExcluir: TPanel
+        Left = 433
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Excluir'
+        Color = clSilver
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 3
+        object btnExcluir: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnExcluirClick
+          ExplicitLeft = 2
+          ExplicitWidth = 120
+        end
+      end
+      object painelEditar: TPanel
+        Left = 221
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Editar'
+        Color = 14869218
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 4
+        object btnEditar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnEditarClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+    end
+  end
+  object painelGrids: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 403
+    Width = 1055
+    Height = 358
+    BevelOuter = bvNone
+    TabOrder = 1
+    object painelSeparacao: TPanel
+      AlignWithMargins = True
+      Left = 3
+      Top = 188
+      Width = 1049
+      Height = 8
+      Align = alTop
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 0
+    end
+    object gridMotorista: TDBGrid
+      Left = 0
+      Top = 0
+      Width = 1055
+      Height = 185
+      Align = alTop
+      BorderStyle = bsNone
+      DataSource = dsUsina
+      DrawingStyle = gdsClassic
+      FixedColor = 7428151
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 7428151
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 1
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWhite
+      TitleFont.Height = -12
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = [fsBold]
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'NOME_FANTASIA'
+          Width = 292
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'RAZAO_SOCIAL'
+          Width = 457
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CIDADE'
+          Width = 217
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'UF'
+          Width = 30
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ENDERECO'
+          Width = 359
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'BAIRRO'
+          Width = 213
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'TELEFONE'
+          Visible = True
+        end>
+    end
+    object gridPosto: TDBGrid
+      Left = 0
+      Top = 199
+      Width = 1055
+      Height = 159
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = dsEstoqueUsina
+      DrawingStyle = gdsClassic
+      FixedColor = 7428151
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 7428151
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 2
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWhite
+      TitleFont.Height = -12
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = [fsBold]
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'USINAID'
+          Width = 94
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME'
+          Width = 453
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DESCRICAO'
+          Width = 142
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'ESTOQUE'
+          Width = 347
+          Visible = True
+        end>
+    end
+  end
+  object tcUsina: TFDTransaction
+    Options.AutoStop = False
+    Connection = frmMenu.FDconexao
+    Left = 56
+    Top = 440
+  end
+  object qryUsina: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcUsina
+    FetchOptions.AssignedValues = [evRecordCountMode]
+    FetchOptions.RecordCountMode = cmTotal
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'GEN_USINA_ID'
+    UpdateOptions.UpdateTableName = 'USINA'
+    UpdateOptions.KeyFields = 'USINAID'
+    UpdateOptions.AutoIncFields = 'USINAID'
+    SQL.Strings = (
+      'SELECT * FROM USINA'
+      'order by usinaid')
+    Left = 248
+    Top = 440
+    object qryUsinaUSINAID: TFDAutoIncField
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryUsinaRAZAO_SOCIAL: TStringField
+      FieldName = 'RAZAO_SOCIAL'
+      Origin = 'RAZAO_SOCIAL'
+      Size = 120
+    end
+    object qryUsinaNOME_FANTASIA: TStringField
+      FieldName = 'NOME_FANTASIA'
+      Origin = 'NOME_FANTASIA'
+      Size = 100
+    end
+    object qryUsinaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Size = 60
+    end
+    object qryUsinaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 40
+    end
+    object qryUsinaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 40
+    end
+    object qryUsinaUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Size = 2
+    end
+    object qryUsinaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Size = 15
+    end
+  end
+  object dsUsina: TDataSource
+    DataSet = qryUsina
+    Left = 336
+    Top = 440
+  end
+  object qryEstoqueUsina: TFDQuery
+    IndexFieldNames = 'USINAID'
+    MasterSource = dsUsina
+    MasterFields = 'USINAID'
+    Connection = frmMenu.FDconexao
+    Transaction = tcUsina
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_ESTOQUE_USINA_ID'
+    UpdateOptions.UpdateTableName = 'ESTOQUE_USINA'
+    UpdateOptions.KeyFields = 'ESTOQUEID'
+    UpdateOptions.AutoIncFields = 'ESTOQUEID'
+    SQL.Strings = (
+      'select'
+      
+        '   eu.estoqueid, eu.usinaid, eu.produtoid, eu.representanteid, e' +
+        'u.estoque,'
+      '   pr.produtoid, pr.descricao,'
+      '   r.representanteid, r.nome'
+      ''
+      'from'
+      '  estoque_usina eu, produto pr, representante r'
+      ''
+      'where'
+      '   (eu.produtoid = pr.produtoid) and'
+      '   (eu.representanteid = r.representanteid)')
+    Left = 256
+    Top = 504
+    object qryEstoqueUsinaESTOQUEID: TFDAutoIncField
+      FieldName = 'ESTOQUEID'
+      Origin = 'ESTOQUEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryEstoqueUsinaUSINAID: TIntegerField
+      DisplayLabel = 'ID Usina'
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+    end
+    object qryEstoqueUsinaPRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+    end
+    object qryEstoqueUsinaPRODUTOID_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'PRODUTOID_1'
+      Origin = 'PRODUTOID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qryEstoqueUsinaESTOQUE: TFMTBCDField
+      DisplayLabel = 'Estoque'
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Precision = 18
+      Size = 2
+    end
+    object qryEstoqueUsinaDESCRICAO: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 60
+    end
+    object qryEstoqueUsinaREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+    end
+    object qryEstoqueUsinaREPRESENTANTEID_1: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'REPRESENTANTEID_1'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object qryEstoqueUsinaNOME: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Representante'
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 60
+    end
+  end
+  object dsEstoqueUsina: TDataSource
+    DataSet = qryEstoqueUsina
+    Left = 336
+    Top = 504
+  end
+  object qryProduto: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcUsina
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_PRODUTO_ID'
+    UpdateOptions.UpdateTableName = 'PRODUTO'
+    UpdateOptions.KeyFields = 'PRODUTOID'
+    UpdateOptions.AutoIncFields = 'PRODUTOID'
+    SQL.Strings = (
+      'select * from produto')
+    Left = 248
+    Top = 568
+    object qryProdutoPRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryProdutoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 60
+    end
+  end
+  object dsProduto: TDataSource
+    DataSet = qryProduto
+    Left = 344
+    Top = 576
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcUsina
+    UpdateOptions.UpdateTableName = 'REPRESENTANTE'
+    SQL.Strings = (
+      'select * from representante')
+    Left = 235
+    Top = 667
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 339
+    Top = 667
+  end
+  object qryEstoqueUsinaSeExiste: TFDQuery
+    Connection = frmMenu.FDconexao
+    SQL.Strings = (
+      'select * from estoque_usina where'
+      ' (usinaid = :usina) and'
+      ' (representanteid = :representante) and'
+      ' (produtoid = :produto)')
+    Left = 792
+    Top = 496
+    ParamData = <
+      item
+        Name = 'USINA'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'REPRESENTANTE'
+        DataType = ftInteger
+        ParamType = ptInput
+      end
+      item
+        Name = 'PRODUTO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+    object qryEstoqueUsinaSeExisteESTOQUEID: TIntegerField
+      FieldName = 'ESTOQUEID'
+      Origin = 'ESTOQUEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryEstoqueUsinaSeExisteUSINAID: TIntegerField
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+    end
+    object qryEstoqueUsinaSeExistePRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+    end
+    object qryEstoqueUsinaSeExisteESTOQUE: TFMTBCDField
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Precision = 18
+      Size = 2
+    end
+    object qryEstoqueUsinaSeExisteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+    end
+  end
+  object dsEstoqueUsinaSeExiste: TDataSource
+    DataSet = qryEstoqueUsinaSeExiste
+    Left = 923
+    Top = 491
+  end
+end

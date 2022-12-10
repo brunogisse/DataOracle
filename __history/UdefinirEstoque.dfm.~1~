@@ -1,0 +1,178 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 411
+  ClientWidth = 852
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object gbUsina: TGroupBox
+    Left = 5
+    Top = 3
+    Width = 774
+    Height = 113
+    Font.Charset = ANSI_CHARSET
+    Font.Color = 8553090
+    Font.Height = -11
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 10
+      Top = 20
+      Width = 59
+      Height = 13
+      Caption = 'DESCRICAO'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -11
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label2: TLabel
+      Left = 10
+      Top = 62
+      Width = 39
+      Height = 13
+      Caption = 'CIDADE'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -11
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DBLookupComboBox1: TDBLookupComboBox
+      Left = 10
+      Top = 78
+      Width = 233
+      Height = 21
+      KeyField = 'PRODUTOID'
+      ListField = 'DESCRICAO'
+      TabOrder = 0
+    end
+    object painelBotoes: TPanel
+      Left = 262
+      Top = 68
+      Width = 252
+      Height = 42
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 1
+      object painelBtnAdicionar: TPanel
+        Left = 8
+        Top = 8
+        Width = 75
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Adicionar'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object btnAdicionar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 75
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object PainelConsultar: TPanel
+        Left = 87
+        Top = 8
+        Width = 75
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Consultar'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        object btnConsultar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 75
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -13
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitTop = -3
+          ExplicitWidth = 73
+          ExplicitHeight = 27
+        end
+      end
+      object painelbtnPagar: TPanel
+        Left = 166
+        Top = 8
+        Width = 75
+        Height = 25
+        BevelOuter = bvNone
+        Caption = 'Pagar'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -12
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        object btnPagar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 75
+          Height = 25
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+    end
+  end
+end

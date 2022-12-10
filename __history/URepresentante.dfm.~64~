@@ -1,0 +1,487 @@
+object frmRepresentante: TfrmRepresentante
+  Left = 0
+  Top = 0
+  Caption = 'Cadastro de Representante'
+  ClientHeight = 604
+  ClientWidth = 821
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PainelTopo: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 129
+    Width = 815
+    Height = 245
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = 118
+    object labelTituloRepresentantes: TLabel
+      Left = 13
+      Top = 16
+      Width = 238
+      Height = 25
+      Caption = 'Cadastro de Representantes'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 7884598
+      Font.Height = -19
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object gbEdit: TGroupBox
+      Left = 13
+      Top = 49
+      Width = 596
+      Height = 110
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      object labelDestino: TLabel
+        Left = 12
+        Top = 3
+        Width = 70
+        Height = 17
+        Caption = 'DESCRI'#199#195'O'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 12
+        Top = 54
+        Width = 30
+        Height = 17
+        Caption = 'CNPJ'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label2: TLabel
+        Left = 214
+        Top = 54
+        Width = 46
+        Height = 17
+        Caption = 'CIDADE'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object editCNPJ: TDBEdit
+        Left = 12
+        Top = 74
+        Width = 194
+        Height = 25
+        CharCase = ecUpperCase
+        DataField = 'CNPJ'
+        DataSource = dsRepresentante
+        TabOrder = 0
+        OnKeyDown = editCNPJKeyDown
+        OnKeyPress = editCNPJKeyPress
+      end
+      object editCidade: TDBEdit
+        Left = 214
+        Top = 74
+        Width = 351
+        Height = 25
+        CharCase = ecUpperCase
+        DataField = 'CIDADE'
+        DataSource = dsRepresentante
+        TabOrder = 1
+        OnKeyDown = editCidadeKeyDown
+        OnKeyPress = editCidadeKeyPress
+      end
+      object editNome: TDBEdit
+        Left = 12
+        Top = 23
+        Width = 553
+        Height = 25
+        CharCase = ecUpperCase
+        DataField = 'NOME'
+        DataSource = dsRepresentante
+        Enabled = False
+        TabOrder = 2
+        OnKeyDown = editNomeKeyDown
+        OnKeyPress = editNomeKeyPress
+      end
+    end
+    object gbPesquisa: TGroupBox
+      Left = 13
+      Top = 165
+      Width = 596
+      Height = 72
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      object editPesquisaRepresentantes: TEdit
+        Left = 12
+        Top = 28
+        Width = 553
+        Height = 25
+        CharCase = ecUpperCase
+        TabOrder = 0
+        OnChange = editPesquisaRepresentantesChange
+        OnKeyDown = editPesquisaRepresentantesKeyDown
+        OnKeyPress = editPesquisaRepresentantesKeyPress
+      end
+      object rbNome: TRadioButton
+        Left = 7
+        Top = 7
+        Width = 52
+        Height = 17
+        Caption = 'Nome'
+        Checked = True
+        TabOrder = 1
+        TabStop = True
+        OnClick = rbNomeClick
+      end
+      object rbCNPJ: TRadioButton
+        Left = 79
+        Top = 7
+        Width = 41
+        Height = 17
+        Caption = 'CPF'
+        TabOrder = 2
+        OnClick = rbCNPJClick
+      end
+    end
+  end
+  object Panel1: TPanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 815
+    Height = 120
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'PainelTopo'
+    Font.Style = []
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 1
+    object Panel2: TPanel
+      Left = 252
+      Top = 59
+      Width = 557
+      Height = 50
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 0
+      object painelBtnNovo: TPanel
+        Left = 8
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Novo'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object btnNovo: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnNovoClick
+          ExplicitLeft = -4
+        end
+      end
+      object PainelCancelar: TPanel
+        Left = 115
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Cancelar'
+        Color = 14869218
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        object btnCancelar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnCancelarClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object painelSalvar: TPanel
+        Left = 327
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Salvar [F12]'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        object btnSalvar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnSalvarClick
+          ExplicitLeft = -4
+          ExplicitWidth = 120
+        end
+      end
+      object PainelExcluir: TPanel
+        Left = 433
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Excluir'
+        Color = clSilver
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 3
+        object btnExcluir: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnExcluirClick
+          ExplicitLeft = 2
+          ExplicitWidth = 120
+        end
+      end
+      object painelEditar: TPanel
+        Left = 221
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Editar'
+        Color = 14869218
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 4
+        object btnEditar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnEditarClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+    end
+  end
+  object painelGrid: TPanel
+    AlignWithMargins = True
+    Left = 7
+    Top = 378
+    Width = 805
+    Height = 210
+    BevelOuter = bvNone
+    TabOrder = 2
+    object gridRepresentante: TDBGrid
+      Left = 0
+      Top = 0
+      Width = 805
+      Height = 210
+      Align = alClient
+      BorderStyle = bsNone
+      DataSource = dsRepresentante
+      DrawingStyle = gdsClassic
+      FixedColor = 7428151
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 7428151
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = ANSI_CHARSET
+      TitleFont.Color = clWhite
+      TitleFont.Height = -12
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = [fsBold]
+      OnDrawColumnCell = gridRepresentanteDrawColumnCell
+      OnDblClick = gridRepresentanteDblClick
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'NOME'
+          Width = 355
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CNPJ'
+          Width = 159
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'CIDADE'
+          Width = 269
+          Visible = True
+        end>
+    end
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcRepresentante
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_REPRESENTANTE_ID'
+    UpdateOptions.UpdateTableName = 'REPRESENTANTE'
+    UpdateOptions.KeyFields = 'REPRESENTANTEID'
+    UpdateOptions.AutoIncFields = 'REPRESENTANTEID'
+    SQL.Strings = (
+      'select * from representante'
+      'ORDER BY NOME')
+    Left = 424
+    Top = 392
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 672
+    Top = 392
+  end
+  object tcRepresentante: TFDTransaction
+    Options.AutoStop = False
+    Connection = frmMenu.FDconexao
+    Left = 544
+    Top = 392
+  end
+end
