@@ -564,7 +564,6 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end>
   end
   object qryVendaPosto: TFDQuery
-    Active = True
     Connection = frmMenu.FDconexao
     Transaction = tcMotorista
     UpdateOptions.AssignedValues = [uvGeneratorName, uvCheckReadOnly, uvAutoCommitUpdates]
@@ -615,7 +614,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       ' (v.motoristaid = :Motorista) and'
       ' (v.data_emissao_nf between :DE and :ATE)'
       ''
-      'order by v.vencimento_nf_atual asc')
+      'order by v.DATA_EMISSAO_NF')
     Left = 124
     Top = 353
     ParamData = <

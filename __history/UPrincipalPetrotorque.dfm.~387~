@@ -1835,7 +1835,7 @@ object frmMenu: TfrmMenu
           Left = 0
           Top = 76
           Width = 300
-          Height = 0
+          Height = 174
           Align = alClient
           BevelOuter = bvNone
           Color = 16448250
@@ -1894,6 +1894,23 @@ object frmMenu: TfrmMenu
             ParentFont = False
             OnClick = btnfrmRelatorioVendaClick
             ExplicitWidth = 223
+          end
+          object btnRelatorioClientes: TSpeedButton
+            Left = 0
+            Top = 120
+            Width = 300
+            Height = 40
+            Align = alTop
+            Caption = 'Clientes (Postos)'
+            Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clSilver
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Margin = 80
+            ParentFont = False
+            OnClick = btnRelatorioClientesClick
           end
         end
       end

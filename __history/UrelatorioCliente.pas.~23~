@@ -74,7 +74,6 @@ type
     qryVendaPostoUSINA: TStringField;
     qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField;
     qryVendaPostoESTOQUEID: TIntegerField;
-    qryVendaPostoSTATUS_CORRETAGEM: TStringField;
     reportCcliente: TfrxReport;
     tcRelatorioCliente: TFDTransaction;
     qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField;
@@ -88,6 +87,15 @@ type
     procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure btnImprimirClick(Sender: TObject);
+    procedure rbTodosClick(Sender: TObject);
+    procedure rbPagoClick(Sender: TObject);
+    procedure rbAbertoClick(Sender: TObject);
+    procedure btnConfirmarStatusClick(Sender: TObject);
+    procedure gridRelatorioClienteDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
   private
     { Private declarations }
   public
@@ -103,6 +111,72 @@ implementation
 
 uses UVendaPosto, Uposto;
 
+procedure TfrmRelatorioClientes.btnConfirmarStatusClick(Sender: TObject);
+var confirmar : String;
+    i, codAlterado : Integer;
+begin
+            if qryVendaPosto.RecordCount > 0 then
+                begin
+
+                 codAlterado := qryVendaPosto['VENDAID'];
+
+                  if rbPagar.Checked = True then
+                      begin
+                        if qryVendaPosto['STATUS_PGTO_CLIENTE'] <> 'PGO' then
+                          begin
+                             qryVendaPosto.Edit;
+                             qryVendaPosto['STATUS_PGTO_CLIENTE'] := 'PGO';
+                             qryVendaPosto.Post;
+                          end
+                          else
+                             MessageDlg('Status já consta como pago!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                      end;
+
+                  if rbPgtoAberto.Checked = True then
+                      begin
+                         if qryVendaPosto['STATUS_PGTO_CLIENTE'] <> 'ABT' then
+                          begin
+                             qryVendaPosto.Edit;
+                             qryVendaPosto['STATUS_PGTO_CLIENTE'] := 'ABT';
+                             qryVendaPosto.Post;
+                          end
+                          else
+                             MessageDlg('Status já consta como pgto aberto!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                      end;
+
+                  if rbPagarTodos.Checked = True then
+                         begin
+                           confirmar := InputBox('Confirmação', 'Insira o código de confirmação:', '');
+                           if confirmar = '0000' then
+                              begin
+                                qryVendaPosto.First;
+                                 for I := 0 to qryVendaPosto.RecordCount do
+                                    begin
+                                      qryVendaPosto.Edit;
+                                      qryVendaPosto['STATUS_PGTO_CLIENTE'] := 'PGO';
+                                      qryVendaPosto.Post;
+                                      qryVendaPosto.Next;
+                                    end;
+                              end
+                               else
+                                MessageDlg('Código de confirmação incorreto!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
+                         end;
+
+                         try
+                            tcRelatorioCliente.CommitRetaining;
+                         except
+                            tcRelatorioCliente.RollbackRetaining;
+                         end;
+
+                            qryVendaPosto.Locate('vendaid', codAlterado, []);
+                end
+                  else
+                     MessageDlg('Cliente não selecionado ou não possui registros de participações'
+                     + ' em vendas no período selecionado. (Escolha as datas e clique em "consultar")',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+
+
+end;
+
 procedure TfrmRelatorioClientes.btnConsultarClick(Sender: TObject);
  var filtroStatus: String;
 begin
@@ -113,9 +187,9 @@ begin
               if rbTodos.Checked then
                  FiltroStatus := '';
               if rbPago.Checked then
-                 FiltroStatus := ' and (v.status_corretagem = ''PGO'') ';
+                 FiltroStatus := ' and (V.STATUS_PGTO_CLIENTE = ''PGO'') ';
               if rbAberto.Checked then
-                 FiltroStatus := ' and (v.status_corretagem = ''ABT'') ';
+                 FiltroStatus := ' and (V.STATUS_PGTO_CLIENTE = ''ABT'') ';
 
            with qryVendaPosto do
              begin
@@ -127,7 +201,7 @@ begin
 
                   +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
                   +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
-                  +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_CORRETAGEM, '
+                  +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_PGTO_CLIENTE, '
 
                   +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
                   +' eu.estoqueid '
@@ -147,17 +221,27 @@ begin
                   +' (v.corretorid = c.corretorid) and '
                   +' (v.usinaid = u.usinaid) and '
                   +' (v.estoqueid = eu.estoqueid) and '
-                  +' (v.corretorid = :CORRETOR) and '
+                  +' (v.postoid = :POSTO) and '
                   +' (v.data_emissao_nf between :DE and :ATE) '
                   +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
 
-               ParamByName('CORRETOR').AsInteger := qryCliente['POSTOID'];
+               ParamByName('POSTO').AsInteger := qryCliente['POSTOID'];
                ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);
                ParamByName('ATE').AsDate          := StrToDate(DateVencimentoATE.Text);
                Open();
              end;
         end;
 
+end;
+
+procedure TfrmRelatorioClientes.btnImprimirClick(Sender: TObject);
+var caminhoRelatorio : string;
+begin
+  caminhoRelatorio := ExtractFilePath(Application.ExeName);
+  reportCcliente.LoadFromFile(caminhoRelatorio + 'RelClientes.fr3');
+  reportCcliente.Variables['RelDE']     :=  QuotedStr(DateVencimentoDE.Text);
+  reportCcliente.Variables['RelATE']    :=  QuotedStr(DateVencimentoATE.Text);
+  reportCcliente.ShowReport();
 end;
 
 procedure TfrmRelatorioClientes.editPesquisaKeyDown(Sender: TObject;
@@ -175,6 +259,13 @@ if Key = VK_RETURN then
       end;
 end;
 
+procedure TfrmRelatorioClientes.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+    qryCliente.Close;
+    qryVendaPosto.Close;
+end;
+
 procedure TfrmRelatorioClientes.FormShow(Sender: TObject);
 begin
    qryCliente.Open();
@@ -182,6 +273,30 @@ begin
 
    DateVencimentoDE.Text   := DateToStr(Date);
    DateVencimentoATE.Text  := DateToStr(Date);
+end;
+
+procedure TfrmRelatorioClientes.gridRelatorioClienteDrawColumnCell(
+  Sender: TObject; const Rect: TRect; DataCol: Integer; Column: TColumn;
+  State: TGridDrawState);
+begin
+     if qryVendaPosto.FieldByName('STATUS_PGTO_CLIENTE').AsString = 'PGO' then
+        gridRelatorioCliente.Canvas.Brush.Color := clSilver;
+        gridRelatorioCliente.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure TfrmRelatorioClientes.rbAbertoClick(Sender: TObject);
+begin
+    btnConsultar.Click;
+end;
+
+procedure TfrmRelatorioClientes.rbPagoClick(Sender: TObject);
+begin
+    btnConsultar.Click;
+end;
+
+procedure TfrmRelatorioClientes.rbTodosClick(Sender: TObject);
+begin
+    btnConsultar.Click;
 end;
 
 initialization

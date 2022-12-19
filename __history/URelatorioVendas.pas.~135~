@@ -42,29 +42,6 @@ type
     painelFundoImprimir: TPanel;
     PainelImprimir: TPanel;
     btnImprmir: TSpeedButton;
-    qryRelatorioVendaPostoVENDAID: TFDAutoIncField;
-    qryRelatorioVendaPostoREPRESENTANTEID: TIntegerField;
-    qryRelatorioVendaPostoPOSTOID: TIntegerField;
-    qryRelatorioVendaPostoPRODUTOID: TIntegerField;
-    qryRelatorioVendaPostoMOTORISTAID: TIntegerField;
-    qryRelatorioVendaPostoCORRETORID: TIntegerField;
-    qryRelatorioVendaPostoUSINAID: TIntegerField;
-    qryRelatorioVendaPostoNF: TIntegerField;
-    qryRelatorioVendaPostoDATA_EMISSAO_NF: TDateField;
-    qryRelatorioVendaPostoVENCIMENTO_NF_ATUAL: TDateField;
-    qryRelatorioVendaPostoVOLUME: TFMTBCDField;
-    qryRelatorioVendaPostoTAXA_FRETE: TBCDField;
-    qryRelatorioVendaPostoTAXA_CORRETAGEM: TBCDField;
-    qryRelatorioVendaPostoVALOR_COMBUSTIVEL: TBCDField;
-    qryRelatorioVendaPostoSTATUS: TStringField;
-    qryRelatorioVendaPostoATUALIZAR_PARCELA: TIntegerField;
-    qryRelatorioVendaPostoPARCELAS_GERADAS: TStringField;
-    qryRelatorioVendaPostoCORRETOR: TStringField;
-    qryRelatorioVendaPostoMOTORISTA: TStringField;
-    qryRelatorioVendaPostoPOSTO: TStringField;
-    qryRelatorioVendaPostoPRODUTO: TStringField;
-    qryRelatorioVendaPostoREPRESENTANTE: TStringField;
-    qryRelatorioVendaPostoUSINA: TStringField;
     qryRelatorioStatusParcelaVENDAID: TIntegerField;
     qryRelatorioStatusParcelaREPRESENTANTEID: TIntegerField;
     qryRelatorioStatusParcelaPOSTOID: TIntegerField;
@@ -81,7 +58,6 @@ type
     qryRelatorioStatusParcelaVALOR_TOTAL_FRETE: TFMTBCDField;
     qryRelatorioStatusParcelaTAXA_CORRETAGEM: TBCDField;
     qryRelatorioStatusParcelaVALOR_TOTAL_CORRETAGEM: TFMTBCDField;
-    qryRelatorioStatusParcelaVALOR_COMBUSTIVEL: TBCDField;
     qryRelatorioStatusParcelaSTATUS: TStringField;
     qryRelatorioStatusParcelaATUALIZAR_PARCELA: TIntegerField;
     qryRelatorioStatusParcelaPARCELAS_GERADAS: TStringField;
@@ -102,13 +78,6 @@ type
     qryRelatorioStatusParcelaVOLUME_PARCELADO: TFMTBCDField;
     qryRelatorioStatusParcelaDOCUMENTO: TStringField;
     qryRelatorioStatusParcelaDATA_PGTO_PARCELA: TDateField;
-    qryRelatorioVendaPostoVALOR_TOTAL_FRETE: TFMTBCDField;
-    qryRelatorioVendaPostoVALOR_TOTAL_CORRETAGEM: TFMTBCDField;
-    qryRelatorioVendaPostoTOTAL_NF_RECEBIDO: TFMTBCDField;
-    qryRelatorioVendaPostoVALOR_RECEBIDO_MES: TFMTBCDField;
-    qryRelatorioVendaPostoVALOR_NF: TFMTBCDField;
-    qryRelatorioVendaPostoVOLUME_TOTAL_RETIRADO: TFMTBCDField;
-    qryRelatorioVendaPostoVOLUME_RECEBIDO_MES: TFMTBCDField;
     qryRelatorioStatusParcelaACESSO: TStringField;
     qryRelatorioStatusParcelaSTATUSPARCELA: TStringField;
     rbAbertas: TRadioButton;
@@ -125,7 +94,6 @@ type
     qryPostoCNPJ: TStringField;
     cbCliente: TCheckBox;
     qryRelatorioStatusParcelaESTOQUEID: TIntegerField;
-    qryRelatorioVendaPostoESTOQUEID: TIntegerField;
     qryRepresentante: TFDQuery;
     dsRepresentante: TDataSource;
     qryRepresentanteREPRESENTANTEID: TIntegerField;
@@ -136,11 +104,52 @@ type
     editRepresentante: TEdit;
     cbRepresentante: TCheckBox;
     qryRelatorioStatusParcelaESTOQUEID_1: TIntegerField;
-    qryRelatorioVendaPostoESTOQUEID_1: TIntegerField;
     Label3: TLabel;
     cbNF: TCheckBox;
     labelNF: TLabel;
     editNF: TEdit;
+    qryRelatorioVendaPostoVENDAID: TFDAutoIncField;
+    qryRelatorioVendaPostoREPRESENTANTEID: TIntegerField;
+    qryRelatorioVendaPostoPOSTOID: TIntegerField;
+    qryRelatorioVendaPostoPRODUTOID: TIntegerField;
+    qryRelatorioVendaPostoMOTORISTAID: TIntegerField;
+    qryRelatorioVendaPostoCORRETORID: TIntegerField;
+    qryRelatorioVendaPostoUSINAID: TIntegerField;
+    qryRelatorioVendaPostoESTOQUEID: TIntegerField;
+    qryRelatorioVendaPostoNF: TIntegerField;
+    qryRelatorioVendaPostoVALOR_NF: TFMTBCDField;
+    qryRelatorioVendaPostoDATA_EMISSAO_NF: TDateField;
+    qryRelatorioVendaPostoVENCIMENTO_NF_ATUAL: TDateField;
+    qryRelatorioVendaPostoVOLUME: TFMTBCDField;
+    qryRelatorioVendaPostoTAXA_FRETE: TBCDField;
+    qryRelatorioVendaPostoVALOR_TOTAL_FRETE: TFMTBCDField;
+    qryRelatorioVendaPostoTAXA_CORRETAGEM: TBCDField;
+    qryRelatorioVendaPostoVALOR_TOTAL_CORRETAGEM: TFMTBCDField;
+    qryRelatorioVendaPostoSTATUS: TStringField;
+    qryRelatorioVendaPostoATUALIZAR_PARCELA: TIntegerField;
+    qryRelatorioVendaPostoPARCELAS_GERADAS: TStringField;
+    qryRelatorioVendaPostoTOTAL_NF_RECEBIDO: TFMTBCDField;
+    qryRelatorioVendaPostoVOLUME_TOTAL_RETIRADO: TFMTBCDField;
+    qryRelatorioVendaPostoVALOR_RECEBIDO_MES: TFMTBCDField;
+    qryRelatorioVendaPostoVOLUME_RECEBIDO_MES: TFMTBCDField;
+    qryRelatorioVendaPostoCORRETOR: TStringField;
+    qryRelatorioVendaPostoMOTORISTA: TStringField;
+    qryRelatorioVendaPostoPOSTO: TStringField;
+    qryRelatorioVendaPostoPRODUTO: TStringField;
+    qryRelatorioVendaPostoREPRESENTANTE: TStringField;
+    qryRelatorioVendaPostoUSINA: TStringField;
+    qryRelatorioVendaPostoNFDEPARCELA: TIntegerField;
+    qryRelatorioVendaPostoPARCELADEPARCELAS: TStringField;
+    qryRelatorioVendaPostoVALOR_PARCELA: TFMTBCDField;
+    qryRelatorioVendaPostoVENCIMENTOPARCELA: TDateField;
+    qryRelatorioVendaPostoVOLUME_PARCELADO: TFMTBCDField;
+    qryRelatorioVendaPostoDOCUMENTO: TStringField;
+    qryRelatorioVendaPostoDATA_PGTO_PARCELA: TDateField;
+    qryRelatorioVendaPostoACESSO: TStringField;
+    qryRelatorioVendaPostoSTATUSPARCELA: TStringField;
+    qryRelatorioVendaPostoESTOQUEID_1: TIntegerField;
+    qryRelatorioVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField;
+    qryRelatorioStatusParcelaVALOR_COMBUSTIVEL: TFMTBCDField;
     procedure btnImprmirClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
     procedure btnPagarParcelaStatusClick(Sender: TObject);
@@ -176,8 +185,8 @@ begin
      with qryRelatorioVendaPosto do
    begin
      Close;
-     ParamByName('vencimentoInicial').AsDate := StrToDate(DateVencimentoDE.EditText);
-     ParamByName('vencimentoFinal').AsDate := StrToDate(DateVencimentoATE.EditText);
+     ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);
+     ParamByName('FIM').AsDate := StrToDate(DateVencimentoATE.EditText);
      Open();
    end;
 
@@ -275,13 +284,16 @@ begin
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
-                + ' (p.postoid = :POSTO) '
+                + ' (p.postoid = :POSTO) and '
+                + ' (v.data_emissao_nf between :inicio and :fim)'
                 + ' order by v.vendaid, v.postoid  desc');
-                    ParamByName('posto').AsInteger := qryPosto['POSTOID'];
+                    ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;
@@ -312,12 +324,15 @@ begin
                 + ' (v.usinaid = u.usinaid) and '
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) '
+                + ' (parc.status = :STATUS) and '
+                + ' (v.data_emissao_nf between :inicio and :fim) '
                 + ' order by v.vendaid, v.postoid  desc');
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;
@@ -350,13 +365,16 @@ begin
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
-                + ' (re.representanteid = :representante) '
+                + ' (re.representanteid = :representante) and '
+                + ' (v.data_emissao_nf between :inicio and :fim) '
                 + ' order by v.vendaid, v.postoid  desc');
-                    ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
+                    ParamByName('representante').AsInteger  := qryRepresentante['REPRESENTANTEID'];
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;
@@ -390,12 +408,15 @@ begin
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
                 + ' (v.NF = :NF) and '
+                + ' (v.data_emissao_nf between :inicio and :fim)'
                 + ' order by v.vendaid, v.postoid  desc');
-                    ParamByName('NF').AsInteger := StrToInt(editNF.Text);
+                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;
@@ -430,13 +451,16 @@ begin
                 + ' (parc.status = :STATUS) and '
                 + ' (v.postoid = :POSTO) and '
                 + ' (v.nf = :NF) and '
+                + ' (v.data_emissao_nf between :inicio and :fim)'
                 + ' order by v.vendaid, v.postoid  desc');
-                    ParamByName('NF').AsInteger := StrToInt(editNF.Text);
-                    ParamByName('POSTO').AsInteger := qryPosto['POSTOID'];
+                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
+                    ParamByName('POSTO').AsInteger          := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;
@@ -469,14 +493,18 @@ begin
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
-                + ' (v.postoid = :POSTO) and '
+                + ' (v.representanteid = :REPRESENTANTE) and '
+                + ' (v.nf = :NF) and '
+                + ' (v.data_emissao_nf between :inicio and :fim)'
                 + ' order by v.vendaid, v.postoid  desc');
-                    ParamByName('NF').AsInteger := StrToInt(editNF.Text);
-                    ParamByName('POSTO').AsInteger := qryPosto['POSTOID'];
+                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
+                    ParamByName('REPRESENTANTE').AsInteger  := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString := 'ABERTO';
+                    ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString := 'PAGO';
+                    ParamByName('STATUS').AsString          := 'PAGO';
+                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
                Open();
             end;
        end;

@@ -92,6 +92,9 @@ type
     procedure btnConfirmarStatusClick(Sender: TObject);
     procedure gridMotoristaDrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure rbTodosClick(Sender: TObject);
+    procedure rbPagoClick(Sender: TObject);
+    procedure rbAbertoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -111,50 +114,54 @@ procedure TfrmRelatorioMotorista.btnConsultarClick(Sender: TObject);
  var FiltroStatus : String;
 begin
 
-          if rbTodos.Checked then
-             FiltroStatus := '';
-          if rbPago.Checked then
-             FiltroStatus := ' and (v.status_frete = ''PGO'') ';
-          if rbAberto.Checked then
-             FiltroStatus := ' and (v.status_frete = ''ABT'') ';
+      if editPesquisaMotorista.Text <> '' then
+        begin
 
-       with qryVendaPosto do
-         begin
-           Close;
-           SQL.Clear;
-           SQL.Add('select '
+              if rbTodos.Checked then
+                 FiltroStatus := '';
+              if rbPago.Checked then
+                 FiltroStatus := ' and (v.status_frete = ''PGO'') ';
+              if rbAberto.Checked then
+                 FiltroStatus := ' and (v.status_frete = ''ABT'') ';
 
-              + 'v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, '
+           with qryVendaPosto do
+             begin
+               Close;
+               SQL.Clear;
+               SQL.Add('select '
 
-              +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-              +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
-              +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_FRETE, '
+                  + 'v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, '
 
-              +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
-              +' eu.estoqueid '
+                  +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
+                  +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
+                  +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_FRETE, '
 
-              +' from '
+                  +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
+                  +' eu.estoqueid '
 
-              +' venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, estoque_usina eu '
+                  +' from '
 
-              +' where '
+                  +' venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, estoque_usina eu '
 
-              +' (v.representanteid = re.representanteid) and '
-              +' (v.postoid = p.postoid) and '
-              +' (v.produtoid = pr.produtoid) and '
-              +' (v.motoristaid = m.motoristaid) and '
-              +' (v.corretorid = c.corretorid) and '
-              +' (v.usinaid = u.usinaid) and '
-              +' (v.estoqueid = eu.estoqueid) and '
-              +' (v.motoristaid = :Motorista) and '
-              +' (v.data_emissao_nf between :DE and :ATE) '
-              +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+                  +' where '
 
-           ParamByName('MOTORISTA').AsInteger := qryMotorista['MOTORISTAID'];
-           ParamByName('DE').AsDate             := StrToDate(DateVencimentoDE.Text);
-           ParamByName('ATE').AsDate             := StrToDate(DateVencimentoATE.Text);
-           Open();
-         end;
+                  +' (v.representanteid = re.representanteid) and '
+                  +' (v.postoid = p.postoid) and '
+                  +' (v.produtoid = pr.produtoid) and '
+                  +' (v.motoristaid = m.motoristaid) and '
+                  +' (v.corretorid = c.corretorid) and '
+                  +' (v.usinaid = u.usinaid) and '
+                  +' (v.estoqueid = eu.estoqueid) and '
+                  +' (v.motoristaid = :Motorista) and '
+                  +' (v.data_emissao_nf between :DE and :ATE) '
+                  +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+
+               ParamByName('MOTORISTA').AsInteger := qryMotorista['MOTORISTAID'];
+               ParamByName('DE').AsDate             := StrToDate(DateVencimentoDE.Text);
+               ParamByName('ATE').AsDate             := StrToDate(DateVencimentoATE.Text);
+               Open();
+             end;
+        end;
 
 end;
 
@@ -200,21 +207,25 @@ begin
                          qryVendaPosto.Post;
                        end
                      else
-                         MessageDlg('Status já consta como aberto!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                         MessageDlg('Status já consta como pgto aberto!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
                   end;
 
               if rbPagarTodos.Checked = True then
                      begin
                        confirmar := InputBox('Confirmação', 'Insira o código de confirmação:', '');
                        if confirmar = '0000' then
+                         begin
                           qryVendaPosto.First;
-                          for I := 0 to qryVendaPosto.RecordCount do
-                            begin
-                              qryVendaPosto.Edit;
-                              qryVendaPosto['STATUS_FRETE'] := 'PGO';
-                              qryVendaPosto.Post;
-                              qryVendaPosto.Next;
-                            end;
+                            for I := 0 to qryVendaPosto.RecordCount do
+                              begin
+                                qryVendaPosto.Edit;
+                                qryVendaPosto['STATUS_FRETE'] := 'PGO';
+                                qryVendaPosto.Post;
+                                qryVendaPosto.Next;
+                              end;
+                         end
+                         else
+                           MessageDlg('Código de confirmação incorreto!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
                      end;
 
                  try
@@ -226,7 +237,8 @@ begin
                     qryVendaPosto.Locate('vendaid', codAlterado, []); //localizando a venda do status alterado para continuar o foco nela
              end
               else
-                MessageDlg('Motorista não selecionado ou não possui registros de participações em vendas!',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
+                MessageDlg('Motorista não selecionado ou não possui registros de participações '
+                          + ' em vendas no período selecionado. (Escolha as datas e clique em "consultar")',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
 
 end;
 
@@ -272,6 +284,21 @@ begin
         gridMotorista.Canvas.Brush.Color := clSilver;
         gridMotorista.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
+end;
+
+procedure TfrmRelatorioMotorista.rbAbertoClick(Sender: TObject);
+begin
+    btnConsultar.Click;
+end;
+
+procedure TfrmRelatorioMotorista.rbPagoClick(Sender: TObject);
+begin
+    btnConsultar.Click;
+end;
+
+procedure TfrmRelatorioMotorista.rbTodosClick(Sender: TObject);
+begin
+   btnConsultar.Click;
 end;
 
 end.

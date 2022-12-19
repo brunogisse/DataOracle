@@ -223,7 +223,7 @@ begin
                   +' (v.estoqueid = eu.estoqueid) and '
                   +' (v.postoid = :POSTO) and '
                   +' (v.data_emissao_nf between :DE and :ATE) '
-                  +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+                  +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
 
                ParamByName('POSTO').AsInteger := qryCliente['POSTOID'];
                ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);

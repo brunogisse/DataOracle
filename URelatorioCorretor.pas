@@ -221,7 +221,7 @@ begin
                   +' (v.estoqueid = eu.estoqueid) and '
                   +' (v.corretorid = :CORRETOR) and '
                   +' (v.data_emissao_nf between :DE and :ATE) '
-                  +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+                  +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
 
                ParamByName('CORRETOR').AsInteger := qryCorretor['CORRETORID'];
                ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);

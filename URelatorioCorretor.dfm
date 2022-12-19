@@ -32,7 +32,6 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1099
     object labelTitulo: TLabel
       Left = 740
       Top = 34
@@ -63,7 +62,6 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1105
     object Image1: TImage
       Left = 9
       Top = 0
@@ -624,7 +622,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       ' (v.corretorid = :CORRETOR) and'
       ' (v.data_emissao_nf between :DE and :ATE)'
       ''
-      'order by v.vencimento_nf_atual asc'
+      'order by v.DATA_EMISSAO_NF'
       ''
       ''
       ' ')

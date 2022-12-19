@@ -55,7 +55,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
       item
         Expanded = False
         FieldName = 'NF'
-        Width = 64
         Visible = True
       end
       item
@@ -111,8 +110,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = -70
-    ExplicitWidth = 1123
     object Image1: TImage
       Left = 9
       Top = 0
@@ -555,8 +552,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     ParentBackground = False
     ParentFont = False
     TabOrder = 2
-    ExplicitLeft = -64
-    ExplicitWidth = 1117
     object labelTitulo: TLabel
       Left = 740
       Top = 34
@@ -662,8 +657,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
       ' (v.postoid = :POSTO) and'
       ' (v.data_emissao_nf between :DE and :ATE)'
       ''
-      'order by v.vencimento_nf_atual asc'
-      ''
+      'order by v.DATA_EMISSAO_NF'
       ''
       ' ')
     Left = 124

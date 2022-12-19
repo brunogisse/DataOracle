@@ -154,7 +154,7 @@ begin
                   +' (v.estoqueid = eu.estoqueid) and '
                   +' (v.motoristaid = :Motorista) and '
                   +' (v.data_emissao_nf between :DE and :ATE) '
-                  +   FiltroStatus + ' order by v.vencimento_nf_atual asc');
+                  +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
 
                ParamByName('MOTORISTA').AsInteger := qryMotorista['MOTORISTAID'];
                ParamByName('DE').AsDate             := StrToDate(DateVencimentoDE.Text);

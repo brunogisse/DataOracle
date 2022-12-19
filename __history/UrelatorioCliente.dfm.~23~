@@ -11,6 +11,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -38,6 +39,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = gridRelatorioClienteDrawColumnCell
     Columns = <
       item
         Expanded = False
@@ -399,6 +401,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
+            OnClick = btnImprimirClick
             ExplicitLeft = 64
             ExplicitTop = 8
             ExplicitWidth = 153
@@ -420,6 +423,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
         Height = 17
         Caption = 'Todos'
         TabOrder = 6
+        OnClick = rbTodosClick
       end
       object rbPago: TRadioButton
         Left = 488
@@ -428,6 +432,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
         Height = 17
         Caption = 'Pagos'
         TabOrder = 7
+        OnClick = rbPagoClick
       end
       object rbAberto: TRadioButton
         Left = 546
@@ -436,6 +441,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
         Height = 17
         Caption = 'Abertos'
         TabOrder = 8
+        OnClick = rbAbertoClick
       end
       object gbMudarStatus: TGroupBox
         Left = 645
@@ -503,6 +509,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
             0000000000000000000000000000000000000000000000000000000000000000
             0000000000000000000000000000000000000000000000000000000000000000
             000000000000}
+          OnClick = btnConfirmarStatusClick
         end
         object rbPagar: TRadioButton
           Left = 16
@@ -574,9 +581,11 @@ object frmRelatorioClientes: TfrmRelatorioClientes
   end
   object qryCliente: TFDQuery
     Connection = frmMenu.FDconexao
+    Transaction = tcRelatorioCliente
+    UpdateTransaction = tcRelatorioCliente
     UpdateOptions.AssignedValues = [uvGeneratorName]
-    UpdateOptions.GeneratorName = 'GEN_CORRETOR_ID'
-    UpdateOptions.KeyFields = 'CORRETORID'
+    UpdateOptions.GeneratorName = 'GEN_POSTO_ID'
+    UpdateOptions.KeyFields = 'POSTOID'
     SQL.Strings = (
       'select * from posto')
     Left = 504
@@ -859,13 +868,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
       Origin = 'ESTOQUEID'
       ProviderFlags = []
     end
-    object qryVendaPostoSTATUS_CORRETAGEM: TStringField
-      DisplayLabel = 'Status Corret.'
-      FieldName = 'STATUS_CORRETAGEM'
-      Origin = 'STATUS_CORRETAGEM'
-      FixedChar = True
-      Size = 3
-    end
     object qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField
       DisplayLabel = 'Pgto. Cli'
       FieldName = 'STATUS_PGTO_CLIENTE'
@@ -883,7 +885,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 44905.600803935190000000
+    ReportOptions.LastChange = 44905.629910763890000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1702,7 +1704,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
           Top = 2.559060000000000000
           Width = 336.378170000000000000
           Height = 18.897650000000000000
-          DataField = 'CORRETOR'
           DataSet = dbRelCliente
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
@@ -1712,7 +1713,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[frxDBDataset1."CORRETOR"]')
+            '[frxDBDataset1."POSTO"]')
           ParentFont = False
         end
         object Memo17: TfrxMemoView
