@@ -92,7 +92,8 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UVendaPosto, UCompraUsina, UMovimentoEstoqueUsina;
+uses UPrincipalPetrotorque, UVendaPosto, UCompraUsina, UMovimentoEstoqueUsina,
+  UTransferenciaEstoque, UConverterFloat;
 
 procedure TfrmSelecionarEstoqueProduto.definirTamanhoDaLinhaDaGrid;
 begin
@@ -119,6 +120,9 @@ begin
 
             if caminhoEntrega = 'movimento' then
                qryRepresentante.Locate('representanteid', frmMovimentoEstoqueUsina.qryRepresentante['REPRESENTANTEID'], []);
+
+            if caminhoEntrega = 'transferencia' then
+               qryRepresentante.Locate('representanteid', frmTransferencia.qryRepresentante['REPRESENTANTEID'], []);
 
                     Close;
                     ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
@@ -170,6 +174,25 @@ begin
         frmMovimentoEstoqueUsina.qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID'], []);
         Close;
       end;
+       if caminho = 'transferenciaDe' then
+      begin
+          qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
+          frmTransferencia.editDeFornecedor.Text := qryUsina['NOME_FANTASIA'];
+          frmTransferencia.editEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
+          frmTransferencia.editProduto.Text := qryProduto['DESCRICAO'];
+          frmTransferencia.editQtde.Text := qryEstoqueUsina['ESTOQUE'];
+          Close;
+      end;
+      if caminho = 'transferenciaPara' then
+      begin
+          qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
+          frmTransferencia.editParaFornecedor.Text := qryUsina['NOME_FANTASIA'];
+          frmTransferencia.editParaEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
+          frmTransferencia.editParaProduto.Text := qryProduto['DESCRICAO'];
+          frmTransferencia.editParaQtde.Text := qryEstoqueUsina['ESTOQUE'];
+          Close;
+      end;
+
 
 end;
 

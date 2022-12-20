@@ -174,21 +174,28 @@ uses UPrincipalPetrotorque, UVendaPosto, UProduto, URepresentante;
 
 procedure TfrmUsinas.btnOKClick(Sender: TObject);
 
-  var Fornecedor : string;
+  var Fornecedor, comportamento : string;
   var i : Integer;
 
 begin
 
+
  if VerificarCamposVazios = True then
    begin
-      if ChecarDuplicidadeEstoqueUsina = True  then
+
+         if InserindoOuEditando = 'editando' then
+            comportamento := 'alterar o estoque do';
+         if InserindoOuEditando = 'inserindo' then
+            comportamento := 'cadastrar um estoque para o';
+
+      if (ChecarDuplicidadeEstoqueUsina = True) and (InserindoOuEditando = 'inserindo')  then
          begin
              MessageDlg('Estoque já cadastrado para esse representante ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
              Abort;
          end;
       begin
        Fornecedor := qryUsina['NOME_FANTASIA'];
-          if MessageBox( Application.Handle, PChar('Você está prestes cadastrar um estoque para o Fornecedor abaixo: ' + #13 + #13 +
+          if MessageBox( Application.Handle, PChar('Você está prestes a '+ comportamento +' Fornecedor abaixo: ' + #13 + #13 +
                                             'FORNECEDOR:     ' + Fornecedor  + #13
                                           + 'PRODUTO:            ' + editProduto.Text + #13
                                           + 'REPRESENTANTE: ' + editRepresentante.Text + #13

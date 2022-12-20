@@ -1,0 +1,1206 @@
+object frmTransferencia: TfrmTransferencia
+  Left = 0
+  Top = 0
+  ClientHeight = 738
+  ClientWidth = 1027
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object gridPosto: TDBGrid
+    Left = 25
+    Top = 521
+    Width = 1002
+    Height = 217
+    Align = alClient
+    BorderStyle = bsNone
+    DrawingStyle = gdsClassic
+    FixedColor = 7428151
+    Font.Charset = ANSI_CHARSET
+    Font.Color = 7428151
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Charset = ANSI_CHARSET
+    TitleFont.Color = clWhite
+    TitleFont.Height = -12
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NOME_FANTASIA'
+        Width = 394
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'RAZAO_SOCIAL'
+        Width = 363
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CNPJ'
+        Width = 166
+        Visible = True
+      end>
+  end
+  object PainelTopo: TPanel
+    Left = 0
+    Top = 0
+    Width = 1027
+    Height = 521
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = 8553090
+    Font.Height = -11
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 1
+    ExplicitLeft = 8
+    ExplicitTop = -6
+    object Image1: TImage
+      Left = 10
+      Top = 80
+      Width = 115
+      Height = 115
+      Picture.Data = {
+        0954506E67496D61676589504E470D0A1A0A0000000D49484452000000730000
+        00730806000000AB433DE6000000017352474200AECE1CE900000B4949444154
+        78DAED9D7B5414D719C0BF45A40401AD54592D0A28369A8AE003C3B16D1AA3C6
+        9C93A88982A04044AD4D89D1A808467B4ED226C618142151438C8208AB202AD1
+        F8EE31212A0A11B1BCEA2BC0427DB144AAF25458A1F38DEE30BB2CEC3A30BBC3
+        9EEFF70F73BF1998EBFD393377EEBD73AF0CDAC1DDDDDD75FCD8B19BA64D9FF1
+        9A97B7979DBDBD03800C0853D302505B5B03F979F9F587BF3B74E2426EEE0AA5
+        5259AEEFD0367A1889CE8BC3C2F29787873B5B595999FB9F42E8D0DCDC0C31D1
+        D1AAAD71715E8C54157F9F964C6F4FCFA05319190A27272773E7993040555515
+        4C9E383138AFB070B726C6C9449139972E29ACADADB95FC8C8BF096B12B3A1AC
+        A29AF91FD1C2C65A747EB1A583ED673D8EFEB6FEE3ACAC64E026778475A1BE30
+        D1CB85F3A356ABC167CC184E287B3CDE5A7372722A3457644D7D23782FDECBFE
+        24A485839D0DE46D0D607F227885FAF8F8C8F196CBCADCF8795445786484336E
+        573302872D488696964E9C9110151963EDE78410707C2A343A6A836AE5AA48B9
+        0C6BADC5C5C5659ACACED0D064A869A02B52EA383C6703258921EC36568A3C3C
+        3CDC64017EFE0752F7A5CDC4E0F7793761CE6727CD9D4FC24852564F8549DE4F
+        9EA181FEB3D3658AA4E4BAA090603B0CF82EDB0FA5771E983B8F84910C19D01B
+        B263FDD8ED3D0A45BDACB0A0A065A4A7271B183027011E37D3C3B2BBD083A9E5
+        DE4959C06E171516824C59AA6C7173776303FD03E2CD9D3FE219A9DCBB90FD59
+        A62C63642A19996E6E6C8064763F38996524B3DB43322D08926941904C0BA2DB
+        CAF4FBD350583BCF177AD9F66CF71859E7826DF69430EFDD6F7C78846DE69422
+        DD52E64ABFD110E93FC62CE7C676EADF06ED04F5E3667317431BBAA54C55EA42
+        B681D95CACDF9B0B9BD2F3CC5D0C6DE87632D1A1EA69A6CDC5E16C252C8CF9C1
+        DC45D1068B91B9F950011CCC2A6DEDCDED02FA3ADA42C2F257B8FE420D24B38B
+        D02773C7F1CBB026314B94F359F7B082DB7BE66BC5486617A14FE69BFF3C06E7
+        2FDF11ED9C15A90BC08AF79026995D847E9947199915A29D93648A84146456DE
+        AF87517F4B8566898DA7219946A02B13695237334253A0AAE6A1B98B8483641A
+        813E991A667E721C328B6E9BBB585848A6117424138949CF83CFF6E69ABB6848
+        A631E8CAC467A5AEDC0BD7546CBBAD39219946A02B139BF25C7E630FB35FF2D0
+        3AEE415D238C7C670F3C6A7A6C96B2219946A04F6654DA2536AE4B0B73D58E5E
+        BC176E57D599BC6C48A6113C8B4C04DF5806CE35FDE846926904CF2A13C176E2
+        BFC66698B46C48A611089189952479608249CB86641A811099887360BC493FBA
+        2299464032458264B68F45C8F4FFF4049C2EB825DA39558C34991E993BC32771
+        7DE1F84AE2E4600BBE23E4DC7124D300FA64FEA7FC7F3031F25B51CE377CD0AF
+        E1CCC6995A3194B95E4FF3DD8417E470F0A3D7B934C934407BC3466A1B9A58A9
+        5D59767D7AD9B03275694FE68BCF3BC3E18FDFE0D224D3005218D0D59ECC71C3
+        FAC3B1B5D3B834C9348094658E1EDA0F4EAE9BCEA549A601A42C7394BB139C5A
+        FF269726990690B2CCDFBBF6858CA8B7B834C9348094658E602A4BA779355F92
+        690029CBFC9D4B1FC88C9EC5A549A601A42CD363606F381FE3C7A549A601A42C
+        7388DC11B2BFF0E7D224D30052908913413E523F86C6A666B8F14B0DCC5A7B1C
+        EED53C02376707B8F0E56CEE3892690029C8D40585C9E7C4B3E38272B7047071
+        92690029CA44FE1C910ED5758DF0EFAF02B918C9348054654E5A7510EE563F84
+        FC38926934529059FF48CD886B80C1FD1CB8D84B2BD3E15EED2328FC7A0E1723
+        99069082CCFD678BE1BDAD67B43AA7272CDFCF4E5C51B46D2E1723990690AACC
+        714BD2A0FE61135CDE1EC4C548A601A42A7354580AFBAA727507C9341AC9C8FC
+        8A9199D22A73C4A2DDECFBE7B5F8602E46320D2015994B1899777832872D5000
+        CE8E81F3A56B209906908ACCA57167B526AE18129AC40EFA2AD949328D462A32
+        DF6764DEE2C9747D7B173B1B7369E2DB5C8C641A402A32977D7D166EEE6E9539
+        2838919D6646B98B641A8D54642EDF96093714A15C0CE7D3EBC9C82C4B9AC7C5
+        48A601A42273C53799F0DFE4502E860B14D8F4EC01E524D378A42233FC9B7350
+        9EDC2A0E65F6B4B6D2122C6762CD26FC4693640A006546EC38AFF57C44715801
+        BAC57B8EBA3195226CC735152453002833929159CA9789DF623299E33724F82C
+        4D8372558DC9F2453205803257C59F8712ADD79004F6E3A14A5EDEF0F525E5C7
+        EB26CB17C914002B33214B6F0301BE7B62AD1631F57A6A24530028F303466631
+        5F26535E58D5F9E90B7F70973BB2B1864635B886EC3259BE48A60050E6EA9D59
+        DAEDB04F65AE091C07CBDEF2E2E2A65C538D640AE089CC6C4626AF87E4A9CCA1
+        037A43566CEBD8D9599F1C87B3269A5B8F640AA0A3DBAC6EFEF24BEFC294D587
+        4C922F9229808E642238A86B40DF5EDC3E539525C91480FE5793D6A6BB799387
+        C386457FE0F6BDFEE111C8B9A6123D5F245300ED351A686686B6B1B6D2EA51B9
+        7AE31E3B7A4F6C48A6009E34E79D03E5AED6B659DD76581C0BD4D7C1B6753F4F
+        B658904C01E8EB351938577B49A9A0579E879877FEC8A5C336FF0807324B44CD
+        17C91400DB39BD2D136EF2FA335D8213A19137CF2C7F0D680447BBBFB068B7A8
+        F9229902D03706C87D5E12D43D6CD23A2EE7CBD9E0EADC3AEADD258811AE166F
+        6261922980F6865A56556BAFA43075EC60488E9CC2A523991A70E2BFAE88962F
+        92290094B978EB6976B5400DE397A641994E77178ED653F1064A57DCAB6797CF
+        100B92290094F9EE96D35ADD5DD33E3A023F5D6DFB2E79714B000CEE67CFA5C5
+        2C579229007D32DF63AED4B433C56D8E9DFFEA08F87CE1042E8D13F257DE6F10
+        255F2453001A99585BC55A2B9270F20A7C9070BECDB138D3E515DEF7278B627F
+        8043594A51F2453205A091896380346B5EE795DC8557D7B46D50C7994DF9CFD6
+        F8939761758238CB43924C016864E23431385D0C826B99E040687DF06FC7472F
+        94C1FCE8EF45C917C914804666D45F2640E894115CDC637E729B95E2B1F784FF
+        697CD2A9ABB072FB3951F2453205A09139B8BF035CDCDC3A554C0D237238F3BE
+        892BF8213828FAFA8E60B0B3B5E68E99F18FA39075459C29C849A6003432912B
+        DB83C0C9D1566BBFB2A29A7D56BA393B6AC5B19D1DBBCAC482640A802FB38FFD
+        AFE03AEF03DB8E58149BC1D4644B45CB17C914005F268295A0739BFCA0835519
+        21F6DB7C58977A51D47C914C01E8CA44F073BEA488C93079F420ADF82F0F1A60
+        E6C7C7E0DACDFBA2E78B640A409F4C3E0E7636606D2583074C85C8623F1CCADC
+        340B860DECD3E9BFD3D1EDCC547466D0407965358C5FBAAFCBF3645299E762BA
+        466677A7BCB2067C96A475F9DF25996680645A1024D382B0089967A351666F51
+        0BAA3B80325F7CBF9B5780087121991604C9B42048A60541322D086D99A58C4C
+        7737364032BB1F9C4C2523B3B0A0A065A4A7271B30E5B7F844E7E17FDB525458
+        08324552725D5048B01D067C97ED87D23B0FCC9D47C248860CE80DD94FE752D8
+        A350D4CB02FCFC0FA4EE4B63D70C34F51C3644E748593D152679BBB0DB81FEB3
+        D365EEEEEEAEC5C5C56556564F26251A1A9A04350D4D9D390761021C9EEBC97D
+        92DFDCDC0C1E1E1E6E6C2FE1C6A8A88AF0880867DCC66183C3E62777E90AEB44
+        D782D27EDE19028E76366C3A7AC306D5CAC848392B93B93A9D7372722A9C9C9C
+        D89D2874F4BBA974854A10BC2271ED318DC8AAAA2AF0F1F19133AF982AAEFFDE
+        DBD33328E7D22585B575EB784F7C86FE3D311BCA55D554CB3523586B75757684
+        4F437DB96724A256ABC167CC98E0BCC242F6F36CADC11828F454468642738512
+        D205AFC8492FBF1C925F54A4D0C4DA8CACC15BEEE2B0B0FCE5E1E1CE9A4A1121
+        1DB0B213131DADDA1A17E785B756FEBE768749612D77FCD8B19BA64D9FF19A97
+        B7979DBDBD43074713A2C13CDD6A6B6B203F2FBFFEF077874E5CC8CD5DC1482C
+        D777E8FF01890B8AE7615226820000000049454E44AE426082}
+    end
+    object Label2: TLabel
+      Left = 754
+      Top = 31
+      Width = 238
+      Height = 30
+      Caption = 'Transfer'#234'ncia de Estoque'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clSilver
+      Font.Height = -21
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object gbEditGeneral: TGroupBox
+      Left = 131
+      Top = 80
+      Width = 864
+      Height = 425
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8553090
+      Font.Height = -16
+      Font.Name = 'Segoe UI Semibold'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      object Label9: TLabel
+        Left = 19
+        Top = 356
+        Width = 64
+        Height = 17
+        Caption = 'Motorista:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object labelOrigem: TLabel
+        Left = 17
+        Top = 180
+        Width = 116
+        Height = 17
+        Caption = 'De: (Saindo daqui)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 466
+        Top = 180
+        Width = 54
+        Height = 17
+        Caption = 'Produto:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label3: TLabel
+        Left = 642
+        Top = 180
+        Width = 34
+        Height = 17
+        Caption = 'Qtde:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label4: TLabel
+        Left = 751
+        Top = 180
+        Width = 71
+        Height = 17
+        Caption = 'ID estoque:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object labelDestino: TLabel
+        Left = 17
+        Top = 263
+        Width = 132
+        Height = 17
+        Caption = 'Para: (Entrando aqui)'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label5: TLabel
+        Left = 466
+        Top = 263
+        Width = 54
+        Height = 17
+        Caption = 'Produto:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label6: TLabel
+        Left = 642
+        Top = 263
+        Width = 34
+        Height = 17
+        Caption = 'Qtde:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label7: TLabel
+        Left = 751
+        Top = 263
+        Width = 71
+        Height = 17
+        Caption = 'ID estoque:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label12: TLabel
+        Left = 18
+        Top = 14
+        Width = 129
+        Height = 17
+        Caption = 'Data da transfer'#234'ncia'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label8: TLabel
+        Left = 19
+        Top = 77
+        Width = 92
+        Height = 17
+        Caption = 'Volume Transf.'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label10: TLabel
+        Left = 173
+        Top = 77
+        Width = 32
+        Height = 17
+        Caption = 'Taxa:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label11: TLabel
+        Left = 330
+        Top = 77
+        Width = 70
+        Height = 17
+        Caption = 'Total Frete:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object labelRepresentante: TLabel
+        Left = 173
+        Top = 14
+        Width = 92
+        Height = 17
+        Caption = 'Representante:'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object editMotorista: TEdit
+        Left = 19
+        Top = 377
+        Width = 597
+        Height = 29
+        ReadOnly = True
+        TabOrder = 6
+        OnKeyDown = editMotoristaKeyDown
+      end
+      object editDeFornecedor: TEdit
+        Left = 17
+        Top = 198
+        Width = 443
+        Height = 29
+        ReadOnly = True
+        TabOrder = 4
+        OnKeyDown = editDeFornecedorKeyDown
+      end
+      object editProduto: TEdit
+        Left = 466
+        Top = 198
+        Width = 170
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 7
+      end
+      object editQtde: TEdit
+        Left = 641
+        Top = 198
+        Width = 106
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 8
+      end
+      object editEstoqueID: TEdit
+        Left = 751
+        Top = 198
+        Width = 91
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 9
+      end
+      object editParaFornecedor: TEdit
+        Left = 17
+        Top = 281
+        Width = 443
+        Height = 29
+        ReadOnly = True
+        TabOrder = 5
+        OnKeyDown = editParaFornecedorKeyDown
+      end
+      object editParaProduto: TEdit
+        Left = 466
+        Top = 281
+        Width = 170
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 10
+      end
+      object editParaQtde: TEdit
+        Left = 641
+        Top = 281
+        Width = 106
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 11
+      end
+      object editParaEstoqueID: TEdit
+        Left = 751
+        Top = 281
+        Width = 91
+        Height = 29
+        Enabled = False
+        ReadOnly = True
+        TabOrder = 12
+      end
+      object dateTransferencia: TMaskEdit
+        Left = 18
+        Top = 36
+        Width = 149
+        Height = 29
+        EditMask = '!99/99/9999;1;_'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 9408399
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        MaxLength = 10
+        ParentFont = False
+        TabOrder = 0
+        Text = '  /  /    '
+      end
+      object editVolumeTransferido: TEdit
+        Left = 19
+        Top = 97
+        Width = 148
+        Height = 29
+        CharCase = ecUpperCase
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 2
+      end
+      object editTaxa: TEdit
+        Left = 173
+        Top = 97
+        Width = 151
+        Height = 29
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 3
+        OnChange = editTaxaChange
+      end
+      object editTotalFrete: TEdit
+        Left = 330
+        Top = 97
+        Width = 191
+        Height = 29
+        Enabled = False
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 13
+      end
+      object editRepresentante: TEdit
+        Left = 173
+        Top = 36
+        Width = 653
+        Height = 29
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 1
+        OnKeyDown = editRepresentanteKeyDown
+        OnKeyPress = editRepresentanteKeyPress
+      end
+    end
+    object Panel1: TPanel
+      Left = 131
+      Top = 11
+      Width = 522
+      Height = 50
+      BevelOuter = bvNone
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 1
+      object painelBtnNovo: TPanel
+        Left = 8
+        Top = 8
+        Width = 169
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Nova transfer'#234'ncia'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 0
+        object btnNovo: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 169
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnNovoClick
+          ExplicitLeft = 64
+          ExplicitTop = 8
+          ExplicitWidth = 153
+          ExplicitHeight = 41
+        end
+      end
+      object PainelCancelar: TPanel
+        Left = 185
+        Top = 8
+        Width = 105
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Cancelar'
+        Color = 14869218
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 1
+        object btnCancelar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 105
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnCancelarClick
+          ExplicitLeft = 4
+        end
+      end
+      object painelSalvar: TPanel
+        Left = 298
+        Top = 8
+        Width = 132
+        Height = 35
+        BevelOuter = bvNone
+        Caption = 'Transferir'
+        Color = 11360274
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentBackground = False
+        ParentFont = False
+        TabOrder = 2
+        object btnSalvar: TSpeedButton
+          Left = 0
+          Top = 0
+          Width = 132
+          Height = 35
+          Align = alClient
+          Flat = True
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentFont = False
+          OnClick = btnSalvarClick
+          ExplicitLeft = 1
+        end
+      end
+    end
+  end
+  object painelEsquerdo: TPanel
+    Left = 0
+    Top = 521
+    Width = 25
+    Height = 217
+    Align = alLeft
+    BevelOuter = bvNone
+    Color = clWhite
+    Font.Charset = ANSI_CHARSET
+    Font.Color = 8553090
+    Font.Height = -11
+    Font.Name = 'Segoe UI Semibold'
+    Font.Style = [fsBold]
+    ParentBackground = False
+    ParentFont = False
+    TabOrder = 2
+  end
+  object qryCorretor: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_CORRETOR_ID'
+    UpdateOptions.KeyFields = 'CORRETORID'
+    SQL.Strings = (
+      'select * from corretor')
+    Left = 312
+    Top = 571
+    object qryCorretorCORRETORID: TIntegerField
+      FieldName = 'CORRETORID'
+      Origin = 'CORRETORID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryCorretorNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryCorretorCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 13
+    end
+    object qryCorretorCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+  end
+  object dsCorretor: TDataSource
+    DataSet = qryCorretor
+    Left = 320
+    Top = 619
+  end
+  object qryMotorista: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_MOTORISTA_ID'
+    UpdateOptions.KeyFields = 'MOTORISTAID'
+    SQL.Strings = (
+      'select * from motorista')
+    Left = 376
+    Top = 571
+    object qryMotoristaMOTORISTAID: TIntegerField
+      FieldName = 'MOTORISTAID'
+      Origin = 'MOTORISTAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryMotoristaNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryMotoristaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryMotoristaCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 13
+    end
+  end
+  object dsMotorista: TDataSource
+    DataSet = qryMotorista
+    Left = 384
+    Top = 619
+  end
+  object dsPosto: TDataSource
+    DataSet = qryPosto
+    Left = 440
+    Top = 621
+  end
+  object qryPosto: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_POSTO_ID'
+    UpdateOptions.KeyFields = 'POSTOID'
+    SQL.Strings = (
+      'select * from posto')
+    Left = 440
+    Top = 571
+    object qryPostoPOSTOID: TIntegerField
+      FieldName = 'POSTOID'
+      Origin = 'POSTOID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryPostoNOME_FANTASIA: TStringField
+      FieldName = 'NOME_FANTASIA'
+      Origin = 'NOME_FANTASIA'
+      Size = 60
+    end
+    object qryPostoRAZAO_SOCIAL: TStringField
+      FieldName = 'RAZAO_SOCIAL'
+      Origin = 'RAZAO_SOCIAL'
+      Size = 60
+    end
+    object qryPostoCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsProduto: TDataSource
+    DataSet = qryProduto
+    Left = 496
+    Top = 620
+  end
+  object qryProduto: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_PRODUTO_ID'
+    UpdateOptions.KeyFields = 'PRODUTOID'
+    SQL.Strings = (
+      'select * from produto')
+    Left = 496
+    Top = 572
+    object qryProdutoPRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryProdutoDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      Size = 60
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 561
+    Top = 619
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_REPRESENTANTE_ID'
+    UpdateOptions.KeyFields = 'REPRESENTANTEID'
+    SQL.Strings = (
+      'select * from representante')
+    Left = 564
+    Top = 571
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsUsina: TDataSource
+    DataSet = qryUsina
+    Left = 633
+    Top = 619
+  end
+  object qryUsina: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_COMPRA_USINA_ID'
+    UpdateOptions.KeyFields = 'USINAID'
+    SQL.Strings = (
+      'select * from usina')
+    Left = 629
+    Top = 571
+    object qryUsinaUSINAID: TIntegerField
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryUsinaRAZAO_SOCIAL: TStringField
+      FieldName = 'RAZAO_SOCIAL'
+      Origin = 'RAZAO_SOCIAL'
+      Size = 60
+    end
+    object qryUsinaNOME_FANTASIA: TStringField
+      FieldName = 'NOME_FANTASIA'
+      Origin = 'NOME_FANTASIA'
+      Size = 60
+    end
+    object qryUsinaENDERECO: TStringField
+      FieldName = 'ENDERECO'
+      Origin = 'ENDERECO'
+      Size = 60
+    end
+    object qryUsinaBAIRRO: TStringField
+      FieldName = 'BAIRRO'
+      Origin = 'BAIRRO'
+      Size = 40
+    end
+    object qryUsinaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 40
+    end
+    object qryUsinaUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Size = 2
+    end
+    object qryUsinaTELEFONE: TStringField
+      FieldName = 'TELEFONE'
+      Origin = 'TELEFONE'
+      Size = 15
+    end
+  end
+  object dsEstoqueUsina: TDataSource
+    DataSet = qryEstoqueUsina
+    Left = 806
+    Top = 611
+  end
+  object qryEstoqueUsina: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateTransaction = tcTransferencia
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_ESTOQUE_USINA_ID'
+    UpdateOptions.UpdateTableName = 'ESTOQUE_USINA'
+    UpdateOptions.KeyFields = 'ESTOQUEID'
+    UpdateOptions.AutoIncFields = 'ESTOQUEID'
+    SQL.Strings = (
+      'select * from Estoque_usina')
+    Left = 799
+    Top = 563
+    object qryEstoqueUsinaESTOQUEID: TFDAutoIncField
+      FieldName = 'ESTOQUEID'
+      Origin = 'ESTOQUEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryEstoqueUsinaUSINAID: TIntegerField
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+    end
+    object qryEstoqueUsinaPRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+    end
+    object qryEstoqueUsinaESTOQUE: TFMTBCDField
+      FieldName = 'ESTOQUE'
+      Origin = 'ESTOQUE'
+      Precision = 18
+      Size = 2
+    end
+    object qryEstoqueUsinaREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+    end
+  end
+  object qryVendaPosto: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcTransferencia
+    UpdateOptions.AssignedValues = [uvGeneratorName, uvCheckReadOnly, uvAutoCommitUpdates]
+    UpdateOptions.GeneratorName = 'GEN_VENDA_PARA_POSTOS_ID'
+    UpdateOptions.CheckReadOnly = False
+    UpdateOptions.AutoCommitUpdates = True
+    UpdateOptions.UpdateTableName = 'VENDA_PARA_POSTOS'
+    UpdateOptions.KeyFields = 'VENDAID'
+    UpdateOptions.AutoIncFields = 'VENDAID'
+    SQL.Strings = (
+      'select'
+      ''
+      
+        '  v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motori' +
+        'staid, v.corretorid, v.usinaid,'
+      ''
+      
+        '  v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.' +
+        'volume, v.taxa_frete, v.valor_total_frete,'
+      
+        '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
+        'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
+        'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
+        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.status_fre' +
+        'te, v.status_corretagem, v.status_pgto_cliente, '
+      ''
+      
+        '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
+        'sto, pr.descricao as produto, re.nome as representante, u.NOME_F' +
+        'ANTASIA as usina,'
+      ''
+      '  eu.estoqueid'
+      ''
+      ''
+      'from'
+      ''
+      
+        ' venda_para_postos v, corretor c, motorista m, posto p, produto ' +
+        'pr, representante re, usina u, estoque_usina eu'
+      ''
+      ''
+      'where'
+      ''
+      ' (v.representanteid = re.representanteid) and'
+      ' (v.postoid = p.postoid) and'
+      ' (v.produtoid = pr.produtoid) and'
+      ' (v.motoristaid = m.motoristaid) and'
+      ' (v.corretorid = c.corretorid) and'
+      ' (v.usinaid = u.usinaid) and'
+      ' (v.estoqueid = eu.estoqueid) and'
+      ' (v.parcelas_geradas = '#39'N'#39')'
+      ''
+      'order by v.vencimento_nf_atual asc'
+      '')
+    Left = 52
+    Top = 569
+    object qryVendaPostoVENDAID: TFDAutoIncField
+      FieldName = 'VENDAID'
+      Origin = 'VENDAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryVendaPostoREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+    end
+    object qryVendaPostoPOSTOID: TIntegerField
+      FieldName = 'POSTOID'
+      Origin = 'POSTOID'
+    end
+    object qryVendaPostoPRODUTOID: TIntegerField
+      FieldName = 'PRODUTOID'
+      Origin = 'PRODUTOID'
+    end
+    object qryVendaPostoMOTORISTAID: TIntegerField
+      FieldName = 'MOTORISTAID'
+      Origin = 'MOTORISTAID'
+    end
+    object qryVendaPostoCORRETORID: TIntegerField
+      FieldName = 'CORRETORID'
+      Origin = 'CORRETORID'
+    end
+    object qryVendaPostoESTOQUEID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ESTOQUEID'
+      Origin = 'ESTOQUEID'
+      ProviderFlags = []
+    end
+    object qryVendaPostoUSINAID: TIntegerField
+      FieldName = 'USINAID'
+      Origin = 'USINAID'
+    end
+    object qryVendaPostoNF: TIntegerField
+      FieldName = 'NF'
+      Origin = 'NF'
+    end
+    object qryVendaPostoVALOR_NF: TFMTBCDField
+      FieldName = 'VALOR_NF'
+      Origin = 'VALOR_NF'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoDATA_EMISSAO_NF: TDateField
+      FieldName = 'DATA_EMISSAO_NF'
+      Origin = 'DATA_EMISSAO_NF'
+    end
+    object qryVendaPostoVENCIMENTO_NF_ATUAL: TDateField
+      FieldName = 'VENCIMENTO_NF_ATUAL'
+      Origin = 'VENCIMENTO_NF_ATUAL'
+    end
+    object qryVendaPostoVOLUME: TFMTBCDField
+      FieldName = 'VOLUME'
+      Origin = 'VOLUME'
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoTAXA_FRETE: TBCDField
+      FieldName = 'TAXA_FRETE'
+      Origin = 'TAXA_FRETE'
+      Precision = 18
+    end
+    object qryVendaPostoVALOR_TOTAL_FRETE: TFMTBCDField
+      FieldName = 'VALOR_TOTAL_FRETE'
+      Origin = 'VALOR_TOTAL_FRETE'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoTAXA_CORRETAGEM: TBCDField
+      FieldName = 'TAXA_CORRETAGEM'
+      Origin = 'TAXA_CORRETAGEM'
+      Precision = 18
+    end
+    object qryVendaPostoVALOR_TOTAL_CORRETAGEM: TFMTBCDField
+      FieldName = 'VALOR_TOTAL_CORRETAGEM'
+      Origin = 'VALOR_TOTAL_CORRETAGEM'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoSTATUS: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+      Size = 10
+    end
+    object qryVendaPostoATUALIZAR_PARCELA: TIntegerField
+      FieldName = 'ATUALIZAR_PARCELA'
+      Origin = 'ATUALIZAR_PARCELA'
+    end
+    object qryVendaPostoPARCELAS_GERADAS: TStringField
+      FieldName = 'PARCELAS_GERADAS'
+      Origin = 'PARCELAS_GERADAS'
+      FixedChar = True
+      Size = 1
+    end
+    object qryVendaPostoTOTAL_NF_RECEBIDO: TFMTBCDField
+      FieldName = 'TOTAL_NF_RECEBIDO'
+      Origin = 'TOTAL_NF_RECEBIDO'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoVOLUME_TOTAL_RETIRADO: TFMTBCDField
+      FieldName = 'VOLUME_TOTAL_RETIRADO'
+      Origin = 'VOLUME_TOTAL_RETIRADO'
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoVALOR_RECEBIDO_MES: TFMTBCDField
+      FieldName = 'VALOR_RECEBIDO_MES'
+      Origin = 'VALOR_RECEBIDO_MES'
+      currency = True
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoVOLUME_RECEBIDO_MES: TFMTBCDField
+      FieldName = 'VOLUME_RECEBIDO_MES'
+      Origin = 'VOLUME_RECEBIDO_MES'
+      Precision = 18
+      Size = 2
+    end
+    object qryVendaPostoCORRETOR: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'CORRETOR'
+      Origin = 'NOME'
+      ProviderFlags = []
+      Size = 60
+    end
+    object qryVendaPostoMOTORISTA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'MOTORISTA'
+      Origin = 'NOME'
+      ProviderFlags = []
+      Size = 60
+    end
+    object qryVendaPostoPOSTO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'POSTO'
+      Origin = 'NOME_FANTASIA'
+      ProviderFlags = []
+      Size = 60
+    end
+    object qryVendaPostoPRODUTO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'PRODUTO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      Size = 60
+    end
+    object qryVendaPostoREPRESENTANTE: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'REPRESENTANTE'
+      Origin = 'NOME'
+      ProviderFlags = []
+      Size = 60
+    end
+    object qryVendaPostoUSINA: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'USINA'
+      Origin = 'NOME_FANTASIA'
+      ProviderFlags = []
+      Size = 100
+    end
+    object qryVendaPostoESTOQUE_ID_VENDAS: TIntegerField
+      FieldName = 'ESTOQUE_ID_VENDAS'
+      Origin = 'ESTOQUEID'
+    end
+    object qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField
+      FieldName = 'VALOR_COMBUSTIVEL'
+      Origin = 'VALOR_COMBUSTIVEL'
+      Precision = 18
+      Size = 10
+    end
+    object qryVendaPostoSTATUS_FRETE: TStringField
+      FieldName = 'STATUS_FRETE'
+      Origin = 'STATUS_FRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_CORRETAGEM: TStringField
+      FieldName = 'STATUS_CORRETAGEM'
+      Origin = 'STATUS_CORRETAGEM'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField
+      FieldName = 'STATUS_PGTO_CLIENTE'
+      Origin = 'STATUS_PGTO_CLIENTE'
+      FixedChar = True
+      Size = 3
+    end
+  end
+  object dsVendaPosto: TDataSource
+    DataSet = qryVendaPosto
+    Left = 44
+    Top = 633
+  end
+  object tcTransferencia: TFDTransaction
+    Options.AutoStop = False
+    Connection = frmMenu.FDconexao
+    Left = 120
+    Top = 640
+  end
+end

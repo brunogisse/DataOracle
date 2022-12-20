@@ -27,7 +27,8 @@ uses
   UdataModule in 'UdataModule.pas' {dm: TDataModule},
   UCadastroUsuario in 'UCadastroUsuario.pas' {frmCadastroUsuario},
   UbackUp in 'UbackUp.pas' {frmBackUp},
-  UrelatorioCliente in 'UrelatorioCliente.pas' {frmRelatorioClientes};
+  UrelatorioCliente in 'UrelatorioCliente.pas' {frmRelatorioClientes},
+  UTransferenciaEstoque in 'UTransferenciaEstoque.pas' {frmTransferencia};
 
 {$R *.res}
 
@@ -40,6 +41,7 @@ begin
   Application.CreateForm(Tdm, dm);
   Application.CreateForm(TfrmBackUp, frmBackUp);
   Application.CreateForm(TfrmRelatorioClientes, frmRelatorioClientes);
+  Application.CreateForm(TfrmTransferencia, frmTransferencia);
   frmLogin.ShowModal;
 
   frmLogin.Hide;

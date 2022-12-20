@@ -99,7 +99,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UCompraUsina,
-  UMovimentoEstoqueUsina, URelatorioVendas;
+  UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque;
 
 procedure TfrmRepresentante.definirTamanhoDaLinhaDaGrid;
 begin
@@ -232,6 +232,15 @@ begin
            frmRelatorioVenda.qryRepresentante.Refresh;
            frmRelatorioVenda.editRepresentante.Text := qryRepresentante['NOME'];
            frmRelatorioVenda.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
+         if Caminho = 'transferencia' then
+
+         begin
+           frmTransferencia.qryRepresentante.Refresh;
+           frmTransferencia.editRepresentante.Text := qryRepresentante['NOME'];
+           frmTransferencia.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
            Close;
          end;
 

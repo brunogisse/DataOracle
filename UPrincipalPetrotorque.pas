@@ -57,6 +57,7 @@ type
     btnCadastroUsuario: TSpeedButton;
     SpeedButton1: TSpeedButton;
     btnRelatorioClientes: TSpeedButton;
+    btnTransferencia: TSpeedButton;
     procedure FormCreate(Sender: TObject);
     procedure mCorretorClick(Sender: TObject);
     procedure mPostoClick(Sender: TObject);
@@ -87,6 +88,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure btnRelatorioClientesClick(Sender: TObject);
+    procedure btnTransferenciaClick(Sender: TObject);
 
 
   private
@@ -112,7 +114,7 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
   URelatorioVendas, UselecionarUsinaEproduto, UCompraUsina, UdefinirEstoque,
   UMovimentoEstoqueUsina, URelatorioMotorista, UReverterPagamentos,
   URelatorioCorretor, UEditarParcelas, ULogin, UdataModule, UCadastroUsuario,
-  UbackUp, UrelatorioCliente;
+  UbackUp, UrelatorioCliente, UTransferenciaEstoque;
 
 { TfrmMenu }
 
@@ -317,6 +319,16 @@ begin
    finally
      FreeAndNil( frmRelatorioClientes );
   end;
+end;
+
+procedure TfrmMenu.btnTransferenciaClick(Sender: TObject);
+begin
+    try
+      Application.CreateForm( TfrmTransferencia, frmTransferencia );
+      frmTransferencia.ShowModal;
+    finally
+      FreeAndNil( frmTransferencia );
+    end;
 end;
 
 procedure TfrmMenu.btnUsinasClick(Sender: TObject);

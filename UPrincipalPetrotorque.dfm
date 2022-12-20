@@ -1212,7 +1212,7 @@ object frmMenu: TfrmMenu
           Left = 0
           Top = 76
           Width = 300
-          Height = 68
+          Height = 274
           Align = alClient
           BevelOuter = bvNone
           Color = 16448250
@@ -1255,6 +1255,23 @@ object frmMenu: TfrmMenu
             ExplicitLeft = 120
             ExplicitTop = 128
             ExplicitWidth = 23
+          end
+          object btnTransferencia: TSpeedButton
+            Left = 0
+            Top = 80
+            Width = 300
+            Height = 40
+            Align = alTop
+            Caption = 'Transfer'#234'ncia de estoque'
+            Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clSilver
+            Font.Height = -13
+            Font.Name = 'Segoe UI'
+            Font.Style = []
+            Margin = 80
+            ParentFont = False
+            OnClick = btnTransferenciaClick
           end
         end
       end
@@ -1940,7 +1957,7 @@ object frmMenu: TfrmMenu
       'DriverID=FB')
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
-    Left = 472
+    Left = 464
     Top = 232
   end
 end
