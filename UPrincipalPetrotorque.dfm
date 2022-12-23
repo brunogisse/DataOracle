@@ -30,6 +30,8 @@ object frmMenu: TfrmMenu
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = 8
     object painelTopo: TPanel
       Left = 0
       Top = 0
