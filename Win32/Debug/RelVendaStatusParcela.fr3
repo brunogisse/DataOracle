@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<TfrxReport Version="6.7.6" DotMatrixReport="False" EngineOptions.DoublePass="True" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44817,7407070602" ReportOptions.Description.Text="" ReportOptions.LastChange="44833,6649467477" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
+<TfrxReport Version="6.7.6" DotMatrixReport="False" EngineOptions.DoublePass="True" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="167935" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44817,7407070602" ReportOptions.Description.Text="" ReportOptions.LastChange="44922,9073366782" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end.">
   <Datasets>
     <item DataSet="dbReportStatusParcela" DataSetName="frxDBDataset1"/>
   </Datasets>
@@ -48,9 +48,14 @@
       <TfrxMemoView Name="Memo11" AllowVectorExport="True" Left="66,76376" Top="5,66141" Width="188,9765" Height="18,89765" DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="[SUM(&#60;frxDBDataset1.&#34;VALOR_PARCELA&#34;&#62;,MasterData1)]"/>
       <TfrxMemoView Name="Memo12" AllowVectorExport="True" Left="5,39363" Top="5,66141" Width="60,47248" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Parcelas:"/>
       <TfrxLineView Name="Line2" AllowVectorExport="True" Left="3,77953" Top="29,77953" Width="706,77211" Height="0" Color="0" Frame.Typ="4"/>
-      <TfrxMemoView Name="Memo16" AllowVectorExport="True" Left="327,18924" Top="5,77953" Width="188,9765" Height="18,89765" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="[SUM(&#60;frxDBDataset1.&#34;VOLUME_PARCELADO&#34;&#62;,MasterData1,3)]"/>
+      <TfrxMemoView Name="Memo16" AllowVectorExport="True" Left="327,18924" Top="5,77953" Width="249,44898" Height="18,89765" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="[SUM(&#60;frxDBDataset1.&#34;VOLUME_PARCELADO&#34;&#62;,MasterData1)]"/>
       <TfrxMemoView Name="Memo17" AllowVectorExport="True" Left="260,81911" Top="5,77953" Width="64,25201" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Volumes:"/>
     </TfrxGroupFooter>
-    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="26,45671" Left="0" Top="381,73253" Width="718,1107"/>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="109,60637" Left="0" Top="381,73253" Width="718,1107">
+      <TfrxMemoView Name="Memo18" AllowVectorExport="True" Left="110,48825" Top="33,55906" Width="396,85065" Height="18,89765" DisplayFormat.FormatStr="%2.2m" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="[SUM(&#60;frxDBDataset1.&#34;VALOR_PARCELA&#34;&#62;,MasterData1,3)]"/>
+      <TfrxMemoView Name="Memo19" AllowVectorExport="True" Left="3,77953" Top="33,55906" Width="90,70872" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Valor Total:"/>
+      <TfrxMemoView Name="Memo20" AllowVectorExport="True" Left="3,77953" Top="67,91342" Width="105,82684" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="Volume Total:"/>
+      <TfrxMemoView Name="Memo21" AllowVectorExport="True" Left="110,26778" Top="67,91342" Width="396,85065" Height="18,89765" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Segoe uI" Font.Style="1" Frame.Typ="0" ParentFont="False" Text="[SUM(&#60;frxDBDataset1.&#34;VOLUME_PARCELADO&#34;&#62;,MasterData1,3)]"/>
+    </TfrxFooter>
   </TfrxReportPage>
 </TfrxReport>

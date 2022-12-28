@@ -18,7 +18,7 @@ uses
          TextoLimpo := '';
          for nI := 1 to Length(Texto) do
            begin
-             if Texto[nI] in ['0'..'9',','] then
+             if Texto[nI] in ['0'..'9',',','-'] then
              TextoLimpo := TextoLimpo + Texto[nI];
            end;
         Result := StrToFloat(TextoLimpo);

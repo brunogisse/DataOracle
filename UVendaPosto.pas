@@ -400,12 +400,11 @@ procedure TfrmVendaPostos.calcularCorretagem;
  var Volume, TaxaCorretagem, TotalCorretagem : Double;
 begin
 
-    if (editVolume.Text <> '') and (editTaxaCorretagem.Text <> '') then
+    if (editVolume.Text <> '') and (editTaxaCorretagem.Text <> '') and (editTaxaCorretagem.Text <> '-') then
          begin
            Volume := StrToFloat(editVolume.Text);
            TaxaCorretagem := StrToFloat(editTaxaCorretagem.Text);
            TotalCorretagem := TaxaCorretagem * Volume;
-      //   editTotalCorretagem.Text := FloatToStr(TotalCorretagem);
            editTotalCorretagem.Text := FormatFloat('R$ ###,###,##0.00', TotalCorretagem)
          end
        else
@@ -417,13 +416,12 @@ procedure TfrmVendaPostos.calcularFrete;
  var Volume, TaxaFrete, TotalFrete : Double;
 begin
 
-    if (editVolume.Text <> '') and (editTaxaFrete.Text <> '') then
+    if (editVolume.Text <> '') and (editTaxaFrete.Text <> '') and (editTaxaFrete.Text <> '-') then
          begin
            Volume := StrToFloat(editVolume.Text);
-           TaxaFrete := StrToFloat(editTaxaFrete.Text);
+           TaxaFrete := StrToCurr(editTaxaFrete.Text);
            TotalFrete := TaxaFrete * Volume;
-         //editTotalFrete.Text := FloatToStr(TotalFrete);
-           editTotalFrete.Text := FormatFloat('R$ ###,###,##0.00', TotalFrete)
+           editTotalFrete.Text := FormatFloat('R$ ###,###,##0.00', TotalFrete);
 
          end
        else
