@@ -560,7 +560,7 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelVolume: TLabel
-        Left = 808
+        Left = 754
         Top = 72
         Width = 46
         Height = 13
@@ -742,11 +742,11 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelValorCombustivel: TLabel
-        Left = 917
+        Left = 861
         Top = 72
-        Width = 113
+        Width = 98
         Height = 13
-        Caption = 'VALOR COMBUST'#205'VEL'
+        Caption = 'VLR COMBUST'#205'VEL'
         Font.Charset = ANSI_CHARSET
         Font.Color = 8553090
         Font.Height = -11
@@ -801,7 +801,7 @@ object frmVendaPostos: TfrmVendaPostos
       object editPosto: TEdit
         Left = 261
         Top = 87
-        Width = 539
+        Width = 486
         Height = 25
         Font.Charset = ANSI_CHARSET
         Font.Color = 5195076
@@ -1000,7 +1000,7 @@ object frmVendaPostos: TfrmVendaPostos
         TabOrder = 17
       end
       object editVolume: TEdit
-        Left = 807
+        Left = 753
         Top = 87
         Width = 106
         Height = 25
@@ -1017,7 +1017,7 @@ object frmVendaPostos: TfrmVendaPostos
         OnKeyPress = editVolumeKeyPress
       end
       object editValorCombustivel: TEdit
-        Left = 919
+        Left = 863
         Top = 87
         Width = 121
         Height = 25
@@ -1214,7 +1214,7 @@ object frmVendaPostos: TfrmVendaPostos
         'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
         'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
         'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.status_fre' +
-        'te,'
+        'te, v.status_corretagem, v.status_pgto_cliente, '
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -1427,6 +1427,18 @@ object frmVendaPostos: TfrmVendaPostos
     object qryVendaPostoSTATUS_FRETE: TStringField
       FieldName = 'STATUS_FRETE'
       Origin = 'STATUS_FRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_CORRETAGEM: TStringField
+      FieldName = 'STATUS_CORRETAGEM'
+      Origin = 'STATUS_CORRETAGEM'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField
+      FieldName = 'STATUS_PGTO_CLIENTE'
+      Origin = 'STATUS_PGTO_CLIENTE'
       FixedChar = True
       Size = 3
     end

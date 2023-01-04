@@ -162,6 +162,8 @@ type
     qryVendaPostoSTATUS_FRETE: TStringField;
     qryVendaPostoSTATUS_CORRETAGEM: TStringField;
     qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField;
+    Label1: TLabel;
+    editJuros: TEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
@@ -214,6 +216,8 @@ type
     procedure gridVendaPostoColumnMoved(Sender: TObject; FromIndex,
       ToIndex: Integer);
     procedure editNFExit(Sender: TObject);
+    procedure editJurosExit(Sender: TObject);
+    procedure editJurosChange(Sender: TObject);
   private
     { Private declarations }
 
@@ -431,19 +435,21 @@ begin
 end;
 
 procedure TfrmVendaPostos.calcularValorNF;
- var Volume, ValorCombustivel, TotalNF : Real;
+ var Volume, ValorCombustivel, TotalNF, Juros : Real;
 
 begin
 
     Volume := 0;
     ValorCombustivel := 0;
     TotalNF := 0;
+    Juros := 0;
 
-    if (editVolume.Text <> '') and (editValorCombustivel.Text <> '') then
+    if (editVolume.Text <> '') and (editValorCombustivel.Text <> '') and (editJuros.Text <> '') then
          begin
            Volume := StrToFloat(editVolume.Text);
            ValorCombustivel := StrToFloat(editValorCombustivel.Text);
-           TotalNF := ValorCombustivel * Volume;
+           Juros := StrToFloat(editJuros.Text);
+           TotalNF := ValorCombustivel * Volume + Juros;
            EditValorNF.Text := FormatFloat('R$ ###,###,##0.00', TotalNF)
 
          end
@@ -598,6 +604,17 @@ begin
   if Key = #13 then
       Key := #0;
 
+end;
+
+procedure TfrmVendaPostos.editJurosChange(Sender: TObject);
+begin
+  calcularValorNF;
+end;
+
+procedure TfrmVendaPostos.editJurosExit(Sender: TObject);
+begin
+  if editJuros.Text = '' then
+      editJuros.Text :=  '0';
 end;
 
 procedure TfrmVendaPostos.editMotoristaKeyDown(Sender: TObject; var Key: Word;

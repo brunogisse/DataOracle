@@ -560,7 +560,7 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelVolume: TLabel
-        Left = 808
+        Left = 754
         Top = 72
         Width = 46
         Height = 13
@@ -586,7 +586,7 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelEstoque: TLabel
-        Left = 919
+        Left = 972
         Top = 115
         Width = 48
         Height = 13
@@ -742,11 +742,11 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelValorCombustivel: TLabel
-        Left = 917
+        Left = 861
         Top = 72
-        Width = 113
+        Width = 98
         Height = 13
-        Caption = 'VALOR COMBUST'#205'VEL'
+        Caption = 'VLR COMBUST'#205'VEL'
         Font.Charset = ANSI_CHARSET
         Font.Color = 8553090
         Font.Height = -11
@@ -767,6 +767,19 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         Visible = False
+      end
+      object Label1: TLabel
+        Left = 990
+        Top = 72
+        Width = 34
+        Height = 13
+        Caption = 'JUROS'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
       end
       object painelUnderline1: TPanel
         Left = 16
@@ -801,7 +814,7 @@ object frmVendaPostos: TfrmVendaPostos
       object editPosto: TEdit
         Left = 261
         Top = 87
-        Width = 539
+        Width = 486
         Height = 25
         Font.Charset = ANSI_CHARSET
         Font.Color = 5195076
@@ -817,7 +830,7 @@ object frmVendaPostos: TfrmVendaPostos
       object editProduto: TEdit
         Left = 753
         Top = 130
-        Width = 160
+        Width = 213
         Height = 25
         Enabled = False
         Font.Charset = ANSI_CHARSET
@@ -910,7 +923,7 @@ object frmVendaPostos: TfrmVendaPostos
         TabOrder = 8
       end
       object editEstoque: TEdit
-        Left = 919
+        Left = 972
         Top = 130
         Width = 123
         Height = 25
@@ -935,6 +948,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 7
+        OnExit = editNFExit
         OnKeyDown = editNFKeyDown
         OnKeyPress = editNFKeyPress
       end
@@ -999,7 +1013,7 @@ object frmVendaPostos: TfrmVendaPostos
         TabOrder = 17
       end
       object editVolume: TEdit
-        Left = 807
+        Left = 753
         Top = 87
         Width = 106
         Height = 25
@@ -1016,7 +1030,7 @@ object frmVendaPostos: TfrmVendaPostos
         OnKeyPress = editVolumeKeyPress
       end
       object editValorCombustivel: TEdit
-        Left = 919
+        Left = 864
         Top = 87
         Width = 121
         Height = 25
@@ -1043,6 +1057,21 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 18
+      end
+      object editJuros: TEdit
+        Left = 990
+        Top = 87
+        Width = 103
+        Height = 25
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = 5195076
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 19
+        OnChange = editJurosChange
+        OnExit = editJurosExit
       end
     end
     object painelBOTTOM: TPanel
@@ -1212,7 +1241,8 @@ object frmVendaPostos: TfrmVendaPostos
         '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
         'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
         'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
-        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas,'
+        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.status_fre' +
+        'te, v.status_corretagem, v.status_pgto_cliente, '
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -1329,11 +1359,6 @@ object frmVendaPostos: TfrmVendaPostos
       Precision = 18
       Size = 2
     end
-    object qryVendaPostoVALOR_COMBUSTIVEL: TBCDField
-      FieldName = 'VALOR_COMBUSTIVEL'
-      Origin = 'VALOR_COMBUSTIVEL'
-      Precision = 18
-    end
     object qryVendaPostoSTATUS: TStringField
       FieldName = 'STATUS'
       Origin = 'STATUS'
@@ -1420,6 +1445,30 @@ object frmVendaPostos: TfrmVendaPostos
     object qryVendaPostoESTOQUE_ID_VENDAS: TIntegerField
       FieldName = 'ESTOQUE_ID_VENDAS'
       Origin = 'ESTOQUEID'
+    end
+    object qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField
+      FieldName = 'VALOR_COMBUSTIVEL'
+      Origin = 'VALOR_COMBUSTIVEL'
+      Precision = 18
+      Size = 10
+    end
+    object qryVendaPostoSTATUS_FRETE: TStringField
+      FieldName = 'STATUS_FRETE'
+      Origin = 'STATUS_FRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_CORRETAGEM: TStringField
+      FieldName = 'STATUS_CORRETAGEM'
+      Origin = 'STATUS_CORRETAGEM'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField
+      FieldName = 'STATUS_PGTO_CLIENTE'
+      Origin = 'STATUS_PGTO_CLIENTE'
+      FixedChar = True
+      Size = 3
     end
   end
   object dsVendaPosto: TDataSource
@@ -1701,5 +1750,28 @@ object frmVendaPostos: TfrmVendaPostos
     DataSet = qryEstoqueUsina
     Left = 846
     Top = 672
+  end
+  object qryConfirmarNF: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcVendaPosto
+    SQL.Strings = (
+      'select * from venda_para_postos')
+    Left = 1032
+    Top = 552
+    object qryConfirmarNFVENDAID: TIntegerField
+      FieldName = 'VENDAID'
+      Origin = 'VENDAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryConfirmarNFNF: TIntegerField
+      FieldName = 'NF'
+      Origin = 'NF'
+    end
+  end
+  object dsConfirmarNF: TDataSource
+    DataSet = qryConfirmarNF
+    Left = 1035
+    Top = 611
   end
 end

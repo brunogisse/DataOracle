@@ -42,7 +42,6 @@ object frmMenu: TfrmMenu
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 1379
       DesignSize = (
         1383
         70)
@@ -747,7 +746,6 @@ object frmMenu: TfrmMenu
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1379
       end
     end
     object painelMenuLateral: TPanel
@@ -766,7 +764,6 @@ object frmMenu: TfrmMenu
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      ExplicitHeight = 943
       object painelMenuCategoria1: TPanel
         Left = 0
         Top = 0
@@ -1952,8 +1949,6 @@ object frmMenu: TfrmMenu
         item
           Width = 50
         end>
-      ExplicitTop = 1013
-      ExplicitWidth = 1379
     end
     object painelVencimentos: TPanel
       Left = 984
@@ -1971,6 +1966,7 @@ object frmMenu: TfrmMenu
         Top = 72
         Width = 321
         Height = 57
+        Caption = 'vencimentos'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGray

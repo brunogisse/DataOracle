@@ -935,6 +935,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 7
+        OnExit = editNFExit
         OnKeyDown = editNFKeyDown
         OnKeyPress = editNFKeyPress
       end
@@ -1212,7 +1213,8 @@ object frmVendaPostos: TfrmVendaPostos
         '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
         'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
         'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
-        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas,'
+        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.status_fre' +
+        'te, v.status_corretagem, v.status_pgto_cliente, '
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -1421,6 +1423,24 @@ object frmVendaPostos: TfrmVendaPostos
       Origin = 'VALOR_COMBUSTIVEL'
       Precision = 18
       Size = 10
+    end
+    object qryVendaPostoSTATUS_FRETE: TStringField
+      FieldName = 'STATUS_FRETE'
+      Origin = 'STATUS_FRETE'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_CORRETAGEM: TStringField
+      FieldName = 'STATUS_CORRETAGEM'
+      Origin = 'STATUS_CORRETAGEM'
+      FixedChar = True
+      Size = 3
+    end
+    object qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField
+      FieldName = 'STATUS_PGTO_CLIENTE'
+      Origin = 'STATUS_PGTO_CLIENTE'
+      FixedChar = True
+      Size = 3
     end
   end
   object dsVendaPosto: TDataSource
@@ -1702,5 +1722,28 @@ object frmVendaPostos: TfrmVendaPostos
     DataSet = qryEstoqueUsina
     Left = 846
     Top = 672
+  end
+  object qryConfirmarNF: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcVendaPosto
+    SQL.Strings = (
+      'select * from venda_para_postos')
+    Left = 1032
+    Top = 552
+    object qryConfirmarNFVENDAID: TIntegerField
+      FieldName = 'VENDAID'
+      Origin = 'VENDAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryConfirmarNFNF: TIntegerField
+      FieldName = 'NF'
+      Origin = 'NF'
+    end
+  end
+  object dsConfirmarNF: TDataSource
+    DataSet = qryConfirmarNF
+    Left = 1035
+    Top = 611
   end
 end
