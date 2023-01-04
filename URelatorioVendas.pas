@@ -325,7 +325,7 @@ begin
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
-                + ' (v.data_emissao_nf between :inicio and :fim) '
+                + ' (PARC.DATA_PGTO_PARCELA between :inicio and :fim) '
                 + ' order by v.data_emissao_nf, v.postoid  desc');
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';

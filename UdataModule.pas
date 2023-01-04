@@ -17,6 +17,20 @@ type
     qryLoginUSUARIO: TStringField;
     qryLoginNOME: TStringField;
     qryLoginSENHA: TStringField;
+    qryVencimentos: TFDQuery;
+    dsVencimentos: TDataSource;
+    qryVencimentosQTDE_PARCELAS: TIntegerField;
+    qryVencimentosVALOR_PARCELA: TFMTBCDField;
+    qryVencimentosDATA_PARCELA: TDateField;
+    qryVencimentosVOLUME_PARCELADO: TFMTBCDField;
+    qryVencimentosNF: TIntegerField;
+    qryVencimentosEMISSAO_NF: TDateField;
+    qryVencimentosPARCELA: TStringField;
+    qryVencimentosSTATUS: TStringField;
+    qryVencimentosPOSTOID: TIntegerField;
+    qryVencimentosSTATUSVENDA: TStringField;
+    qryVencimentosIDPOSTO: TIntegerField;
+    qryVencimentosNOME_FANTASIA: TStringField;
   private
     { Private declarations }
   public

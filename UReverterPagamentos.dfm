@@ -479,6 +479,12 @@ object frmReverterPagamentos: TfrmReverterPagamentos
         end
         item
           Expanded = False
+          FieldName = 'DATA_PGTO_PARCELA'
+          Width = 95
+          Visible = True
+        end
+        item
+          Expanded = False
           FieldName = 'DESCRICAO'
           Width = 152
           Visible = True
@@ -605,6 +611,7 @@ object frmReverterPagamentos: TfrmReverterPagamentos
       Size = 5
     end
     object qryReverterParcelasDATA_PGTO_PARCELA: TDateField
+      DisplayLabel = 'Data Pgto.'
       FieldName = 'DATA_PGTO_PARCELA'
       Origin = 'DATA_PGTO_PARCELA'
     end
@@ -634,8 +641,8 @@ object frmReverterPagamentos: TfrmReverterPagamentos
   end
   object dsReverterParcelas: TDataSource
     DataSet = qryReverterParcelas
-    Left = 160
-    Top = 360
+    Left = 184
+    Top = 352
   end
   object tcReverterParcelas: TFDTransaction
     Options.AutoStop = False

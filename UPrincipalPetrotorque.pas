@@ -10,7 +10,8 @@ uses
   FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, FireDAC.Phys.FB,
   FireDAC.Phys.FBDef, Vcl.Menus, System.UITypes, Vcl.ExtCtrls, Vcl.Buttons,
   Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, frxClass,
+  frxDBSet;
 
 type
   TfrmMenu = class(TForm)
@@ -58,6 +59,10 @@ type
     SpeedButton1: TSpeedButton;
     btnRelatorioClientes: TSpeedButton;
     btnTransferencia: TSpeedButton;
+    painelVencimentos: TPanel;
+    btnVencimentos: TSpeedButton;
+    frxDBVencimentos: TfrxDBDataset;
+    reportVencimentos: TfrxReport;
     procedure FormCreate(Sender: TObject);
     procedure mCorretorClick(Sender: TObject);
     procedure mPostoClick(Sender: TObject);
@@ -89,12 +94,14 @@ type
     procedure SpeedButton1Click(Sender: TObject);
     procedure btnRelatorioClientesClick(Sender: TObject);
     procedure btnTransferenciaClick(Sender: TObject);
+    procedure btnVencimentosClick(Sender: TObject);
 
 
   private
     { Private declarations }
 
     procedure CaminhoBanco;
+    procedure conferirVencimentos;
   public
     { Public declarations }
   end;
@@ -117,6 +124,24 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
   UbackUp, UrelatorioCliente, UTransferenciaEstoque;
 
 { TfrmMenu }
+
+procedure TfrmMenu.conferirVencimentos;
+begin
+    with dm.qryVencimentos do
+     begin
+       close;
+       ParamByName('date').AsDate := date;
+       open();
+     end;
+
+     if dm.qryVencimentos.RecordCount > 0 then
+       begin
+         painelVencimentos.Visible := True;
+         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamentos vencendo';
+       end
+     else
+         painelVencimentos.Visible := False;
+end;
 
 procedure TfrmMenu.abrirFormulario(Sender: TObject);
   var    Formulario                         : TForm;
@@ -231,6 +256,7 @@ begin
       frmPagarParcelas.ShowModal;
     finally
        FreeAndNil(frmPagarParcelas);
+       conferirVencimentos;
     end;
 end;
 
@@ -271,6 +297,7 @@ begin
        frmReverterPagamentos.ShowModal;
    finally
         FreeAndNil(frmReverterPagamentos);
+        conferirVencimentos;
    end;
 end;
 
@@ -341,6 +368,16 @@ begin
   end;
 end;
 
+procedure TfrmMenu.btnVencimentosClick(Sender: TObject);
+  var caminhorelatorio : string;
+begin
+        caminhoRelatorio := ExtractFilePath(Application.ExeName);
+         reportVencimentos.LoadFromFile(caminhoRelatorio +'RelContasVencendo.fr3');
+      //   reportVendas.Variables['InicioMes']     :=  QuotedStr( DateVencimentoDE.Text );
+       //  reportVendas.Variables['FimMes']        :=  QuotedStr( DateVencimentoATE.Text );
+         reportVencimentos.ShowReport();
+end;
+
 procedure TfrmMenu.btnVendaPostosClick(Sender: TObject);
 begin
    try
@@ -388,6 +425,9 @@ end;
 procedure TfrmMenu.FormShow(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName('NOME').AsString;
+
+  conferirVencimentos;
+
 end;
 
 procedure TfrmMenu.itemPesquisaVendasClick(Sender: TObject);

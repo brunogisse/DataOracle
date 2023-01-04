@@ -1,0 +1,153 @@
+object dm: Tdm
+  OldCreateOrder = False
+  Height = 571
+  Width = 909
+  object dsLogin: TDataSource
+    DataSet = qryLogin
+    Left = 104
+    Top = 32
+  end
+  object qryLogin: TFDQuery
+    Connection = frmMenu.FDconexao
+    SQL.Strings = (
+      
+        'select * from usuario where (usuario = :usuario) and (senha = :s' +
+        'enha)')
+    Left = 40
+    Top = 32
+    ParamData = <
+      item
+        Name = 'USUARIO'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 50
+        Value = Null
+      end
+      item
+        Name = 'SENHA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 64
+      end>
+    object qryLoginUSUARIOID: TIntegerField
+      FieldName = 'USUARIOID'
+      Origin = 'USUARIOID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryLoginNIVEL: TIntegerField
+      FieldName = 'NIVEL'
+      Origin = 'NIVEL'
+    end
+    object qryLoginUSUARIO: TStringField
+      FieldName = 'USUARIO'
+      Origin = 'USUARIO'
+      Size = 50
+    end
+    object qryLoginNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 50
+    end
+    object qryLoginSENHA: TStringField
+      FieldName = 'SENHA'
+      Origin = 'SENHA'
+      Size = 64
+    end
+  end
+  object qryVencimentos: TFDQuery
+    Connection = frmMenu.FDconexao
+    SQL.Strings = (
+      'select * from PARCELA_VENDA_PARA_POSTOS')
+    Left = 72
+    Top = 216
+    object qryVencimentosPARCELAID: TIntegerField
+      FieldName = 'PARCELAID'
+      Origin = 'PARCELAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryVencimentosVENDAID: TIntegerField
+      FieldName = 'VENDAID'
+      Origin = 'VENDAID'
+    end
+    object qryVencimentosFORMA_PGTO_ID: TIntegerField
+      FieldName = 'FORMA_PGTO_ID'
+      Origin = 'FORMA_PGTO_ID'
+    end
+    object qryVencimentosSTATUS: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+      Size = 10
+    end
+    object qryVencimentosQTDE_PARCELAS: TIntegerField
+      FieldName = 'QTDE_PARCELAS'
+      Origin = 'QTDE_PARCELAS'
+    end
+    object qryVencimentosVALOR_TOTAL_NF: TFMTBCDField
+      FieldName = 'VALOR_TOTAL_NF'
+      Origin = 'VALOR_TOTAL_NF'
+      Precision = 18
+      Size = 2
+    end
+    object qryVencimentosVALOR_PARCELA: TFMTBCDField
+      FieldName = 'VALOR_PARCELA'
+      Origin = 'VALOR_PARCELA'
+      Precision = 18
+      Size = 2
+    end
+    object qryVencimentosDATA_PARCELA: TDateField
+      FieldName = 'DATA_PARCELA'
+      Origin = 'DATA_PARCELA'
+    end
+    object qryVencimentosVOLUME_VENDA_TOTAL: TFMTBCDField
+      FieldName = 'VOLUME_VENDA_TOTAL'
+      Origin = 'VOLUME_VENDA_TOTAL'
+      Precision = 18
+      Size = 2
+    end
+    object qryVencimentosVOLUME_PARCELADO: TFMTBCDField
+      FieldName = 'VOLUME_PARCELADO'
+      Origin = 'VOLUME_PARCELADO'
+      Precision = 18
+      Size = 2
+    end
+    object qryVencimentosDOCUMENTO: TStringField
+      FieldName = 'DOCUMENTO'
+      Origin = 'DOCUMENTO'
+    end
+    object qryVencimentosVOLUME_RESTANTE: TFMTBCDField
+      FieldName = 'VOLUME_RESTANTE'
+      Origin = 'VOLUME_RESTANTE'
+      Precision = 18
+      Size = 2
+    end
+    object qryVencimentosNF: TIntegerField
+      FieldName = 'NF'
+      Origin = 'NF'
+    end
+    object qryVencimentosEMISSAO_NF: TDateField
+      FieldName = 'EMISSAO_NF'
+      Origin = 'EMISSAO_NF'
+    end
+    object qryVencimentosACESSO: TStringField
+      FieldName = 'ACESSO'
+      Origin = 'ACESSO'
+      Size = 9
+    end
+    object qryVencimentosPARCELA: TStringField
+      FieldName = 'PARCELA'
+      Origin = 'PARCELA'
+      Size = 5
+    end
+    object qryVencimentosDATA_PGTO_PARCELA: TDateField
+      FieldName = 'DATA_PGTO_PARCELA'
+      Origin = 'DATA_PGTO_PARCELA'
+    end
+  end
+  object dsVencimentos: TDataSource
+    DataSet = qryVencimentos
+    Left = 168
+    Top = 216
+  end
+end

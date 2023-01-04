@@ -1,0 +1,56 @@
+unit UdataModule;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+
+type
+  Tdm = class(TDataModule)
+    dsLogin: TDataSource;
+    qryLogin: TFDQuery;
+    qryLoginUSUARIOID: TIntegerField;
+    qryLoginNIVEL: TIntegerField;
+    qryLoginUSUARIO: TStringField;
+    qryLoginNOME: TStringField;
+    qryLoginSENHA: TStringField;
+    qryVencimentos: TFDQuery;
+    dsVencimentos: TDataSource;
+    qryVencimentosPARCELAID: TIntegerField;
+    qryVencimentosVENDAID: TIntegerField;
+    qryVencimentosFORMA_PGTO_ID: TIntegerField;
+    qryVencimentosSTATUS: TStringField;
+    qryVencimentosQTDE_PARCELAS: TIntegerField;
+    qryVencimentosVALOR_TOTAL_NF: TFMTBCDField;
+    qryVencimentosVALOR_PARCELA: TFMTBCDField;
+    qryVencimentosDATA_PARCELA: TDateField;
+    qryVencimentosVOLUME_VENDA_TOTAL: TFMTBCDField;
+    qryVencimentosVOLUME_PARCELADO: TFMTBCDField;
+    qryVencimentosDOCUMENTO: TStringField;
+    qryVencimentosVOLUME_RESTANTE: TFMTBCDField;
+    qryVencimentosNF: TIntegerField;
+    qryVencimentosEMISSAO_NF: TDateField;
+    qryVencimentosACESSO: TStringField;
+    qryVencimentosPARCELA: TStringField;
+    qryVencimentosDATA_PGTO_PARCELA: TDateField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  dm: Tdm;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses ULogin, UPrincipalPetrotorque, UCadastroUsuario;
+
+{$R *.dfm}
+
+end.

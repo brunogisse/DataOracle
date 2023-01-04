@@ -399,40 +399,45 @@ end;
 procedure TfrmVendaPostos.calcularCorretagem;
  var Volume, TaxaCorretagem, TotalCorretagem : Double;
 begin
-
-    if (editVolume.Text <> '') and (editTaxaCorretagem.Text <> '') and (editTaxaCorretagem.Text <> '-') then
-         begin
-           Volume := StrToFloat(editVolume.Text);
-           TaxaCorretagem := StrToFloat(editTaxaCorretagem.Text);
-           TotalCorretagem := TaxaCorretagem * Volume;
-           editTotalCorretagem.Text := FormatFloat('R$ ###,###,##0.00', TotalCorretagem)
-         end
-       else
-           editTotalCorretagem.Text := '';
-
+       Volume := 0;
+       TaxaCorretagem := 0;
+       TotalCorretagem := 0;
+ if (editVolume.Text <> '') and (editTaxaCorretagem.Text <> '') and (editTaxaCorretagem.Text <> '-') then
+      begin
+       Volume := StrToFloat(editVolume.Text);
+       TaxaCorretagem := StrToFloat(editTaxaCorretagem.Text);
+       TotalCorretagem := TaxaCorretagem * Volume;
+       editTotalCorretagem.Text := FormatFloat('R$ ###,###,##0.00', TotalCorretagem)
+      end
+    else
+       editTotalCorretagem.Text := '';
 end;
 
 procedure TfrmVendaPostos.calcularFrete;
  var Volume, TaxaFrete, TotalFrete : Double;
 begin
-
-    if (editVolume.Text <> '') and (editTaxaFrete.Text <> '') and (editTaxaFrete.Text <> '-') then
-         begin
-           Volume := StrToFloat(editVolume.Text);
-           TaxaFrete := StrToCurr(editTaxaFrete.Text);
-           TotalFrete := TaxaFrete * Volume;
-           editTotalFrete.Text := FormatFloat('R$ ###,###,##0.00', TotalFrete);
-
-         end
-       else
-           editTotalFrete.Text := '';
-
+       Volume := 0;
+       TaxaFrete := 0;
+       TotalFrete := 0;
+ if (editVolume.Text <> '') and (editTaxaFrete.Text <> '') and (editTaxaFrete.Text <> '-') then
+      begin
+       Volume := StrToFloat(editVolume.Text);
+       TaxaFrete := StrToCurr(editTaxaFrete.Text);
+       TotalFrete := TaxaFrete * Volume;
+       editTotalFrete.Text := FormatFloat('R$ ###,###,##0.00', TotalFrete);
+      end
+    else
+       editTotalFrete.Text := '';
 end;
 
 procedure TfrmVendaPostos.calcularValorNF;
  var Volume, ValorCombustivel, TotalNF : Real;
 
 begin
+
+    Volume := 0;
+    ValorCombustivel := 0;
+    TotalNF := 0;
 
     if (editVolume.Text <> '') and (editValorCombustivel.Text <> '') then
          begin
