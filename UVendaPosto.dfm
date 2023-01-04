@@ -586,7 +586,7 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelEstoque: TLabel
-        Left = 972
+        Left = 895
         Top = 115
         Width = 48
         Height = 13
@@ -742,7 +742,7 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
       end
       object labelValorCombustivel: TLabel
-        Left = 861
+        Left = 894
         Top = 72
         Width = 98
         Height = 13
@@ -768,19 +768,6 @@ object frmVendaPostos: TfrmVendaPostos
         ParentFont = False
         Visible = False
       end
-      object Label1: TLabel
-        Left = 990
-        Top = 72
-        Width = 34
-        Height = 13
-        Caption = 'JUROS'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = 8553090
-        Font.Height = -11
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
       object painelUnderline1: TPanel
         Left = 16
         Top = 48
@@ -799,7 +786,7 @@ object frmVendaPostos: TfrmVendaPostos
         BevelOuter = bvNone
         Color = clSilver
         ParentBackground = False
-        TabOrder = 14
+        TabOrder = 13
       end
       object painelUnderlineFreteCorretagem: TPanel
         Left = 456
@@ -809,7 +796,7 @@ object frmVendaPostos: TfrmVendaPostos
         BevelOuter = bvNone
         Color = clSilver
         ParentBackground = False
-        TabOrder = 15
+        TabOrder = 14
       end
       object editPosto: TEdit
         Left = 261
@@ -830,7 +817,7 @@ object frmVendaPostos: TfrmVendaPostos
       object editProduto: TEdit
         Left = 753
         Top = 130
-        Width = 213
+        Width = 136
         Height = 25
         Enabled = False
         Font.Charset = ANSI_CHARSET
@@ -839,7 +826,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 6
         OnKeyDown = editProdutoKeyDown
         OnKeyPress = editProdutoKeyPress
       end
@@ -855,7 +842,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         ReadOnly = True
-        TabOrder = 6
+        TabOrder = 5
         OnKeyDown = editUsinaKeyDown
         OnKeyPress = editUsinaKeyPress
       end
@@ -871,7 +858,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         ReadOnly = True
-        TabOrder = 10
+        TabOrder = 9
         OnKeyDown = editMotoristaKeyDown
         OnKeyPress = editMotoristaKeyPress
       end
@@ -887,7 +874,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = [fsBold]
         ParentFont = False
         ReadOnly = True
-        TabOrder = 12
+        TabOrder = 11
         OnKeyDown = editCorretorKeyDown
         OnKeyPress = editCorretorKeyPress
       end
@@ -920,10 +907,10 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        TabOrder = 9
+        TabOrder = 8
       end
       object editEstoque: TEdit
-        Left = 972
+        Left = 895
         Top = 130
         Width = 123
         Height = 25
@@ -934,7 +921,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 15
       end
       object editNF: TEdit
         Left = 26
@@ -947,7 +934,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 7
         OnExit = editNFExit
         OnKeyDown = editNFKeyDown
         OnKeyPress = editNFKeyPress
@@ -964,7 +951,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 17
+        TabOrder = 16
       end
       object editTaxaFrete: TEdit
         Left = 797
@@ -977,7 +964,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 11
+        TabOrder = 10
         OnChange = editTaxaFreteChange
         OnKeyDown = editTaxaFreteKeyDown
         OnKeyPress = editTaxaFreteKeyPress
@@ -993,7 +980,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 13
+        TabOrder = 12
         OnChange = editTaxaCorretagemChange
         OnKeyDown = editTaxaCorretagemKeyDown
         OnKeyPress = editTaxaCorretagemKeyPress
@@ -1010,12 +997,12 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 18
+        TabOrder = 17
       end
       object editVolume: TEdit
         Left = 753
         Top = 87
-        Width = 106
+        Width = 138
         Height = 25
         Font.Charset = ANSI_CHARSET
         Font.Color = 5195076
@@ -1030,7 +1017,7 @@ object frmVendaPostos: TfrmVendaPostos
         OnKeyPress = editVolumeKeyPress
       end
       object editValorCombustivel: TEdit
-        Left = 864
+        Left = 897
         Top = 87
         Width = 121
         Height = 25
@@ -1056,22 +1043,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 19
-      end
-      object editJuros: TEdit
-        Left = 990
-        Top = 87
-        Width = 103
-        Height = 25
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = 5195076
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 5
-        OnChange = editJurosChange
-        OnExit = editJurosExit
+        TabOrder = 18
       end
     end
     object painelBOTTOM: TPanel

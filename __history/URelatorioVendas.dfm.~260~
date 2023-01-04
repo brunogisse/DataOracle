@@ -3,7 +3,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   Top = 0
   Caption = 'frmRelatorioVenda'
   ClientHeight = 663
-  ClientWidth = 1146
+  ClientWidth = 1140
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1140
+    Width = 1134
     Height = 46
     Align = alTop
     BevelOuter = bvNone
@@ -33,6 +33,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1140
     object labelTituloReport: TLabel
       Left = 9
       Top = 4
@@ -50,7 +51,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   object PainelCentral: TPanel
     Left = 0
     Top = 52
-    Width = 1146
+    Width = 1140
     Height = 181
     Align = alTop
     BevelOuter = bvNone
@@ -63,6 +64,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1146
     object Image1: TImage
       Left = 24
       Top = 29
@@ -1201,7 +1203,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.740707060200000000
-    ReportOptions.LastChange = 44922.892114525460000000
+    ReportOptions.LastChange = 44922.907336678240000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -2313,7 +2315,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           AllowVectorExport = True
           Left = 327.189240000000000000
           Top = 5.779530000000000000
-          Width = 188.976500000000000000
+          Width = 249.448980000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
@@ -2324,7 +2326,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[SUM(<frxDBDataset1."VOLUME_PARCELADO">,MasterData1,3)]')
+            '[SUM(<frxDBDataset1."VOLUME_PARCELADO">,MasterData1)]')
           ParentFont = False
         end
         object Memo17: TfrxMemoView
@@ -2347,9 +2349,77 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       object Footer1: TfrxFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 68.031540000000000000
+        Height = 109.606370000000000000
         Top = 381.732530000000000000
         Width = 718.110700000000000000
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 110.488250000000000000
+          Top = 33.559060000000000000
+          Width = 396.850650000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[SUM(<frxDBDataset1."VALOR_PARCELA">,MasterData1,3)]')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 3.779530000000000000
+          Top = 33.559060000000000000
+          Width = 90.708720000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Valor Total:')
+          ParentFont = False
+        end
+        object Memo20: TfrxMemoView
+          AllowVectorExport = True
+          Left = 3.779530000000000000
+          Top = 67.913420000000000000
+          Width = 105.826840000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Volume Total:')
+          ParentFont = False
+        end
+        object Memo21: TfrxMemoView
+          AllowVectorExport = True
+          Left = 110.267780000000000000
+          Top = 67.913420000000000000
+          Width = 396.850650000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2n'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -15
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[SUM(<frxDBDataset1."VOLUME_PARCELADO">,MasterData1,3)]')
+          ParentFont = False
+        end
       end
     end
   end

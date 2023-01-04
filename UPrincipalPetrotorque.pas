@@ -371,11 +371,9 @@ end;
 procedure TfrmMenu.btnVencimentosClick(Sender: TObject);
   var caminhorelatorio : string;
 begin
-        caminhoRelatorio := ExtractFilePath(Application.ExeName);
-         reportVencimentos.LoadFromFile(caminhoRelatorio +'RelContasVencendo.fr3');
-      //   reportVendas.Variables['InicioMes']     :=  QuotedStr( DateVencimentoDE.Text );
-       //  reportVendas.Variables['FimMes']        :=  QuotedStr( DateVencimentoATE.Text );
-         reportVencimentos.ShowReport();
+    caminhoRelatorio := ExtractFilePath(Application.ExeName);
+    reportVencimentos.LoadFromFile(caminhoRelatorio +'RelContasVencendo.fr3');
+    reportVencimentos.ShowReport();
 end;
 
 procedure TfrmMenu.btnVendaPostosClick(Sender: TObject);

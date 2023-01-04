@@ -3,7 +3,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   Top = 0
   Caption = 'frmRelatorioVenda'
   ClientHeight = 663
-  ClientWidth = 1146
+  ClientWidth = 1140
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,7 +20,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1140
+    Width = 1134
     Height = 46
     Align = alTop
     BevelOuter = bvNone
@@ -50,7 +50,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   object PainelCentral: TPanel
     Left = 0
     Top = 52
-    Width = 1146
+    Width = 1140
     Height = 181
     Align = alTop
     BevelOuter = bvNone

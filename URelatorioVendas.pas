@@ -206,9 +206,14 @@ begin
 end;
 
 procedure TfrmRelatorioVenda.btnPagarParcelaStatusClick(Sender: TObject);
-var caminhoRelatorio : string;
+var caminhoRelatorio, abertoFechado : string;
 begin
 
+
+      if rbAbertas.Checked = True then
+         abertoFechado := 'PARC.DATA_PARCELA';
+      if rbPagas.Checked = True then
+         abertoFechado := 'PARC.DATA_PGTO_PARCELA';
 
     if (cbCliente.Checked = True)  and (editPesquisa.Text <> '') and (cbRepresentante.Checked = True)  and (editRepresentante.Text <> '') and
        (cbNF.Checked = True) and (editNF.Text <> '') then
@@ -325,7 +330,7 @@ begin
                 + ' (v.vendaid = parc.vendaid) and '
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
-                + ' (PARC.DATA_PGTO_PARCELA between :inicio and :fim) '
+                + ' ('+abertoFechado+' between :inicio and :fim) '
                 + ' order by v.data_emissao_nf, v.postoid  desc');
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';

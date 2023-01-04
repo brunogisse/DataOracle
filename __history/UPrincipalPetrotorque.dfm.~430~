@@ -42,7 +42,6 @@ object frmMenu: TfrmMenu
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 1379
       DesignSize = (
         1383
         70)
@@ -268,11 +267,11 @@ object frmMenu: TfrmMenu
       object labelNomeSistema: TLabel
         Left = 369
         Top = 0
-        Width = 96
+        Width = 135
         Height = 69
         Align = alLeft
         Alignment = taCenter
-        Caption = 'DataOracle'
+        Caption = 'DataOracle v1.2'
         Color = clBlack
         Font.Charset = ANSI_CHARSET
         Font.Color = clGray
@@ -747,7 +746,6 @@ object frmMenu: TfrmMenu
         Color = clSilver
         ParentBackground = False
         TabOrder = 0
-        ExplicitWidth = 1379
       end
     end
     object painelMenuLateral: TPanel
@@ -766,7 +764,6 @@ object frmMenu: TfrmMenu
       ParentBackground = False
       ParentFont = False
       TabOrder = 1
-      ExplicitHeight = 943
       object painelMenuCategoria1: TPanel
         Left = 0
         Top = 0
@@ -1952,8 +1949,6 @@ object frmMenu: TfrmMenu
         item
           Width = 50
         end>
-      ExplicitTop = 1013
-      ExplicitWidth = 1379
     end
     object painelVencimentos: TPanel
       Left = 984
@@ -1971,6 +1966,7 @@ object frmMenu: TfrmMenu
         Top = 72
         Width = 321
         Height = 57
+        Caption = 'vencimentos'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGray
@@ -1991,7 +1987,6 @@ object frmMenu: TfrmMenu
       'Password=masterkey'
       'Server=localhost'
       'DriverID=FB')
-    Connected = True
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
     Left = 464
@@ -2014,7 +2009,7 @@ object frmMenu: TfrmMenu
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 44930.500887500000000000
+    ReportOptions.LastChange = 44930.514282916670000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -2068,9 +2063,9 @@ object frmMenu: TfrmMenu
         Width = 718.110700000000000000
         object Memo1: TfrxMemoView
           AllowVectorExport = True
-          Left = 597.945270000000000000
-          Top = -14.559060000000000000
-          Width = 453.543600000000000000
+          Left = 280.464750000000000000
+          Top = 23.236240000000000000
+          Width = 362.834880000000000000
           Height = 37.795300000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2079,7 +2074,7 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Relat'#243'rio de vendas por Corretores')
+            'Relat'#243'rio de vencimentos')
           ParentFont = False
         end
         object Picture1: TfrxPictureView
@@ -2666,7 +2661,7 @@ object frmMenu: TfrmMenu
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 118.063080000000000000
+          Left = 144.519790000000000000
           Top = 4.456710000000000000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
@@ -2683,7 +2678,7 @@ object frmMenu: TfrmMenu
         object Memo9: TfrxMemoView
           AllowVectorExport = True
           Left = 503.693260000000000000
-          Top = 8.015770000000000000
+          Top = 3.015770000000000000
           Width = 60.472480000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2715,7 +2710,7 @@ object frmMenu: TfrmMenu
         object Memo11: TfrxMemoView
           AllowVectorExport = True
           Left = 581.827150000000000000
-          Top = 4.779530000000000000
+          Top = 2.779530000000000000
           Width = 49.133890000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2731,7 +2726,7 @@ object frmMenu: TfrmMenu
         object Memo16: TfrxMemoView
           AllowVectorExport = True
           Left = 633.126470000000000000
-          Top = 3.779530000000000000
+          Top = 2.779530000000000000
           Width = 75.590600000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2753,7 +2748,7 @@ object frmMenu: TfrmMenu
         Font.Height = -11
         Font.Name = 'Segoe uI'
         Font.Style = []
-        Height = 24.015770000000000000
+        Height = 16.456710000000000000
         ParentFont = False
         Top = 204.094620000000000000
         Width = 718.110700000000000000
@@ -2764,7 +2759,7 @@ object frmMenu: TfrmMenu
           IndexTag = 1
           AllowVectorExport = True
           Left = 0.236240000000000000
-          Top = 1.338590000000000000
+          Top = -1.661410000000000000
           Width = 71.811070000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2781,7 +2776,7 @@ object frmMenu: TfrmMenu
           IndexTag = 1
           AllowVectorExport = True
           Left = 75.165430000000000000
-          Top = 1.338590000000000000
+          Top = -1.661410000000000000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2798,7 +2793,7 @@ object frmMenu: TfrmMenu
           IndexTag = 1
           AllowVectorExport = True
           Left = 145.653680000000000000
-          Top = 3.118120000000000000
+          Top = 0.118120000000000000
           Width = 253.228510000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2814,8 +2809,8 @@ object frmMenu: TfrmMenu
         object frxDBDataset1VOLUME: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 504.622450000000000000
-          Top = 1.897650000000000000
+          Left = 500.622450000000000000
+          Top = -1.102350000000000000
           Width = 83.149660000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2n'
@@ -2834,8 +2829,8 @@ object frmMenu: TfrmMenu
           IndexTag = 1
           AllowVectorExport = True
           Left = 403.220780000000000000
-          Top = 2.338590000000000000
-          Width = 98.267780000000000000
+          Top = -0.661410000000000000
+          Width = 94.488250000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
           DisplayFormat.Kind = fkNumeric
@@ -2852,8 +2847,7 @@ object frmMenu: TfrmMenu
         object frxDBDataset1STATUS_CORRETAGEM: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 591.417750000000000000
-          Top = 1.000000000000000000
+          Left = 589.417750000000000000
           Width = 37.795300000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2869,7 +2863,8 @@ object frmMenu: TfrmMenu
         object Memo17: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 635.158010000000000000
+          Left = 633.158010000000000000
+          Top = -1.000000000000000000
           Width = 68.031540000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2886,14 +2881,14 @@ object frmMenu: TfrmMenu
       object Footer1: TfrxFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 98.267780000000000000
-        Top = 249.448980000000000000
+        Height = 71.811070000000000000
+        Top = 241.889920000000000000
         Width = 718.110700000000000000
         object Memo12: TfrxMemoView
           AllowVectorExport = True
-          Left = 226.771800000000000000
-          Top = 18.220470000000000000
-          Width = 117.165430000000000000
+          Left = 3.779530000000000000
+          Top = 26.015770000000000000
+          Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2902,13 +2897,13 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Total Corretagem:')
+            'Valor total:')
           ParentFont = False
         end
         object Memo13: TfrxMemoView
           AllowVectorExport = True
-          Left = 349.055350000000000000
-          Top = 19.000000000000000000
+          Left = 98.606370000000000000
+          Top = 27.574830000000000000
           Width = 207.874150000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
@@ -2920,14 +2915,14 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[SUM(<frxDBDataset1."VALOR_TOTAL_CORRETAGEM">,MasterData1,3)]')
+            '[SUM(<frxDBDataset2."VALOR_PARCELA">,MasterData1,3)]')
           ParentFont = False
         end
         object Memo14: TfrxMemoView
           AllowVectorExport = True
-          Left = 228.551330000000000000
-          Top = 41.015770000000000000
-          Width = 117.165430000000000000
+          Left = 4.559060000000000000
+          Top = 48.811070000000000000
+          Width = 90.708720000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -2936,13 +2931,13 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Total Volume:')
+            'Volume total:')
           ParentFont = False
         end
         object Memo15: TfrxMemoView
           AllowVectorExport = True
-          Left = 349.378170000000000000
-          Top = 41.795300000000000000
+          Left = 97.385900000000000000
+          Top = 49.590600000000000000
           Width = 188.976500000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2n'
@@ -2954,7 +2949,39 @@ object frmMenu: TfrmMenu
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[SUM(<frxDBDataset1."VOLUME">,MasterData1,3)]')
+            '[SUM(<frxDBDataset2."VOLUME_PARCELADO">,MasterData1,3)]')
+          ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 627.079160000000000000
+          Top = 41.574830000000000000
+          Width = 37.795300000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[COUNT(MasterData1,3)]')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 506.457020000000000000
+          Top = 41.574830000000000000
+          Width = 117.165430000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total de vencimentos:')
           ParentFont = False
         end
       end

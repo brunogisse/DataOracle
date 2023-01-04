@@ -1952,10 +1952,10 @@ object frmMenu: TfrmMenu
     end
     object painelVencimentos: TPanel
       Left = 984
-      Top = 829
+      Top = 76
       Width = 392
       Height = 182
-      Anchors = [akRight, akBottom]
+      Anchors = [akTop, akRight]
       BevelOuter = bvNone
       Color = 15724527
       ParentBackground = False
