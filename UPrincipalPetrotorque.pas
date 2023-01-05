@@ -137,7 +137,7 @@ begin
      if dm.qryVencimentos.RecordCount > 0 then
        begin
          painelVencimentos.Visible := True;
-         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamentos vencendo';
+         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamento(s) vencendo';
        end
      else
          painelVencimentos.Visible := False;

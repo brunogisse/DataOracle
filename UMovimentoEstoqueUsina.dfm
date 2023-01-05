@@ -739,7 +739,7 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44827.418470300900000000
-    ReportOptions.LastChange = 44831.731619849500000000
+    ReportOptions.LastChange = 44930.883503750000000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1603,9 +1603,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 3.779530000000000000
-          Top = 0.220470000000000000
+          Top = -2.779530000000000000
           Width = 79.370130000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'DATA'
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'
@@ -1623,8 +1623,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 83.488250000000000000
+          Top = -3.000000000000000000
           Width = 18.897650000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'TIPO'
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'
@@ -1642,9 +1643,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 116.283550000000000000
-          Top = 0.220470000000000000
+          Top = -2.779530000000000000
           Width = 98.267780000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'
           DisplayFormat.FormatStr = '%2.2n'
@@ -1663,9 +1664,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 220.008040000000000000
-          Top = 1.220470000000000000
+          Top = -1.779530000000000000
           Width = 98.267780000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'
           DisplayFormat.FormatStr = '%2.2n'
@@ -1684,9 +1685,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 319.795610000000000000
-          Top = 1.220470000000000000
+          Top = -1.779530000000000000
           Width = 128.504020000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'VALOR'
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'
@@ -1704,9 +1705,9 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
           IndexTag = 1
           AllowVectorExport = True
           Left = 422.913730000000000000
-          Top = 1.220470000000000000
+          Top = -1.779530000000000000
           Width = 619.842920000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'MOTIVO'
           DataSet = dbReportMovimento
           DataSetName = 'frxDBDataset1'

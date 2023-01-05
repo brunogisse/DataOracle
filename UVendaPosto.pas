@@ -432,7 +432,7 @@ begin
 end;
 
 procedure TfrmVendaPostos.calcularValorNF;
- var Volume, ValorCombustivel, TotalNF, Juros : Real;
+ var Volume, ValorCombustivel, TotalNF : Real;
 
 begin
 
@@ -444,7 +444,7 @@ begin
          begin
            Volume := StrToFloat(editVolume.Text);
            ValorCombustivel := StrToFloat(editValorCombustivel.Text);
-           TotalNF := ValorCombustivel * Volume + Juros;
+           TotalNF := ValorCombustivel * Volume;
            EditValorNF.Text := FormatFloat('R$ ###,###,##0.00', TotalNF)
 
          end
