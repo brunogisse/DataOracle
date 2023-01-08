@@ -268,10 +268,7 @@ var
 
 
           qryParcelas['VOLUME_PARCELADO'] := VolumeParcelado;
-
-          //qryParcelas['DOCUMENTO'] := editDocumento.Text;
           qryParcelas['ACESSO'] := 'PERMITIDO';
-
           qryParcelas['DOCUMENTO'] := '0';
 
           qryParcelas.Post;

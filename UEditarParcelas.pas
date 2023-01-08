@@ -15,7 +15,6 @@ type
   TfrmEditarParcelas = class(TForm)
     painelTopo: TPanel;
     PainelCentro: TPanel;
-    gridEditarParcela: TDBGrid;
     gbCampos: TGroupBox;
     labelDocumentoEditado: TLabel;
     labelValorParcela: TLabel;
@@ -94,6 +93,10 @@ type
     qryVendaPostoVOLUME_RECEBIDO_MES: TFMTBCDField;
     qryVendaPostoESTOQUEID: TIntegerField;
     qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField;
+    painelFundoConfirma: TPanel;
+    painelModificarParcelas: TPanel;
+    btnModificarParcelas: TSpeedButton;
+    gridEditarParcela: TDBGrid;
     procedure editNFKeyPress(Sender: TObject; var Key: Char);
     procedure editNFKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -103,6 +106,7 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure editValorParcelaChange(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
+    procedure btnModificarParcelasClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -119,7 +123,8 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UConverterFloat, UVendaPosto;
+uses UPrincipalPetrotorque, UConverterFloat, UVendaPosto, UAlterarQtdeParcelas;
+
 
 procedure TfrmEditarParcelas.btnCancelarClick(Sender: TObject);
 begin
@@ -202,6 +207,19 @@ procedure TfrmEditarParcelas.btnExcluirClick(Sender: TObject);
                         end;
     end;
 
+procedure TfrmEditarParcelas.btnModificarParcelasClick(Sender: TObject);
+begin
+    if qryParcelas.RecordCount > 0 then
+        begin
+          try
+            Application.CreateForm( TfrmAlterarQtdeParcelas, frmAlterarQtdeParcelas );
+            frmAlterarQtdeParcelas.ShowModal;
+          finally
+            FreeAndNil( frmAlterarQtdeParcelas );
+          end;
+        end;
+end;
+
 procedure TfrmEditarParcelas.consultarNotaFiscal;
 begin
  if editNF.Text <> '' then
@@ -255,9 +273,6 @@ begin
     qryVendaPosto.Open;
     qryFormaPgto.Open;
     editNF.SetFocus;
- //   editValorParcela.Text := FormatarMoeda(editValorParcela.Text);
-//    editValorParcela.SelStart := Length(editValorParcela.Text);
-
 end;
 
 procedure TfrmEditarParcelas.gridEditarParcelaDblClick(Sender: TObject);

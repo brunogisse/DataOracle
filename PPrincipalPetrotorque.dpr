@@ -28,7 +28,8 @@ uses
   UCadastroUsuario in 'UCadastroUsuario.pas' {frmCadastroUsuario},
   UbackUp in 'UbackUp.pas' {frmBackUp},
   UrelatorioCliente in 'UrelatorioCliente.pas' {frmRelatorioClientes},
-  UTransferenciaEstoque in 'UTransferenciaEstoque.pas' {frmTransferencia};
+  UTransferenciaEstoque in 'UTransferenciaEstoque.pas' {frmTransferencia},
+  UAlterarQtdeParcelas in 'UAlterarQtdeParcelas.pas' {frmAlterarQtdeParcelas};
 
 {$R *.res}
 
@@ -39,34 +40,11 @@ begin
   frmLogin := TfrmLogin.Create(nil);
   Application.CreateForm(TfrmMenu, frmMenu);
   Application.CreateForm(Tdm, dm);
-  Application.CreateForm(TfrmBackUp, frmBackUp);
-  Application.CreateForm(TfrmRelatorioClientes, frmRelatorioClientes);
-  Application.CreateForm(TfrmTransferencia, frmTransferencia);
+
   frmLogin.ShowModal;
 
   frmLogin.Hide;
   frmLogin.Free;
-
-  Application.CreateForm(TfrmCadastroUsuario, frmCadastroUsuario);
-  Application.CreateForm(TfrmCorretores, frmCorretores);
-  Application.CreateForm(TfrmPosto, frmPosto);
-  Application.CreateForm(TfrmMotorista, frmMotorista);
-  Application.CreateForm(TfrmRepresentante, frmRepresentante);
-  Application.CreateForm(TfrmProdutos, frmProdutos);
-  Application.CreateForm(TfrmUsinas, frmUsinas);
-  Application.CreateForm(TfrmVendaPostos, frmVendaPostos);
-  Application.CreateForm(TfrmGerarParcelas, frmGerarParcelas);
-  Application.CreateForm(TfrmPesquisaVendas, frmPesquisaVendas);
-  Application.CreateForm(TfrmPagarParcelas, frmPagarParcelas);
-  Application.CreateForm(TfrmRelatorioVenda, frmRelatorioVenda);
-  Application.CreateForm(TfrmSelecionarEstoqueProduto, frmSelecionarEstoqueProduto);
-  Application.CreateForm(TfrmDefinirEstoque, frmDefinirEstoque);
-  Application.CreateForm(TfrmReverterPagamentos, frmReverterPagamentos);
-  Application.CreateForm(TfrmRelatorioMotorista, frmRelatorioMotorista);
-  Application.CreateForm(TfrmCompraUsina, frmCompraUsina);
-  Application.CreateForm(TfrmMovimentoEstoqueUsina, frmMovimentoEstoqueUsina);
-  Application.CreateForm(TfrmRelatorioCorretor, frmRelatorioCorretor);
-  Application.CreateForm(TfrmEditarParcelas, frmEditarParcelas);
 
   Application.Run;
 end.

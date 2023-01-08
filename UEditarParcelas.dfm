@@ -1,7 +1,7 @@
 object frmEditarParcelas: TfrmEditarParcelas
   Left = 0
   Top = 0
-  ClientHeight = 484
+  ClientHeight = 586
   ClientWidth = 1005
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -115,7 +115,7 @@ object frmEditarParcelas: TfrmEditarParcelas
     Left = 3
     Top = 81
     Width = 999
-    Height = 144
+    Height = 216
     Margins.Top = 2
     Margins.Bottom = 2
     Align = alTop
@@ -132,8 +132,8 @@ object frmEditarParcelas: TfrmEditarParcelas
     object gbCampos: TGroupBox
       Left = 10
       Top = 11
-      Width = 847
-      Height = 121
+      Width = 975
+      Height = 190
       Font.Charset = ANSI_CHARSET
       Font.Color = 8553090
       Font.Height = -13
@@ -313,13 +313,13 @@ object frmEditarParcelas: TfrmEditarParcelas
         Text = '  /  /    '
       end
       object gbExcluirParcelas: TGroupBox
-        Left = 624
-        Top = 9
+        Left = 752
+        Top = 13
         Width = 209
         Height = 102
         TabOrder = 7
         object painelCentralExcluir: TPanel
-          Left = 19
+          Left = 21
           Top = 32
           Width = 174
           Height = 51
@@ -362,13 +362,59 @@ object frmEditarParcelas: TfrmEditarParcelas
           end
         end
       end
+      object painelFundoConfirma: TPanel
+        Left = 11
+        Top = 132
+        Width = 215
+        Height = 53
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        TabOrder = 8
+        object painelModificarParcelas: TPanel
+          Left = 8
+          Top = 8
+          Width = 177
+          Height = 37
+          BevelOuter = bvNone
+          Caption = 'Modificar Parcelas'
+          Color = 16024898
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Segoe UI'
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          object btnModificarParcelas: TSpeedButton
+            Left = 0
+            Top = 0
+            Width = 177
+            Height = 37
+            Cursor = crHandPoint
+            Align = alClient
+            Flat = True
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -16
+            Font.Name = 'Segoe UI'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = btnModificarParcelasClick
+            ExplicitLeft = -2
+            ExplicitWidth = 105
+            ExplicitHeight = 35
+          end
+        end
+      end
     end
   end
   object gridEditarParcela: TDBGrid
     Left = 0
-    Top = 227
+    Top = 299
     Width = 1005
-    Height = 257
+    Height = 287
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsParcelas
@@ -458,8 +504,8 @@ object frmEditarParcelas: TfrmEditarParcelas
   object tcParcelas: TFDTransaction
     Options.AutoStop = False
     Connection = frmMenu.FDconexao
-    Left = 67
-    Top = 323
+    Left = 35
+    Top = 435
   end
   object qryParcelas: TFDQuery
     Connection = frmMenu.FDconexao
@@ -495,8 +541,8 @@ object frmEditarParcelas: TfrmEditarParcelas
       ' (parc.vendaid = v.vendaid) and'
       ' (parc.status = '#39'ABERTO'#39') and'
       ' (parc.nf = :NF)')
-    Left = 155
-    Top = 315
+    Left = 35
+    Top = 491
     ParamData = <
       item
         Name = 'NF'
@@ -630,8 +676,8 @@ object frmEditarParcelas: TfrmEditarParcelas
   end
   object dsParcelas: TDataSource
     DataSet = qryParcelas
-    Left = 227
-    Top = 315
+    Left = 99
+    Top = 491
   end
   object qryFormaPgto: TFDQuery
     Connection = frmMenu.FDconexao
@@ -639,8 +685,8 @@ object frmEditarParcelas: TfrmEditarParcelas
     UpdateOptions.KeyFields = 'FORMAID'
     SQL.Strings = (
       'select * from forma_pgto')
-    Left = 632
-    Top = 320
+    Left = 232
+    Top = 504
     object qryFormaPgtoFORMAID: TIntegerField
       FieldName = 'FORMAID'
       Origin = 'FORMAID'
@@ -654,8 +700,8 @@ object frmEditarParcelas: TfrmEditarParcelas
   end
   object dsFormaPgto: TDataSource
     DataSet = qryFormaPgto
-    Left = 576
-    Top = 320
+    Left = 304
+    Top = 504
   end
   object qryVendaPosto: TFDQuery
     Connection = frmMenu.FDconexao
@@ -667,8 +713,8 @@ object frmEditarParcelas: TfrmEditarParcelas
     UpdateOptions.AutoIncFields = 'VENDAID'
     SQL.Strings = (
       'select * from venda_para_postos')
-    Left = 408
-    Top = 320
+    Left = 232
+    Top = 440
     object qryVendaPostoVENDAID: TIntegerField
       FieldName = 'VENDAID'
       Origin = 'VENDAID'
@@ -797,7 +843,7 @@ object frmEditarParcelas: TfrmEditarParcelas
   end
   object dsVendaPosto: TDataSource
     DataSet = qryVendaPosto
-    Left = 472
-    Top = 320
+    Left = 296
+    Top = 440
   end
 end

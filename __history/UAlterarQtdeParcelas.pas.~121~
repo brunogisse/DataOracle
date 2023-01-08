@@ -1,0 +1,284 @@
+unit UAlterarQtdeParcelas;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+  FireDAC.Comp.Client, FireDAC.Comp.DataSet, Vcl.StdCtrls, Vcl.Buttons,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.Mask;
+
+type
+  TfrmAlterarQtdeParcelas = class(TForm)
+    PainelTopo: TPanel;
+    Image1: TImage;
+    Label1: TLabel;
+    Panel1: TPanel;
+    painelBtnNovo: TPanel;
+    btnNovo: TSpeedButton;
+    PainelCancelar: TPanel;
+    btnCancelar: TSpeedButton;
+    painelSalvar: TPanel;
+    btnSalvar: TSpeedButton;
+    PainelExcluir: TPanel;
+    btnExcluir: TSpeedButton;
+    qryAlterarQtdeParcelas: TFDQuery;
+    qryAlterarQtdeParcelasPARCELAID: TIntegerField;
+    qryAlterarQtdeParcelasVENDAID: TIntegerField;
+    qryAlterarQtdeParcelasFORMA_PGTO_ID: TIntegerField;
+    qryAlterarQtdeParcelasSTATUS: TStringField;
+    qryAlterarQtdeParcelasQTDE_PARCELAS: TIntegerField;
+    qryAlterarQtdeParcelasVALOR_TOTAL_NF: TFMTBCDField;
+    qryAlterarQtdeParcelasVALOR_PARCELA: TFMTBCDField;
+    qryAlterarQtdeParcelasDATA_PARCELA: TDateField;
+    qryAlterarQtdeParcelasVOLUME_VENDA_TOTAL: TFMTBCDField;
+    qryAlterarQtdeParcelasVOLUME_PARCELADO: TFMTBCDField;
+    qryAlterarQtdeParcelasDOCUMENTO: TStringField;
+    qryAlterarQtdeParcelasVOLUME_RESTANTE: TFMTBCDField;
+    qryAlterarQtdeParcelasNF: TIntegerField;
+    qryAlterarQtdeParcelasEMISSAO_NF: TDateField;
+    qryAlterarQtdeParcelasACESSO: TStringField;
+    qryAlterarQtdeParcelasPARCELA: TStringField;
+    qryAlterarQtdeParcelasDATA_PGTO_PARCELA: TDateField;
+    qryAlterarQtdeParcelasFORMAID: TIntegerField;
+    qryAlterarQtdeParcelasDESCRICAO: TStringField;
+    qryAlterarQtdeParcelasVENDAFK: TIntegerField;
+    qryAlterarQtdeParcelasNFVENDA: TIntegerField;
+    dsAlterarQtdeParcelas: TDataSource;
+    tcParcelas: TFDTransaction;
+    labelDataPagamento: TLabel;
+    maskEditDataPagamento: TMaskEdit;
+    editValorParcela: TEdit;
+    labelValorParcela: TLabel;
+    labelDocumentoEditado: TLabel;
+    editVolumeParcelado: TEdit;
+    labelVolume: TLabel;
+    editEditarDocumento: TEdit;
+    gridEditarParcela: TDBGrid;
+    procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnSalvarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+
+     procedure instanciarQuerryComNf;
+     procedure alterarQtdeParcelas;
+     procedure deletar;
+     procedure transacionar;
+     procedure adicionarNovaParcela;
+     procedure atualizarBanco;
+     procedure habilitarDesabilitar(status : Integer);
+
+     function verificarCamposVazios : Boolean;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas;
+
+implementation
+
+{$R *.dfm}
+
+uses UPrincipalPetrotorque, UEditarParcelas;
+
+procedure TfrmAlterarQtdeParcelas.habilitarDesabilitar(status : Integer);
+begin
+
+    if status = 0 then
+      begin
+        btnNovo.Enabled := True;
+        btnCancelar.Enabled := False;
+        btnSalvar.Enabled := False;
+        btnExcluir.Enabled := False;
+        gridEditarParcela.Enabled := True;
+        maskEditDataPagamento.Enabled := False;
+        editValorParcela.Enabled := False;
+        editVolumeParcelado.Enabled := False;
+        editEditarDocumento.Enabled := False;
+      end;
+    if status = 1 then
+      begin
+        btnNovo.Enabled := False;
+        btnCancelar.Enabled := True;
+        btnSalvar.Enabled := True;
+        btnExcluir.Enabled := True;
+        gridEditarParcela.Enabled := False;
+        maskEditDataPagamento.Enabled := True;
+        editValorParcela.Enabled := True;
+        editVolumeParcelado.Enabled := True;
+        editEditarDocumento.Enabled := True;
+      end;
+end;
+
+
+function TfrmAlterarQtdeParcelas.verificarCamposVazios : Boolean;
+ var i : integer;
+  begin
+   Result := True;
+    for I := 0 to PainelTopo.ControlCount -1 do
+       begin
+         if (PainelTopo.Controls[i] is TEdit) then
+         if (PainelTopo.Controls[i] as TEdit).Text = '' then
+           begin
+                MessageDlg('Por favor, preencha o(s) campo(s) vazio(s)',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+               (PainelTopo.Controls[i] as TEdit).SetFocus;
+                Result := False;
+                break;
+           end;
+       end;
+  end;
+
+procedure TfrmAlterarQtdeParcelas.atualizarBanco;
+begin
+  with qryAlterarQtdeParcelas do
+    begin
+      Close;
+      Open();
+    end;
+end;
+
+procedure TfrmAlterarQtdeParcelas.adicionarNovaParcela;
+var vendaId, formaPgto, nf : Integer;
+    status, acesso : String;
+    totalNf, totalVolume : Double;
+    emissaoNf : TDate;
+
+begin
+
+  //capturar e inserir os dados que não aparecem.
+    vendaId := frmEditarParcelas.qryParcelas['VENDAID'];
+    formaPgto := frmEditarParcelas.qryParcelas['FORMA_PGTO_ID'];
+    nf := frmEditarParcelas.qryParcelas['NF'];
+    status := frmEditarParcelas.qryParcelas['STATUS'];
+    acesso := frmEditarParcelas.qryParcelas['ACESSO'];
+    totalNf := frmEditarParcelas.qryParcelas['VALOR_TOTAL_NF'];
+    totalVolume := frmEditarParcelas.qryParcelas['VOLUME_VENDA_TOTAL'];
+    emissaoNf := frmEditarParcelas.qryParcelas['EMISSAO_NF'];
+
+    qryAlterarQtdeParcelas['DATA_PARCELA'] := StrToDate(maskEditDataPagamento.Text);
+    qryAlterarQtdeParcelas['VALOR_PARCELA'] := StrToFloat(editValorParcela.Text);
+    qryAlterarQtdeParcelas['VOLUME_PARCELADO'] := StrToFloat(editVolumeParcelado.Text);
+    qryAlterarQtdeParcelas['DOCUMENTO'] := editEditarDocumento.Text;
+    qryAlterarQtdeParcelas['VENDAID'] := vendaId;
+    qryAlterarQtdeParcelas['FORMA_PGTO_ID'] := formaPgto;
+    qryAlterarQtdeParcelas['NF'] := nf;
+    qryAlterarQtdeParcelas['STATUS'] := status;
+    qryAlterarQtdeParcelas['ACESSO'] := acesso;
+    qryAlterarQtdeParcelas['VALOR_TOTAL_NF'] := totalNf;
+    qryAlterarQtdeParcelas['VOLUME_VENDA_TOTAL'] := totalVolume;
+    qryAlterarQtdeParcelas['EMISSAO_NF'] := emissaoNf;
+
+    qryAlterarQtdeParcelas.Post;
+    transacionar;
+    atualizarBanco;
+    alterarQtdeParcelas;
+end;
+
+procedure TfrmAlterarQtdeParcelas.transacionar;
+begin
+  try
+     tcParcelas.CommitRetaining;
+  except
+      tcParcelas.RollbackRetaining;
+  end;
+end;
+
+procedure TfrmAlterarQtdeParcelas.deletar;
+  var AuxErro : String;
+      parcelas: integer;
+begin
+    if qryAlterarQtdeParcelas['STATUS'] = 'ABERTO'then
+     begin
+        try
+          qryAlterarQtdeParcelas.Delete;
+           transacionar;
+            atualizarBanco;
+             parcelas := qryAlterarQtdeParcelas.RecordCount;
+              alterarQtdeParcelas;
+        except
+           on E : Exception do
+            begin
+             AuxErro := Copy(E.Message, 0, 500);
+             MessageDlg('Erro ao Excluir a parcela. Motivo: ' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+            end;
+        end;
+     end
+      else
+        MessageDlg('Não é possível excluir uma parcela que já foi paga: ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
+end;
+
+procedure TfrmAlterarQtdeParcelas.alterarQtdeParcelas;
+  var I, parcelas: integer;
+begin
+    parcelas := qryAlterarQtdeParcelas.RecordCount;
+    qryAlterarQtdeParcelas.First;
+      for I := 1 to qryAlterarQtdeParcelas.RecordCount do
+        begin
+          qryAlterarQtdeParcelas.Edit;
+          qryAlterarQtdeParcelas['PARCELA'] := IntToStr(I) + '/' + IntToStr(parcelas);
+          qryAlterarQtdeParcelas['QTDE_PARCELAS'] := parcelas;
+          qryAlterarQtdeParcelas.Post;
+          qryAlterarQtdeParcelas.Next;
+        end;
+    transacionar;
+end;
+
+procedure TfrmAlterarQtdeParcelas.instanciarQuerryComNf;
+begin
+  with qryAlterarQtdeParcelas do
+    begin
+      Close;
+      ParamByName('NF').AsInteger := frmEditarParcelas.qryParcelas['NF'];
+      Open;
+    end;
+end;
+
+procedure TfrmAlterarQtdeParcelas.btnCancelarClick(Sender: TObject);
+begin
+  qryAlterarQtdeParcelas.Cancel;
+  habilitarDesabilitar(0);
+end;
+
+procedure TfrmAlterarQtdeParcelas.btnExcluirClick(Sender: TObject);
+begin
+  deletar;
+  habilitarDesabilitar(0);
+end;
+
+procedure TfrmAlterarQtdeParcelas.btnNovoClick(Sender: TObject);
+begin
+  habilitarDesabilitar(1);
+  maskEditDataPagamento.SetFocus;
+  qryAlterarQtdeParcelas.Insert;
+end;
+
+procedure TfrmAlterarQtdeParcelas.btnSalvarClick(Sender: TObject);
+begin
+      habilitarDesabilitar(0);
+  if verificarCamposVazios = true then
+      adicionarNovaParcela;
+end;
+
+procedure TfrmAlterarQtdeParcelas.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  qryAlterarQtdeParcelas.Close;
+end;
+
+procedure TfrmAlterarQtdeParcelas.FormShow(Sender: TObject);
+begin
+  instanciarQuerryComNf;
+  habilitarDesabilitar(0);
+end;
+
+
+
+
+end.
