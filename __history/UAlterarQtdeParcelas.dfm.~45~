@@ -2,7 +2,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Left = 0
   Top = 0
   ClientHeight = 423
-  ClientWidth = 1023
+  ClientWidth = 1069
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,13 +11,14 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1023
+    Width = 1069
     Height = 185
     Align = alTop
     BevelOuter = bvNone
@@ -31,7 +32,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     ParentFont = False
     TabOrder = 0
     object Image1: TImage
-      Left = 13
+      Left = 18
       Top = 91
       Width = 68
       Height = 75
@@ -101,9 +102,9 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     object Label1: TLabel
       Left = 18
       Top = 7
-      Width = 197
+      Width = 255
       Height = 25
-      Caption = 'Cadastro de Corretores'
+      Caption = 'Modifica'#231#227'o de parcelamento'
       Font.Charset = ANSI_CHARSET
       Font.Color = clSilver
       Font.Height = -19
@@ -112,29 +113,29 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       ParentFont = False
     end
     object labelDataPagamento: TLabel
-      Left = 99
-      Top = 102
+      Left = 112
+      Top = 104
       Width = 90
       Height = 17
       Caption = 'DATA PARCELA'
     end
     object labelValorParcela: TLabel
-      Left = 210
-      Top = 102
+      Left = 223
+      Top = 104
       Width = 98
       Height = 17
       Caption = 'VALOR PARCELA'
     end
     object labelDocumentoEditado: TLabel
-      Left = 464
-      Top = 102
+      Left = 477
+      Top = 104
       Width = 81
       Height = 17
       Caption = 'DOCUMENTO'
     end
     object labelVolume: TLabel
-      Left = 336
-      Top = 102
+      Left = 349
+      Top = 104
       Width = 110
       Height = 17
       Caption = 'VOLUME PARCELA'
@@ -142,12 +143,12 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     object Panel1: TPanel
       Left = 10
       Top = 30
-      Width = 557
+      Width = 461
       Height = 50
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
-      TabOrder = 0
+      TabOrder = 4
       object painelBtnNovo: TPanel
         Left = 8
         Top = 8
@@ -221,7 +222,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
         end
       end
       object painelSalvar: TPanel
-        Left = 327
+        Left = 222
         Top = 8
         Width = 105
         Height = 35
@@ -255,7 +256,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
         end
       end
       object PainelExcluir: TPanel
-        Left = 433
+        Left = 329
         Top = 8
         Width = 105
         Height = 35
@@ -288,45 +289,10 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
           ExplicitWidth = 120
         end
       end
-      object painelEditar: TPanel
-        Left = 221
-        Top = 8
-        Width = 105
-        Height = 35
-        BevelOuter = bvNone
-        Caption = 'Editar'
-        Color = 14869218
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentBackground = False
-        ParentFont = False
-        TabOrder = 4
-        object btnEditar: TSpeedButton
-          Left = 0
-          Top = 0
-          Width = 105
-          Height = 35
-          Align = alClient
-          Flat = True
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 64
-          ExplicitTop = 8
-          ExplicitWidth = 153
-          ExplicitHeight = 41
-        end
-      end
     end
     object maskEditDataPagamento: TMaskEdit
-      Left = 99
-      Top = 120
+      Left = 112
+      Top = 122
       Width = 105
       Height = 25
       EditMask = '!99/99/9999;1;_'
@@ -337,35 +303,37 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Font.Style = [fsBold]
       MaxLength = 10
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       Text = '  /  /    '
     end
     object editValorParcela: TEdit
-      Left = 210
-      Top = 120
+      Left = 223
+      Top = 122
+      Width = 121
+      Height = 25
+      TabOrder = 1
+      OnKeyPress = editValorParcelaKeyPress
+    end
+    object editVolumeParcelado: TEdit
+      Left = 350
+      Top = 122
       Width = 121
       Height = 25
       TabOrder = 2
-    end
-    object editVolumeParcelado: TEdit
-      Left = 337
-      Top = 120
-      Width = 121
-      Height = 25
-      TabOrder = 3
+      OnKeyPress = editVolumeParceladoKeyPress
     end
     object editEditarDocumento: TEdit
-      Left = 464
-      Top = 120
+      Left = 477
+      Top = 122
       Width = 248
       Height = 25
-      TabOrder = 4
+      TabOrder = 3
     end
   end
   object gridEditarParcela: TDBGrid
     Left = 0
     Top = 185
-    Width = 1023
+    Width = 1069
     Height = 238
     Align = alClient
     BorderStyle = bsNone
@@ -390,13 +358,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VENDAID'
-        Width = 65
+        Width = 63
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'STATUS'
-        Width = 66
+        Width = 62
         Visible = True
       end
       item
@@ -418,7 +386,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DATA_PARCELA'
-        Width = 75
+        Width = 70
         Visible = True
       end
       item
@@ -430,7 +398,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_PARCELADO'
-        Width = 106
+        Width = 85
         Visible = True
       end
       item
@@ -442,7 +410,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_VENDA_TOTAL'
-        Width = 114
+        Width = 94
         Visible = True
       end
       item
@@ -454,7 +422,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DESCRICAO'
-        Width = 121
+        Width = 81
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA_PGTO_PARCELA'
+        Width = 95
         Visible = True
       end>
   end
@@ -491,7 +465,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       ' (PARC.forma_pgto_id = FP.formaid) and'
       ' (parc.vendaid = v.vendaid) and'
       ' (parc.nf = :NF)'
-      ' order by parcela')
+      ' order by parcelaid')
     Left = 192
     Top = 296
     ParamData = <
@@ -508,6 +482,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Required = True
     end
     object qryAlterarQtdeParcelasVENDAID: TIntegerField
+      DisplayLabel = 'ID Venda'
       FieldName = 'VENDAID'
       Origin = 'VENDAID'
     end
@@ -516,6 +491,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'FORMA_PGTO_ID'
     end
     object qryAlterarQtdeParcelasSTATUS: TStringField
+      DisplayLabel = 'Status'
       FieldName = 'STATUS'
       Origin = 'STATUS'
       Size = 10
@@ -525,34 +501,42 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'QTDE_PARCELAS'
     end
     object qryAlterarQtdeParcelasVALOR_TOTAL_NF: TFMTBCDField
+      DisplayLabel = 'Total NF'
       FieldName = 'VALOR_TOTAL_NF'
       Origin = 'VALOR_TOTAL_NF'
+      currency = True
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasVALOR_PARCELA: TFMTBCDField
+      DisplayLabel = 'R$ parcela'
       FieldName = 'VALOR_PARCELA'
       Origin = 'VALOR_PARCELA'
+      currency = True
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasDATA_PARCELA: TDateField
+      DisplayLabel = 'Data parc.'
       FieldName = 'DATA_PARCELA'
       Origin = 'DATA_PARCELA'
     end
     object qryAlterarQtdeParcelasVOLUME_VENDA_TOTAL: TFMTBCDField
+      DisplayLabel = 'Total Volume'
       FieldName = 'VOLUME_VENDA_TOTAL'
       Origin = 'VOLUME_VENDA_TOTAL'
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasVOLUME_PARCELADO: TFMTBCDField
+      DisplayLabel = 'Vol. Parc.'
       FieldName = 'VOLUME_PARCELADO'
       Origin = 'VOLUME_PARCELADO'
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasDOCUMENTO: TStringField
+      DisplayLabel = 'Documento'
       FieldName = 'DOCUMENTO'
       Origin = 'DOCUMENTO'
     end
@@ -567,6 +551,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'NF'
     end
     object qryAlterarQtdeParcelasEMISSAO_NF: TDateField
+      DisplayLabel = 'Emiss'#227'o'
       FieldName = 'EMISSAO_NF'
       Origin = 'EMISSAO_NF'
     end
@@ -576,11 +561,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Size = 9
     end
     object qryAlterarQtdeParcelasPARCELA: TStringField
+      DisplayLabel = 'Parc.'
       FieldName = 'PARCELA'
       Origin = 'PARCELA'
       Size = 5
     end
     object qryAlterarQtdeParcelasDATA_PGTO_PARCELA: TDateField
+      DisplayLabel = 'Pago em:'
       FieldName = 'DATA_PGTO_PARCELA'
       Origin = 'DATA_PGTO_PARCELA'
     end
@@ -593,6 +580,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     end
     object qryAlterarQtdeParcelasDESCRICAO: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Forma pgto.'
       FieldName = 'DESCRICAO'
       Origin = 'DESCRICAO'
       ProviderFlags = []

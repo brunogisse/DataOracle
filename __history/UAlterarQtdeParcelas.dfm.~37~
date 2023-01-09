@@ -11,6 +11,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Font.Style = []
   OldCreateOrder = False
   Position = poDesktopCenter
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -142,12 +143,12 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     object Panel1: TPanel
       Left = 10
       Top = 30
-      Width = 557
+      Width = 461
       Height = 50
       BevelOuter = bvNone
       Color = clWhite
       ParentBackground = False
-      TabOrder = 0
+      TabOrder = 4
       object painelBtnNovo: TPanel
         Left = 8
         Top = 8
@@ -221,7 +222,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
         end
       end
       object painelSalvar: TPanel
-        Left = 327
+        Left = 222
         Top = 8
         Width = 105
         Height = 35
@@ -255,7 +256,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
         end
       end
       object PainelExcluir: TPanel
-        Left = 433
+        Left = 329
         Top = 8
         Width = 105
         Height = 35
@@ -288,41 +289,6 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
           ExplicitWidth = 120
         end
       end
-      object painelEditar: TPanel
-        Left = 221
-        Top = 8
-        Width = 105
-        Height = 35
-        BevelOuter = bvNone
-        Caption = 'Editar'
-        Color = 14869218
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -16
-        Font.Name = 'Segoe UI'
-        Font.Style = [fsBold]
-        ParentBackground = False
-        ParentFont = False
-        TabOrder = 4
-        object btnEditar: TSpeedButton
-          Left = 0
-          Top = 0
-          Width = 105
-          Height = 35
-          Align = alClient
-          Flat = True
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Segoe UI'
-          Font.Style = [fsBold]
-          ParentFont = False
-          ExplicitLeft = 64
-          ExplicitTop = 8
-          ExplicitWidth = 153
-          ExplicitHeight = 41
-        end
-      end
     end
     object maskEditDataPagamento: TMaskEdit
       Left = 112
@@ -337,7 +303,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Font.Style = [fsBold]
       MaxLength = 10
       ParentFont = False
-      TabOrder = 1
+      TabOrder = 0
       Text = '  /  /    '
     end
     object editValorParcela: TEdit
@@ -345,21 +311,21 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Top = 122
       Width = 121
       Height = 25
-      TabOrder = 2
+      TabOrder = 1
     end
     object editVolumeParcelado: TEdit
       Left = 350
       Top = 122
       Width = 121
       Height = 25
-      TabOrder = 3
+      TabOrder = 2
     end
     object editEditarDocumento: TEdit
       Left = 477
       Top = 122
       Width = 248
       Height = 25
-      TabOrder = 4
+      TabOrder = 3
     end
   end
   object gridEditarParcela: TDBGrid
