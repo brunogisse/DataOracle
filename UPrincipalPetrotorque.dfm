@@ -29,6 +29,8 @@ object frmMenu: TfrmMenu
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = -2
     DesignSize = (
       1383
       1036)
@@ -267,7 +269,7 @@ object frmMenu: TfrmMenu
       object labelNomeSistema: TLabel
         Left = 369
         Top = 0
-        Width = 160
+        Width = 135
         Height = 69
         Align = alLeft
         Alignment = taCenter
@@ -281,6 +283,7 @@ object frmMenu: TfrmMenu
         ParentColor = False
         ParentFont = False
         Layout = tlCenter
+        ExplicitHeight = 25
       end
       object btnMenu: TSpeedButton
         AlignWithMargins = True

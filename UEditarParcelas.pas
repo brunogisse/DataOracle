@@ -111,9 +111,10 @@ type
   private
     { Private declarations }
 
-    procedure consultarNotaFiscal;
+
   public
     { Public declarations }
+    procedure consultarNotaFiscal;
   end;
 
 var

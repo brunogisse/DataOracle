@@ -2,7 +2,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Left = 0
   Top = 0
   ClientHeight = 423
-  ClientWidth = 1023
+  ClientWidth = 1069
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1023
+    Width = 1069
     Height = 185
     Align = alTop
     BevelOuter = bvNone
@@ -312,6 +312,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Width = 121
       Height = 25
       TabOrder = 1
+      OnKeyPress = editValorParcelaKeyPress
     end
     object editVolumeParcelado: TEdit
       Left = 350
@@ -319,6 +320,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Width = 121
       Height = 25
       TabOrder = 2
+      OnKeyPress = editVolumeParceladoKeyPress
     end
     object editEditarDocumento: TEdit
       Left = 477
@@ -331,7 +333,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object gridEditarParcela: TDBGrid
     Left = 0
     Top = 185
-    Width = 1023
+    Width = 1069
     Height = 238
     Align = alClient
     BorderStyle = bsNone
@@ -356,13 +358,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VENDAID'
-        Width = 65
+        Width = 63
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'STATUS'
-        Width = 66
+        Width = 62
         Visible = True
       end
       item
@@ -384,7 +386,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DATA_PARCELA'
-        Width = 75
+        Width = 70
         Visible = True
       end
       item
@@ -396,7 +398,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_PARCELADO'
-        Width = 106
+        Width = 85
         Visible = True
       end
       item
@@ -408,7 +410,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_VENDA_TOTAL'
-        Width = 114
+        Width = 94
         Visible = True
       end
       item
@@ -420,7 +422,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DESCRICAO'
-        Width = 121
+        Width = 81
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA_PGTO_PARCELA'
+        Width = 95
         Visible = True
       end>
   end
@@ -474,6 +482,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Required = True
     end
     object qryAlterarQtdeParcelasVENDAID: TIntegerField
+      DisplayLabel = 'ID Venda'
       FieldName = 'VENDAID'
       Origin = 'VENDAID'
     end
@@ -482,6 +491,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'FORMA_PGTO_ID'
     end
     object qryAlterarQtdeParcelasSTATUS: TStringField
+      DisplayLabel = 'Status'
       FieldName = 'STATUS'
       Origin = 'STATUS'
       Size = 10
@@ -491,34 +501,42 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'QTDE_PARCELAS'
     end
     object qryAlterarQtdeParcelasVALOR_TOTAL_NF: TFMTBCDField
+      DisplayLabel = 'Total NF'
       FieldName = 'VALOR_TOTAL_NF'
       Origin = 'VALOR_TOTAL_NF'
+      currency = True
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasVALOR_PARCELA: TFMTBCDField
+      DisplayLabel = 'R$ parcela'
       FieldName = 'VALOR_PARCELA'
       Origin = 'VALOR_PARCELA'
+      currency = True
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasDATA_PARCELA: TDateField
+      DisplayLabel = 'Data parc.'
       FieldName = 'DATA_PARCELA'
       Origin = 'DATA_PARCELA'
     end
     object qryAlterarQtdeParcelasVOLUME_VENDA_TOTAL: TFMTBCDField
+      DisplayLabel = 'Total Volume'
       FieldName = 'VOLUME_VENDA_TOTAL'
       Origin = 'VOLUME_VENDA_TOTAL'
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasVOLUME_PARCELADO: TFMTBCDField
+      DisplayLabel = 'Vol. Parc.'
       FieldName = 'VOLUME_PARCELADO'
       Origin = 'VOLUME_PARCELADO'
       Precision = 18
       Size = 2
     end
     object qryAlterarQtdeParcelasDOCUMENTO: TStringField
+      DisplayLabel = 'Documento'
       FieldName = 'DOCUMENTO'
       Origin = 'DOCUMENTO'
     end
@@ -533,6 +551,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Origin = 'NF'
     end
     object qryAlterarQtdeParcelasEMISSAO_NF: TDateField
+      DisplayLabel = 'Emiss'#227'o'
       FieldName = 'EMISSAO_NF'
       Origin = 'EMISSAO_NF'
     end
@@ -542,11 +561,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Size = 9
     end
     object qryAlterarQtdeParcelasPARCELA: TStringField
+      DisplayLabel = 'Parc.'
       FieldName = 'PARCELA'
       Origin = 'PARCELA'
       Size = 5
     end
     object qryAlterarQtdeParcelasDATA_PGTO_PARCELA: TDateField
+      DisplayLabel = 'Pago em:'
       FieldName = 'DATA_PGTO_PARCELA'
       Origin = 'DATA_PGTO_PARCELA'
     end
@@ -559,6 +580,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     end
     object qryAlterarQtdeParcelasDESCRICAO: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Forma pgto.'
       FieldName = 'DESCRICAO'
       Origin = 'DESCRICAO'
       ProviderFlags = []
