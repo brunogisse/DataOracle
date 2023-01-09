@@ -1,8 +1,8 @@
 object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Left = 0
   Top = 0
-  ClientHeight = 423
-  ClientWidth = 1080
+  ClientHeight = 397
+  ClientWidth = 1063
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1080
+    Width = 1063
     Height = 185
     Align = alTop
     BevelOuter = bvNone
@@ -31,12 +31,12 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1023
+    ExplicitWidth = 1069
     object Image1: TImage
       Left = 18
       Top = 91
       Width = 68
-      Height = 75
+      Height = 72
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
         00400806000000AA6971DE000000097048597300000B1300000B1301009A9C18
@@ -103,9 +103,9 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     object Label1: TLabel
       Left = 18
       Top = 7
-      Width = 255
+      Width = 206
       Height = 25
-      Caption = 'Modifica'#231#227'o de parcelamento'
+      Caption = 'Modificar parcelamento'
       Font.Charset = ANSI_CHARSET
       Font.Color = clSilver
       Font.Height = -19
@@ -313,6 +313,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Width = 121
       Height = 25
       TabOrder = 1
+      OnKeyPress = editValorParcelaKeyPress
     end
     object editVolumeParcelado: TEdit
       Left = 350
@@ -320,6 +321,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Width = 121
       Height = 25
       TabOrder = 2
+      OnKeyPress = editVolumeParceladoKeyPress
     end
     object editEditarDocumento: TEdit
       Left = 477
@@ -332,8 +334,8 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object gridEditarParcela: TDBGrid
     Left = 0
     Top = 185
-    Width = 1080
-    Height = 238
+    Width = 1063
+    Height = 212
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsAlterarQtdeParcelas
@@ -357,13 +359,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VENDAID'
-        Width = 65
+        Width = 63
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'STATUS'
-        Width = 66
+        Width = 62
         Visible = True
       end
       item
@@ -385,7 +387,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DATA_PARCELA'
-        Width = 75
+        Width = 70
         Visible = True
       end
       item
@@ -397,7 +399,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_PARCELADO'
-        Width = 106
+        Width = 85
         Visible = True
       end
       item
@@ -409,7 +411,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'VOLUME_VENDA_TOTAL'
-        Width = 114
+        Width = 94
         Visible = True
       end
       item
@@ -421,7 +423,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       item
         Expanded = False
         FieldName = 'DESCRICAO'
-        Width = 121
+        Width = 81
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA_PGTO_PARCELA'
+        Width = 95
         Visible = True
       end>
   end
@@ -497,6 +505,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       DisplayLabel = 'Total NF'
       FieldName = 'VALOR_TOTAL_NF'
       Origin = 'VALOR_TOTAL_NF'
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -504,6 +513,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       DisplayLabel = 'R$ parcela'
       FieldName = 'VALOR_PARCELA'
       Origin = 'VALOR_PARCELA'
+      currency = True
       Precision = 18
       Size = 2
     end
@@ -552,12 +562,13 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Size = 9
     end
     object qryAlterarQtdeParcelasPARCELA: TStringField
-      DisplayLabel = 'Parcela'
+      DisplayLabel = 'Parc.'
       FieldName = 'PARCELA'
       Origin = 'PARCELA'
       Size = 5
     end
     object qryAlterarQtdeParcelasDATA_PGTO_PARCELA: TDateField
+      DisplayLabel = 'Pago em:'
       FieldName = 'DATA_PGTO_PARCELA'
       Origin = 'DATA_PGTO_PARCELA'
     end

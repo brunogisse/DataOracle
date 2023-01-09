@@ -1,8 +1,8 @@
 object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   Left = 0
   Top = 0
-  ClientHeight = 423
-  ClientWidth = 1069
+  ClientHeight = 397
+  ClientWidth = 1063
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1069
+    Width = 1063
     Height = 185
     Align = alTop
     BevelOuter = bvNone
@@ -31,11 +31,12 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1069
     object Image1: TImage
       Left = 18
       Top = 91
       Width = 68
-      Height = 75
+      Height = 72
       Picture.Data = {
         0954506E67496D61676589504E470D0A1A0A0000000D49484452000000400000
         00400806000000AA6971DE000000097048597300000B1300000B1301009A9C18
@@ -102,9 +103,9 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     object Label1: TLabel
       Left = 18
       Top = 7
-      Width = 255
+      Width = 206
       Height = 25
-      Caption = 'Modifica'#231#227'o de parcelamento'
+      Caption = 'Modificar parcelamento'
       Font.Charset = ANSI_CHARSET
       Font.Color = clSilver
       Font.Height = -19
@@ -227,7 +228,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
         Width = 105
         Height = 35
         BevelOuter = bvNone
-        Caption = 'Salvar [F12]'
+        Caption = 'Salvar '
         Color = 11360274
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWhite
@@ -333,8 +334,8 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
   object gridEditarParcela: TDBGrid
     Left = 0
     Top = 185
-    Width = 1069
-    Height = 238
+    Width = 1063
+    Height = 212
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsAlterarQtdeParcelas
