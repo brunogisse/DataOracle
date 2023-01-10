@@ -29,8 +29,6 @@ object frmMenu: TfrmMenu
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = -2
     DesignSize = (
       1383
       1036)

@@ -250,7 +250,7 @@ begin
                   begin
                      Close;
                      SQL.Clear;
-                     SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF like ' + QuotedStr('%' + editPesquisaNF.Text + '%')
+                     SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF = ' + editPesquisaNF.Text + ''
                            + 'and (PARC.forma_pgto_id = FP.formaid) and  (status = ''ABERTO'')');
                             // ParamByName('DE').AsDate :=  StrToDate(DateVencimentoDE.EditText);
                             // ParamByName('ATE').AsDate := StrToDate(DateVencimentoATE.EditText);
@@ -345,8 +345,9 @@ begin
      // Indica que todas as parcelas estão bloqueadas para cancelamento de venda....
         QtdParcelas := qryPagarParcelas['QTDE_PARCELAS'];
         qryPagarParcelas.First;
-          for i := 0 to QtdParcelas do
+          for i := 1 to QtdParcelas do
             begin
+              qryPagarParcelas['PARCELAID'];
               qryPagarParcelas.Edit;
               qryPagarParcelas['ACESSO'] := 'BLOQUEADO';
               qryPagarParcelas.Post;
@@ -404,7 +405,7 @@ begin
 
             try
               tcPagarParcelas.CommitRetaining;
-            finally
+            except
                tcPagarParcelas.RollbackRetaining;
             end;
 

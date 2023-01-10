@@ -162,6 +162,9 @@ type
     qryVendaPostoSTATUS_FRETE: TStringField;
     qryVendaPostoSTATUS_CORRETAGEM: TStringField;
     qryVendaPostoSTATUS_PGTO_CLIENTE: TStringField;
+    labelOrdemCarregamento: TLabel;
+    editOrdemCarregamento: TEdit;
+    qryVendaPostoORDEM_CARREGAMENTO: TIntegerField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
@@ -548,22 +551,21 @@ begin
        //procedure que localiza o estoque exato da tabela EstoqueUsina
          EditarEstoqueUsina('editando', qryUsina['USINAID'], qryProduto['PRODUTOID'], qryVendaPosto['ESTOQUEID']);
 
+        // editEstoque.Text          :=  FloatToStr(qryEstoqueUsina['ESTOQUE']);
+        // qryEstoqueUsina['ESTOQUEID'];
          editEstoque.Text          :=  FloatToStr(qryEstoqueUsina['ESTOQUE']);
 
-
-         qryEstoqueUsina['ESTOQUEID'];
-
-         editEstoque.Text          :=  FloatToStr(qryEstoqueUsina['ESTOQUE']);
-
-         editVolume.Text           := FloatToStr(qryVendaPosto['VOLUME']);
-         editValorCombustivel.Text := FloatToStr(qryVendaPosto['VALOR_COMBUSTIVEL']);
-         editNF.Text               := IntToStr(qryVendaPosto['NF']);
-         EditValorNF.Text          := FloatToStr(qryVendaPosto['VALOR_NF']);
-         editTaxaFrete.Text        := FloatToStr(qryVendaPosto['TAXA_FRETE']);
-         editTaxaCorretagem.Text   := FloatToStr(qryVendaPosto['TAXA_CORRETAGEM']);
-         editTotalFrete.Text       := FloatToStr(qryVendaPosto['VALOR_TOTAL_FRETE']);
-         editTotalCorretagem.Text  := FloatToStr(qryVendaPosto['VALOR_TOTAL_CORRETAGEM']);
-         dateEmissaoNF.Date        := qryVendaPosto['DATA_EMISSAO_NF'];
+         editVolume.Text            := FloatToStr(qryVendaPosto['VOLUME']);
+         editValorCombustivel.Text  := FloatToStr(qryVendaPosto['VALOR_COMBUSTIVEL']);
+         editNF.Text                := IntToStr(qryVendaPosto['NF']);
+         EditValorNF.Text           := FloatToStr(qryVendaPosto['VALOR_NF']);
+         editTaxaFrete.Text         := FloatToStr(qryVendaPosto['TAXA_FRETE']);
+         editTaxaCorretagem.Text    := FloatToStr(qryVendaPosto['TAXA_CORRETAGEM']);
+         editTotalFrete.Text        := FloatToStr(qryVendaPosto['VALOR_TOTAL_FRETE']);
+         editTotalCorretagem.Text   := FloatToStr(qryVendaPosto['VALOR_TOTAL_CORRETAGEM']);
+         dateEmissaoNF.Date         := qryVendaPosto['DATA_EMISSAO_NF'];
+         if qryVendaPosto['ORDEM_CARREGAMENTO'] <> null then
+           editOrdemCarregamento.Text := qryVendaPosto['ORDEM_CARREGAMENTO'];
 
 
       end
@@ -936,6 +938,7 @@ begin
    editTotalFrete.Clear;
    editVolume.Clear;
    editValorCombustivel.Clear;
+   editOrdemCarregamento.Clear;
 
   dateEmissaoNF.Date := Date;
   //dateVencimento.Date := Date;
@@ -1010,6 +1013,7 @@ begin
       qryVendaPosto['TAXA_CORRETAGEM']        := StrToFloat(editTaxaCorretagem.Text);
       qryVendaPosto['VALOR_TOTAL_CORRETAGEM'] := ConverterValorCorretagem;
       qryVendaPosto['VALOR_COMBUSTIVEL']      := StrToFloat(editValorCombustivel.Text);
+      qryVendaPosto['ORDEM_CARREGAMENTO']     := StrToInt(editOrdemCarregamento.Text);
 
       if qryVendaPosto.State in [dsInsert] then
          begin

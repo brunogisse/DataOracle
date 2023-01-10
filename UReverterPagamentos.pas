@@ -187,7 +187,7 @@ begin
           begin
             Close;
             SQL.Clear;
-            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF like ' + QuotedStr('%' + editPesquisaNF.Text + '%')
+            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF = ' + editPesquisaNF.Text + ''
                   + 'and (PARC.forma_pgto_id = FP.formaid) and  (status = ''PAGO'')');
             Open();
           end;
