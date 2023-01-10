@@ -1156,7 +1156,7 @@ object frmVendaPostos: TfrmVendaPostos
           item
             Expanded = False
             FieldName = 'VALOR_COMBUSTIVEL'
-            Width = 61
+            Width = 64
             Visible = True
           end
           item
@@ -1316,6 +1316,7 @@ object frmVendaPostos: TfrmVendaPostos
       Origin = 'NF'
     end
     object qryVendaPostoVALOR_NF: TFMTBCDField
+      DisplayLabel = 'Valor NF'
       FieldName = 'VALOR_NF'
       Origin = 'VALOR_NF'
       currency = True
@@ -1323,6 +1324,7 @@ object frmVendaPostos: TfrmVendaPostos
       Size = 2
     end
     object qryVendaPostoDATA_EMISSAO_NF: TDateField
+      DisplayLabel = 'Emiss'#227'o NF'
       FieldName = 'DATA_EMISSAO_NF'
       Origin = 'DATA_EMISSAO_NF'
     end
@@ -1331,17 +1333,20 @@ object frmVendaPostos: TfrmVendaPostos
       Origin = 'VENCIMENTO_NF_ATUAL'
     end
     object qryVendaPostoVOLUME: TFMTBCDField
+      DisplayLabel = 'Volume'
       FieldName = 'VOLUME'
       Origin = 'VOLUME'
       Precision = 18
       Size = 2
     end
     object qryVendaPostoTAXA_FRETE: TBCDField
+      DisplayLabel = 'tx. frete'
       FieldName = 'TAXA_FRETE'
       Origin = 'TAXA_FRETE'
       Precision = 18
     end
     object qryVendaPostoVALOR_TOTAL_FRETE: TFMTBCDField
+      DisplayLabel = 'Total Frete'
       FieldName = 'VALOR_TOTAL_FRETE'
       Origin = 'VALOR_TOTAL_FRETE'
       currency = True
@@ -1349,11 +1354,13 @@ object frmVendaPostos: TfrmVendaPostos
       Size = 2
     end
     object qryVendaPostoTAXA_CORRETAGEM: TBCDField
+      DisplayLabel = 'tx. Corret.'
       FieldName = 'TAXA_CORRETAGEM'
       Origin = 'TAXA_CORRETAGEM'
       Precision = 18
     end
     object qryVendaPostoVALOR_TOTAL_CORRETAGEM: TFMTBCDField
+      DisplayLabel = 'Total Corret.'
       FieldName = 'VALOR_TOTAL_CORRETAGEM'
       Origin = 'VALOR_TOTAL_CORRETAGEM'
       currency = True
@@ -1361,6 +1368,7 @@ object frmVendaPostos: TfrmVendaPostos
       Size = 2
     end
     object qryVendaPostoSTATUS: TStringField
+      DisplayLabel = 'Status'
       FieldName = 'STATUS'
       Origin = 'STATUS'
       Size = 10
@@ -1403,6 +1411,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoCORRETOR: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Corretor'
       FieldName = 'CORRETOR'
       Origin = 'NOME'
       ProviderFlags = []
@@ -1410,6 +1419,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoMOTORISTA: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Motorista'
       FieldName = 'MOTORISTA'
       Origin = 'NOME'
       ProviderFlags = []
@@ -1417,6 +1427,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoPOSTO: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Posto'
       FieldName = 'POSTO'
       Origin = 'NOME_FANTASIA'
       ProviderFlags = []
@@ -1424,6 +1435,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoPRODUTO: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Produto'
       FieldName = 'PRODUTO'
       Origin = 'DESCRICAO'
       ProviderFlags = []
@@ -1431,6 +1443,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoREPRESENTANTE: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Representante'
       FieldName = 'REPRESENTANTE'
       Origin = 'NOME'
       ProviderFlags = []
@@ -1438,6 +1451,7 @@ object frmVendaPostos: TfrmVendaPostos
     end
     object qryVendaPostoUSINA: TStringField
       AutoGenerateValue = arDefault
+      DisplayLabel = 'Usina'
       FieldName = 'USINA'
       Origin = 'NOME_FANTASIA'
       ProviderFlags = []
@@ -1448,6 +1462,7 @@ object frmVendaPostos: TfrmVendaPostos
       Origin = 'ESTOQUEID'
     end
     object qryVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField
+      DisplayLabel = 'Combust.'
       FieldName = 'VALOR_COMBUSTIVEL'
       Origin = 'VALOR_COMBUSTIVEL'
       Precision = 18

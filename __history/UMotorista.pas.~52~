@@ -91,7 +91,8 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UVendaPosto, URelatorioMotorista;
+uses UPrincipalPetrotorque, UVendaPosto, URelatorioMotorista,
+  UTransferenciaEstoque;
 
 
 procedure TfrmMotorista.btnCancelarClick(Sender: TObject);
@@ -173,6 +174,13 @@ begin
           frmRelatorioMotorista.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
           Close;
          end;
+       if Action = 'transferencia' then
+        begin
+        frmTransferencia.qryMotorista.Refresh;
+        frmTransferencia.editMotorista.Text := qryMotorista['NOME'];
+        frmTransferencia.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
+        Close;
+       end;
       end;
 
 end;

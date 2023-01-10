@@ -3,7 +3,7 @@ object frmVendaPostos: TfrmVendaPostos
   Top = 0
   BorderStyle = bsNone
   Caption = 'Venda Para postos'
-  ClientHeight = 783
+  ClientHeight = 763
   ClientWidth = 1126
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,16 +21,17 @@ object frmVendaPostos: TfrmVendaPostos
     Left = 0
     Top = 0
     Width = 1126
-    Height = 783
+    Height = 763
     Align = alClient
     Brush.Color = 15724527
     ExplicitWidth = 1129
+    ExplicitHeight = 783
   end
   object painelFundoSecundario: TPanel
     Left = 0
     Top = 2
     Width = 1113
-    Height = 855
+    Height = 818
     BevelOuter = bvNone
     TabOrder = 0
     object PainelTOPO: TPanel
@@ -46,8 +47,8 @@ object frmVendaPostos: TfrmVendaPostos
       ParentBackground = False
       TabOrder = 0
       object ImgPrincipal: TImage
-        Left = 30
-        Top = 11
+        Left = 18
+        Top = 8
         Width = 163
         Height = 126
         Picture.Data = {
@@ -756,7 +757,7 @@ object frmVendaPostos: TfrmVendaPostos
       end
       object LabelAlerta: TLabel
         Left = 13
-        Top = 319
+        Top = 317
         Width = 397
         Height = 21
         Caption = 'As vendas abaixo est'#227'o sem lan'#231'amento financeiro. '
@@ -769,8 +770,8 @@ object frmVendaPostos: TfrmVendaPostos
         Visible = False
       end
       object labelOrdemCarregamento: TLabel
-        Left = 694
-        Top = 205
+        Left = 697
+        Top = 210
         Width = 154
         Height = 13
         Caption = 'ORDEM DE CARREGAMENTO:'
@@ -799,7 +800,7 @@ object frmVendaPostos: TfrmVendaPostos
         BevelOuter = bvNone
         Color = clSilver
         ParentBackground = False
-        TabOrder = 13
+        TabOrder = 14
       end
       object painelUnderlineFreteCorretagem: TPanel
         Left = 456
@@ -809,7 +810,7 @@ object frmVendaPostos: TfrmVendaPostos
         BevelOuter = bvNone
         Color = clSilver
         ParentBackground = False
-        TabOrder = 14
+        TabOrder = 15
       end
       object editPosto: TEdit
         Left = 261
@@ -839,7 +840,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 6
+        TabOrder = 13
         OnKeyDown = editProdutoKeyDown
         OnKeyPress = editProdutoKeyPress
       end
@@ -920,7 +921,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        TabOrder = 8
+        TabOrder = 7
       end
       object editEstoque: TEdit
         Left = 895
@@ -934,7 +935,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 15
+        TabOrder = 16
       end
       object editNF: TEdit
         Left = 26
@@ -947,7 +948,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 7
+        TabOrder = 6
         OnExit = editNFExit
         OnKeyDown = editNFKeyDown
         OnKeyPress = editNFKeyPress
@@ -964,7 +965,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 16
+        TabOrder = 17
       end
       object editTaxaFrete: TEdit
         Left = 797
@@ -1010,7 +1011,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 17
+        TabOrder = 18
       end
       object editVolume: TEdit
         Left = 753
@@ -1056,11 +1057,11 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI Semibold'
         Font.Style = [fsBold]
         ParentFont = False
-        TabOrder = 18
+        TabOrder = 19
       end
       object editOrdemCarregamento: TEdit
         Left = 855
-        Top = 197
+        Top = 203
         Width = 174
         Height = 25
         Font.Charset = DEFAULT_CHARSET
@@ -1069,7 +1070,7 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        TabOrder = 19
+        TabOrder = 8
       end
     end
     object painelBOTTOM: TPanel
@@ -1077,7 +1078,7 @@ object frmVendaPostos: TfrmVendaPostos
       Left = 3
       Top = 497
       Width = 1107
-      Height = 299
+      Height = 248
       Align = alTop
       BevelOuter = bvNone
       Color = clWhite
@@ -1087,7 +1088,7 @@ object frmVendaPostos: TfrmVendaPostos
         Left = 0
         Top = 0
         Width = 1107
-        Height = 299
+        Height = 248
         Align = alClient
         BorderStyle = bsNone
         DataSource = dsVendaPosto
@@ -1238,9 +1239,11 @@ object frmVendaPostos: TfrmVendaPostos
       
         '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
         'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
-        'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
-        'UME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.status_fre' +
-        'te, v.status_corretagem, v.status_pgto_cliente, '
+        'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES,'
+      
+        '  V.VOLUME_RECEBIDO_MES, v.estoqueid as estoque_id_vendas, v.sta' +
+        'tus_frete, v.status_corretagem, v.status_pgto_cliente, V.ORDEM_C' +
+        'ARREGAMENTO, '
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -1467,6 +1470,10 @@ object frmVendaPostos: TfrmVendaPostos
       Origin = 'STATUS_PGTO_CLIENTE'
       FixedChar = True
       Size = 3
+    end
+    object qryVendaPostoORDEM_CARREGAMENTO: TIntegerField
+      FieldName = 'ORDEM_CARREGAMENTO'
+      Origin = 'ORDEM_CARREGAMENTO'
     end
   end
   object dsVendaPosto: TDataSource

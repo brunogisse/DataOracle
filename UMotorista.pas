@@ -311,7 +311,9 @@ end;
 procedure TfrmMotorista.FormShow(Sender: TObject);
 begin
   qryMotorista.Open;
+  configurarEnables(0);
   editPesquisaMotorista.SetFocus;
+
 end;
 
 

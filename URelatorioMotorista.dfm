@@ -2,7 +2,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
   Left = 0
   Top = 0
   ClientHeight = 524
-  ClientWidth = 1097
+  ClientWidth = 1144
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1091
+    Width = 1138
     Height = 70
     Align = alTop
     BevelOuter = bvNone
@@ -32,6 +32,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1091
     object labelTituloEditsNF: TLabel
       Left = 15
       Top = 19
@@ -49,7 +50,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
   object PainelCentral: TPanel
     Left = 0
     Top = 76
-    Width = 1097
+    Width = 1144
     Height = 186
     Align = alTop
     BevelOuter = bvNone
@@ -62,6 +63,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1097
     object Image1: TImage
       Left = 18
       Top = 32
@@ -511,7 +513,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
   object gridMotorista: TDBGrid
     Left = 0
     Top = 262
-    Width = 1097
+    Width = 1144
     Height = 262
     Align = alClient
     BorderStyle = bsNone
@@ -542,7 +544,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       item
         Expanded = False
         FieldName = 'DATA_EMISSAO_NF'
-        Width = 88
+        Width = 79
         Visible = True
       end
       item
@@ -553,7 +555,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       item
         Expanded = False
         FieldName = 'POSTO'
-        Width = 428
+        Width = 378
         Visible = True
       end
       item
@@ -584,6 +586,12 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         Expanded = False
         FieldName = 'STATUS_FRETE'
         Width = 48
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ORDEM_CARREGAMENTO'
+        Width = 109
         Visible = True
       end>
   end
@@ -848,6 +856,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       Size = 3
     end
     object qryVendaPostoORDEM_CARREGAMENTO: TIntegerField
+      DisplayLabel = 'Ordem Carreg.'
       FieldName = 'ORDEM_CARREGAMENTO'
       Origin = 'ORDEM_CARREGAMENTO'
     end
