@@ -267,7 +267,7 @@ object frmMenu: TfrmMenu
       object labelNomeSistema: TLabel
         Left = 369
         Top = 0
-        Width = 160
+        Width = 135
         Height = 69
         Align = alLeft
         Alignment = taCenter
@@ -281,6 +281,7 @@ object frmMenu: TfrmMenu
         ParentColor = False
         ParentFont = False
         Layout = tlCenter
+        ExplicitHeight = 25
       end
       object btnMenu: TSpeedButton
         AlignWithMargins = True
@@ -436,10 +437,12 @@ object frmMenu: TfrmMenu
         ExplicitTop = 4
       end
       object SpeedButton1: TSpeedButton
-        Left = 1016
+        Left = 1144
         Top = 3
         Width = 105
         Height = 60
+        Hint = 'Backup do banco de dados'
+        Anchors = [akTop, akRight]
         Flat = True
         Glyph.Data = {
           42240000424D4224000000000000420000002800000030000000300000000100
@@ -733,6 +736,8 @@ object frmMenu: TfrmMenu
           0000000000000000000000000000000000000000000000000000000000000000
           0000000000000000000000000000000000000000000000000000000000000000
           000000000000}
+        ParentShowHint = False
+        ShowHint = True
         OnClick = SpeedButton1Click
       end
       object painelUnderlineTopo: TPanel
@@ -1956,13 +1961,19 @@ object frmMenu: TfrmMenu
       Height = 182
       Anchors = [akTop, akRight]
       BevelOuter = bvNone
-      Color = 12308991
+      Color = 16448250
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 15724527
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
       ParentBackground = False
+      ParentFont = False
       TabOrder = 3
       Visible = False
       object btnVencimentos: TSpeedButton
-        Left = 40
-        Top = 72
+        Left = 7
+        Top = 111
         Width = 321
         Height = 57
         Caption = 'vencimentos'

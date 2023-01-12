@@ -846,6 +846,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     end
   end
   object qryRelatorioVendaPosto: TFDQuery
+    Active = True
     Connection = frmMenu.FDconexao
     Transaction = tcVendaPosto
     UpdateOptions.AssignedValues = [uvGeneratorName, uvCheckReadOnly, uvAutoCommitUpdates]
@@ -904,7 +905,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ' (v.vendaid = parc.vendaid) and'
       ' (v.estoqueid = eu.estoqueid) and'
       ' (parc.status = '#39'PAGO'#39') and'
-      ' (parc.data_pgto_parcela between :INICIO and :FIM)'
+      ' (PARC.DATA_PGTO_PARCELA between :INICIO and :FIM)'
       ''
       'order by v.data_emissao_nf, v.postoid  desc'
       '')
@@ -1201,7 +1202,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.740707060200000000
-    ReportOptions.LastChange = 44930.911910520830000000
+    ReportOptions.LastChange = 44930.915574884260000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1897,14 +1898,14 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         Font.Height = -13
         Font.Name = 'Segoe uI'
         Font.Style = []
-        Height = 39.811070000000000000
+        Height = 43.590600000000000000
         ParentFont = False
         Top = 170.078850000000000000
         Width = 718.110700000000000000
         Condition = 'frxDBDataset1."VENDAID"'
         object Memo2: TfrxMemoView
           AllowVectorExport = True
-          Left = 3.779530000000000000
+          Left = 2.779530000000000000
           Top = 0.440940000000000000
           Width = 41.574830000000000000
           Height = 18.897650000000000000
@@ -1921,7 +1922,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1VENDAID: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 46.913420000000000000
+          Left = 45.913420000000000000
           Top = 0.440940000000000000
           Width = 79.370130000000000000
           Height = 15.118120000000000000
@@ -1960,7 +1961,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Left = 42.031540000000000000
           Top = 14.118120000000000000
           Width = 385.512060000000000000
-          Height = 26.456710000000000000
+          Height = 30.236240000000000000
           DataField = 'POSTO'
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
@@ -2064,7 +2065,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo8: TfrxMemoView
           AllowVectorExport = True
-          Left = 56.472480000000000000
+          Left = 58.472480000000000000
           Top = 28.149660000000000000
           Width = 45.354360000000000000
           Height = 15.118120000000000000
@@ -2132,7 +2133,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo13: TfrxMemoView
           AllowVectorExport = True
-          Left = 287.921460000000000000
+          Left = 298.921460000000000000
           Top = 28.472480000000000000
           Width = 132.283550000000000000
           Height = 15.118120000000000000
@@ -2188,7 +2189,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         FillType = ftBrush
         Frame.Typ = []
         Height = 11.779530000000000000
-        Top = 234.330860000000000000
+        Top = 238.110390000000000000
         Width = 718.110700000000000000
         DataSet = dbReportStatusParcela
         DataSetName = 'frxDBDataset1'
@@ -2257,7 +2258,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1VOLUME_PARCELADO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 289.141930000000000000
+          Left = 300.141930000000000000
           Top = -1.559060000000000000
           Width = 170.078850000000000000
           Height = 18.897650000000000000
@@ -2280,11 +2281,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         FillType = ftBrush
         Frame.Typ = []
         Height = 34.015770000000000000
-        Top = 268.346630000000000000
+        Top = 272.126160000000000000
         Width = 718.110700000000000000
         object Memo11: TfrxMemoView
           AllowVectorExport = True
-          Left = 54.763760000000000000
+          Left = 60.763760000000000000
           Top = 1.661410000000000000
           Width = 188.976500000000000000
           Height = 18.897650000000000000
@@ -2318,7 +2319,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo16: TfrxMemoView
           AllowVectorExport = True
-          Left = 313.189240000000000000
+          Left = 301.189240000000000000
           Top = 1.779530000000000000
           Width = 249.448980000000000000
           Height = 18.897650000000000000
@@ -2336,7 +2337,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo17: TfrxMemoView
           AllowVectorExport = True
-          Left = 260.819110000000000000
+          Left = 250.819110000000000000
           Top = 1.779530000000000000
           Width = 52.913420000000000000
           Height = 18.897650000000000000
@@ -2364,7 +2365,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         FillType = ftBrush
         Frame.Typ = []
         Height = 83.149660000000000000
-        Top = 325.039580000000000000
+        Top = 328.819110000000000000
         Width = 718.110700000000000000
         object Memo18: TfrxMemoView
           AllowVectorExport = True
@@ -2767,7 +2768,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.880585381900000000
-    ReportOptions.LastChange = 44918.507373356480000000
+    ReportOptions.LastChange = 44937.875803900460000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -3604,9 +3605,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         Width = 718.110700000000000000
         object Memo9: TfrxMemoView
           AllowVectorExport = True
-          Left = 2.779530000000000000
+          Left = -1.220470000000000000
           Top = 1.338590000000000000
-          Width = 98.267780000000000000
+          Width = 86.929190000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -3621,9 +3622,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo13: TfrxMemoView
           AllowVectorExport = True
-          Left = 369.094620000000000000
+          Left = 218.094620000000000000
           Top = 2.236240000000000000
-          Width = 120.944960000000000000
+          Width = 105.826840000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -3639,9 +3640,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2VOLUME_TOTAL_RETIRADO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 488.260050000000000000
+          Left = 326.260050000000000000
           Top = 2.456710000000000000
-          Width = 162.519790000000000000
+          Width = 94.488250000000000000
           Height = 15.118120000000000000
           DataSet = frxDBDatasetPrincipal
           DataSetName = 'frxDBDataset2'
@@ -3660,9 +3661,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2TOTAL_NF_RECEBIDO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 102.047310000000000000
+          Left = 86.047310000000000000
           Top = 1.456710000000000000
-          Width = 151.181200000000000000
+          Width = 124.724490000000000000
           Height = 15.118120000000000000
           DataField = 'TOTAL_NF_RECEBIDO'
           DataSet = frxDBDatasetPrincipal
@@ -3685,6 +3686,115 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Color = clBlack
           Frame.Style = fsDot
           Frame.Typ = [ftTop]
+        end
+        object Memo17: TfrxMemoView
+          AllowVectorExport = True
+          Left = 421.338900000000000000
+          Top = 1.779530000000000000
+          Width = 7.559060000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '-')
+          ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 430.645950000000000000
+          Top = 3.000000000000000000
+          Width = 52.913420000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total frete:')
+          ParentFont = False
+        end
+        object frxDBDataset2VALOR_TOTAL_FRETE: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 483.338900000000000000
+          Top = 3.000000000000000000
+          Width = 75.590600000000000000
+          Height = 15.118120000000000000
+          DataField = 'VALOR_TOTAL_FRETE'
+          DataSet = frxDBDatasetPrincipal
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset2."VALOR_TOTAL_FRETE"]')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 554.370440000000000000
+          Top = 2.779530000000000000
+          Width = 7.559060000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '|')
+          ParentFont = False
+        end
+        object Memo20: TfrxMemoView
+          AllowVectorExport = True
+          Left = 563.149970000000000000
+          Top = 2.779530000000000000
+          Width = 56.692950000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Style = fsDot
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total corret.')
+          ParentFont = False
+        end
+        object Memo21: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 620.063390000000000000
+          Top = 3.000000000000000000
+          Width = 75.590600000000000000
+          Height = 15.118120000000000000
+          DataSet = frxDBDatasetPrincipal
+          DataSetName = 'frxDBDataset2'
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset2."VALOR_TOTAL_CORRETAGEM"]')
+          ParentFont = False
         end
       end
       object Footer1: TfrxFooter
@@ -3711,7 +3821,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo12: TfrxMemoView
           AllowVectorExport = True
-          Left = 109.606370000000000000
+          Left = 106.606370000000000000
           Top = 8.220470000000000000
           Width = 222.992270000000000000
           Height = 18.897650000000000000
@@ -3745,7 +3855,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo16: TfrxMemoView
           AllowVectorExport = True
-          Left = 110.944960000000000000
+          Left = 106.944960000000000000
           Top = 34.795300000000000000
           Width = 226.771800000000000000
           Height = 18.897650000000000000
@@ -3759,6 +3869,40 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Frame.Typ = []
           Memo.UTF8W = (
             '[SUM(<frxDBDataset2."VOLUME_PARCELADO">,MasterData1,3)]')
+          ParentFont = False
+        end
+        object Memo22: TfrxMemoView
+          AllowVectorExport = True
+          Left = 377.953000000000000000
+          Top = 7.559060000000000000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Total Recebido:')
+          ParentFont = False
+        end
+        object Memo23: TfrxMemoView
+          AllowVectorExport = True
+          Left = 482.220780000000000000
+          Top = 7.559060000000000000
+          Width = 222.992270000000000000
+          Height = 18.897650000000000000
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[COUNT(MasterData1)]')
           ParentFont = False
         end
       end
