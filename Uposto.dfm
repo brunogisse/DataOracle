@@ -3,7 +3,7 @@ object frmPosto: TfrmPosto
   Top = 0
   Caption = 'Cadastro de Postos'
   ClientHeight = 605
-  ClientWidth = 967
+  ClientWidth = 1240
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object frmPosto: TfrmPosto
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 967
-    Height = 217
+    Width = 1240
+    Height = 269
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -34,7 +34,7 @@ object frmPosto: TfrmPosto
     TabOrder = 0
     object Image1: TImage
       Left = 25
-      Top = 80
+      Top = 104
       Width = 119
       Height = 117
       Picture.Data = {
@@ -145,11 +145,11 @@ object frmPosto: TfrmPosto
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object GroupBox1: TGroupBox
+    object gbEdits: TGroupBox
       Left = 159
       Top = 80
       Width = 421
-      Height = 125
+      Height = 177
       TabOrder = 0
       object labelDestino: TLabel
         Left = 9
@@ -191,6 +191,20 @@ object frmPosto: TfrmPosto
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
+      end
+      object labelUF: TLabel
+        Left = 9
+        Top = 123
+        Width = 17
+        Height = 13
+        Caption = 'UF:'
+      end
+      object labelMunicipio: TLabel
+        Left = 63
+        Top = 123
+        Width = 56
+        Height = 13
+        Caption = 'MUNICIPIO'
       end
       object editNomeFantasia: TDBEdit
         Left = 9
@@ -247,12 +261,36 @@ object frmPosto: TfrmPosto
         OnEnter = editCNPJEnter
         OnKeyDown = editCNPJKeyDown
       end
+      object cbUF: TDBLookupComboBox
+        Left = 9
+        Top = 139
+        Width = 48
+        Height = 21
+        DropDownRows = 20
+        KeyField = 'ID'
+        ListField = 'UF'
+        ListSource = dsEstado
+        TabOrder = 3
+        OnCloseUp = cbUFCloseUp
+        OnExit = cbUFExit
+      end
+      object cbMunicipio: TDBLookupComboBox
+        Left = 63
+        Top = 139
+        Width = 353
+        Height = 21
+        DropDownRows = 20
+        KeyField = 'ID'
+        ListField = 'NOME'
+        ListSource = dsMunicipio
+        TabOrder = 4
+      end
     end
     object gbPesquisaPosto: TGroupBox
       Left = 595
       Top = 80
       Width = 350
-      Height = 125
+      Height = 177
       TabOrder = 1
       object rbRazaoSocial: TRadioButton
         Left = 12
@@ -483,9 +521,9 @@ object frmPosto: TfrmPosto
   end
   object gridPosto: TDBGrid
     Left = 25
-    Top = 217
-    Width = 942
-    Height = 388
+    Top = 269
+    Width = 1215
+    Height = 336
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsPosto
@@ -511,27 +549,38 @@ object frmPosto: TfrmPosto
       item
         Expanded = False
         FieldName = 'NOME_FANTASIA'
-        Width = 394
+        Width = 342
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'RAZAO_SOCIAL'
-        Width = 363
+        Width = 305
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'CNPJ'
-        Width = 166
+        Width = 158
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UF'
+        Width = 35
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'NOME'
         Visible = True
       end>
   end
   object painelEsquerdo: TPanel
     Left = 0
-    Top = 217
+    Top = 269
     Width = 25
-    Height = 388
+    Height = 336
     Align = alLeft
     BevelOuter = bvNone
     Color = clWhite
@@ -553,9 +602,20 @@ object frmPosto: TfrmPosto
     UpdateOptions.KeyFields = 'POSTOID'
     UpdateOptions.AutoIncFields = 'POSTOID'
     SQL.Strings = (
-      'select * from Posto')
-    Left = 552
-    Top = 464
+      'select'
+      ''
+      
+        '    p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estad' +
+        'o_id, p.municipio_id,'
+      '    e.uf, m.nome'
+      ''
+      'from Posto p, estado e, municipio m'
+      'where'
+      ''
+      '(p.estado_id = e.id) and'
+      '(p.municipio_id = m.id)')
+    Left = 32
+    Top = 472
     object qryPostoPOSTOID: TFDAutoIncField
       FieldName = 'POSTOID'
       Origin = 'POSTOID'
@@ -579,16 +639,118 @@ object frmPosto: TfrmPosto
       Origin = 'CNPJ'
       Size = 18
     end
+    object qryPostoESTADO_ID: TIntegerField
+      FieldName = 'ESTADO_ID'
+      Origin = 'ESTADO_ID'
+    end
+    object qryPostoMUNICIPIO_ID: TIntegerField
+      FieldName = 'MUNICIPIO_ID'
+      Origin = 'MUNICIPIO_ID'
+    end
+    object qryPostoUF: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'UF'
+      Origin = 'UF'
+      ProviderFlags = []
+      ReadOnly = True
+      FixedChar = True
+      Size = 2
+    end
+    object qryPostoNOME: TStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'Municipio'
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 255
+    end
   end
   object dsPosto: TDataSource
     DataSet = qryPosto
-    Left = 624
-    Top = 464
+    OnDataChange = dsPostoDataChange
+    Left = 80
+    Top = 472
   end
   object tcPosto: TFDTransaction
     Options.AutoStop = False
     Connection = frmMenu.FDconexao
+    Left = 32
+    Top = 400
+  end
+  object qryEstado: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcPosto
+    FetchOptions.AssignedValues = [evRecsMax]
+    SQL.Strings = (
+      'select * from estado')
     Left = 704
-    Top = 472
+    Top = 464
+    object qryEstadoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryEstadoCODIGOUF: TIntegerField
+      FieldName = 'CODIGOUF'
+      Origin = 'CODIGOUF'
+      Required = True
+    end
+    object qryEstadoNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 50
+    end
+    object qryEstadoUF: TStringField
+      FieldName = 'UF'
+      Origin = 'UF'
+      Required = True
+      FixedChar = True
+      Size = 2
+    end
+    object qryEstadoREGIAO: TIntegerField
+      FieldName = 'REGIAO'
+      Origin = 'REGIAO'
+      Required = True
+    end
+  end
+  object qryMunicipio: TFDQuery
+    IndexFieldNames = 'ESTADO_ID'
+    MasterSource = dsEstado
+    MasterFields = 'ID'
+    Connection = frmMenu.FDconexao
+    Transaction = tcPosto
+    SQL.Strings = (
+      'select * from municipio')
+    Left = 704
+    Top = 536
+    object qryMunicipioID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryMunicipioNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 255
+    end
+    object qryMunicipioESTADO_ID: TIntegerField
+      FieldName = 'ESTADO_ID'
+      Origin = 'ESTADO_ID'
+    end
+  end
+  object dsEstado: TDataSource
+    DataSet = qryEstado
+    Left = 816
+    Top = 464
+  end
+  object dsMunicipio: TDataSource
+    DataSet = qryMunicipio
+    Left = 824
+    Top = 536
   end
 end

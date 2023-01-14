@@ -23,7 +23,7 @@ type
     qryPostoNOME_FANTASIA: TStringField;
     qryPostoRAZAO_SOCIAL: TStringField;
     qryPostoCNPJ: TStringField;
-    GroupBox1: TGroupBox;
+    gbEdits: TGroupBox;
     labelDestino: TLabel;
     editNomeFantasia: TDBEdit;
     labelCidade: TLabel;
@@ -49,6 +49,26 @@ type
     btnEditar: TSpeedButton;
     Image1: TImage;
     Label2: TLabel;
+    qryEstado: TFDQuery;
+    qryMunicipio: TFDQuery;
+    dsEstado: TDataSource;
+    dsMunicipio: TDataSource;
+    qryEstadoID: TIntegerField;
+    qryEstadoCODIGOUF: TIntegerField;
+    qryEstadoNOME: TStringField;
+    qryEstadoUF: TStringField;
+    qryEstadoREGIAO: TIntegerField;
+    qryMunicipioID: TIntegerField;
+    qryMunicipioNOME: TStringField;
+    qryMunicipioESTADO_ID: TIntegerField;
+    labelUF: TLabel;
+    labelMunicipio: TLabel;
+    cbUF: TDBLookupComboBox;
+    cbMunicipio: TDBLookupComboBox;
+    qryPostoESTADO_ID: TIntegerField;
+    qryPostoMUNICIPIO_ID: TIntegerField;
+    qryPostoUF: TStringField;
+    qryPostoNOME: TStringField;
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -74,6 +94,9 @@ type
     procedure editPesquisaPostoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editPesquisaPostoKeyPress(Sender: TObject; var Key: Char);
+    procedure cbUFCloseUp(Sender: TObject);
+    procedure dsPostoDataChange(Sender: TObject; Field: TField);
+    procedure cbUFExit(Sender: TObject);
   private
     { Private declarations }
 
@@ -83,6 +106,11 @@ type
     procedure definirTamanhoDaLinhaDaGrid;
     procedure EfetuarPesquisaOnChange;
     procedure EfetuarPesquisaOnChance;
+    procedure salvarRegistro;
+    procedure mostrarCidadesMunicipios;
+    procedure navegarEstadosMunicipios;
+    procedure prepararListaCidades;
+
 
   public
     { Public declarations }
@@ -100,6 +128,46 @@ implementation
 
 uses UPrincipalPetrotorque, UVendaPosto, URelatorioVendas, UrelatorioCliente;
 
+procedure TfrmPosto.prepararListaCidades;
+begin
+  cbMunicipio.SetFocus;
+  cbMunicipio.DropDown;
+  cbMunicipio.KeyValue := cbMunicipio.ListSource.DataSet.FieldByName(cbMunicipio.KeyField).Value;
+end;
+
+
+procedure TfrmPosto.mostrarCidadesMunicipios;
+begin
+   cbUF.KeyValue := cbUF.ListSource.DataSet.FieldByName(cbUF.KeyField).Value;
+   cbMunicipio.KeyValue := cbMunicipio.ListSource.DataSet.FieldByName(cbMunicipio.KeyField).Value;
+end;
+
+procedure TfrmPosto.navegarEstadosMunicipios;
+begin
+  cbUF.KeyValue := qryPosto['ESTADO_ID'];
+  cbMunicipio.KeyValue := qryPosto['MUNICIPIO_ID'];
+end;
+
+procedure TfrmPosto.salvarRegistro;
+  var posicao : Integer;
+begin
+         posicao := qryPosto['POSTOID'];
+         qryPosto['ESTADO_ID']    := qryEstado['ID'];
+         qryPosto['MUNICIPIO_ID'] := qryMunicipio['ID'];
+         qryPosto.Post;
+
+          try
+            tcPosto.CommitRetaining;
+          finally
+             tcPosto.RollbackRetaining;
+          end;
+
+          qryPosto.Close;
+          qryPosto.Open();
+
+          qryPosto.Locate('postoid', posicao,[]);
+end;
+
 procedure TfrmPosto.definirTamanhoDaLinhaDaGrid;
 begin
 
@@ -109,6 +177,11 @@ begin
 
 end;
 
+
+procedure TfrmPosto.dsPostoDataChange(Sender: TObject; Field: TField);
+begin
+  navegarEstadosMunicipios;
+end;
 
 procedure TfrmPosto.btnCancelarClick(Sender: TObject);
 begin
@@ -121,6 +194,7 @@ procedure TfrmPosto.btnEditarClick(Sender: TObject);
 begin
  configurarEnables(1);
  gbPesquisaPosto.Enabled := False;
+ navegarEstadosMunicipios;
  qryPosto.Edit;
 end;
 
@@ -155,6 +229,7 @@ begin
   editNomeFantasia.SetFocus;
   editPesquisaPosto.Text := '';
   EfetuarPesquisaOnChange;
+  mostrarCidadesMunicipios;
   qryPosto.Insert;
 end;
 
@@ -162,18 +237,18 @@ end;
 
 procedure TfrmPosto.btnSalvarClick(Sender: TObject);
 begin
-      qryPosto.Post;
+  if cbMunicipio.Text <> '' then
+    begin
+      salvarRegistro;
       configurarEnables(0);
       gbPesquisaPosto.Enabled := True;
-
-    try
-      tcPosto.CommitRetaining;
-    finally
-       tcPosto.RollbackRetaining;
-    end;
+    end
+     else
+      ShowMessage('Verifique os campos vazios');
 end;
 
 procedure TfrmPosto.capturarPosto;
+
 begin
  if (qryPosto.RecordCount > 0) and (DuploClickNaGrid = 'ENVIAR') then
      begin
@@ -206,6 +281,16 @@ begin
 
 end;
 
+procedure TfrmPosto.cbUFCloseUp(Sender: TObject);
+begin
+  prepararListaCidades;
+end;
+
+procedure TfrmPosto.cbUFExit(Sender: TObject);
+begin
+  prepararListaCidades;
+end;
+
 procedure TfrmPosto.configurarEnables(status: integer);
   begin
       if status = 0 then
@@ -216,12 +301,12 @@ procedure TfrmPosto.configurarEnables(status: integer);
       btnCancelar.Enabled := False;
       btnSalvar.Enabled := False;
       editNomeFantasia.Enabled := False;
+      cbUF.Enabled:= False;
+      cbMunicipio.Enabled:= False;
       editCNPJ.Enabled := False;
       editRazaoSocial.Enabled := False;
       gridPosto.Enabled := True;
       gbPesquisaPosto.Enabled := True;
-
-
     end
    else
     begin
@@ -230,6 +315,8 @@ procedure TfrmPosto.configurarEnables(status: integer);
       btnExcluir.Enabled := False;
       btnCancelar.Enabled := True;
       btnSalvar.Enabled := True;
+      cbUF.Enabled:= True;
+      cbMunicipio.Enabled:= True;
       editNomeFantasia.Enabled := True;
       editCNPJ.Enabled := True;
       editRazaoSocial.Enabled := True;
@@ -256,13 +343,24 @@ end;
 procedure TfrmPosto.EfetuarPesquisaOnChange;
 begin
 
+{select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome
+from Posto p, estado e, municipio m
+where
+(p.estado_id = e.id) and
+(p.municipio_id = m.id) and cnpj like }
+
+
   if rbCNPJ.Checked = True then
 
    with qryPosto do
       begin
        Close;
        SQL.Clear;
-       SQL.Add('select * from posto where cnpj like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by cnpj asc');
+       SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
+    +' from Posto p, estado e, municipio m '
+    +' where '
+    +'(p.estado_id = e.id) and '
+    +'(p.municipio_id = m.id) and cnpj like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by cnpj asc');
        Open;
      end;
 
@@ -272,7 +370,11 @@ begin
       begin
        Close;
        SQL.Clear;
-       SQL.Add('select * from posto where nome_fantasia like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by nome_fantasia asc');
+       SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
+    +' from Posto p, estado e, municipio m '
+    +' where '
+    +'(p.estado_id = e.id) and '
+    +'(p.municipio_id = m.id) and nome_fantasia like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by nome_fantasia asc');
        Open;
      end;
 
@@ -282,7 +384,11 @@ begin
       begin
        Close;
        SQL.Clear;
-       SQL.Add('select * from posto where razao_social like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by razao_social asc');
+       SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
+    +' from Posto p, estado e, municipio m '
+    +' where '
+    +'(p.estado_id = e.id) and '
+    +'(p.municipio_id = m.id) and razao_social like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by razao_social asc');
        Open;
      end;
 
@@ -364,13 +470,12 @@ end;
 procedure TfrmPosto.FormShow(Sender: TObject);
 begin
   qryPosto.Open;
+  qryEstado.Open();
+  qryMunicipio.Open();
   configurarEnables(0);
   rbCNPJ.Checked := true;
   if DuploClickNaGrid = 'ENVIAR' then
      editPesquisaPosto.SetFocus;
-
-
-
     definirTamanhoDaLinhaDaGrid;
 
 end;

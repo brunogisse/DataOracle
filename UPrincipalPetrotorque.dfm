@@ -1991,8 +1991,8 @@ object frmMenu: TfrmMenu
   object FDconexao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Win32\Debu' +
-        'g\Dados\PETROTORQUEDADOS.FDB'
+        'Database=C:\PROGRAMAS\PETROTORQUE NOVA VERSAO\Em Desevnvolviment' +
+        'o\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Server=localhost'
