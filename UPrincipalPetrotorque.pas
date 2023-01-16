@@ -11,7 +11,7 @@ uses
   FireDAC.Phys.FBDef, Vcl.Menus, System.UITypes, Vcl.ExtCtrls, Vcl.Buttons,
   Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet, frxClass,
-  frxDBSet;
+  frxDBSet, Uclasse.conexao;
 
 type
   TfrmMenu = class(TForm)
@@ -95,14 +95,17 @@ type
     procedure btnRelatorioClientesClick(Sender: TObject);
     procedure btnTransferenciaClick(Sender: TObject);
     procedure btnVencimentosClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
 
 
   private
     { Private declarations }
 
+
     procedure CaminhoBanco;
     procedure conferirVencimentos;
   public
+  novaConexao : Tconexao;
     { Public declarations }
   end;
 
@@ -121,7 +124,7 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
   URelatorioVendas, UselecionarUsinaEproduto, UCompraUsina, UdefinirEstoque,
   UMovimentoEstoqueUsina, URelatorioMotorista, UReverterPagamentos,
   URelatorioCorretor, UEditarParcelas, ULogin, UdataModule, UCadastroUsuario,
-  UbackUp, UrelatorioCliente, UTransferenciaEstoque;
+  UbackUp, UrelatorioCliente, UTransferenciaEstoque, UAlterarQtdeParcelas, Uservidor;
 
 { TfrmMenu }
 
@@ -392,7 +395,7 @@ procedure TfrmMenu.CaminhoBanco;
    begin
       if FDconexao.Connected = True then
          FDconexao.Connected := False;
-         ArquivoINI := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'\config.ini');
+         ArquivoINI := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'config.ini');
          server := ArquivoINI.ReadString('Sistema','Server','');
          user := ArquivoINI.ReadString('Sistema','User','');
          password := ArquivoINI.ReadString('Sistema','Password','');
@@ -418,6 +421,13 @@ procedure TfrmMenu.CaminhoBanco;
 procedure TfrmMenu.FormCreate(Sender: TObject);
 begin
  CaminhoBanco;
+
+  //novaConexao := Tconexao.Create(FDconexao);
+end;
+
+procedure TfrmMenu.FormDestroy(Sender: TObject);
+begin
+  FDconexao.Destroy;
 end;
 
 procedure TfrmMenu.FormShow(Sender: TObject);

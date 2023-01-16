@@ -29,7 +29,10 @@ uses
   UbackUp in 'UbackUp.pas' {frmBackUp},
   UrelatorioCliente in 'UrelatorioCliente.pas' {frmRelatorioClientes},
   UTransferenciaEstoque in 'UTransferenciaEstoque.pas' {frmTransferencia},
-  UAlterarQtdeParcelas in 'UAlterarQtdeParcelas.pas' {frmAlterarQtdeParcelas};
+  UAlterarQtdeParcelas in 'UAlterarQtdeParcelas.pas' {frmAlterarQtdeParcelas},
+  Uservidor in 'Uservidor.pas' {frmConfiguar_servidor},
+  Vcl.Dialogs,
+  Uclasse.conexao in 'Uclasse.conexao.pas';
 
 {$R *.res}
 
@@ -38,13 +41,19 @@ begin
   Application.MainFormOnTaskbar := True;
 
   frmLogin := TfrmLogin.Create(nil);
+
   Application.CreateForm(TfrmMenu, frmMenu);
-  Application.CreateForm(Tdm, dm);
+ // if frmMenu.novaConexao.fnc_conectar_banco_dados then
+   // begin
+      Application.CreateForm(Tdm, dm);
+      Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
+      frmLogin.ShowModal;
 
-  frmLogin.ShowModal;
+      frmLogin.Hide;
+      frmLogin.Free;
 
-  frmLogin.Hide;
-  frmLogin.Free;
-
-  Application.Run;
+      Application.Run;
+ //   end else
+  //      Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
+   //     frmConfiguar_servidor.ShowModal;
 end.

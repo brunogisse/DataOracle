@@ -1,0 +1,80 @@
+unit Uservidor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Mask, Vcl.DBCtrls, Vcl.StdCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.Buttons;
+
+type
+  TfrmConfiguar_servidor = class(TForm)
+    PainelTopo: TPanel;
+    labelTituloEditsNF: TLabel;
+    Panel2: TPanel;
+    painelBtnNovo: TPanel;
+    btnNovo: TSpeedButton;
+    PainelCancelar: TPanel;
+    btnCancelar: TSpeedButton;
+    painelSalvar: TPanel;
+    btnSalvar: TSpeedButton;
+    PainelExcluir: TPanel;
+    btnExcluir: TSpeedButton;
+    painelEditar: TPanel;
+    btnEditar: TSpeedButton;
+    PainelCentral: TPanel;
+    Image1: TImage;
+    gbPesquisaPosto: TGroupBox;
+    rbNome: TRadioButton;
+    rbCPF: TRadioButton;
+    editPesquisaMotorista: TEdit;
+    gbEdits: TGroupBox;
+    labelDestino: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
+    editServidor: TEdit;
+    editConexao: TEdit;
+    editDatabase: TEdit;
+    editLogin: TEdit;
+    Edit5: TEdit;
+    painelBotoes: TPanel;
+    painelImprimir: TPanel;
+    btnImprimir: TSpeedButton;
+    painelFundoConfirmar: TPanel;
+    PainelConfirmar: TPanel;
+    btnConfirmar: TSpeedButton;
+    procedure btnConfirmarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmConfiguar_servidor: TfrmConfiguar_servidor;
+
+implementation
+
+{$R *.dfm}
+
+uses UPrincipalPetrotorque, Uclasse.conexao;
+
+procedure TfrmConfiguar_servidor.btnConfirmarClick(Sender: TObject);
+begin
+  frmMenu.novaConexao.Servidor := editServidor.Text;
+  frmMenu.novaConexao.Senha := editConexao.Text;
+  frmMenu.novaConexao.Database := editDatabase.Text;
+  frmMenu.novaConexao.Login := editLogin.Text;
+
+  if frmMenu.novaConexao.fnc_conectar_banco_dados then
+    begin
+       frmMenu.novaConexao.prcGravarArquivoINI;
+       ShowMessage('Croada com sucesso!');
+       Close;
+    end else
+      begin
+        ShowMessage('nada feito!');
+      end;
+end;
+
+end.
