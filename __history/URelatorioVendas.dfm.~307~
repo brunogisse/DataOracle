@@ -909,7 +909,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ''
       'order by v.data_emissao_nf, v.postoid  desc'
       '')
-    Left = 44
+    Left = 76
     Top = 321
     ParamData = <
       item
@@ -1189,7 +1189,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   end
   object dsRelatorioVendaPosto: TDataSource
     DataSet = qryRelatorioVendaPosto
-    Left = 172
+    Left = 196
     Top = 322
   end
   object reportStatusParcela: TfrxReport
@@ -2756,8 +2756,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   end
   object dsRelatorioStatusParcela: TDataSource
     DataSet = qryRelatorioStatusParcela
-    Left = 952
-    Top = 383
+    Left = 960
+    Top = 391
   end
   object reportVendas: TfrxReport
     Version = '6.7.6'
@@ -2768,13 +2768,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.880585381900000000
-    ReportOptions.LastChange = 44937.868135509260000000
+    ReportOptions.LastChange = 44943.650054432870000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 40
+    Left = 72
     Top = 407
     Datasets = <
       item
@@ -3665,9 +3665,10 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Top = 1.456710000000000000
           Width = 124.724490000000000000
           Height = 15.118120000000000000
-          DataField = 'TOTAL_NF_RECEBIDO'
           DataSet = frxDBDatasetPrincipal
           DataSetName = 'frxDBDataset2'
+          DisplayFormat.FormatStr = '%2.2m'
+          DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -9
@@ -3675,7 +3676,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            '[frxDBDataset2."TOTAL_NF_RECEBIDO"]')
+            '[SUM(<frxDBDataset2."VALOR_PARCELA">,MasterData1,3)]')
           ParentFont = False
         end
         object Line1: TfrxLineView
@@ -3871,40 +3872,6 @@ object frmRelatorioVenda: TfrmRelatorioVenda
             '[SUM(<frxDBDataset2."VOLUME_PARCELADO">,MasterData1,3)]')
           ParentFont = False
         end
-        object Memo22: TfrxMemoView
-          AllowVectorExport = True
-          Left = 377.953000000000000000
-          Top = 7.559060000000000000
-          Width = 102.047310000000000000
-          Height = 18.897650000000000000
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Segoe uI'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            'Total Recebido:')
-          ParentFont = False
-        end
-        object Memo23: TfrxMemoView
-          AllowVectorExport = True
-          Left = 482.220780000000000000
-          Top = 7.559060000000000000
-          Width = 222.992270000000000000
-          Height = 18.897650000000000000
-          DisplayFormat.FormatStr = '%2.2m'
-          DisplayFormat.Kind = fkNumeric
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Height = -13
-          Font.Name = 'Segoe uI'
-          Font.Style = [fsBold]
-          Frame.Typ = []
-          Memo.UTF8W = (
-            '[SUM(<frxDBDataset2."VALOR_TOTAL_FRETE">)]')
-          ParentFont = False
-        end
       end
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
@@ -4032,8 +3999,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     CloseDataSource = False
     DataSet = qryRelatorioVendaPosto
     BCDToCurrency = False
-    Left = 142
-    Top = 407
+    Left = 198
+    Top = 399
   end
   object dsPosto: TDataSource
     DataSet = qryPosto
