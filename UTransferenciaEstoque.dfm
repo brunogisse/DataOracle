@@ -31,8 +31,6 @@ object frmTransferencia: TfrmTransferencia
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = -6
     object Image1: TImage
       Left = 10
       Top = 80
@@ -598,7 +596,6 @@ object frmTransferencia: TfrmTransferencia
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitHeight = 217
   end
   object qryCorretor: TFDQuery
     Connection = frmMenu.FDconexao

@@ -12,7 +12,6 @@ uses
 
 type
   TfrmTransferencia = class(TForm)
-    gridPosto: TDBGrid;
     PainelTopo: TPanel;
     Image1: TImage;
     Label2: TLabel;
@@ -136,6 +135,19 @@ type
     Label11: TLabel;
     labelRepresentante: TLabel;
     editRepresentante: TEdit;
+    qryMovimento: TFDQuery;
+    qryMovimentoMOVIMENTOID: TIntegerField;
+    qryMovimentoPRODUTOID: TIntegerField;
+    qryMovimentoESTOQUEID: TIntegerField;
+    qryMovimentoUSINAID: TIntegerField;
+    qryMovimentoDATA: TDateField;
+    qryMovimentoTIPO: TStringField;
+    qryMovimentoVOLUME: TFMTBCDField;
+    qryMovimentoVALOR: TFMTBCDField;
+    qryMovimentoMOTIVO: TStringField;
+    qryMovimentoESTOQUE_ANTERIOR: TFMTBCDField;
+    qryMovimentoREPRESENTANTEID: TIntegerField;
+    dsMovimento: TDataSource;
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure editRepresentanteKeyPress(Sender: TObject; var Key: Char);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -158,6 +170,7 @@ type
 
     function verificarCamposVazios: Boolean;
     procedure limparCampos;
+    procedure registrarMovimento(tipo : String);
 
   public
     { Public declarations }
@@ -190,6 +203,46 @@ begin
               Break;
             end;
         end;
+end;
+
+
+procedure TfrmTransferencia.registrarMovimento(tipo: string);
+begin
+
+if qryMovimento.Active = false then qryMovimento.Open();
+
+     if tipo = 'saindo' then
+         begin
+           qryMovimento.Insert;
+           qryMovimento['REPRESENTANTEID']    := qryEstoqueUsina['REPRESENTANTEID'];
+           qryMovimento['PRODUTOID']          := qryEstoqueUsina['PRODUTOID'];
+           qryMovimento['USINAID']            := qryEstoqueUsina['USINAID'];
+           qryMovimento['ESTOQUEID']          := qryEstoqueUsina['ESTOQUEID'];
+           qryMovimento['DATA']               := StrToDate(dateTransferencia.EditText);
+           qryMovimento['VALOR']              := 0;
+           qryMovimento['VOLUME']             := StrToFloat(editVolumeTransferido.Text);
+           qryMovimento['ESTOQUE_ANTERIOR']   := qryEstoqueUsina['ESTOQUE'];
+           qryMovimento['TIPO']               := 'S';
+           qryMovimento['MOTIVO']             := 'Transferência efetuada peo motorista: '+ qryMotorista['NOME'];
+         end;
+
+     if tipo = 'entrando' then
+         begin
+           qryMovimento.Insert;
+           qryMovimento['REPRESENTANTEID']    := qryEstoqueUsina['REPRESENTANTEID'];
+           qryMovimento['PRODUTOID']          := qryEstoqueUsina['PRODUTOID'];
+           qryMovimento['USINAID']            := qryEstoqueUsina['USINAID'];
+           qryMovimento['ESTOQUEID']          := qryEstoqueUsina['ESTOQUEID'];
+           qryMovimento['DATA']               := StrToDate(dateTransferencia.EditText);
+           qryMovimento['VALOR']              := 0;
+           qryMovimento['VOLUME']             := StrToFloat(editVolumeTransferido.Text);
+           qryMovimento['ESTOQUE_ANTERIOR']   := qryEstoqueUsina['ESTOQUE'];
+           qryMovimento['TIPO']               := 'E';
+           qryMovimento['MOTIVO']             := 'Transferência efetuada peo motorista: '+ qryMotorista['NOME'];
+         end;
+
+       qryMovimento.Post;
+
 end;
 
 procedure TfrmTransferencia.limparCampos;
@@ -225,19 +278,21 @@ begin
       qryEstoqueUsina.Locate('estoqueid', editEstoqueID.Text, []);
       qryEstoqueUsina.Edit;
       qryEstoqueUsina['ESTOQUE'] := qryEstoqueUsina['ESTOQUE'] - StrToFloat(editVolumeTransferido.Text);
+      registrarMovimento('saindo');
       qryEstoqueUsina.Post;
 
     //Registrando a entrada no estoque selecionado
       qryEstoqueUsina.Locate('estoqueid', editParaEstoqueID.Text, []);
       qryEstoqueUsina.Edit;
       qryEstoqueUsina['ESTOQUE'] := qryEstoqueUsina['ESTOQUE'] + StrToFloat(editVolumeTransferido.Text);
+      registrarMovimento('entrando');
       qryEstoqueUsina.Post;
 
       qryVendaPosto.Insert;
     //Registrando a venda fictícia para aparecer no relatório de frete.
       qryEstoqueUsina.Locate('estoqueid', editParaEstoqueID.Text,[]);
       qryVendaPosto['REPRESENTANTEID']     := qryRepresentante['REPRESENTANTEID'];
-      qryPosto.Locate('NOME_FANTASIA', 'TRANSFERENCIA BASE JC', []);
+      qryPosto.Locate('POSTOID', 1812, []);
       qryVendaPosto['POSTOID']             := qryPosto['POSTOID'];
       qryVendaPosto['PRODUTOID']           := qryEstoqueUsina['PRODUTOID'];
       qryVendaPosto['MOTORISTAID']         := qryMotorista['MOTORISTAID'];

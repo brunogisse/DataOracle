@@ -292,11 +292,11 @@ begin
     //Registrando a venda fictícia para aparecer no relatório de frete.
       qryEstoqueUsina.Locate('estoqueid', editParaEstoqueID.Text,[]);
       qryVendaPosto['REPRESENTANTEID']     := qryRepresentante['REPRESENTANTEID'];
-      qryPosto.Locate('NOME_FANTASIA', 'TRANSFERENCIA BASE JC', []);
+      qryPosto.Locate('POSTOID', 1812, []);
       qryVendaPosto['POSTOID']             := qryPosto['POSTOID'];
       qryVendaPosto['PRODUTOID']           := qryEstoqueUsina['PRODUTOID'];
       qryVendaPosto['MOTORISTAID']         := qryMotorista['MOTORISTAID'];
-      qryCorretor.Locate('NOME', 'TRANSFERENCIA BASE JC', []);
+      qryCorretor.Locate('CORRETORID', 26, []);
       qryVendaPosto['CORRETORID']          := qryCorretor['CORRETORID'];
       qryVendaPosto['USINAID']             := qryEstoqueUsina['USINAID'];
       qryVendaPosto['ESTOQUE_ID_VENDAS']       := qryEstoqueUsina['ESTOQUEID'];
