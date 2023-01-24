@@ -15,6 +15,7 @@ object frmMenu: TfrmMenu
   OldCreateOrder = False
   Position = poDesktopCenter
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -267,7 +268,7 @@ object frmMenu: TfrmMenu
       object labelNomeSistema: TLabel
         Left = 369
         Top = 0
-        Width = 160
+        Width = 135
         Height = 69
         Align = alLeft
         Alignment = taCenter
@@ -281,6 +282,7 @@ object frmMenu: TfrmMenu
         ParentColor = False
         ParentFont = False
         Layout = tlCenter
+        ExplicitHeight = 25
       end
       object btnMenu: TSpeedButton
         AlignWithMargins = True
@@ -1990,8 +1992,8 @@ object frmMenu: TfrmMenu
   object FDconexao: TFDConnection
     Params.Strings = (
       
-        'Database=C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Win32\Debu' +
-        'g\Dados\PETROTORQUEDADOS.FDB'
+        'Database=C:\PROGRAMAS\PETROTORQUE NOVA VERSAO\Em Desevnvolviment' +
+        'o\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Server=localhost'
