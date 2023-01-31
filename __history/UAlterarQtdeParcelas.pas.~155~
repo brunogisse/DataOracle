@@ -94,8 +94,8 @@ uses UPrincipalPetrotorque, UEditarParcelas;
 function TfrmAlterarQtdeParcelas.numerosApenas(key: Char) : Char;
 begin
    if ((key in ['0'..'9',','] = false) and (word(key) <> vk_back)) then
-   key := #0;
-   result := key;
+     key := #0;
+     result := key;
 end;
 
 procedure TfrmAlterarQtdeParcelas.habilitarDesabilitar(status : Integer);
@@ -135,7 +135,7 @@ function TfrmAlterarQtdeParcelas.verificarCamposVazios : Boolean;
     for I := 0 to PainelTopo.ControlCount -1 do
        begin
          if (PainelTopo.Controls[i] is TEdit) then
-         if (PainelTopo.Controls[i] as TEdit).Text = '' then
+         if ((PainelTopo.Controls[i] as TEdit).Text = '') or (maskEditDataPagamento.EditText = '__/__/____') then
            begin
                 MessageDlg('Por favor, preencha o(s) campo(s) vazio(s)',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
                (PainelTopo.Controls[i] as TEdit).SetFocus;
@@ -228,17 +228,18 @@ end;
 
 procedure TfrmAlterarQtdeParcelas.editValorParcelaKeyPress(Sender: TObject;
   var Key: Char);
+  var chaveRetornada: Char;
 begin
-  if ((key in ['0'..'9',','] = false) and (word(key) <> vk_back)) then
-   key := #0;
+  chaveRetornada := numerosApenas(key);
+  key := chaveRetornada;
 end;
 
 procedure TfrmAlterarQtdeParcelas.editVolumeParceladoKeyPress(Sender: TObject;
   var Key: Char);
-  var teste: Char;
+  var chaveRetornada: Char;
 begin
-  teste := numerosApenas(key);
-  key := teste;
+  chaveRetornada := numerosApenas(key);
+  key := chaveRetornada;
 end;
 
 procedure TfrmAlterarQtdeParcelas.alterarQtdeParcelas;
@@ -275,8 +276,14 @@ end;
 
 procedure TfrmAlterarQtdeParcelas.btnExcluirClick(Sender: TObject);
 begin
-   if MessageBox(Application.Handle,'Deseja excluir esse registro?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
-      deletar;
+  if qryAlterarQtdeParcelas.RecordCount = 1 then
+     begin
+       if MessageBox(Application.Handle,'Deseja excluir esse registro?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
+          deletar;
+     end
+      else
+         MessageDlg('Não é possível zerar as parcelas neste módulo. ' + #13
+                  + 'Para excluir todas as parcelas, volte à tela anterior e clique em "Excluir Parcelas"',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
 end;
 
 procedure TfrmAlterarQtdeParcelas.btnNovoClick(Sender: TObject);
@@ -288,12 +295,12 @@ end;
 
 procedure TfrmAlterarQtdeParcelas.btnSalvarClick(Sender: TObject);
 begin
-      
+
   if verificarCamposVazios = true then
       begin
         adicionarNovaParcela;
         habilitarDesabilitar(0);
-      end;
+      end
 end;
 
 procedure TfrmAlterarQtdeParcelas.FormClose(Sender: TObject;

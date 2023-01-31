@@ -111,9 +111,10 @@ type
   private
     { Private declarations }
 
-    procedure consultarNotaFiscal;
+
   public
     { Public declarations }
+    procedure consultarNotaFiscal;
   end;
 
 var
@@ -209,12 +210,15 @@ procedure TfrmEditarParcelas.btnExcluirClick(Sender: TObject);
 
 procedure TfrmEditarParcelas.btnModificarParcelasClick(Sender: TObject);
 begin
-    try
-      Application.CreateForm( TfrmAlterarQtdeParcelas, frmAlterarQtdeParcelas );
-      frmAlterarQtdeParcelas.ShowModal;
-    finally
-      FreeAndNil( frmAlterarQtdeParcelas );
-    end;
+    if qryParcelas.RecordCount > 0 then
+        begin
+          try
+            Application.CreateForm( TfrmAlterarQtdeParcelas, frmAlterarQtdeParcelas );
+            frmAlterarQtdeParcelas.ShowModal;
+          finally
+            FreeAndNil( frmAlterarQtdeParcelas );
+          end;
+        end;
 end;
 
 procedure TfrmEditarParcelas.consultarNotaFiscal;
@@ -270,9 +274,6 @@ begin
     qryVendaPosto.Open;
     qryFormaPgto.Open;
     editNF.SetFocus;
- //   editValorParcela.Text := FormatarMoeda(editValorParcela.Text);
-//    editValorParcela.SelStart := Length(editValorParcela.Text);
-
 end;
 
 procedure TfrmEditarParcelas.gridEditarParcelaDblClick(Sender: TObject);

@@ -174,38 +174,38 @@ procedure TfrmEditarParcelas.btnExcluirClick(Sender: TObject);
           if MessageBox(Application.Handle,'Atenção!' + #13 + #13
                                          + 'Você está prestes a excluir todas as parcelas abaixo.' +#13 + #13
                                          + 'Confirma a operação?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
-                if qryParcelas.RecordCount = QtdeParcelas then
-                        begin
-                          try
-                            qryVendaPosto.Locate('vendaid' , qryParcelas['VENDAID'], []);
-                            qryParcelas.First;
-                              for I := 1 to QtdeParcelas do
-                                 begin
-                                   qryParcelas.Delete;
-                                   qryParcelas.Next;
-                                 end;
+      if qryParcelas.RecordCount = QtdeParcelas then
+              begin
+                try
+                  qryVendaPosto.Locate('vendaid' , qryParcelas['VENDAID'], []);
+                  qryParcelas.First;
+                    for I := 1 to QtdeParcelas do
+                       begin
+                         qryParcelas.Delete;
+                         qryParcelas.Next;
+                       end;
 
-                                   qryVendaPosto.Edit;
-                                   qryVendaPosto['PARCELAS_GERADAS']  := 'N';
-                                   qryVendaPosto['STATUS']            := 'EM ABERTO';
-                                   qryVendaPosto['ATUALIZAR_PARCELA'] := 1;
-                                if frmVendaPostos <> Nil then
-                                   frmVendaPostos.ParcelasGeradas     := 'Não';
-                                   qryVendaPosto.Post;
-                                   tcParcelas.CommitRetaining;
+                         qryVendaPosto.Edit;
+                         qryVendaPosto['PARCELAS_GERADAS']  := 'N';
+                         qryVendaPosto['STATUS']            := 'EM ABERTO';
+                         qryVendaPosto['ATUALIZAR_PARCELA'] := 1;
+                      if frmVendaPostos <> Nil then
+                         frmVendaPostos.ParcelasGeradas     := 'Não';
+                         qryVendaPosto.Post;
+                         tcParcelas.CommitRetaining;
 
-                                   qryParcelas.Close;
-                                   qryParcelas.Open();
+                         qryParcelas.Close;
+                         qryParcelas.Open();
 
-                          except
-                            on E : exception do
-                             begin
-                               tcParcelas.RollbackRetaining;
-                               AuxErro := Copy(E.Message, 0, 500);
-                               MessageDlg('Erro ao Excluir parcelas. Motivo: ' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-                             end;
-                          end;
-                        end;
+                except
+                  on E : exception do
+                   begin
+                     tcParcelas.RollbackRetaining;
+                     AuxErro := Copy(E.Message, 0, 500);
+                     MessageDlg('Erro ao Excluir parcelas. Motivo: ' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                   end;
+                end;
+              end;
     end;
 
 procedure TfrmEditarParcelas.btnModificarParcelasClick(Sender: TObject);

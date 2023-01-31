@@ -31,7 +31,6 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1069
     object Image1: TImage
       Left = 18
       Top = 91

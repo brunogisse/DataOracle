@@ -276,8 +276,14 @@ end;
 
 procedure TfrmAlterarQtdeParcelas.btnExcluirClick(Sender: TObject);
 begin
-   if MessageBox(Application.Handle,'Deseja excluir esse registro?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
-      deletar;
+  if qryAlterarQtdeParcelas.RecordCount <> 1 then
+     begin
+       if MessageBox(Application.Handle,'Deseja excluir esse registro?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
+          deletar;
+     end
+      else
+         MessageDlg('Não é possível zerar as parcelas neste módulo. ' + #13
+                  + 'Para excluir todas as parcelas, volte à tela anterior e clique em "Excluir Parcelas"',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
 end;
 
 procedure TfrmAlterarQtdeParcelas.btnNovoClick(Sender: TObject);
