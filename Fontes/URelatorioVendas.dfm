@@ -846,7 +846,6 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     end
   end
   object qryRelatorioVendaPosto: TFDQuery
-    Active = True
     Connection = frmMenu.FDconexao
     Transaction = tcVendaPosto
     UpdateOptions.AssignedValues = [uvGeneratorName, uvCheckReadOnly, uvAutoCommitUpdates]
@@ -907,7 +906,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ' (parc.status = '#39'PAGO'#39') and'
       ' (PARC.DATA_PGTO_PARCELA between :INICIO and :FIM)'
       ''
-      'order by v.data_emissao_nf, v.postoid  desc'
+      'order by v.data_emissao_nf, nf, v.postoid  desc'
       '')
     Left = 76
     Top = 321

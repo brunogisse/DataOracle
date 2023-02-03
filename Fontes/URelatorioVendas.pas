@@ -248,7 +248,7 @@ begin
                 + ' (re.representanteid = :representante) and '
                 + ' (v.nf = :NF) and '
                 + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
                     ParamByName('representante').AsInteger  := qryRepresentante['REPRESENTANTEID'];
                     ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
@@ -291,7 +291,7 @@ begin
                 + ' (parc.status = :STATUS) and '
                 + ' (p.postoid = :POSTO) and '
                 + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';
@@ -331,7 +331,7 @@ begin
                 + ' (v.estoqueid = eu.estoqueid) and '
                 + ' (parc.status = :STATUS) and '
                 + ' ('+abertoFechado+' between :inicio and :fim) '
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';
                  if rbPagas.Checked = True then
@@ -372,7 +372,7 @@ begin
                 + ' (parc.status = :STATUS) and '
                 + ' (re.representanteid = :representante) and '
                 + ' (v.data_emissao_nf between :inicio and :fim) '
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('representante').AsInteger  := qryRepresentante['REPRESENTANTEID'];
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';
@@ -414,7 +414,7 @@ begin
                 + ' (parc.status = :STATUS) and '
                 + ' (v.NF = :NF) and '
                 + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
                  if rbAbertas.Checked = True then
                     ParamByName('STATUS').AsString          := 'ABERTO';
@@ -457,7 +457,7 @@ begin
                 + ' (v.postoid = :POSTO) and '
                 + ' (v.nf = :NF) and '
                 + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
                     ParamByName('POSTO').AsInteger          := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
@@ -501,7 +501,7 @@ begin
                 + ' (v.representanteid = :REPRESENTANTE) and '
                 + ' (v.nf = :NF) and '
                 + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, v.postoid  desc');
+                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
                     ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
                     ParamByName('REPRESENTANTE').AsInteger  := qryPosto['POSTOID'];
                  if rbAbertas.Checked = True then
