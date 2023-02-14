@@ -437,8 +437,8 @@ object frmPagarParcelas: TfrmPagarParcelas
           Text = '  /  /    '
         end
         object cbExcluir: TCheckBox
-          Left = 245
-          Top = 40
+          Left = 239
+          Top = 39
           Width = 98
           Height = 17
           Caption = 'Confirmar pgto.'
