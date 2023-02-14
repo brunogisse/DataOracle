@@ -59,7 +59,6 @@ https://www.linkedin.com/in/bruno-gisse-854a35239
 ![Principal](https://github.com/brunogisse/assets/blob/main/DataOracle/Principal.png)
 ![Cadastro de clientes](https://github.com/brunogisse/assets/blob/main/DataOracle/Cadastro%20de%20clientes.png)
 ![Cadastro de Fornecedores](https://github.com/brunogisse/assets/blob/main/DataOracle/Cadastro%20de%20Fornecedores.png)
-![Modelo Conceitual](https://github.com/brunogisse/assets/blob/main/movieflix/modelo-conceitual.png)
 ![Vendas](https://github.com/brunogisse/assets/blob/main/DataOracle/Venda.png)
 ![Selecionar estoque venda](https://github.com/brunogisse/assets/blob/main/DataOracle/Selecionar%20Estoque.png)
 ![Relatório vendas-motorista](https://github.com/brunogisse/assets/blob/main/DataOracle/Relat%C3%B3rio%20vendas-motorista.png)
