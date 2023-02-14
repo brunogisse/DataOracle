@@ -2,21 +2,6 @@
 A solução apresentada por este sistema, pretende atender as demandas de urgência e confiabilidade no balanço das movimentações do representante Petrotorque.
 O programa foi desenvolvido com a arquitetura da base de dados preparada para relacionar as entidades com o objetivo de promover o controle das informações através do cruzamento de dados, fornecendo de imediato relatórios solicitados de registros que foram previamente armazenados.
 
-
-## Vantagens
-    -•	Agrupamento de informações 
-    -•	Redução do tempo dos processos administrativos
-    -•	Melhoria da comunicação interna
-    -•	Recolher, selecionar e tratar os dados para servirem de suporte à decisão
-    -•	Acrescentar valor à empresa
-    -•	Otimização de tempo
-    -•	Redução de falhas
-    -•	Maior controle
-    -•	Maior transparência de dados
-    -•	Coleta automatizada de dados
-    -•	Aumenta a segurança
-
-
 ## Funcionalidades
     - 1.	Cadastros
         - 1.1.	Clientes
@@ -39,6 +24,20 @@ O programa foi desenvolvido com a arquitetura da base de dados preparada para re
         - 5.1.	Frete
         - 5.2.	Corretores
         - 5.3.	Fechamento de Vendas
+        
+        
+## Vantagens
+    -•	Agrupamento de informações 
+    -•	Redução do tempo dos processos administrativos
+    -•	Melhoria da comunicação interna
+    -•	Recolher, selecionar e tratar os dados para servirem de suporte à decisão
+    -•	Acrescentar valor à empresa
+    -•	Otimização de tempo
+    -•	Redução de falhas
+    -•	Maior controle
+    -•	Maior transparência de dados
+    -•	Coleta automatizada de dados
+    -•	Aumenta a segurança
 
 ## Tecnologias utilizadas
 - Delphi 10.3 [Rio]
