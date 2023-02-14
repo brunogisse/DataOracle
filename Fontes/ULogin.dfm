@@ -95,9 +95,9 @@ object frmLogin: TfrmLogin
       object labelVersion: TLabel
         Left = 157
         Top = 348
-        Width = 69
+        Width = 59
         Height = 17
-        Caption = 'Vers'#227'o 1.0.0'
+        Caption = 'Vers'#227'o 1.3'
         Font.Charset = ANSI_CHARSET
         Font.Color = 10790052
         Font.Height = -13

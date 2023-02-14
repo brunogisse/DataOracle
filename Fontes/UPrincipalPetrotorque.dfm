@@ -272,7 +272,7 @@ object frmMenu: TfrmMenu
         Height = 69
         Align = alLeft
         Alignment = taCenter
-        Caption = 'DataOracle v1.2'
+        Caption = 'DataOracle v1.3'
         Color = clBlack
         Font.Charset = ANSI_CHARSET
         Font.Color = clGray

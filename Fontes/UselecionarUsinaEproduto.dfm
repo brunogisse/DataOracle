@@ -1,7 +1,7 @@
 object frmSelecionarEstoqueProduto: TfrmSelecionarEstoqueProduto
   Left = 0
   Top = 0
-  Caption = 'frmSelecionarEstoqueProduto'
+  Caption = 'Selecionar estoque'
   ClientHeight = 436
   ClientWidth = 1026
   Color = clBtnFace
