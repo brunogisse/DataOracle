@@ -3,24 +3,24 @@ A solução apresentada por este sistema, pretende atender as demandas de urgên
 O programa foi desenvolvido com a arquitetura da base de dados preparada para relacionar as entidades com o objetivo de promover o controle das informações através do cruzamento de dados, fornecendo de imediato relatórios solicitados de registros que foram previamente armazenados.
 
 ## Funcionalidades
-    - 1.	Cadastros
+    - 1.Cadastros
         - 1.1.	Clientes
         - 1.2.	Corretores
         - 1.3.	Fornecedores
         - 1.4.	Motoristas
         - 1.5.	Representantes
         - 1.6.	Usuários
-    - 2.	Movimentação
+    - 2.Movimentação
         - 2.1.	Vendas
         - 2.2.	Compras
         - 2.3.	Transferência de estoque
-    - 3.	Pesquisa
+    - 3.Pesquisa
         - 3.1.	Movimentação de estoque
-    - 4.	Financeiro
+    - 4.Financeiro
         - 4.1.	Editar parcelas
         - 4.2.	Pagar parcelas	
         - 4.3.	Reverter pagamentos
-    - 5.	Relatórios
+    - 5.Relatórios
         - 5.1.	Frete
         - 5.2.	Corretores
         - 5.3.	Fechamento de Vendas
