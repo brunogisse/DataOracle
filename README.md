@@ -27,10 +27,10 @@ O programa foi desenvolvido com a arquitetura da base de dados preparada para re
         
         
 ## Vantagens
-    -•	Agrupamento de informações 
-    -•	Redução do tempo dos processos administrativos
-    -•	Melhoria da comunicação interna
-    -•	Recolher, selecionar e tratar os dados para servirem de suporte à decisão
+    •Agrupamento de informações 
+    •Redução do tempo dos processos administrativos
+    •Melhoria da comunicação interna
+    •Recolher, selecionar e tratar os dados para servirem de suporte à decisão
     -•	Acrescentar valor à empresa
     -•	Otimização de tempo
     -•	Redução de falhas
