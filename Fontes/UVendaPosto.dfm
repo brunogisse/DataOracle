@@ -1156,7 +1156,6 @@ object frmVendaPostos: TfrmVendaPostos
           item
             Expanded = False
             FieldName = 'VALOR_COMBUSTIVEL'
-            Width = 64
             Visible = True
           end
           item

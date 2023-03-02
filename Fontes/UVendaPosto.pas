@@ -1064,11 +1064,12 @@ function TfrmVendaPostos.VerificarCamposVazios(campos: string): string;
         (editMotorista.Text = '') or
         (editCorretor.Text = '') or
         (editTaxaFrete.Text = '') or
-        (editTaxaCorretagem.Text = '')
+        (editTaxaCorretagem.Text = '') or
+        (dateEmissaoNF.Date > date)
      then
       begin
         campos := 'empty';
-        ShowMessage('Verifique os campos vazios');
+        MessageDlg('Verifique se há campos vazios ou se você está '+ #13 +' informando uma data é futura!', mtInformation, [mbOK], 0);
       end
      else
        begin

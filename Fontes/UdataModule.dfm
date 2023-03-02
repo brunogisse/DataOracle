@@ -1,7 +1,7 @@
 object dm: Tdm
   OldCreateOrder = False
-  Height = 571
-  Width = 909
+  Height = 360
+  Width = 499
   object dsLogin: TDataSource
     DataSet = qryLogin
     Left = 104

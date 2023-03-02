@@ -390,8 +390,9 @@ begin
 end;
 
 procedure TfrmMenu.CaminhoBanco;
-  var ArquivoINI : TIniFile;
-  server, user, password, database, AuxErro : string;
+  var
+      ArquivoINI : TIniFile;
+      server, user, password, database, AuxErro : string;
    begin
       if FDconexao.Connected = True then
          FDconexao.Connected := False;
