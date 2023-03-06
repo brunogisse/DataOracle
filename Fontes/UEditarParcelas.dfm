@@ -133,7 +133,7 @@ object frmEditarParcelas: TfrmEditarParcelas
       Left = 10
       Top = 11
       Width = 975
-      Height = 190
+      Height = 195
       Font.Charset = ANSI_CHARSET
       Font.Color = 8553090
       Font.Height = -13
@@ -143,64 +143,76 @@ object frmEditarParcelas: TfrmEditarParcelas
       TabOrder = 0
       object labelDocumentoEditado: TLabel
         Left = 127
-        Top = 14
+        Top = 48
         Width = 81
         Height = 17
         Caption = 'DOCUMENTO'
       end
       object labelValorParcela: TLabel
         Left = 127
-        Top = 54
+        Top = 88
         Width = 98
         Height = 17
         Caption = 'VALOR PARCELA'
       end
       object labelVolume: TLabel
         Left = 253
-        Top = 54
+        Top = 88
         Width = 110
         Height = 17
         Caption = 'VOLUME PARCELA'
       end
       object labelDataPagamento: TLabel
         Left = 16
-        Top = 54
+        Top = 88
         Width = 90
         Height = 17
         Caption = 'DATA PARCELA'
       end
       object labelNF: TLabel
         Left = 16
-        Top = 14
+        Top = 48
         Width = 17
         Height = 17
         Caption = 'NF'
       end
+      object labelRepresentante: TLabel
+        Left = 18
+        Top = 5
+        Width = 88
+        Height = 13
+        Caption = 'REPRESENTANTE'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object editEditarDocumento: TEdit
         Left = 127
-        Top = 29
+        Top = 63
         Width = 447
         Height = 25
         TabOrder = 1
       end
       object editValorParcela: TEdit
         Left = 127
-        Top = 72
+        Top = 106
         Width = 121
         Height = 25
         TabOrder = 3
-        OnChange = editValorParcelaChange
       end
       object editVolumeParcelado: TEdit
         Left = 254
-        Top = 72
+        Top = 106
         Width = 121
         Height = 25
         TabOrder = 4
       end
       object PainelConfirmar: TPanel
         Left = 375
-        Top = 64
+        Top = 98
         Width = 103
         Height = 40
         BevelOuter = bvNone
@@ -246,7 +258,7 @@ object frmEditarParcelas: TfrmEditarParcelas
       end
       object editNF: TEdit
         Left = 16
-        Top = 29
+        Top = 63
         Width = 105
         Height = 25
         TabOrder = 0
@@ -255,7 +267,7 @@ object frmEditarParcelas: TfrmEditarParcelas
       end
       object painelClasseCancelar: TPanel
         Left = 476
-        Top = 64
+        Top = 98
         Width = 97
         Height = 41
         BevelOuter = bvNone
@@ -298,7 +310,7 @@ object frmEditarParcelas: TfrmEditarParcelas
       end
       object maskEditDataPagamento: TMaskEdit
         Left = 16
-        Top = 72
+        Top = 106
         Width = 105
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -364,7 +376,7 @@ object frmEditarParcelas: TfrmEditarParcelas
       end
       object painelFundoConfirma: TPanel
         Left = 11
-        Top = 132
+        Top = 136
         Width = 215
         Height = 53
         BevelOuter = bvNone
@@ -407,6 +419,21 @@ object frmEditarParcelas: TfrmEditarParcelas
             ExplicitHeight = 35
           end
         end
+      end
+      object editRepresentante: TEdit
+        Left = 16
+        Top = 20
+        Width = 557
+        Height = 25
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5195076
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 9
+        OnKeyDown = editRepresentanteKeyDown
       end
     end
   end
@@ -529,18 +556,22 @@ object frmEditarParcelas: TfrmEditarParcelas
       ''
       '   fp.formaid, fp.descricao,'
       ''
-      '   v.vendaid as vendaFK, v.nf as nfVenda'
+      '   v.vendaid as vendaFK, v.nf as nfVenda,'
+      '   '
+      '   r.representanteid'
       ''
       
         ' from parcela_venda_para_postos PARC, forma_pgto FP, venda_para_' +
-        'postos V'
+        'postos V, representante r'
       ''
       ' where'
       ''
+      ' (v.representanteid = r.representanteid) and'
       ' (PARC.forma_pgto_id = FP.formaid) and'
       ' (parc.vendaid = v.vendaid) and'
       ' (parc.status = '#39'ABERTO'#39') and'
-      ' (parc.nf = :NF)')
+      ' (parc.nf = :NF) and'
+      ' (r.representanteid = :representante) ')
     Left = 35
     Top = 491
     ParamData = <
@@ -549,6 +580,11 @@ object frmEditarParcelas: TfrmEditarParcelas
         DataType = ftInteger
         ParamType = ptInput
         Value = Null
+      end
+      item
+        Name = 'REPRESENTANTE'
+        DataType = ftInteger
+        ParamType = ptInput
       end>
     object qryParcelasPARCELAID: TFDAutoIncField
       FieldName = 'PARCELAID'
@@ -845,5 +881,41 @@ object frmEditarParcelas: TfrmEditarParcelas
     DataSet = qryVendaPosto
     Left = 296
     Top = 440
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_REPRESENTANTE_ID'
+    UpdateOptions.KeyFields = 'REPRESENTANTEID'
+    SQL.Strings = (
+      'select * from representante')
+    Left = 508
+    Top = 454
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 513
+    Top = 510
   end
 end

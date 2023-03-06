@@ -89,7 +89,7 @@ object frmPagarParcelas: TfrmPagarParcelas
     Left = 0
     Top = 76
     Width = 1009
-    Height = 203
+    Height = 229
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -224,50 +224,63 @@ object frmPagarParcelas: TfrmPagarParcelas
       Left = 145
       Top = 11
       Width = 856
-      Height = 182
+      Height = 209
       Color = clWhite
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
       object labelNF: TLabel
-        Left = 218
-        Top = 36
+        Left = 217
+        Top = 69
         Width = 18
         Height = 13
         Caption = 'NF:'
       end
-      object Label1: TLabel
-        Left = 10
-        Top = 36
-        Width = 17
-        Height = 13
-        Caption = 'De:'
-      end
       object Label2: TLabel
-        Left = 114
-        Top = 36
+        Left = 113
+        Top = 69
         Width = 21
         Height = 13
         Caption = 'At'#233':'
       end
       object labelVencimento: TLabel
-        Left = 10
-        Top = 13
+        Left = 9
+        Top = 5
         Width = 186
         Height = 13
         Caption = 'PPESQUISA POR VENCIMENTO E NF'
       end
       object labelCaracteres: TLabel
-        Left = 430
-        Top = 74
+        Left = 429
+        Top = 107
         Width = 229
         Height = 13
         Caption = 'Registre uma OBS ( ao menos 10 caracteres )'
         Visible = False
       end
+      object Label1: TLabel
+        Left = 9
+        Top = 69
+        Width = 17
+        Height = 13
+        Caption = 'De:'
+      end
+      object labelRepresentante: TLabel
+        Left = 11
+        Top = 27
+        Width = 75
+        Height = 13
+        Caption = 'Representante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object editPesquisaNF: TEdit
-        Left = 218
-        Top = 52
+        Left = 217
+        Top = 85
         Width = 114
         Height = 25
         CharCase = ecUpperCase
@@ -281,8 +294,8 @@ object frmPagarParcelas: TfrmPagarParcelas
         OnKeyPress = editPesquisaNFKeyPress
       end
       object Panel1: TPanel
-        Left = 338
-        Top = 44
+        Left = 337
+        Top = 77
         Width = 90
         Height = 41
         BevelOuter = bvNone
@@ -326,8 +339,8 @@ object frmPagarParcelas: TfrmPagarParcelas
         end
       end
       object DateVencimentoDE: TMaskEdit
-        Left = 10
-        Top = 52
+        Left = 9
+        Top = 85
         Width = 97
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -342,8 +355,8 @@ object frmPagarParcelas: TfrmPagarParcelas
         Text = '  /  /    '
       end
       object DateVencimentoATE: TMaskEdit
-        Left = 114
-        Top = 52
+        Left = 113
+        Top = 85
         Width = 98
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -358,8 +371,8 @@ object frmPagarParcelas: TfrmPagarParcelas
         Text = '  /  /    '
       end
       object GroupBox1: TGroupBox
-        Left = 10
-        Top = 91
+        Left = 9
+        Top = 124
         Width = 409
         Height = 76
         Color = clWhite
@@ -453,8 +466,8 @@ object frmPagarParcelas: TfrmPagarParcelas
         end
       end
       object memoMotivo: TEdit
-        Left = 430
-        Top = 53
+        Left = 429
+        Top = 86
         Width = 411
         Height = 21
         MaxLength = 70
@@ -462,13 +475,28 @@ object frmPagarParcelas: TfrmPagarParcelas
         Visible = False
         OnChange = memoMotivoChange
       end
+      object editRepresentante: TEdit
+        Left = 9
+        Top = 42
+        Width = 409
+        Height = 25
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5195076
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 6
+        OnKeyDown = editRepresentanteKeyDown
+      end
     end
   end
   object painelGrid: TPanel
     Left = 0
-    Top = 283
+    Top = 314
     Width = 1001
-    Height = 300
+    Height = 268
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
@@ -477,7 +505,7 @@ object frmPagarParcelas: TfrmPagarParcelas
       Left = 0
       Top = 0
       Width = 1001
-      Height = 300
+      Height = 268
       Align = alClient
       BorderStyle = bsNone
       DataSource = dsPagarParcelas
@@ -570,26 +598,41 @@ object frmPagarParcelas: TfrmPagarParcelas
     UpdateOptions.KeyFields = 'PARCELAID'
     UpdateOptions.AutoIncFields = 'PARCELAID'
     SQL.Strings = (
-      ' SELECT * from parcela_venda_para_postos PARC, forma_pgto FP'
+      'SELECT'
+      
+        '   parc.parcelaid, parc.vendaid, parc.forma_pgto_id, parc.status' +
+        ', parc.qtde_parcelas, parc.valor_total_nf, parc.valor_parcela, p' +
+        'arc.data_parcela, parc.volume_venda_total,'
+      
+        '   parc.volume_parcelado, parc.documento, parc.volume_restante, ' +
+        'parc.nf, parc.emissao_nf, parc.acesso, parc.parcela, parc.data_p' +
+        'gto_parcela,'
+      ''
+      '   fp.formaid, fp.descricao,'
+      ''
+      '   v.vendaid as vendaFK, v.nf as nfVenda,'
+      '   '
+      '   r.representanteid'
+      ''
+      
+        ' from parcela_venda_para_postos PARC, forma_pgto FP, venda_para_' +
+        'postos V, representante r'
       ''
       ' where'
       ''
+      ' (v.representanteid = r.representanteid) and'
       ' (PARC.forma_pgto_id = FP.formaid) and'
-      ' (data_parcela between :DE and :ATE) and'
-      ' (status = '#39'ABERTO'#39')')
+      ' (parc.vendaid = v.vendaid) and'
+      ' (parc.status = '#39'ABERTO'#39') and'
+      ' (parc.nf = :NF) ')
     Left = 64
     Top = 357
     ParamData = <
       item
-        Name = 'DE'
-        DataType = ftDate
+        Name = 'NF'
+        DataType = ftInteger
         ParamType = ptInput
         Value = Null
-      end
-      item
-        Name = 'ATE'
-        DataType = ftDate
-        ParamType = ptInput
       end>
     object qryPagarParcelasPARCELAID: TFDAutoIncField
       FieldName = 'PARCELAID'
@@ -661,14 +704,6 @@ object frmPagarParcelas: TfrmPagarParcelas
       ProviderFlags = []
       ReadOnly = True
     end
-    object qryPagarParcelasHABILITAR_PARCELA: TStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'HABILITAR_PARCELA'
-      Origin = 'HABILITAR_PARCELA'
-      ProviderFlags = []
-      ReadOnly = True
-      Size = 3
-    end
     object qryPagarParcelasVALOR_TOTAL_NF: TFMTBCDField
       DisplayLabel = 'Total NF'
       FieldName = 'VALOR_TOTAL_NF'
@@ -692,6 +727,13 @@ object frmPagarParcelas: TfrmPagarParcelas
       Origin = 'VOLUME_VENDA_TOTAL'
       Precision = 18
       Size = 2
+    end
+    object qryPagarParcelasREPRESENTANTEID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = []
+      ReadOnly = True
     end
   end
   object tcPagarParcelas: TFDTransaction

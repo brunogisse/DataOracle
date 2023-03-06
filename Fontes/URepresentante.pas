@@ -99,7 +99,8 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UCompraUsina,
-  UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque;
+  UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque,
+  UEditarParcelas, UpagarParcelas, UReverterPagamentos, URelatorioMotorista;
 
 procedure TfrmRepresentante.definirTamanhoDaLinhaDaGrid;
 begin
@@ -243,6 +244,43 @@ begin
            frmTransferencia.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
            Close;
          end;
+
+         if Caminho = 'editarparcelas' then
+
+         begin
+           frmEditarParcelas.qryRepresentante.Refresh;
+           frmEditarParcelas.editRepresentante.Text := qryRepresentante['NOME'];
+           frmEditarParcelas.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
+         if Caminho = 'pagarparcelas' then
+
+         begin
+           frmPagarParcelas.qryRepresentante.Refresh;
+           frmPagarParcelas.editRepresentante.Text := qryRepresentante['NOME'];
+           frmPagarParcelas.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
+         if Caminho = 'reverterpagamentos' then
+
+         begin
+           frmReverterPagamentos.qryRepresentante.Refresh;
+           frmReverterPagamentos.editRepresentante.Text := qryRepresentante['NOME'];
+           frmReverterPagamentos.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
+         if Caminho = 'relatoriofrete' then
+
+         begin
+           frmRelatorioMotorista.qryRepresentante.Refresh;
+           frmRelatorioMotorista.editRepresentante.Text := qryRepresentante['NOME'];
+           frmRelatorioMotorista.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
 
    end;
 

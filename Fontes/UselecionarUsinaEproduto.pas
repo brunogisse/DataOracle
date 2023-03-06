@@ -10,6 +10,8 @@ uses
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
   Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons, Vcl.Imaging.pngimage;
 
+
+
 type
    TdbGridPadrao = class(TDBGrid);
   TfrmSelecionarEstoqueProduto = class(TForm)
@@ -76,12 +78,15 @@ type
 
 
     procedure definirTamanhoDaLinhaDaGrid;
-    procedure CapturarUsinaeEstoque( caminho : string );
+
     procedure AbrirQuerryUsina;
   public
     { Public declarations }
 
-   var caminhoEntrega : string;
+   var
+      caminhoEntrega, transferenciaDePara : string;
+
+   procedure CapturarUsinaeEstoque( caminho : string );
 
   end;
 
@@ -109,7 +114,12 @@ begin
 end;
 
 procedure TfrmSelecionarEstoqueProduto.AbrirQuerryUsina;
+
 begin
+  qryEstoqueUsina.Open;
+  qryRepresentante.Open();
+  qryProduto.Open;
+
    with qryEstoqueUsina do
           begin
             if caminhoEntrega = 'vendaposto' then
@@ -122,7 +132,7 @@ begin
                qryRepresentante.Locate('representanteid', frmMovimentoEstoqueUsina.qryRepresentante['REPRESENTANTEID'], []);
 
             if caminhoEntrega = 'transferencia' then
-               qryRepresentante.Locate('representanteid', frmTransferencia.qryRepresentante['REPRESENTANTEID'], []);
+                  qryRepresentante.Locate('representanteid', frmTransferencia.qryRepresentante['REPRESENTANTEID'], []);
 
                     Close;
                     ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
@@ -174,7 +184,7 @@ begin
         frmMovimentoEstoqueUsina.qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID'], []);
         Close;
       end;
-       if caminho = 'transferenciaDe' then
+       if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaDe') then
       begin
           qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
           frmTransferencia.editDeFornecedor.Text := qryUsina['NOME_FANTASIA'];
@@ -183,7 +193,7 @@ begin
           frmTransferencia.editQtde.Text := qryEstoqueUsina['ESTOQUE'];
           Close;
       end;
-      if caminho = 'transferenciaPara' then
+      if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaPara') then
       begin
           qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
           frmTransferencia.editParaFornecedor.Text := qryUsina['NOME_FANTASIA'];
@@ -192,8 +202,7 @@ begin
           frmTransferencia.editParaQtde.Text := qryEstoqueUsina['ESTOQUE'];
           Close;
       end;
-
-
+    Close;
 end;
 
 procedure TfrmSelecionarEstoqueProduto.editPesquisaUsinaChange(Sender: TObject);
@@ -300,11 +309,7 @@ end;
 
 procedure TfrmSelecionarEstoqueProduto.FormShow(Sender: TObject);
 begin
-
-  qryEstoqueUsina.Open;
-  qryRepresentante.Open();
   AbrirQuerryUsina; //parametriza a querry com o representante que vem de vendas;
-  qryProduto.Open;
   editPesquisaUsina.SetFocus;
 end;
 

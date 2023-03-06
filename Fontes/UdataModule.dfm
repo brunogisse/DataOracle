@@ -65,17 +65,19 @@ object dm: Tdm
         '     pp.qtde_parcelas, pp.valor_parcela, pp.data_parcela, pp.vol' +
         'ume_parcelado, pp.nf, pp.emissao_nf, pp.parcela, pp.status,'
       '     vv.postoid, vv.status as statusvenda,'
-      '     pto.postoid as idposto, pto.nome_fantasia'
+      '     pto.postoid as idposto, pto.nome_fantasia,'
+      '     r.representanteid'
       ''
       
         ' from parcela_venda_para_postos pp, venda_para_postos vv, posto ' +
-        'pto'
+        'pto, representante r'
       'where'
+      '(vv.representanteid = r.representanteid) and'
       '(pp.vendaid = vv.vendaid) and'
       '(pto.postoid = vv.postoid) and'
       '(data_parcela <= :date) and'
-      '(pp.status = '#39'ABERTO'#39')'
-      '')
+      '(pp.status = '#39'ABERTO'#39') and'
+      '(r.representanteid = :representante)')
     Left = 72
     Top = 216
     ParamData = <
@@ -84,6 +86,11 @@ object dm: Tdm
         DataType = ftDate
         ParamType = ptInput
         Value = Null
+      end
+      item
+        Name = 'REPRESENTANTE'
+        DataType = ftInteger
+        ParamType = ptInput
       end>
     object qryVencimentosQTDE_PARCELAS: TIntegerField
       FieldName = 'QTDE_PARCELAS'
@@ -158,5 +165,116 @@ object dm: Tdm
     DataSet = qryVencimentos
     Left = 168
     Top = 216
+  end
+  object qryVencimentosBase: TFDQuery
+    Connection = frmMenu.FDconexao
+    FetchOptions.AssignedValues = [evRecordCountMode]
+    FetchOptions.RecordCountMode = cmTotal
+    SQL.Strings = (
+      'select'
+      
+        '     pp.qtde_parcelas, pp.valor_parcela, pp.data_parcela, pp.vol' +
+        'ume_parcelado, pp.nf, pp.emissao_nf, pp.parcela, pp.status,'
+      '     vv.postoid, vv.status as statusvenda,'
+      '     pto.postoid as idposto, pto.nome_fantasia,'
+      '     r.representanteid'
+      ''
+      
+        ' from parcela_venda_para_postos pp, venda_para_postos vv, posto ' +
+        'pto, representante r'
+      'where'
+      '(vv.representanteid = r.representanteid) and'
+      '(pp.vendaid = vv.vendaid) and'
+      '(pto.postoid = vv.postoid) and'
+      '(data_parcela <= :date) and'
+      '(pp.status = '#39'ABERTO'#39') and'
+      '(r.representanteid = :representante)')
+    Left = 152
+    Top = 280
+    ParamData = <
+      item
+        Name = 'DATE'
+        DataType = ftDate
+        ParamType = ptInput
+        Value = Null
+      end
+      item
+        Name = 'REPRESENTANTE'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+    object IntegerField1: TIntegerField
+      FieldName = 'QTDE_PARCELAS'
+      Origin = 'QTDE_PARCELAS'
+    end
+    object FMTBCDField1: TFMTBCDField
+      FieldName = 'VALOR_PARCELA'
+      Origin = 'VALOR_PARCELA'
+      Precision = 18
+      Size = 2
+    end
+    object DateField1: TDateField
+      FieldName = 'DATA_PARCELA'
+      Origin = 'DATA_PARCELA'
+    end
+    object FMTBCDField2: TFMTBCDField
+      FieldName = 'VOLUME_PARCELADO'
+      Origin = 'VOLUME_PARCELADO'
+      Precision = 18
+      Size = 2
+    end
+    object IntegerField2: TIntegerField
+      FieldName = 'NF'
+      Origin = 'NF'
+    end
+    object DateField2: TDateField
+      FieldName = 'EMISSAO_NF'
+      Origin = 'EMISSAO_NF'
+    end
+    object StringField1: TStringField
+      FieldName = 'PARCELA'
+      Origin = 'PARCELA'
+      Size = 5
+    end
+    object StringField2: TStringField
+      FieldName = 'STATUS'
+      Origin = 'STATUS'
+      Size = 10
+    end
+    object IntegerField3: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'POSTOID'
+      Origin = 'POSTOID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object StringField3: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'STATUSVENDA'
+      Origin = 'STATUS'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 10
+    end
+    object IntegerField4: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'IDPOSTO'
+      Origin = 'POSTOID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
+    object StringField4: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'NOME_FANTASIA'
+      Origin = 'NOME_FANTASIA'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 60
+    end
+  end
+  object dsVencimentosBase: TDataSource
+    DataSet = qryVencimentosBase
+    Left = 248
+    Top = 280
   end
 end

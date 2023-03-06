@@ -86,6 +86,15 @@ type
     qryVendaPostoORDEM_CARREGAMENTO: TIntegerField;
     cbOrdemCarregamento: TCheckBox;
     editOrdemCarregamento: TEdit;
+    qryRepresentante: TFDQuery;
+    qryRepresentanteREPRESENTANTEID: TIntegerField;
+    qryRepresentanteNOME: TStringField;
+    qryRepresentanteCIDADE: TStringField;
+    qryRepresentanteCNPJ: TStringField;
+    dsRepresentante: TDataSource;
+    labelRepresentante: TLabel;
+    editRepresentante: TEdit;
+    Label1: TLabel;
     procedure btnConsultarClick(Sender: TObject);
     procedure editPesquisaMotoristaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -102,6 +111,8 @@ type
     procedure editOrdemCarregamentoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editOrdemCarregamentoKeyPress(Sender: TObject; var Key: Char);
+    procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
     procedure mudarTipoDeFiltro;
@@ -116,7 +127,7 @@ implementation
 
 {$R *.dfm}
 
-uses UMotorista, UPrincipalPetrotorque;
+uses UMotorista, UPrincipalPetrotorque, URepresentante;
 
 procedure TfrmRelatorioMotorista.mudarTipoDeFiltro;
 begin
@@ -171,7 +182,7 @@ begin
                   +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
                   +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_FRETE, V.ORDEM_CARREGAMENTO,'
 
-                  +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
+                  +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, re.representanteid, u.NOME_FANTASIA as usina, '
                   +' eu.estoqueid '
 
                   +' from '
@@ -186,6 +197,7 @@ begin
                   +' (v.motoristaid = m.motoristaid) and '
                   +' (v.corretorid = c.corretorid) and '
                   +' (v.usinaid = u.usinaid) and '
+                  +' (re.representanteid = :representante) and '
                   +' (v.estoqueid = eu.estoqueid) and '
                   +   FiltroPrincipal + ''
                   +' (v.data_emissao_nf between :DE and :ATE) '
@@ -198,6 +210,7 @@ begin
                  ParamByName('MOTORISTA').AsInteger := qryMotorista['MOTORISTAID'];
                ParamByName('DE').AsDate             := StrToDate(DateVencimentoDE.Text);
                ParamByName('ATE').AsDate             := StrToDate(DateVencimentoATE.Text);
+               ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
                Open();
              end;
         end;
@@ -315,6 +328,22 @@ begin
       end;
 end;
 
+procedure TfrmRelatorioMotorista.editRepresentanteKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+     begin
+          try
+            Application.CreateForm(TfrmRepresentante, frmRepresentante);
+            frmRepresentante.Caminho := 'relatoriofrete';
+            frmRepresentante.ShowModal;
+            qryVendaPosto.Close;
+          finally
+            FreeAndNil(frmRepresentante);
+          end;
+     end;
+end;
+
 procedure TfrmRelatorioMotorista.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -327,6 +356,9 @@ begin
 
    qryMotorista.Open();
    qryVendaPosto.Open();
+   qryRepresentante.Open();
+   qryRepresentante.Locate('representanteid', 6, [] );
+   editRepresentante.Text := qryRepresentante['NOME'];
 
    DateVencimentoDE.Text   := DateToStr(Date);
    DateVencimentoATE.Text  := DateToStr(Date);

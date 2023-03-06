@@ -272,7 +272,11 @@ begin
 end;
 
 procedure TfrmTransferencia.salvarTransferencia;
-var total : Currency;
+   var
+      total : Currency;
+   const
+      POSTO_TRANSFERENCIA = 1812;
+      CORRETOR_TRANSFERENCIA = 26;
 begin
     //Registrando a saída do estoque selecionado
       qryEstoqueUsina.Locate('estoqueid', editEstoqueID.Text, []);
@@ -292,11 +296,11 @@ begin
     //Registrando a venda fictícia para aparecer no relatório de frete.
       qryEstoqueUsina.Locate('estoqueid', editParaEstoqueID.Text,[]);
       qryVendaPosto['REPRESENTANTEID']     := qryRepresentante['REPRESENTANTEID'];
-      qryPosto.Locate('POSTOID', 1812, []);
+      qryPosto.Locate('POSTOID', POSTO_TRANSFERENCIA, []);
       qryVendaPosto['POSTOID']             := qryPosto['POSTOID'];
       qryVendaPosto['PRODUTOID']           := qryEstoqueUsina['PRODUTOID'];
       qryVendaPosto['MOTORISTAID']         := qryMotorista['MOTORISTAID'];
-      qryCorretor.Locate('CORRETORID', 26, []);
+      qryCorretor.Locate('CORRETORID', CORRETOR_TRANSFERENCIA, []);
       qryVendaPosto['CORRETORID']          := qryCorretor['CORRETORID'];
       qryVendaPosto['USINAID']             := qryEstoqueUsina['USINAID'];
       qryVendaPosto['ESTOQUE_ID_VENDAS']       := qryEstoqueUsina['ESTOQUEID'];
@@ -337,14 +341,15 @@ begin
          end;
 end;
 
-procedure TfrmTransferencia.selecionarEstoque(destino : String);
+procedure TfrmTransferencia.selecionarEstoque;
 begin
     try
       Application.CreateForm(TfrmSelecionarEstoqueProduto, frmSelecionarEstoqueProduto);
+      frmSelecionarEstoqueProduto.caminhoEntrega := 'transferencia';
       if destino = 'de' then
-      frmSelecionarEstoqueProduto.caminhoEntrega := 'transferenciaDe';
+      frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaDe';
       if destino = 'para' then
-      frmSelecionarEstoqueProduto.caminhoEntrega := 'transferenciaPara';
+      frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaPara';
       frmSelecionarEstoqueProduto.ShowModal;
      finally
       FreeAndNil(frmSelecionarEstoqueProduto);

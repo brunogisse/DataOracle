@@ -1,7 +1,7 @@
 object frmRelatorioMotorista: TfrmRelatorioMotorista
   Left = 0
   Top = 0
-  ClientHeight = 524
+  ClientHeight = 577
   ClientWidth = 1144
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -32,7 +32,6 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1091
     object labelTituloEditsNF: TLabel
       Left = 15
       Top = 19
@@ -51,7 +50,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     Left = 0
     Top = 76
     Width = 1144
-    Height = 186
+    Height = 223
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -63,7 +62,6 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1097
     object Image1: TImage
       Left = 18
       Top = 32
@@ -195,35 +193,61 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       Left = 136
       Top = 5
       Width = 937
-      Height = 172
+      Height = 213
       Color = clWhite
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
       object labelPesquisa: TLabel
         Left = 16
-        Top = 8
-        Width = 113
+        Top = 1
+        Width = 88
         Height = 13
-        Caption = 'PESQUISAR  ( ENTER )'
+        Caption = 'Pesquisar (Enter)'
       end
       object labelDe: TLabel
         Left = 219
-        Top = 60
+        Top = 118
         Width = 17
         Height = 13
         Caption = 'De:'
       end
       object labelATE: TLabel
         Left = 326
-        Top = 60
+        Top = 118
         Width = 21
         Height = 13
         Caption = 'At'#233':'
       end
+      object labelRepresentante: TLabel
+        Left = 18
+        Top = 21
+        Width = 75
+        Height = 13
+        Caption = 'Representante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 18
+        Top = 67
+        Width = 51
+        Height = 13
+        Caption = 'Motorista'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object editPesquisaMotorista: TEdit
         Left = 16
-        Top = 27
+        Top = 85
         Width = 708
         Height = 25
         CharCase = ecUpperCase
@@ -239,7 +263,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object DateVencimentoDE: TMaskEdit
         Left = 219
-        Top = 79
+        Top = 137
         Width = 95
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -255,7 +279,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object DateVencimentoATE: TMaskEdit
         Left = 326
-        Top = 79
+        Top = 137
         Width = 98
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -271,7 +295,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object painelFundobtn: TPanel
         Left = 10
-        Top = 119
+        Top = 168
         Width = 90
         Height = 41
         BevelOuter = bvNone
@@ -316,7 +340,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object painelBotoes: TPanel
         Left = 95
-        Top = 119
+        Top = 168
         Width = 113
         Height = 42
         BevelOuter = bvNone
@@ -359,13 +383,13 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object gbMudarStatus: TGroupBox
         Left = 459
-        Top = 72
+        Top = 127
         Width = 265
-        Height = 87
+        Height = 70
         TabOrder = 5
         object btnConfirmarStatus: TSpeedButton
           Left = 11
-          Top = 33
+          Top = 27
           Width = 238
           Height = 33
           Caption = 'Alterar Status'
@@ -427,7 +451,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         end
         object rbPagar: TRadioButton
           Left = 11
-          Top = 9
+          Top = 3
           Width = 52
           Height = 17
           Caption = 'Pagar'
@@ -435,7 +459,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         end
         object rbPgtoAberto: TRadioButton
           Left = 77
-          Top = 9
+          Top = 3
           Width = 90
           Height = 17
           Caption = 'Pgto. aberto'
@@ -443,7 +467,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         end
         object rbPagarTodos: TRadioButton
           Left = 170
-          Top = 9
+          Top = 3
           Width = 90
           Height = 17
           Caption = 'Pagar todos'
@@ -452,14 +476,14 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object gbStatus: TRadioGroup
         Left = 233
-        Top = 123
+        Top = 172
         Width = 191
         Height = 34
         TabOrder = 6
       end
       object rbPago: TRadioButton
         Left = 298
-        Top = 131
+        Top = 180
         Width = 56
         Height = 17
         Caption = 'Pagos'
@@ -468,7 +492,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object rbAberto: TRadioButton
         Left = 356
-        Top = 131
+        Top = 180
         Width = 62
         Height = 17
         Caption = 'Abertos'
@@ -477,7 +501,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object rbTodos: TRadioButton
         Left = 241
-        Top = 131
+        Top = 180
         Width = 54
         Height = 17
         Caption = 'Todos'
@@ -486,7 +510,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object cbOrdemCarregamento: TCheckBox
         Left = 16
-        Top = 60
+        Top = 118
         Width = 153
         Height = 17
         Caption = 'Ordem de Carregamento:'
@@ -495,7 +519,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object editOrdemCarregamento: TEdit
         Left = 16
-        Top = 79
+        Top = 137
         Width = 193
         Height = 25
         Font.Charset = ANSI_CHARSET
@@ -508,13 +532,28 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         OnKeyDown = editOrdemCarregamentoKeyDown
         OnKeyPress = editOrdemCarregamentoKeyPress
       end
+      object editRepresentante: TEdit
+        Left = 16
+        Top = 36
+        Width = 708
+        Height = 25
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5195076
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 12
+        OnKeyDown = editRepresentanteKeyDown
+      end
     end
   end
   object gridMotorista: TDBGrid
     Left = 0
-    Top = 262
+    Top = 299
     Width = 1144
-    Height = 262
+    Height = 278
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsVendaPosto
@@ -919,7 +958,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 44936.418841446800000000
+    ReportOptions.LastChange = 44991.705864328700000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1536,7 +1575,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo2: TfrxMemoView
           AllowVectorExport = True
           Left = 1.559060000000000000
-          Top = 39.897650000000000000
+          Top = 46.897650000000000000
           Width = 49.133890000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1552,7 +1591,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo3: TfrxMemoView
           AllowVectorExport = True
           Left = 58.472480000000000000
-          Top = 39.897650000000000000
+          Top = 46.897650000000000000
           Width = 68.031540000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1568,7 +1607,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo4: TfrxMemoView
           AllowVectorExport = True
           Left = 126.740260000000000000
-          Top = 40.677180000000000000
+          Top = 47.677180000000000000
           Width = 37.795300000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1583,8 +1622,8 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 198.669450000000000000
-          Top = 39.456710000000000000
+          Left = 197.669450000000000000
+          Top = 46.456710000000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1600,7 +1639,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo7: TfrxMemoView
           AllowVectorExport = True
           Left = 516.724800000000000000
-          Top = 40.677180000000000000
+          Top = 47.677180000000000000
           Width = 71.811070000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1616,7 +1655,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo8: TfrxMemoView
           AllowVectorExport = True
           Left = 588.213050000000000000
-          Top = 40.677180000000000000
+          Top = 47.677180000000000000
           Width = 90.708720000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1632,7 +1671,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo9: TfrxMemoView
           AllowVectorExport = True
           Left = 685.701300000000000000
-          Top = 40.677180000000000000
+          Top = 47.677180000000000000
           Width = 60.472480000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1648,7 +1687,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo10: TfrxMemoView
           AllowVectorExport = True
           Left = 779.646260000000000000
-          Top = 39.456710000000000000
+          Top = 46.456710000000000000
           Width = 75.590600000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1718,7 +1757,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo16: TfrxMemoView
           AllowVectorExport = True
           Left = 3.220470000000000000
-          Top = 1.559060000000000000
+          Top = 22.559060000000000000
           Width = 71.811070000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1734,8 +1773,8 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object frxDBDataset1CORRETOR: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 73.252010000000000000
-          Top = 2.559060000000000000
+          Left = 87.252010000000000000
+          Top = 23.559060000000000000
           Width = 517.795610000000000000
           Height = 18.897650000000000000
           DataSet = dbRelMotorista
@@ -1753,7 +1792,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo17: TfrxMemoView
           AllowVectorExport = True
           Left = 859.780150000000000000
-          Top = 39.574830000000000000
+          Top = 46.574830000000000000
           Width = 71.811070000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1769,7 +1808,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
         object Memo18: TfrxMemoView
           AllowVectorExport = True
           Left = 931.102970000000000000
-          Top = 40.015770000000000000
+          Top = 47.015770000000000000
           Width = 117.165430000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -1780,6 +1819,40 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
           Frame.Typ = []
           Memo.UTF8W = (
             'Ordem Carregamento:')
+          ParentFont = False
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 3.779530000000000000
+          Width = 83.149660000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Representante:')
+          ParentFont = False
+        end
+        object Memo20: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 86.811070000000000000
+          Top = 1.000000000000000000
+          Width = 517.795610000000000000
+          Height = 18.897650000000000000
+          DataSet = dbRelMotorista
+          DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."REPRESENTANTE"]')
           ParentFont = False
         end
       end
@@ -2076,5 +2149,39 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     Connection = frmMenu.FDconexao
     Left = 128
     Top = 432
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.UpdateTableName = 'REPRESENTANTE'
+    SQL.Strings = (
+      'select * from representante')
+    Left = 635
+    Top = 400
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 731
+    Top = 400
   end
 end

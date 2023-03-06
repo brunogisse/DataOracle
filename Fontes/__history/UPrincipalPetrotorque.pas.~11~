@@ -63,6 +63,10 @@ type
     btnVencimentos: TSpeedButton;
     frxDBVencimentos: TfrxDBDataset;
     reportVencimentos: TfrxReport;
+    painelVencimentosBASE: TPanel;
+    btnVencimentosBase: TSpeedButton;
+    reportVencimentosBASE: TfrxReport;
+    frxDBVencimentosBASE: TfrxDBDataset;
     procedure FormCreate(Sender: TObject);
     procedure mCorretorClick(Sender: TObject);
     procedure mPostoClick(Sender: TObject);
@@ -96,6 +100,7 @@ type
     procedure btnTransferenciaClick(Sender: TObject);
     procedure btnVencimentosClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure btnVencimentosBaseClick(Sender: TObject);
 
 
   private
@@ -104,6 +109,7 @@ type
 
     procedure CaminhoBanco;
     procedure conferirVencimentos;
+    procedure conferirVencimentosBASE;
   public
   novaConexao : Tconexao;
     { Public declarations }
@@ -128,19 +134,40 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
 
 { TfrmMenu }
 
+procedure TfrmMenu.conferirVencimentosBASE;
+begin
+    with dm.qryVencimentosBase do
+     begin
+       close;
+       ParamByName('date').AsDate := date;
+       ParamByName('representante').AsInteger := 8;
+       open();
+     end;
+
+     if dm.qryVencimentosBase.RecordCount > 0 then
+       begin
+         painelVencimentosBASE.Visible := True;
+         btnVencimentosBase.Caption := IntToStr(dm.qryVencimentosBase.RecordCount) + ' pagamento(s) da ' + #13 + ' base vencendo';
+       end
+     else
+         painelVencimentosBASE.Visible := False;
+end;
+
+
 procedure TfrmMenu.conferirVencimentos;
 begin
     with dm.qryVencimentos do
      begin
        close;
        ParamByName('date').AsDate := date;
+       ParamByName('representante').AsInteger := 6;
        open();
      end;
 
      if dm.qryVencimentos.RecordCount > 0 then
        begin
          painelVencimentos.Visible := True;
-         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamento(s) vencendo';
+         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamento(s) da ' + #13 + 'Petrotorque vencendo';
        end
      else
          painelVencimentos.Visible := False;
@@ -371,6 +398,14 @@ begin
   end;
 end;
 
+procedure TfrmMenu.btnVencimentosBaseClick(Sender: TObject);
+  var caminhorelatorio : string;
+begin
+    caminhoRelatorio := ExtractFilePath(Application.ExeName);
+    reportVencimentosBASE.LoadFromFile(caminhoRelatorio +'RelContasVencendo.fr3');
+    reportVencimentosBASE.ShowReport();
+end;
+
 procedure TfrmMenu.btnVencimentosClick(Sender: TObject);
   var caminhorelatorio : string;
 begin
@@ -390,8 +425,9 @@ begin
 end;
 
 procedure TfrmMenu.CaminhoBanco;
-  var ArquivoINI : TIniFile;
-  server, user, password, database, AuxErro : string;
+  var
+      ArquivoINI : TIniFile;
+      server, user, password, database, AuxErro : string;
    begin
       if FDconexao.Connected = True then
          FDconexao.Connected := False;
@@ -435,6 +471,7 @@ begin
   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName('NOME').AsString;
 
   conferirVencimentos;
+  conferirVencimentosBASE;
 
 end;
 

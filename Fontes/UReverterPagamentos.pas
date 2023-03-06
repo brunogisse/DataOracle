@@ -95,7 +95,6 @@ type
     qryReverterParcelasDATA_PGTO_PARCELA: TDateField;
     qryReverterParcelasFORMAID: TIntegerField;
     qryReverterParcelasDESCRICAO: TStringField;
-    qryReverterParcelasHABILITAR_PARCELA: TStringField;
     Image1: TImage;
     qryMovimento: TFDQuery;
     qryMovimentoMOVIMENTOID: TIntegerField;
@@ -137,6 +136,14 @@ type
     labelCaracteres: TLabel;
     labelDataAnterior: TLabel;
     qryVendasVALOR_COMBUSTIVEL: TFMTBCDField;
+    qryRepresentante: TFDQuery;
+    qryRepresentanteREPRESENTANTEID: TIntegerField;
+    qryRepresentanteNOME: TStringField;
+    qryRepresentanteCIDADE: TStringField;
+    qryRepresentanteCNPJ: TStringField;
+    dsRepresentante: TDataSource;
+    labelRepresentante: TLabel;
+    editRepresentante: TEdit;
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnConsultarClick(Sender: TObject);
@@ -144,6 +151,8 @@ type
     procedure btnPagarClick(Sender: TObject);
     procedure cbExcluirClick(Sender: TObject);
     procedure memoMotivoChange(Sender: TObject);
+    procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
 
   private
@@ -163,7 +172,7 @@ implementation
 
 {$R *.dfm}
 
-uses UGerarParcelas, UPrincipalPetrotorque;
+uses UGerarParcelas, UPrincipalPetrotorque, URepresentante, UpagarParcelas;
 
 procedure TfrmReverterPagamentos.btnConsultarClick(Sender: TObject);
 begin
@@ -171,12 +180,31 @@ begin
       try
        with qryReverterParcelas do
           begin
-            Close;
-            SQL.Clear;
-            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where (PARC.forma_pgto_id = FP.formaid) and  (data_parcela between :DE and :ATE) and  (status = ''PAGO  '')');
-            ParamByName('DE').AsDate :=  StrToDate(DateVencimentoDE.EditText);
-            ParamByName('ATE').AsDate := StrToDate(DateVencimentoATE.EditText);
-            Open();
+              Close;
+              SQL.Clear;
+              SQL.Clear;
+              SQL.Add('SELECT parc.parcelaid, parc.vendaid, parc.forma_pgto_id, parc.status, parc.qtde_parcelas, parc.valor_total_nf,');
+              SQL.Add('parc.valor_parcela, parc.data_parcela, parc.volume_venda_total,');
+              SQL.Add('parc.volume_parcelado, parc.documento, parc.volume_restante, parc.nf, parc.emissao_nf,');
+              SQL.Add('parc.acesso, parc.parcela, parc.data_pgto_parcela,');
+
+              SQL.Add('fp.formaid, fp.descricao,');
+
+              SQL.Add('v.vendaid as vendaFK, v.nf as nfVenda,');
+
+              SQL.Add('r.representanteid ');
+
+              SQL.Add('from parcela_venda_para_postos PARC, forma_pgto FP, venda_para_postos V, representante r ');
+
+              SQL.Add('where ') ;
+              SQL.Add('(PARC.forma_pgto_id = FP.formaid) and ');
+              SQL.Add('(parc.vendaid = v.vendaid) and ');
+              SQL.Add('(data_parcela between :DE and :ATE) and  (parc.status = ''PAGO'') and (v.representanteid = r.representanteid) and');
+              SQL.Add('(r.representanteid = :representanteid)');
+              ParamByName('representanteid').AsInteger := qryRepresentante['REPRESENTANTEID'];
+              ParamByName('DE').AsDate :=  StrToDate(DateVencimentoDE.EditText);
+              ParamByName('ATE').AsDate := StrToDate(DateVencimentoATE.EditText);
+              Open();
           end;
       except
          on E : Exception do
@@ -185,11 +213,32 @@ begin
         else
        with qryReverterParcelas do
           begin
-            Close;
-            SQL.Clear;
-            SQL.Add('SELECT * from parcela_venda_para_postos PARC, forma_pgto FP where NF = ' + editPesquisaNF.Text + ''
-                  + 'and (PARC.forma_pgto_id = FP.formaid) and  (status = ''PAGO'')');
-            Open();
+              Close;
+              SQL.Clear;
+              SQL.Add('SELECT parc.parcelaid, parc.vendaid, parc.forma_pgto_id, parc.status, parc.qtde_parcelas, parc.valor_total_nf,');
+              SQL.Add('parc.valor_parcela, parc.data_parcela, parc.volume_venda_total,');
+              SQL.Add('parc.volume_parcelado, parc.documento, parc.volume_restante, parc.nf, parc.emissao_nf,');
+              SQL.Add('parc.acesso, parc.parcela, parc.data_pgto_parcela,');
+
+              SQL.Add('fp.formaid, fp.descricao,');
+
+              SQL.Add('v.vendaid as vendaFK, v.nf as nfVenda,');
+
+              SQL.Add('r.representanteid ');
+
+              SQL.Add('from parcela_venda_para_postos PARC, forma_pgto FP, venda_para_postos V, representante r ');
+
+              SQL.Add('where ') ;
+
+              SQL.Add('(v.representanteid = r.representanteid) and ') ;
+              SQL.Add('(PARC.forma_pgto_id = FP.formaid) and ');
+              SQL.Add('(parc.vendaid = v.vendaid) and ');
+              SQL.Add('(parc.status = ''PAGO'') and ');
+              SQL.Add('(parc.nf = :NF) and');
+              SQL.Add('(r.representanteid = :representanteid)');
+              ParamByName('NF').AsInteger := StrToInt(editPesquisaNF.Text);
+              ParamByName('representanteid').AsInteger := qryRepresentante['REPRESENTANTEID'];
+              Open();
           end;
 end;
 
@@ -367,6 +416,22 @@ begin
       end;
 end;
 
+procedure TfrmReverterPagamentos.editRepresentanteKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+     begin
+          try
+            Application.CreateForm(TfrmRepresentante, frmRepresentante);
+            frmRepresentante.Caminho := 'reverterpagamentos';
+            frmRepresentante.ShowModal;
+            qryReverterParcelas.Close;
+          finally
+            FreeAndNil(frmRepresentante);
+          end;
+     end;
+end;
+
 procedure TfrmReverterPagamentos.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -374,6 +439,7 @@ begin
   qryUsina.Close;
   qryVendas.Close;
   qryEstoqueUsina.Close;
+  qryRepresentante.Close;
 end;
 
 procedure TfrmReverterPagamentos.FormShow(Sender: TObject);
@@ -381,6 +447,19 @@ begin
   qryReverterParcelas.Open();
   qryUsina.Open();
   qryVendas.Open();
+  qryRepresentante.Open();
+
+  if frmPagarParcelas <> nil then
+     begin
+        qryRepresentante.Locate('representanteid', frmPagarParcelas.qryRepresentante['REPRESENTANTEID'], [] );
+        editRepresentante.Text := qryRepresentante['NOME'];
+     end
+    else
+     begin
+        qryRepresentante.Locate('representanteid', 6, [] );
+        editRepresentante.Text := qryRepresentante['NOME'];
+     end;
+
   qryEstoqueUsina.Open();
 end;
 
