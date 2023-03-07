@@ -20,7 +20,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     Left = 3
     Top = 3
     Width = 1117
-    Height = 78
+    Height = 53
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -34,7 +34,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     TabOrder = 0
     object labelTitulo: TLabel
       Left = 740
-      Top = 34
+      Top = 15
       Width = 298
       Height = 25
       Caption = 'Relat'#243'rio de Vendas por Corretores'
@@ -48,9 +48,9 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
   end
   object PainelCentral: TPanel
     Left = 0
-    Top = 84
+    Top = 59
     Width = 1123
-    Height = 121
+    Height = 186
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -64,7 +64,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     TabOrder = 1
     object Image1: TImage
       Left = 9
-      Top = 0
+      Top = 37
       Width = 101
       Height = 117
       Picture.Data = {
@@ -193,35 +193,61 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       Left = 118
       Top = 3
       Width = 963
-      Height = 114
+      Height = 175
       Color = clWhite
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
       object labelPesquisa: TLabel
         Left = 9
-        Top = 8
+        Top = 3
         Width = 113
         Height = 13
         Caption = 'PESQUISAR  ( ENTER )'
       end
       object labelDe: TLabel
         Left = 10
-        Top = 57
+        Top = 113
         Width = 17
         Height = 13
         Caption = 'De:'
       end
       object labelATE: TLabel
         Left = 117
-        Top = 57
+        Top = 118
         Width = 21
         Height = 13
         Caption = 'At'#233':'
       end
+      object labelRepresentante: TLabel
+        Left = 10
+        Top = 25
+        Width = 75
+        Height = 13
+        Caption = 'Representante'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label1: TLabel
+        Left = 10
+        Top = 71
+        Width = 51
+        Height = 13
+        Caption = 'Motorista'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 8553090
+        Font.Height = -11
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object editPesquisa: TEdit
         Left = 9
-        Top = 25
+        Top = 87
         Width = 616
         Height = 25
         CharCase = ecUpperCase
@@ -237,7 +263,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object DateVencimentoDE: TMaskEdit
         Left = 10
-        Top = 73
+        Top = 134
         Width = 95
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -253,7 +279,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object DateVencimentoATE: TMaskEdit
         Left = 117
-        Top = 73
+        Top = 134
         Width = 98
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -269,7 +295,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object painelFundobtn: TPanel
         Left = 218
-        Top = 65
+        Top = 126
         Width = 90
         Height = 41
         BevelOuter = bvNone
@@ -314,7 +340,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object painelBotoes: TPanel
         Left = 303
-        Top = 65
+        Top = 126
         Width = 113
         Height = 42
         BevelOuter = bvNone
@@ -360,14 +386,14 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object gbStatus: TRadioGroup
         Left = 420
-        Top = 70
+        Top = 131
         Width = 205
         Height = 34
         TabOrder = 5
       end
       object rbTodos: TRadioButton
         Left = 431
-        Top = 78
+        Top = 139
         Width = 54
         Height = 17
         Caption = 'Todos'
@@ -376,7 +402,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object rbPago: TRadioButton
         Left = 488
-        Top = 78
+        Top = 139
         Width = 56
         Height = 17
         Caption = 'Pagos'
@@ -385,7 +411,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object rbAberto: TRadioButton
         Left = 546
-        Top = 78
+        Top = 139
         Width = 62
         Height = 17
         Caption = 'Abertos'
@@ -394,13 +420,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object gbMudarStatus: TGroupBox
         Left = 645
-        Top = 25
+        Top = 41
         Width = 299
-        Height = 81
+        Height = 124
         TabOrder = 9
         object btnConfirmarStatus: TSpeedButton
           Left = 29
-          Top = 37
+          Top = 58
           Width = 238
           Height = 33
           Caption = 'Alterar Status'
@@ -462,7 +488,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object rbPagar: TRadioButton
           Left = 16
-          Top = 13
+          Top = 34
           Width = 52
           Height = 17
           Caption = 'Pagar'
@@ -470,7 +496,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object rbPgtoAberto: TRadioButton
           Left = 92
-          Top = 13
+          Top = 34
           Width = 90
           Height = 17
           Caption = 'Pgto. aberto'
@@ -478,20 +504,35 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object rbPagarTodos: TRadioButton
           Left = 194
-          Top = 13
+          Top = 34
           Width = 90
           Height = 17
           Caption = 'Pagar todos'
           TabOrder = 2
         end
       end
+      object editRepresentante: TEdit
+        Left = 10
+        Top = 41
+        Width = 615
+        Height = 25
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 5195076
+        Font.Height = -13
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ReadOnly = True
+        TabOrder = 10
+        OnKeyDown = editRepresentanteKeyDown
+      end
     end
   end
   object gridMotorista: TDBGrid
     Left = 0
-    Top = 205
+    Top = 245
     Width = 1123
-    Height = 376
+    Height = 336
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsVendaPosto
@@ -1975,5 +2016,39 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     Connection = frmMenu.FDconexao
     Left = 128
     Top = 432
+  end
+  object qryRepresentante: TFDQuery
+    Connection = frmMenu.FDconexao
+    UpdateOptions.UpdateTableName = 'REPRESENTANTE'
+    SQL.Strings = (
+      'select * from representante')
+    Left = 667
+    Top = 472
+    object qryRepresentanteREPRESENTANTEID: TIntegerField
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryRepresentanteNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryRepresentanteCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryRepresentanteCNPJ: TStringField
+      FieldName = 'CNPJ'
+      Origin = 'CNPJ'
+      Size = 18
+    end
+  end
+  object dsRepresentante: TDataSource
+    DataSet = qryRepresentante
+    Left = 763
+    Top = 472
   end
 end

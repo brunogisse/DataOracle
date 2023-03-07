@@ -150,6 +150,8 @@ type
     qryRelatorioVendaPostoESTOQUEID_1: TIntegerField;
     qryRelatorioVendaPostoVALOR_COMBUSTIVEL: TFMTBCDField;
     qryRelatorioStatusParcelaVALOR_COMBUSTIVEL: TFMTBCDField;
+    Label4: TLabel;
+    editRepresentantePrincipal: TEdit;
     procedure btnImprmirClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
     procedure btnPagarParcelaStatusClick(Sender: TObject);
@@ -162,6 +164,8 @@ type
       Shift: TShiftState);
     procedure cbRepresentanteClick(Sender: TObject);
     procedure cbNFClick(Sender: TObject);
+    procedure editRepresentantePrincipalKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
     { Private declarations }
@@ -187,6 +191,7 @@ begin
      Close;
      ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);
      ParamByName('FIM').AsDate := StrToDate(DateVencimentoATE.EditText);
+     ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
      Open();
    end;
 
@@ -605,6 +610,22 @@ begin
      end;
 end;
 
+procedure TfrmRelatorioVenda.editRepresentantePrincipalKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+     begin
+          try
+            Application.CreateForm(TfrmRepresentante, frmRepresentante);
+            frmRepresentante.Caminho := 'relatoriovendaposto';
+            frmRepresentante.ShowModal;
+            qryRelatorioVendaPosto.Close;
+          finally
+            FreeAndNil(frmRepresentante);
+          end;
+     end;
+end;
+
 procedure TfrmRelatorioVenda.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -615,6 +636,8 @@ procedure TfrmRelatorioVenda.FormShow(Sender: TObject);
 begin
  qryPosto.Open();
  qryRepresentante.Open();
+ qryRepresentante.Locate('representanteid', 6, [] );
+ editRepresentantePrincipal.Text := qryRepresentante['NOME'];
 
   DateVencimentoDE.Text := DateToStr(Date);
   DateVencimentoATE.Text := DateToStr(Date);

@@ -100,7 +100,8 @@ implementation
 
 uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UCompraUsina,
   UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque,
-  UEditarParcelas, UpagarParcelas, UReverterPagamentos, URelatorioMotorista;
+  UEditarParcelas, UpagarParcelas, UReverterPagamentos, URelatorioMotorista,
+  URelatorioCorretor;
 
 procedure TfrmRepresentante.definirTamanhoDaLinhaDaGrid;
 begin
@@ -281,6 +282,23 @@ begin
            Close;
          end;
 
+         if Caminho = 'relatoriocorretor' then
+
+         begin
+           frmRelatorioCorretor.qryRepresentante.Refresh;
+           frmRelatorioCorretor.editRepresentante.Text := qryRepresentante['NOME'];
+           frmRelatorioCorretor.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
+
+         if Caminho = 'relatoriovendaposto' then
+
+         begin
+           frmRelatorioVenda.qryRepresentante.Refresh;
+           frmRelatorioVenda.editRepresentantePrincipal.Text := qryRepresentante['NOME'];
+           frmRelatorioVenda.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
+           Close;
+         end;
 
    end;
 

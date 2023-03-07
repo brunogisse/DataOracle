@@ -83,6 +83,15 @@ type
     rbPagarTodos: TRadioButton;
     qryVendaPostoSTATUS_CORRETAGEM: TStringField;
     tcCorretor: TFDTransaction;
+    labelRepresentante: TLabel;
+    editRepresentante: TEdit;
+    Label1: TLabel;
+    qryRepresentante: TFDQuery;
+    qryRepresentanteREPRESENTANTEID: TIntegerField;
+    qryRepresentanteNOME: TStringField;
+    qryRepresentanteCIDADE: TStringField;
+    qryRepresentanteCNPJ: TStringField;
+    dsRepresentante: TDataSource;
     procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure btnConsultarClick(Sender: TObject);
@@ -95,6 +104,8 @@ type
     procedure rbTodosClick(Sender: TObject);
     procedure rbPagoClick(Sender: TObject);
     procedure rbAbertoClick(Sender: TObject);
+    procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -108,7 +119,7 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UCorretores, UVendaPosto;
+uses UPrincipalPetrotorque, UCorretores, UVendaPosto, URepresentante;
 
 procedure TfrmRelatorioCorretor.btnConfirmarStatusClick(Sender: TObject);
 var confirmar : String;
@@ -220,12 +231,14 @@ begin
                   +' (v.usinaid = u.usinaid) and '
                   +' (v.estoqueid = eu.estoqueid) and '
                   +' (v.corretorid = :CORRETOR) and '
+                  +' (re.representanteid = :representante) and '
                   +' (v.data_emissao_nf between :DE and :ATE) '
                   +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
 
                ParamByName('CORRETOR').AsInteger := qryCorretor['CORRETORID'];
                ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);
                ParamByName('ATE').AsDate          := StrToDate(DateVencimentoATE.Text);
+               ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
                Open();
              end;
         end;
@@ -257,17 +270,37 @@ begin
       end;
 end;
 
+procedure TfrmRelatorioCorretor.editRepresentanteKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+if Key = VK_RETURN then
+     begin
+          try
+            Application.CreateForm(TfrmRepresentante, frmRepresentante);
+            frmRepresentante.Caminho := 'relatoriocorretor';
+            frmRepresentante.ShowModal;
+            qryVendaPosto.Close;
+          finally
+            FreeAndNil(frmRepresentante);
+          end;
+     end;
+end;
+
 procedure TfrmRelatorioCorretor.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   qryVendaPosto.Close;
   qryCorretor.Close;
+  qryRepresentante.Close;
 end;
 
 procedure TfrmRelatorioCorretor.FormShow(Sender: TObject);
 begin
    qryCorretor.Open();
    qryVendaPosto.Open();
+   qryRepresentante.Open();
+   qryRepresentante.Locate('representanteid', 6, [] );
+   editRepresentante.Text := qryRepresentante['NOME'];
 
    DateVencimentoDE.Text   := DateToStr(Date);
    DateVencimentoATE.Text  := DateToStr(Date);

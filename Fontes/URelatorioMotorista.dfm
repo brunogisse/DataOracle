@@ -234,7 +234,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
       end
       object Label1: TLabel
         Left = 18
-        Top = 67
+        Top = 71
         Width = 51
         Height = 13
         Caption = 'Motorista'
