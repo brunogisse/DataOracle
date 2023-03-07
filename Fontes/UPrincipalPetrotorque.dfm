@@ -1956,10 +1956,10 @@ object frmMenu: TfrmMenu
         end>
     end
     object painelVencimentos: TPanel
-      Left = 984
+      Left = 1056
       Top = 76
-      Width = 392
-      Height = 182
+      Width = 320
+      Height = 157
       Anchors = [akTop, akRight]
       BevelOuter = bvNone
       Color = 16448250
@@ -1971,54 +1971,20 @@ object frmMenu: TfrmMenu
       ParentBackground = False
       ParentFont = False
       TabOrder = 3
-      Visible = False
       object btnVencimentos: TSpeedButton
         Left = 7
-        Top = 111
-        Width = 321
-        Height = 57
-        Caption = 'vencimentos'
+        Top = 29
+        Width = 354
+        Height = 101
+        Caption = 'Conferir Vencimentos'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGray
         Font.Height = -17
         Font.Name = 'Segoe UI'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         OnClick = btnVencimentosClick
-      end
-    end
-    object painelVencimentosBASE: TPanel
-      Left = 586
-      Top = 76
-      Width = 392
-      Height = 182
-      Anchors = [akTop, akRight]
-      BevelOuter = bvNone
-      Color = 16448250
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = 15724527
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentBackground = False
-      ParentFont = False
-      TabOrder = 4
-      Visible = False
-      object btnVencimentosBase: TSpeedButton
-        Left = 7
-        Top = 111
-        Width = 321
-        Height = 57
-        Caption = 'vencimentos'
-        Flat = True
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGray
-        Font.Height = -17
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-        OnClick = btnVencimentosBaseClick
       end
     end
   end

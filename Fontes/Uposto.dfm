@@ -3,7 +3,7 @@ object frmPosto: TfrmPosto
   Top = 0
   Caption = 'Cadastro de Postos'
   ClientHeight = 605
-  ClientWidth = 1240
+  ClientWidth = 1130
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object frmPosto: TfrmPosto
   object PainelTopo: TPanel
     Left = 0
     Top = 0
-    Width = 1240
+    Width = 1130
     Height = 269
     Align = alTop
     BevelOuter = bvNone
@@ -32,6 +32,7 @@ object frmPosto: TfrmPosto
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1240
     object Image1: TImage
       Left = 25
       Top = 104
@@ -522,7 +523,7 @@ object frmPosto: TfrmPosto
   object gridPosto: TDBGrid
     Left = 25
     Top = 269
-    Width = 1215
+    Width = 1105
     Height = 336
     Align = alClient
     BorderStyle = bsNone
@@ -573,6 +574,7 @@ object frmPosto: TfrmPosto
       item
         Expanded = False
         FieldName = 'NOME'
+        Width = 237
         Visible = True
       end>
   end

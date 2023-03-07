@@ -45,6 +45,7 @@ type
     IntegerField4: TIntegerField;
     StringField4: TStringField;
     dsVencimentosBase: TDataSource;
+    qryVencimentosREPRESENTANTEID: TIntegerField;
   private
     { Private declarations }
   public

@@ -160,6 +160,13 @@ object dm: Tdm
       ReadOnly = True
       Size = 60
     end
+    object qryVencimentosREPRESENTANTEID: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'REPRESENTANTEID'
+      Origin = 'REPRESENTANTEID'
+      ProviderFlags = []
+      ReadOnly = True
+    end
   end
   object dsVencimentos: TDataSource
     DataSet = qryVencimentos

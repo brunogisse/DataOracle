@@ -63,8 +63,6 @@ type
     btnVencimentos: TSpeedButton;
     frxDBVencimentos: TfrxDBDataset;
     reportVencimentos: TfrxReport;
-    painelVencimentosBASE: TPanel;
-    btnVencimentosBase: TSpeedButton;
     reportVencimentosBASE: TfrxReport;
     frxDBVencimentosBASE: TfrxDBDataset;
     procedure FormCreate(Sender: TObject);
@@ -105,13 +103,11 @@ type
 
   private
     { Private declarations }
-
-
     procedure CaminhoBanco;
     procedure conferirVencimentos;
-    procedure conferirVencimentosBASE;
   public
   novaConexao : Tconexao;
+  Representante : Integer;
     { Public declarations }
   end;
 
@@ -119,6 +115,7 @@ var
   frmMenu: TfrmMenu;
 
   Expandir : Boolean;
+
 
 
 implementation
@@ -134,43 +131,15 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
 
 { TfrmMenu }
 
-procedure TfrmMenu.conferirVencimentosBASE;
-begin
-    with dm.qryVencimentosBase do
-     begin
-       close;
-       ParamByName('date').AsDate := date;
-       ParamByName('representante').AsInteger := 8;
-       open();
-     end;
-
-     if dm.qryVencimentosBase.RecordCount > 0 then
-       begin
-         painelVencimentosBASE.Visible := True;
-         btnVencimentosBase.Caption := IntToStr(dm.qryVencimentosBase.RecordCount) + ' pagamento(s) da ' + #13 + ' base vencendo';
-       end
-     else
-         painelVencimentosBASE.Visible := False;
-end;
-
-
 procedure TfrmMenu.conferirVencimentos;
 begin
     with dm.qryVencimentos do
      begin
        close;
        ParamByName('date').AsDate := date;
-       ParamByName('representante').AsInteger := 6;
+       ParamByName('representante').AsInteger := Representante;
        open();
      end;
-
-     if dm.qryVencimentos.RecordCount > 0 then
-       begin
-         painelVencimentos.Visible := True;
-         btnVencimentos.Caption := IntToStr(dm.qryVencimentos.RecordCount) + ' pagamento(s) da ' + #13 + 'Petrotorque vencendo';
-       end
-     else
-         painelVencimentos.Visible := False;
 end;
 
 procedure TfrmMenu.abrirFormulario(Sender: TObject);
@@ -409,6 +378,18 @@ end;
 procedure TfrmMenu.btnVencimentosClick(Sender: TObject);
   var caminhorelatorio : string;
 begin
+
+    try
+       Application.CreateForm( TfrmRepresentante, frmRepresentante );
+       frmRepresentante.Caminho := 'menuvencimentos';
+       frmRepresentante.Caption := 'ESCOLHA O REPRESENTANTE';
+       frmRepresentante.ShowModal;
+    finally
+       FreeAndNil( frmRepresentante );
+    end;
+
+    conferirVencimentos;
+
     caminhoRelatorio := ExtractFilePath(Application.ExeName);
     reportVencimentos.LoadFromFile(caminhoRelatorio +'RelContasVencendo.fr3');
     reportVencimentos.ShowReport();
@@ -469,10 +450,6 @@ end;
 procedure TfrmMenu.FormShow(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName('NOME').AsString;
-
-  conferirVencimentos;
-  conferirVencimentosBASE;
-
 end;
 
 procedure TfrmMenu.itemPesquisaVendasClick(Sender: TObject);

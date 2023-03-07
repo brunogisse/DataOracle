@@ -101,7 +101,7 @@ implementation
 uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UCompraUsina,
   UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque,
   UEditarParcelas, UpagarParcelas, UReverterPagamentos, URelatorioMotorista,
-  URelatorioCorretor;
+  URelatorioCorretor, UdataModule;
 
 procedure TfrmRepresentante.definirTamanhoDaLinhaDaGrid;
 begin
@@ -228,15 +228,6 @@ begin
            Close;
          end;
 
-      if Caminho = 'relatoriovendas' then
-
-         begin
-           frmRelatorioVenda.qryRepresentante.Refresh;
-           frmRelatorioVenda.editRepresentante.Text := qryRepresentante['NOME'];
-           frmRelatorioVenda.qryRepresentante.Locate('representanteid',qryRepresentante['REPRESENTANTEID'],[]);
-           Close;
-         end;
-
          if Caminho = 'transferencia' then
 
          begin
@@ -300,9 +291,12 @@ begin
            Close;
          end;
 
+         if Caminho = 'menuvencimentos' then
+         begin
+           frmMenu.Representante := qryRepresentante['REPRESENTANTEID'];
+           Close;
+         end;
    end;
-
-
 end;
 
 procedure TfrmRepresentante.configurarEnables(status: integer);
