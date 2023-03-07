@@ -166,6 +166,7 @@ begin
         frmVendaPostos.editNF.SetFocus;
         Close;
       end;
+
      if caminho = 'comprausina' then
       begin
         frmCompraUsina.qryUsina.Refresh;
@@ -176,6 +177,7 @@ begin
         frmCompraUsina.editProduto.Text := qryEstoqueUsina['DESCRICAO'];
         Close;
       end;
+
      if caminho = 'movimento' then
       begin
         frmMovimentoEstoqueUsina.qryUsina.Refresh;
@@ -184,6 +186,7 @@ begin
         frmMovimentoEstoqueUsina.qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID'], []);
         Close;
       end;
+
        if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaDe') then
       begin
           qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
@@ -193,6 +196,7 @@ begin
           frmTransferencia.editQtde.Text := qryEstoqueUsina['ESTOQUE'];
           Close;
       end;
+
       if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaPara') then
       begin
           qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
@@ -202,6 +206,26 @@ begin
           frmTransferencia.editParaQtde.Text := qryEstoqueUsina['ESTOQUE'];
           Close;
       end;
+
+     if (caminho = 'transferencia')  then
+         begin
+            qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
+               if transferenciaDePara = 'transferenciaDe' then
+                   begin
+                      frmTransferencia.editDeFornecedor.Text := qryUsina['NOME_FANTASIA'];
+                      frmTransferencia.editEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
+                      frmTransferencia.editProduto.Text := qryProduto['DESCRICAO'];
+                      frmTransferencia.editQtde.Text := qryEstoqueUsina['ESTOQUE'];
+                   end
+                else if transferenciaDePara = 'transferenciaPara' then
+                   begin
+                      frmTransferencia.editParaFornecedor.Text := qryUsina['NOME_FANTASIA'];
+                      frmTransferencia.editParaEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
+                      frmTransferencia.editParaProduto.Text := qryProduto['DESCRICAO'];
+                      frmTransferencia.editParaQtde.Text := qryEstoqueUsina['ESTOQUE'];
+                   end;
+             Close;
+         end;
     Close;
 end;
 

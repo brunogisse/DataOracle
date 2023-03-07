@@ -344,15 +344,15 @@ end;
 procedure TfrmTransferencia.selecionarEstoque;
 begin
     try
-      Application.CreateForm(TfrmSelecionarEstoqueProduto, frmSelecionarEstoqueProduto);
-      frmSelecionarEstoqueProduto.caminhoEntrega := 'transferencia';
+       Application.CreateForm(TfrmSelecionarEstoqueProduto, frmSelecionarEstoqueProduto);
+         frmSelecionarEstoqueProduto.caminhoEntrega := 'transferencia';
       if destino = 'de' then
-      frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaDe';
+         frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaDe';
       if destino = 'para' then
-      frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaPara';
-      frmSelecionarEstoqueProduto.ShowModal;
+         frmSelecionarEstoqueProduto.transferenciaDePara := 'transferenciaPara';
+         frmSelecionarEstoqueProduto.ShowModal;
      finally
-      FreeAndNil(frmSelecionarEstoqueProduto);
+       FreeAndNil(frmSelecionarEstoqueProduto);
     end;
 
 end;
