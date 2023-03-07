@@ -187,26 +187,6 @@ begin
         Close;
       end;
 
-       if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaDe') then
-      begin
-          qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
-          frmTransferencia.editDeFornecedor.Text := qryUsina['NOME_FANTASIA'];
-          frmTransferencia.editEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
-          frmTransferencia.editProduto.Text := qryProduto['DESCRICAO'];
-          frmTransferencia.editQtde.Text := qryEstoqueUsina['ESTOQUE'];
-          Close;
-      end;
-
-      if (caminho = 'transferencia') and (transferenciaDePara = 'transferenciaPara') then
-      begin
-          qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
-          frmTransferencia.editParaFornecedor.Text := qryUsina['NOME_FANTASIA'];
-          frmTransferencia.editParaEstoqueID.Text := IntToStr(qryEstoqueUsina['ESTOQUEID']);
-          frmTransferencia.editParaProduto.Text := qryProduto['DESCRICAO'];
-          frmTransferencia.editParaQtde.Text := qryEstoqueUsina['ESTOQUE'];
-          Close;
-      end;
-
      if (caminho = 'transferencia')  then
          begin
             qryProduto.Locate('produtoid', qryEstoqueUsina['PRODUTOID']);
