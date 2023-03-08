@@ -274,6 +274,7 @@ end;
 procedure TfrmTransferencia.salvarTransferencia;
    var
       total : Currency;
+      msgErro : String;
    const
       POSTO_TRANSFERENCIA = 1812;
       CORRETOR_TRANSFERENCIA = 26;
@@ -319,7 +320,12 @@ begin
             tcTransferencia.CommitRetaining;
             MessageDlg('Transferência realizada com sucesso!',TMsgDlgType.mtConfirmation,[TMsgDlgBtn.mbOK],0);
           except
-            tcTransferencia.RollbackRetaining;
+            on E : exception do
+               begin
+                  tcTransferencia.RollbackRetaining;
+                  msgErro := Copy(E.Message, 0, 500);
+                  MessageDlg('Erro ao transferir. Motivo: ' + #13 + #13 + msgErro, mtError, [mbOK], 0);
+               end;
           end;
 end;
 

@@ -31,20 +31,6 @@ type
     qryVencimentosSTATUSVENDA: TStringField;
     qryVencimentosIDPOSTO: TIntegerField;
     qryVencimentosNOME_FANTASIA: TStringField;
-    qryVencimentosBase: TFDQuery;
-    IntegerField1: TIntegerField;
-    FMTBCDField1: TFMTBCDField;
-    DateField1: TDateField;
-    FMTBCDField2: TFMTBCDField;
-    IntegerField2: TIntegerField;
-    DateField2: TDateField;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    IntegerField3: TIntegerField;
-    StringField3: TStringField;
-    IntegerField4: TIntegerField;
-    StringField4: TStringField;
-    dsVencimentosBase: TDataSource;
     qryVencimentosREPRESENTANTEID: TIntegerField;
   private
     { Private declarations }

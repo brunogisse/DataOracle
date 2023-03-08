@@ -275,6 +275,7 @@ if Key = VK_RETURN then
             Application.CreateForm(TfrmRepresentante, frmRepresentante);
             frmRepresentante.Caminho := 'editarparcelas';
             frmRepresentante.ShowModal;
+            editNF.SetFocus;
           finally
               FreeAndNil(frmRepresentante);
           end;

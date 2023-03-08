@@ -331,8 +331,6 @@ begin
         qryCompraUsina['VOLUME_COMPRA']    := StrToFloat(editVolume.Text);
         qryCompraUsina.Post;
 
-
-
       //abre edição na tabela estoque_usina e soma o estoque comprado...
         qryEstoqueUsina.Edit;
         qryEstoqueUsina['ESTOQUE'] := qryEstoqueUsina['ESTOQUE'] + StrToFloat(editVolume.Text);
@@ -640,7 +638,7 @@ function TfrmCompraUsina.VerificarCamposVazios : Boolean;
     for I := 0 to gbEdits.ControlCount -1 do
        begin
          if (gbEdits.Controls[i] is TEdit) then
-         if (gbEdits.Controls[i] as TEdit).Text = '' then
+         if Tedit(gbEdits.Controls[i]).Text = '' then
            begin
                 MessageDlg('Por favor, preencha o(s) campo(s) vazio(s)',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
                (gbEdits.Controls[i] as TEdit).SetFocus;

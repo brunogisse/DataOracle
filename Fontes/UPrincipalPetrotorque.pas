@@ -63,8 +63,6 @@ type
     btnVencimentos: TSpeedButton;
     frxDBVencimentos: TfrxDBDataset;
     reportVencimentos: TfrxReport;
-    reportVencimentosBASE: TfrxReport;
-    frxDBVencimentosBASE: TfrxDBDataset;
     procedure FormCreate(Sender: TObject);
     procedure mCorretorClick(Sender: TObject);
     procedure mPostoClick(Sender: TObject);
@@ -98,8 +96,6 @@ type
     procedure btnTransferenciaClick(Sender: TObject);
     procedure btnVencimentosClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure btnVencimentosBaseClick(Sender: TObject);
-
 
   private
     { Private declarations }
@@ -367,13 +363,7 @@ begin
   end;
 end;
 
-procedure TfrmMenu.btnVencimentosBaseClick(Sender: TObject);
-  var caminhorelatorio : string;
-begin
-    caminhoRelatorio := ExtractFilePath(Application.ExeName);
-    reportVencimentosBASE.LoadFromFile(caminhoRelatorio +'RelContasVencendoBASE.fr3');
-    reportVencimentosBASE.ShowReport();
-end;
+
 
 procedure TfrmMenu.btnVencimentosClick(Sender: TObject);
   var caminhorelatorio : string;
