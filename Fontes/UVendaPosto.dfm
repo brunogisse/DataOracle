@@ -1774,9 +1774,20 @@ object frmVendaPostos: TfrmVendaPostos
     Connection = frmMenu.FDconexao
     Transaction = tcVendaPosto
     SQL.Strings = (
-      'select * from venda_para_postos')
+      'select * '
+      'from venda_para_postos'
+      'where'
+      'NF = :NF'
+      ' ')
     Left = 1032
     Top = 552
+    ParamData = <
+      item
+        Name = 'NF'
+        DataType = ftInteger
+        ParamType = ptInput
+        Value = Null
+      end>
     object qryConfirmarNFVENDAID: TIntegerField
       FieldName = 'VENDAID'
       Origin = 'VENDAID'

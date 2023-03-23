@@ -2,7 +2,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
   Left = 0
   Top = 0
   ClientHeight = 581
-  ClientWidth = 1123
+  ClientWidth = 1137
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1117
+    Width = 1131
     Height = 53
     Align = alTop
     BevelOuter = bvNone
@@ -32,6 +32,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1117
     object labelTitulo: TLabel
       Left = 740
       Top = 15
@@ -49,7 +50,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
   object PainelCentral: TPanel
     Left = 0
     Top = 59
-    Width = 1123
+    Width = 1137
     Height = 186
     Align = alTop
     BevelOuter = bvNone
@@ -62,6 +63,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1123
     object Image1: TImage
       Left = 9
       Top = 37
@@ -207,7 +209,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       end
       object labelDe: TLabel
         Left = 10
-        Top = 113
+        Top = 118
         Width = 17
         Height = 13
         Caption = 'De:'
@@ -235,9 +237,9 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       object Label1: TLabel
         Left = 10
         Top = 71
-        Width = 51
+        Width = 43
         Height = 13
-        Caption = 'Motorista'
+        Caption = 'Corretor'
         Font.Charset = ANSI_CHARSET
         Font.Color = 8553090
         Font.Height = -11
@@ -531,7 +533,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
   object gridMotorista: TDBGrid
     Left = 0
     Top = 245
-    Width = 1123
+    Width = 1137
     Height = 336
     Align = alClient
     BorderStyle = bsNone
@@ -573,7 +575,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       item
         Expanded = False
         FieldName = 'POSTO'
-        Width = 369
+        Width = 344
         Visible = True
       end
       item
@@ -603,7 +605,14 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       item
         Expanded = False
         FieldName = 'STATUS_CORRETAGEM'
-        Width = 96
+        Title.Caption = 'St. Corr.'
+        Width = 60
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ORDEM_CARREGAMENTO'
+        Title.Caption = 'Ordem Carr.'
         Visible = True
       end>
   end
@@ -613,6 +622,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     Top = 353
   end
   object qryVendaPosto: TFDQuery
+    Active = True
     Connection = frmMenu.FDconexao
     Transaction = tcCorretor
     UpdateOptions.AssignedValues = [uvGeneratorName, uvCheckReadOnly, uvAutoCommitUpdates]
@@ -633,9 +643,11 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         'volume, v.taxa_frete, v.valor_total_frete,'
       
         '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
-        'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
-        'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
-        'UME_RECEBIDO_MES, V.STATUS_CORRETAGEM, '
+        'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,'
+      
+        '  V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO' +
+        '_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_CORRETAGEM,V.ORDEM_CARREGA' +
+        'MENTO, '
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -876,6 +888,10 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       FixedChar = True
       Size = 3
     end
+    object qryVendaPostoORDEM_CARREGAMENTO: TIntegerField
+      FieldName = 'ORDEM_CARREGAMENTO'
+      Origin = 'ORDEM_CARREGAMENTO'
+    end
   end
   object dsCorretor: TDataSource
     DataSet = qryCorretor
@@ -922,7 +938,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 44905.453380914350000000
+    ReportOptions.LastChange = 45008.494643703710000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1533,18 +1549,18 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
       object PageHeader1: TfrxPageHeader
         FillType = ftBrush
         Frame.Typ = []
-        Height = 63.252010000000000000
+        Height = 55.692950000000000000
         Top = 120.944960000000000000
         Width = 1046.929810000000000000
         object Memo2: TfrxMemoView
           AllowVectorExport = True
-          Left = 1.559060000000000000
+          Left = 0.559060000000000000
           Top = 39.897650000000000000
           Width = 49.133890000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1554,13 +1570,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo3: TfrxMemoView
           AllowVectorExport = True
-          Left = 65.472480000000000000
+          Left = 53.149660000000000000
           Top = 39.897650000000000000
-          Width = 68.031540000000000000
-          Height = 18.897650000000000000
+          Width = 64.252010000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1570,13 +1586,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo4: TfrxMemoView
           AllowVectorExport = True
-          Left = 143.740260000000000000
-          Top = 40.677180000000000000
-          Width = 37.795300000000000000
-          Height = 18.897650000000000000
+          Left = 125.299320000000000000
+          Top = 39.897650000000000000
+          Width = 26.456710000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1586,13 +1602,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 232.669450000000000000
-          Top = 39.456710000000000000
+          Left = 185.008040000000000000
+          Top = 39.897650000000000000
           Width = 60.472480000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1602,13 +1618,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 568.724800000000000000
-          Top = 40.677180000000000000
-          Width = 75.590600000000000000
-          Height = 18.897650000000000000
+          Left = 509.740570000000000000
+          Top = 39.897650000000000000
+          Width = 56.692950000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1618,13 +1634,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo8: TfrxMemoView
           AllowVectorExport = True
-          Left = 655.213050000000000000
-          Top = 40.677180000000000000
-          Width = 90.708720000000000000
-          Height = 18.897650000000000000
+          Left = 582.787880000000000000
+          Top = 39.897650000000000000
+          Width = 75.590600000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1634,13 +1650,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo9: TfrxMemoView
           AllowVectorExport = True
-          Left = 757.701300000000000000
-          Top = 40.677180000000000000
+          Left = 668.496600000000000000
+          Top = 39.897650000000000000
           Width = 60.472480000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1650,13 +1666,13 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo10: TfrxMemoView
           AllowVectorExport = True
-          Left = 857.646260000000000000
-          Top = 39.456710000000000000
-          Width = 75.590600000000000000
-          Height = 18.897650000000000000
+          Left = 756.764380000000000000
+          Top = 39.897650000000000000
+          Width = 52.913420000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1756,18 +1772,34 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         end
         object Memo17: TfrxMemoView
           AllowVectorExport = True
-          Left = 965.559680000000000000
-          Top = 38.795300000000000000
-          Width = 83.149660000000000000
-          Height = 18.897650000000000000
+          Left = 867.236860000000000000
+          Top = 39.897650000000000000
+          Width = 49.133890000000000000
+          Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -13
+          Font.Height = -11
           Font.Name = 'Arial'
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'Status pgto:')
+            'Stat. pg:')
+          ParentFont = False
+        end
+        object Memo18: TfrxMemoView
+          AllowVectorExport = True
+          Left = 924.102970000000000000
+          Top = 39.897650000000000000
+          Width = 98.267780000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Ordem Carregto')
           ParentFont = False
         end
       end
@@ -1779,9 +1811,9 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         Font.Height = -11
         Font.Name = 'Segoe uI'
         Font.Style = []
-        Height = 15.118120000000000000
+        Height = 11.338590000000000000
         ParentFont = False
-        Top = 245.669450000000000000
+        Top = 238.110390000000000000
         Width = 1046.929810000000000000
         DataSet = dbRelCorretor
         DataSetName = 'frxDBDataset1'
@@ -1789,16 +1821,16 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         object frxDBDataset1VENDAID: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 6.559060000000000000
-          Top = -1.440940000000000000
+          Left = 0.559060000000000000
+          Top = -2.440940000000000000
           Width = 52.913420000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'VENDAID'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -1809,16 +1841,16 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         object frxDBDataset1DATA_EMISSAO_NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 65.149660000000000000
-          Top = -1.440940000000000000
-          Width = 75.590600000000000000
-          Height = 18.897650000000000000
+          Left = 53.149660000000000000
+          Top = -2.440940000000000000
+          Width = 71.811070000000000000
+          Height = 15.118120000000000000
           DataField = 'DATA_EMISSAO_NF'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -1829,108 +1861,164 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
         object frxDBDataset1NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 140.299320000000000000
-          Top = -1.440940000000000000
-          Width = 86.929190000000000000
-          Height = 18.897650000000000000
+          Left = 125.299320000000000000
+          Top = -2.440940000000000000
+          Width = 56.692950000000000000
+          Height = 15.118120000000000000
           DataField = 'NF'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."NF"]')
+          ParentFont = False
         end
         object frxDBDataset1POSTO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 229.008040000000000000
-          Top = -1.440940000000000000
-          Width = 332.598640000000000000
+          Left = 185.008040000000000000
+          Top = -2.440940000000000000
+          Width = 328.819110000000000000
           Height = 15.118120000000000000
           DataField = 'POSTO'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."POSTO"]')
+          ParentFont = False
         end
         object frxDBDataset1TAXA_CORRETAGEM: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 587.740570000000000000
+          Left = 516.740570000000000000
           Top = -2.440940000000000000
           Width = 71.811070000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'TAXA_CORRETAGEM'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."TAXA_CORRETAGEM"]')
+          ParentFont = False
         end
         object frxDBDataset1VALOR_TOTAL_CORRETAGEM: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 670.787880000000000000
-          Top = -2.661410000000000000
+          Left = 589.787880000000000000
+          Top = -2.440940000000000000
           Width = 83.149660000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'VALOR_TOTAL_CORRETAGEM'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."VALOR_TOTAL_CORRETAGEM"]')
+          ParentFont = False
         end
         object frxDBDataset1VOLUME: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 763.496600000000000000
+          Left = 674.496600000000000000
           Top = -2.440940000000000000
-          Width = 90.708720000000000000
-          Height = 18.897650000000000000
+          Width = 86.929190000000000000
+          Height = 15.118120000000000000
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
           DisplayFormat.FormatStr = '%2.2n'
           DisplayFormat.Kind = fkNumeric
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."VOLUME"]')
+          ParentFont = False
         end
         object frxDBDataset1VALOR_NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 856.764380000000000000
+          Left = 763.764380000000000000
           Top = -2.440940000000000000
-          Width = 124.724490000000000000
-          Height = 18.897650000000000000
+          Width = 109.606370000000000000
+          Height = 15.118120000000000000
           DataField = 'VALOR_NF'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."VALOR_NF"]')
+          ParentFont = False
         end
         object frxDBDataset1STATUS_CORRETAGEM: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 987.236860000000000000
-          Top = -2.779530000000000000
+          Left = 876.236860000000000000
+          Top = -2.440940000000000000
           Width = 45.354360000000000000
-          Height = 18.897650000000000000
+          Height = 15.118120000000000000
           DataField = 'STATUS_CORRETAGEM'
+          DataSet = dbRelCorretor
+          DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."STATUS_CORRETAGEM"]')
+          ParentFont = False
+        end
+        object frxDBDataset1ORDEM_CARREGAMENTO: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 929.764380000000000000
+          Top = -2.440940000000000000
+          Width = 102.047310000000000000
+          Height = 15.118120000000000000
+          DataField = 'ORDEM_CARREGAMENTO'
           DataSet = dbRelCorretor
           DataSetName = 'frxDBDataset1'
           Frame.Typ = []
           Memo.UTF8W = (
-            '[frxDBDataset1."STATUS_CORRETAGEM"]')
+            '[frxDBDataset1."ORDEM_CARREGAMENTO"]')
         end
       end
       object Footer1: TfrxFooter
         FillType = ftBrush
         Frame.Typ = []
         Height = 98.267780000000000000
-        Top = 283.464750000000000000
+        Top = 272.126160000000000000
         Width = 1046.929810000000000000
         object Memo12: TfrxMemoView
           AllowVectorExport = True

@@ -92,6 +92,7 @@ type
     qryRepresentanteCIDADE: TStringField;
     qryRepresentanteCNPJ: TStringField;
     dsRepresentante: TDataSource;
+    qryVendaPostoORDEM_CARREGAMENTO: TIntegerField;
     procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure btnConsultarClick(Sender: TObject);
@@ -206,34 +207,34 @@ begin
                SQL.Clear;
                SQL.Add('select '
 
-                  + 'v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, '
+                     + 'v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, '
 
-                  +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                  +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
-                  +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_CORRETAGEM, '
+                     +' v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
+                     +' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, '
+                     +' V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, V.STATUS_CORRETAGEM, V.ORDEM_CARREGAMENTO, '
 
-                  +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
-                  +' eu.estoqueid '
-
-
-                  +' from '
-
-                  +' venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, estoque_usina eu '
+                     +' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina, '
+                     +' eu.estoqueid '
 
 
-                  +' where '
+                     +' from '
 
-                  +' (v.representanteid = re.representanteid) and '
-                  +' (v.postoid = p.postoid) and '
-                  +' (v.produtoid = pr.produtoid) and '
-                  +' (v.motoristaid = m.motoristaid) and '
-                  +' (v.corretorid = c.corretorid) and '
-                  +' (v.usinaid = u.usinaid) and '
-                  +' (v.estoqueid = eu.estoqueid) and '
-                  +' (v.corretorid = :CORRETOR) and '
-                  +' (re.representanteid = :representante) and '
-                  +' (v.data_emissao_nf between :DE and :ATE) '
-                  +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
+                     +' venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, estoque_usina eu '
+
+
+                     +' where '
+
+                     +' (v.representanteid = re.representanteid) and '
+                     +' (v.postoid = p.postoid) and '
+                     +' (v.produtoid = pr.produtoid) and '
+                     +' (v.motoristaid = m.motoristaid) and '
+                     +' (v.corretorid = c.corretorid) and '
+                     +' (v.usinaid = u.usinaid) and '
+                     +' (v.estoqueid = eu.estoqueid) and '
+                     +' (v.corretorid = :CORRETOR) and '
+                     +' (re.representanteid = :representante) and '
+                     +' (v.data_emissao_nf between :DE and :ATE) '
+                     +   FiltroStatus + ' order by v.NF, V.ORDEM_CARREGAMENTO');
 
                ParamByName('CORRETOR').AsInteger := qryCorretor['CORRETORID'];
                ParamByName('DE').AsDate           := StrToDate(DateVencimentoDE.Text);

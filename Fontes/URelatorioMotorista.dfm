@@ -2051,7 +2051,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
           AllowVectorExport = True
           Left = 941.102970000000000000
           Top = -3.779530000000000000
-          Width = 102.047310000000000000
+          Width = 90.708720000000000000
           Height = 18.897650000000000000
           DataField = 'ORDEM_CARREGAMENTO'
           DataSet = dbRelMotorista

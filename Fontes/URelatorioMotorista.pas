@@ -201,7 +201,7 @@ begin
                   +' (v.estoqueid = eu.estoqueid) and '
                   +   FiltroPrincipal + ''
                   +' (v.data_emissao_nf between :DE and :ATE) '
-                  +   FiltroStatus + ' order by v.DATA_EMISSAO_NF');
+                  +   FiltroStatus + ' order by v.NF');
 
 
                if cbOrdemCarregamento.Checked = True then

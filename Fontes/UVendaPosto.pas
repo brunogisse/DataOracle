@@ -635,13 +635,28 @@ end;
 procedure TfrmVendaPostos.editNFExit(Sender: TObject);
 begin
   if editNF.Text <> '' then
-       begin
+     begin
+        with qryConfirmarNF do
+           begin
+             Close;
+             ParamByName('NF').AsInteger := StrToInt(editNF.Text);
+             Open;
+           end;
+
+           if qryConfirmarNF.RecordCount > 0 then
+              begin
+                 MessageDlg('Nota fiscal já cadastrada.',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                 editNF.SetFocus;
+           end;
+     end;
+
+       {begin
         if (qryConfirmarNF.Locate('NF', editNF.Text, [])) then
            begin
               MessageDlg('Nota fiscal já cadastrada.',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
               editNF.SetFocus;
            end;
-       end;
+       end;}
 end;
 
 procedure TfrmVendaPostos.editNFKeyDown(Sender: TObject; var Key: Word;
