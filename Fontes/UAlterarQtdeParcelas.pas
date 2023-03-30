@@ -65,6 +65,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure editValorParcelaKeyPress(Sender: TObject; var Key: Char);
     procedure editVolumeParceladoKeyPress(Sender: TObject; var Key: Char);
+    procedure editValorParcelaChange(Sender: TObject);
   private
     { Private declarations }
 
@@ -78,6 +79,8 @@ type
      function numerosApenas(key: Char) : Char;
 
      function verificarCamposVazios : Boolean;
+    function TratarValor(str: String): double;
+
   public
     { Public declarations }
   end;
@@ -89,7 +92,20 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UEditarParcelas;
+uses UPrincipalPetrotorque, UEditarParcelas, uFormat;
+
+function TfrmAlterarQtdeParcelas.TratarValor(str : String) : double;
+begin
+   str := StringReplace(str, '.', '', [rfReplaceAll]);
+   str := StringReplace(str, ',', '', [rfReplaceAll]);
+
+   try
+      Result := StrToFloat(str) / 100;
+   except
+      Result := 0;
+   end;
+
+end;
 
 function TfrmAlterarQtdeParcelas.numerosApenas(key: Char) : Char;
 begin
@@ -183,7 +199,7 @@ begin
 
       //dados fornecidos pelo usuário
        qryAlterarQtdeParcelas['DATA_PARCELA'] := StrToDate(maskEditDataPagamento.Text);
-      qryAlterarQtdeParcelas['VALOR_PARCELA'] := StrToFloat(editValorParcela.Text);
+      qryAlterarQtdeParcelas['VALOR_PARCELA'] := TratarValor(editValorParcela.Text);  //StrToFloat(editValorParcela.Text);
      qryAlterarQtdeParcelas['VOLUME_PARCELADO'] := StrToFloat(editVolumeParcelado.Text);
     qryAlterarQtdeParcelas['DOCUMENTO'] := editEditarDocumento.Text;
 
@@ -226,12 +242,18 @@ begin
         MessageDlg('Não é possível excluir uma parcela que já foi paga: ',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0)
 end;
 
+procedure TfrmAlterarQtdeParcelas.editValorParcelaChange(Sender: TObject);
+begin
+      Formatar(editValorParcela, TFormato.Valor);
+end;
+
 procedure TfrmAlterarQtdeParcelas.editValorParcelaKeyPress(Sender: TObject;
   var Key: Char);
   var chaveRetornada: Char;
 begin
-  chaveRetornada := numerosApenas(key);
-  key := chaveRetornada;
+ // chaveRetornada := numerosApenas(key);
+ // key := chaveRetornada;
+  //  key := numerosApenas(key);
 end;
 
 procedure TfrmAlterarQtdeParcelas.editVolumeParceladoKeyPress(Sender: TObject;

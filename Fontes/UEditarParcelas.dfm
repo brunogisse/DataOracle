@@ -202,6 +202,7 @@ object frmEditarParcelas: TfrmEditarParcelas
         Width = 121
         Height = 25
         TabOrder = 3
+        OnChange = editValorParcelaChange
       end
       object editVolumeParcelado: TEdit
         Left = 254

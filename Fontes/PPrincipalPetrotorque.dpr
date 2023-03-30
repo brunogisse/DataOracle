@@ -32,7 +32,8 @@ uses
   UAlterarQtdeParcelas in 'UAlterarQtdeParcelas.pas' {frmAlterarQtdeParcelas},
   Uservidor in 'Uservidor.pas' {frmConfiguar_servidor},
   Vcl.Dialogs,
-  Uclasse.conexao in 'Uclasse.conexao.pas';
+  Uclasse.conexao in 'Uclasse.conexao.pas',
+  uFormat in 'Units\uFormat.pas';
 
 {$R *.res}
 
@@ -43,7 +44,7 @@ begin
   frmLogin := TfrmLogin.Create(nil);
 
   Application.CreateForm(TfrmMenu, frmMenu);
- // if frmMenu.novaConexao.fnc_conectar_banco_dados then
+  // if frmMenu.novaConexao.fnc_conectar_banco_dados then
    // begin
       Application.CreateForm(Tdm, dm);
       Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);

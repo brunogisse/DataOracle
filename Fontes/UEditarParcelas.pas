@@ -116,8 +116,10 @@ type
     procedure btnModificarParcelasClick(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure editValorParcelaChange(Sender: TObject);
 
   private
+    function TratarValor(str: String): double;
     { Private declarations }
 
 
@@ -134,7 +136,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UConverterFloat, UVendaPosto, UAlterarQtdeParcelas,
-  URepresentante;
+  URepresentante, uFormat;
 
 
 procedure TfrmEditarParcelas.btnCancelarClick(Sender: TObject);
@@ -156,7 +158,7 @@ begin
             qryParcelas.Edit;
             qryParcelas['DOCUMENTO']        := editEditarDocumento.Text;
             qryParcelas['DATA_PARCELA']     := StrToDate(maskEditDataPagamento.Text);
-            qryParcelas['VALOR_PARCELA']    := TextToCurr(editValorParcela.Text);
+            qryParcelas['VALOR_PARCELA']    := TratarValor(editValorParcela.Text); //TextToCurr(editValorParcela.Text);
             qryParcelas['VOLUME_PARCELADO'] := StrToFloat(editVolumeParcelado.Text);
             qryParcelas.Post;
             painelBtnConfirmar.Visible := False;
@@ -282,6 +284,24 @@ if Key = VK_RETURN then
      end;
 end;
 
+function TfrmEditarParcelas.TratarValor(str : String) : double;
+begin
+   str := StringReplace(str, '.', '', [rfReplaceAll]);
+   str := StringReplace(str, ',', '', [rfReplaceAll]);
+
+   try
+      Result := StrToFloat(str) / 100;
+   except
+      Result := 0;
+   end;
+
+end;
+
+procedure TfrmEditarParcelas.editValorParcelaChange(Sender: TObject);
+begin
+      Formatar(editValorParcela, TFormato.Valor);
+end;
+
 procedure TfrmEditarParcelas.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
@@ -307,7 +327,7 @@ procedure TfrmEditarParcelas.gridEditarParcelaDblClick(Sender: TObject);
   var ValorParcela : Currency;
 begin
 
-    ValorParcela := (qryParcelas['VALOR_PARCELA']);
+ //   ValorParcela := (qryParcelas['VALOR_PARCELA']);
 
  if qryParcelas.RecordCount > 0 then
 
@@ -315,7 +335,7 @@ begin
    if qryParcelas['DOCUMENTO'] <> null then
       editEditarDocumento.Text     := qryParcelas['DOCUMENTO'];
       maskEditDataPagamento.Text   := DateToStr(qryParcelas['DATA_PARCELA']);
-      editValorParcela.Text        := FormatCurr('R$ #.###,##', ValorParcela);
+      editValorParcela.Text        := FormatFloat('#,##0.00', qryParcelas['VALOR_PARCELA']);
       editVolumeParcelado.Text     := FloatToStr(qryParcelas['VOLUME_PARCELADO']);
       gridEditarParcela.Enabled    := False;
       painelBtnConfirmar.Visible   := True;

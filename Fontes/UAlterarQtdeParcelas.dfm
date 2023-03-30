@@ -312,6 +312,7 @@ object frmAlterarQtdeParcelas: TfrmAlterarQtdeParcelas
       Width = 121
       Height = 25
       TabOrder = 1
+      OnChange = editValorParcelaChange
       OnKeyPress = editValorParcelaKeyPress
     end
     object editVolumeParcelado: TEdit

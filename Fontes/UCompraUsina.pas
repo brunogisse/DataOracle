@@ -151,6 +151,7 @@ type
     procedure definirTamanhoDaLinhaDaGrid;
     procedure RegistrarMovimentoEstoque( TypeAction : string);
     procedure DataParametro;
+    function TratarValor(str: String): double;
 
 
 
@@ -166,7 +167,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UselecionarUsinaEproduto, UProduto, UUsinas,
-  UdefinirEstoque, UConverterFloat, URepresentante;
+  UdefinirEstoque, UConverterFloat, URepresentante, uFormat;
 
 
 procedure TfrmCompraUsina.definirTamanhoDaLinhaDaGrid;
@@ -327,7 +328,7 @@ begin
       //captura os valores informados para serem gravados na tabela de compras...
         qryCompraUsina['ESTOQUE_USINA_ID'] := qryEstoqueUsina['ESTOQUEID'];
         qryCompraUsina['DATA_COMPRA']      := StrToDate(maskeditdata.Text);
-        qryCompraUsina['VALOR_COMPRA']     := StrToFloat(editValor.Text);
+        qryCompraUsina['VALOR_COMPRA']     := TratarValor(editValor.Text);  //StrToFloat(editValor.Text);
         qryCompraUsina['VOLUME_COMPRA']    := StrToFloat(editVolume.Text);
         qryCompraUsina.Post;
 
@@ -499,10 +500,25 @@ begin
       end;
 end;
 
+function TfrmCompraUsina.TratarValor(str : String) : double;
+begin
+      str := StringReplace(str, '.', '', [rfReplaceAll]);
+      str := StringReplace(str, ',', '', [rfReplaceAll]);
+
+      try
+         Result := StrToFloat(str) / 100;
+      except
+         Result := 0;
+      end;
+end;
+
 procedure TfrmCompraUsina.editValorChange(Sender: TObject);
 begin
- editValor.Text := FormatarMoeda(editValor.Text);
- editValor.SelStart := Length(editValor.Text);
+//editValor.Text := FormatarMoeda(editValor.Text);
+//editValor.SelStart := Length(editValor.Text);
+
+   Formatar(editValor, TFormato.Valor);
+
 end;
 
 procedure TfrmCompraUsina.editValorKeyPress(Sender: TObject; var Key: Char);
@@ -544,6 +560,8 @@ begin
  DateVencimentoATE.Text := DateToStr(Date);
 
  DataParametro;
+
+ Formatar(editValor, TFormato.Valor);
 
 end;
 
@@ -604,7 +622,7 @@ begin
            qryMovimento['USINAID']            := qryCompraUsina['USINAID'];
            qryMovimento['ESTOQUEID']          := qryEstoqueUsina['ESTOQUEID'];
            qryMovimento['DATA']               := StrToDate(maskeditdata.Text);
-           qryMovimento['VALOR']              := StrToFloat(editValor.Text);
+           qryMovimento['VALOR']              := TratarValor(editValor.Text);  //StrToFloat(editValor.Text);
            qryMovimento['VOLUME']             := StrToFloat(editVolume.Text);
            qryMovimento['ESTOQUE_ANTERIOR']   := qryEstoqueUsina['ESTOQUE'];
            qryMovimento['TIPO']               := 'E';

@@ -631,6 +631,7 @@ object frmCompraUsina: TfrmCompraUsina
         Width = 117
         Height = 21
         TabOrder = 5
+        Text = '0'
         OnChange = editValorChange
         OnKeyPress = editValorKeyPress
       end
