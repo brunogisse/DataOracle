@@ -33,7 +33,8 @@ uses
   Uservidor in 'Uservidor.pas' {frmConfiguar_servidor},
   Vcl.Dialogs,
   Uclasse.conexao in 'Uclasse.conexao.pas',
-  uFormat in 'Units\uFormat.pas';
+  uFormat in 'Units\uFormat.pas',
+  cMotorista in 'classes\cMotorista.pas';
 
 {$R *.res}
 

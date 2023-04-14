@@ -318,7 +318,7 @@ object frmMotorista: TfrmMotorista
       TabOrder = 1
       object labelDestino: TLabel
         Left = 15
-        Top = 16
+        Top = 17
         Width = 39
         Height = 17
         Caption = 'NOME'
@@ -331,11 +331,10 @@ object frmMotorista: TfrmMotorista
       end
       object Label1: TLabel
         Left = 15
-        Top = 65
+        Top = 71
         Width = 23
         Height = 17
         Caption = 'CPF'
-        FocusControl = editCPF
         Font.Charset = ANSI_CHARSET
         Font.Color = 10395294
         Font.Height = -13
@@ -345,11 +344,10 @@ object frmMotorista: TfrmMotorista
       end
       object Label2: TLabel
         Left = 215
-        Top = 65
+        Top = 71
         Width = 48
         Height = 17
         Caption = 'CIDADE'
-        FocusControl = editCidade
         Font.Charset = ANSI_CHARSET
         Font.Color = 10395294
         Font.Height = -13
@@ -357,59 +355,47 @@ object frmMotorista: TfrmMotorista
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object editNome: TDBEdit
+      object editNome: TEdit
         Left = 15
-        Top = 32
+        Top = 34
         Width = 569
-        Height = 25
+        Height = 23
         CharCase = ecUpperCase
-        DataField = 'NOME'
-        DataSource = dsMotorista
-        Enabled = False
         Font.Charset = ANSI_CHARSET
-        Font.Color = 10395294
-        Font.Height = -13
+        Font.Color = 9408399
+        Font.Height = -12
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
-        OnKeyDown = editNomeKeyDown
-        OnKeyPress = editNomeKeyPress
       end
-      object editCPF: TDBEdit
+      object editCPF: TEdit
         Left = 15
-        Top = 81
-        Width = 173
-        Height = 25
+        Top = 88
+        Width = 186
+        Height = 23
         CharCase = ecUpperCase
-        DataField = 'CPF'
-        DataSource = dsMotorista
         Font.Charset = ANSI_CHARSET
-        Font.Color = 10395294
-        Font.Height = -13
+        Font.Color = 9408399
+        Font.Height = -12
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
-        OnKeyDown = editCPFKeyDown
       end
-      object editCidade: TDBEdit
-        Left = 215
-        Top = 81
+      object editCidade: TEdit
+        Left = 216
+        Top = 88
         Width = 369
-        Height = 25
+        Height = 23
         CharCase = ecUpperCase
-        DataField = 'CIDADE'
-        DataSource = dsMotorista
         Font.Charset = ANSI_CHARSET
-        Font.Color = 10395294
-        Font.Height = -13
+        Font.Color = 9408399
+        Font.Height = -12
         Font.Name = 'Segoe UI'
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
-        OnKeyDown = editCidadeKeyDown
-        OnKeyPress = editCidadeKeyPress
       end
     end
   end
@@ -551,8 +537,7 @@ object frmMotorista: TfrmMotorista
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnSalvarClick
-          ExplicitLeft = -4
-          ExplicitWidth = 120
+          ExplicitLeft = -5
         end
       end
       object PainelExcluir: TPanel
@@ -692,7 +677,8 @@ object frmMotorista: TfrmMotorista
     UpdateOptions.KeyFields = 'MOTORISTAID'
     UpdateOptions.AutoIncFields = 'MOTORISTAID'
     SQL.Strings = (
-      'select * from motorista')
+      'select * from motorista'
+      'order by nome')
     Left = 136
     Top = 456
     object qryMotoristaMOTORISTAID: TIntegerField
@@ -727,6 +713,7 @@ object frmMotorista: TfrmMotorista
   end
   object dsMotorista: TDataSource
     DataSet = qryMotorista
+    OnDataChange = dsMotoristaDataChange
     Left = 200
     Top = 456
   end

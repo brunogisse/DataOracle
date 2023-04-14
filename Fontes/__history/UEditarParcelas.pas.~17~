@@ -112,13 +112,14 @@ type
     procedure gridEditarParcelaDblClick(Sender: TObject);
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
-    procedure editValorParcelaChange(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
     procedure btnModificarParcelasClick(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure editValorParcelaChange(Sender: TObject);
 
   private
+    function TratarValor(str: String): double;
     { Private declarations }
 
 
@@ -135,7 +136,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UConverterFloat, UVendaPosto, UAlterarQtdeParcelas,
-  URepresentante;
+  URepresentante, uFormat;
 
 
 procedure TfrmEditarParcelas.btnCancelarClick(Sender: TObject);
@@ -157,7 +158,7 @@ begin
             qryParcelas.Edit;
             qryParcelas['DOCUMENTO']        := editEditarDocumento.Text;
             qryParcelas['DATA_PARCELA']     := StrToDate(maskEditDataPagamento.Text);
-            qryParcelas['VALOR_PARCELA']    := TextToCurr(editValorParcela.Text);
+            qryParcelas['VALOR_PARCELA']    := TratarValor(editValorParcela.Text); //TextToCurr(editValorParcela.Text);
             qryParcelas['VOLUME_PARCELADO'] := StrToFloat(editVolumeParcelado.Text);
             qryParcelas.Post;
             painelBtnConfirmar.Visible := False;
@@ -182,42 +183,45 @@ procedure TfrmEditarParcelas.btnExcluirClick(Sender: TObject);
   var QtdeParcelas, i : Integer;
       AuxErro : string;
     begin
-       QtdeParcelas := qryParcelas['QTDE_PARCELAS'];
-          if MessageBox(Application.Handle,'Atenção!' + #13 + #13
-                                         + 'Você está prestes a excluir todas as parcelas abaixo.' +#13 + #13
-                                         + 'Confirma a operação?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
-      if qryParcelas.RecordCount = QtdeParcelas then
-              begin
-                try
-                  qryVendaPosto.Locate('vendaid' , qryParcelas['VENDAID'], []);
-                  qryParcelas.First;
-                    for I := 1 to QtdeParcelas do
-                       begin
-                         qryParcelas.Delete;
-                         qryParcelas.Next;
-                       end;
+        if qryParcelas.RecordCount > 0 then
+          begin
+             QtdeParcelas := qryParcelas['QTDE_PARCELAS'];
+                if MessageBox(Application.Handle,'Atenção!' + #13 + #13
+                                               + 'Você está prestes a excluir todas as parcelas abaixo.' +#13 + #13
+                                               + 'Confirma a operação?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
+            if qryParcelas.RecordCount = QtdeParcelas then
+                    begin
+                      try
+                        qryVendaPosto.Locate('vendaid' , qryParcelas['VENDAID'], []);
+                        qryParcelas.First;
+                          for I := 1 to QtdeParcelas do
+                             begin
+                               qryParcelas.Delete;
+                               qryParcelas.Next;
+                             end;
 
-                         qryVendaPosto.Edit;
-                         qryVendaPosto['PARCELAS_GERADAS']  := 'N';
-                         qryVendaPosto['STATUS']            := 'EM ABERTO';
-                         qryVendaPosto['ATUALIZAR_PARCELA'] := 1;
-                      if frmVendaPostos <> Nil then
-                         frmVendaPostos.ParcelasGeradas     := 'Não';
-                         qryVendaPosto.Post;
-                         tcParcelas.CommitRetaining;
+                               qryVendaPosto.Edit;
+                               qryVendaPosto['PARCELAS_GERADAS']  := 'N';
+                               qryVendaPosto['STATUS']            := 'EM ABERTO';
+                               qryVendaPosto['ATUALIZAR_PARCELA'] := 1;
+                            if frmVendaPostos <> Nil then
+                               frmVendaPostos.ParcelasGeradas     := 'Não';
+                               qryVendaPosto.Post;
+                               tcParcelas.CommitRetaining;
 
-                         qryParcelas.Close;
-                         qryParcelas.Open();
+                               qryParcelas.Close;
+                               qryParcelas.Open();
 
-                except
-                  on E : exception do
-                   begin
-                     tcParcelas.RollbackRetaining;
-                     AuxErro := Copy(E.Message, 0, 500);
-                     MessageDlg('Erro ao Excluir parcelas. Motivo: ' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-                   end;
-                end;
-              end;
+                      except
+                        on E : exception do
+                         begin
+                           tcParcelas.RollbackRetaining;
+                           AuxErro := Copy(E.Message, 0, 500);
+                           MessageDlg('Erro ao Excluir parcelas. Motivo: ' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                         end;
+                      end;
+                    end;
+          end;
     end;
 
 procedure TfrmEditarParcelas.btnModificarParcelasClick(Sender: TObject);
@@ -241,6 +245,7 @@ begin
               begin
                 Close;
                 ParamByName('NF').AsInteger := StrToInt(editNF.Text);
+                ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
                 Open();
                 if RecordCount = qryParcelas['QTDE_PARCELAS'] then
                    PainelExcluir.Visible := True;
@@ -272,17 +277,29 @@ if Key = VK_RETURN then
             Application.CreateForm(TfrmRepresentante, frmRepresentante);
             frmRepresentante.Caminho := 'editarparcelas';
             frmRepresentante.ShowModal;
+            editNF.SetFocus;
           finally
               FreeAndNil(frmRepresentante);
           end;
      end;
 end;
 
+function TfrmEditarParcelas.TratarValor(str : String) : double;
+begin
+   str := StringReplace(str, '.', '', [rfReplaceAll]);
+   str := StringReplace(str, ',', '', [rfReplaceAll]);
+
+   try
+      Result := StrToFloat(str) / 100;
+   except
+      Result := 0;
+   end;
+
+end;
+
 procedure TfrmEditarParcelas.editValorParcelaChange(Sender: TObject);
 begin
-// editValorParcela.Text := FormatarMoeda(editValorParcela.Text);
-// editValorParcela.SelStart := Length(editValorParcela.Text);
-
+      Formatar(editValorParcela, TFormato.Valor, '');
 end;
 
 procedure TfrmEditarParcelas.FormClose(Sender: TObject;
@@ -301,6 +318,8 @@ begin
     qryVendaPosto.Open;
     qryFormaPgto.Open;
     qryRepresentante.Open();
+    qryRepresentante.Locate('representanteid', 6, [] );
+    editRepresentante.Text := qryRepresentante['NOME'];
     editNF.SetFocus;
 end;
 
@@ -308,7 +327,7 @@ procedure TfrmEditarParcelas.gridEditarParcelaDblClick(Sender: TObject);
   var ValorParcela : Currency;
 begin
 
-    ValorParcela := (qryParcelas['VALOR_PARCELA']);
+ //   ValorParcela := (qryParcelas['VALOR_PARCELA']);
 
  if qryParcelas.RecordCount > 0 then
 
@@ -316,7 +335,7 @@ begin
    if qryParcelas['DOCUMENTO'] <> null then
       editEditarDocumento.Text     := qryParcelas['DOCUMENTO'];
       maskEditDataPagamento.Text   := DateToStr(qryParcelas['DATA_PARCELA']);
-      editValorParcela.Text        := FormatCurr('R$ #.###,##', ValorParcela);
+      editValorParcela.Text        := FormatFloat('#,##0.00', qryParcelas['VALOR_PARCELA']);
       editVolumeParcelado.Text     := FloatToStr(qryParcelas['VOLUME_PARCELADO']);
       gridEditarParcela.Enabled    := False;
       painelBtnConfirmar.Visible   := True;

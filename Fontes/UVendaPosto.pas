@@ -256,7 +256,7 @@ implementation
 
 uses UPrincipalPetrotorque, URepresentante, Uposto, UProduto, UUsinas,
   UCorretores, UMotorista, UConverterFloat, UGerarParcelas,
-  UselecionarUsinaEproduto;
+  UselecionarUsinaEproduto, uFormat;
 
 procedure TfrmVendaPostos.definirTamanhoDaLinhaDaGrid;
 begin
@@ -417,9 +417,11 @@ begin
        editTotalCorretagem.Text := '';
 end;
 
+
 procedure TfrmVendaPostos.calcularFrete;
  var Volume, TaxaFrete, TotalFrete : Double;
 begin
+
        Volume := 0;
        TaxaFrete := 0;
        TotalFrete := 0;

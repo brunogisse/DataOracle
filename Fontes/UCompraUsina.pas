@@ -517,7 +517,7 @@ begin
 //editValor.Text := FormatarMoeda(editValor.Text);
 //editValor.SelStart := Length(editValor.Text);
 
-   Formatar(editValor, TFormato.Valor);
+   Formatar(editValor, TFormato.Valor, '');
 
 end;
 

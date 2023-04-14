@@ -29,10 +29,7 @@ type
     gridMotorista: TDBGrid;
     gbEdits: TGroupBox;
     labelDestino: TLabel;
-    editNome: TDBEdit;
     Label1: TLabel;
-    editCPF: TDBEdit;
-    editCidade: TDBEdit;
     Label2: TLabel;
     dsMotorista: TDataSource;
     labelTituloEditsNF: TLabel;
@@ -48,6 +45,9 @@ type
     painelEditar: TPanel;
     btnEditar: TSpeedButton;
     Image1: TImage;
+    editNome: TEdit;
+    editCPF: TEdit;
+    editCidade: TEdit;
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -72,10 +72,12 @@ type
     procedure editPesquisaMotoristaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editPesquisaMotoristaKeyPress(Sender: TObject; var Key: Char);
+    procedure dsMotoristaDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
 
     Procedure configurarEnables(status : integer);
+    procedure procLimparCampos;
 
 
   public
@@ -92,7 +94,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UVendaPosto, URelatorioMotorista,
-  UTransferenciaEstoque;
+  UTransferenciaEstoque, cMotorista;
 
 
 procedure TfrmMotorista.btnCancelarClick(Sender: TObject);
@@ -122,37 +124,73 @@ procedure TfrmMotorista.btnExcluirClick(Sender: TObject);
              except
             on E : Exception do
              begin
+               AuxErro := Copy(E.Message, 20, 500);
                MessageDlg('Não foi possível excluir esse registro. ' + #13
-                         + #13 + 'Esse motorista está sendo referenciado em alguma venda.  ' + #13 + #13
-                         + 'Erro Técnico: '+  AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                         + #13 + 'Existe pelo menos uma venda cadastrada com esse motorista.  ' + #13 + #13
+                         + 'Em caso de dúvida, informe o erro técnico abaixo ao desenvolvedor: ' + #13
+                         + 'Erro: ' + #13 + #13 +  AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
              end;
            end;
         end;
    end;
 
 
+procedure TfrmMotorista.procLimparCampos;
+begin
+   editCPF.Clear;
+   editCidade.Clear;
+   editNome.Clear;
+end;
+
 procedure TfrmMotorista.btnNovoClick(Sender: TObject);
 begin
-  configurarEnables(1);
-  gridMotorista.Enabled := False;
-  editNome.SetFocus;
-  qryMotorista.Insert;
+   if editPesquisaMotorista.Text <> '' then
+      editPesquisaMotorista.Clear;
+
+      configurarEnables(1);
+      gridMotorista.Enabled := False;
+      procLimparCampos;
+      editNome.SetFocus;
 end;
 
 
 procedure TfrmMotorista.btnSalvarClick(Sender: TObject);
+var
+   erro      : String;
+   motorista : TMotorista;
 begin
-      qryMotorista.Post;
+   try
+      motorista := TMotorista.Create(frmMenu.FDconexao);
+      motorista.NOME := editNome.Text;
+      motorista.CPF := editCPF.Text;
+      motorista.CIDADE := editCidade.Text;
+
       configurarEnables(0);
       gridMotorista.Enabled := True;
+      procLimparCampos;
+
+      motorista.Inserir(erro);
+
+      if erro <> '' then
+      begin
+         MessageDlg(erro, TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+         Exit;
+      end;
+
+   finally
+      motorista.DisposeOf;
+   end;
 
     try
       tcMotorista.CommitRetaining;
     finally
        tcMotorista.RollbackRetaining;
     end;
-end;
 
+    qryMotorista.Close;
+    qryMotorista.Open();
+
+end;
 
 
 procedure TfrmMotorista.CapturarMotorista;
@@ -214,6 +252,24 @@ procedure TfrmMotorista.configurarEnables(status: integer);
 
 
 
+
+procedure TfrmMotorista.dsMotoristaDataChange(Sender: TObject; Field: TField);
+begin
+   if qryMotorista['NOME'] <> null  then
+   editNome.Text := qryMotorista['NOME']
+   else
+   editNome.Text := '';
+
+   if qryMotorista['CIDADE'] <> null  then
+    editCidade.Text := qryMotorista['CIDADE']
+    else
+    editCidade.Text := '';
+
+   if qryMotorista['CPF'] <> null  then
+   editCPF.Text := qryMotorista['CPF']
+   else
+   editCPF.Text := '';
+end;
 
 procedure TfrmMotorista.editCidadeKeyPress(Sender: TObject; var Key: Char);
 begin
@@ -281,6 +337,9 @@ begin
        SQL.Add('select * from motorista where nome like ' + QuotedStr('%' + editPesquisaMotorista.Text + '%') + 'order by nome asc');
        Open;
      end;
+
+     if qryMotorista.RecordCount = 0 then
+        procLimparCampos;
 end;
 
 procedure TfrmMotorista.editPesquisaMotoristaKeyDown(Sender: TObject;

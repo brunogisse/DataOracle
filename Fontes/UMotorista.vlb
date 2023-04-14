@@ -46,12 +46,6 @@ Coordinates=112,10,86,58
 [painelEditar]
 Coordinates=236,166,83,58
 
-[editCidade]
-Coordinates=396,302,76,36
-
-[editNome]
-Coordinates=317,302,69,36
-
 [PainelExcluir]
 Coordinates=208,10,89,58
 
@@ -73,9 +67,6 @@ Coordinates=236,302,71,36
 
 [labelTituloEditsNF]
 Coordinates=10,166,120,58
-
-[editCPF]
-Coordinates=165,302,61,36
 
 [painelSalvar]
 Coordinates=140,166,86,58
@@ -105,5 +96,5 @@ Coordinates=534,234,62,36
 Coordinates=440,234,84,36
 
 []
-Coordinates=176,335,91,36
+Coordinates=396,302,76,36
 
