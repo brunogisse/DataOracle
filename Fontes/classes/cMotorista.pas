@@ -21,7 +21,8 @@ Type
       property CIDADE : String read FCIDADE write FCIDADE;
       property CPF : String read FCPF write FCPF;
 
-      function Inserir(out erro : String) : Boolean;
+      function Inserir(out erro: String; out cod : Integer): Boolean;
+      function ListarMotoristas(out erro : String) : TFDQuery;
 
 
    end;
@@ -39,7 +40,7 @@ end;
 
 
 
-function TMotorista.Inserir(out erro: String): Boolean;
+function TMotorista.Inserir(out erro: String; out cod : Integer): Boolean;
 var
    qry : TFDQuery;
 begin
@@ -67,18 +68,57 @@ begin
                      ParamByName('CPF').AsString    := CPF;
                      ExecSQL;
                   end;
+
+               with qry do
+                  begin
+                     Active := False;
+                     SQL.Clear;
+                     SQL.Add('SELECT COALESCE(MAX(MOTORISTAID), 0) AS MAIORCODIGO FROM MOTORISTA ');
+                     Active := True;
+                  end;
+
+               cod := qry.FieldByName('MAIORCODIGO').AsInteger;
+
                Result := True;
                erro := '';
+
              except
                on E : exception do
                begin
                   Result := False;
                   erro := 'Erro ao inserir motorista: ' + E.Message;
+                  cod := 0;
                end;
             end;
        finally
          qry.DisposeOf;
        end;
+end;
+
+function TMotorista.ListarMotoristas(out erro: String): TFDQuery;
+var
+   qry : TFDQuery;
+begin
+    try
+      qry := TFDQuery.Create(nil);
+      qry.Connection := FConn;
+
+      with qry do
+      begin
+         Active := False;
+         SQL.Clear;
+         SQL.Add('SELECT * FROM MOTORISTA ORDER BY NOME');
+         Active := True;
+      end;
+      Result := qry;
+      erro := ''
+    except
+      on E : Exception do
+      begin
+         Result := nil;
+         erro := 'Erro ao Listar os Motoristas: ' + E.Message;
+      end;
+    end;
 end;
 
 end.

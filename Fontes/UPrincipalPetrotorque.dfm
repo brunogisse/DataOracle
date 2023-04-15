@@ -30,6 +30,8 @@ object frmMenu: TfrmMenu
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitLeft = 8
+    ExplicitTop = -2
     DesignSize = (
       1383
       1036)
@@ -1999,7 +2001,7 @@ object frmMenu: TfrmMenu
       'DriverID=FB')
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
-    Left = 464
+    Left = 472
     Top = 232
   end
   object frxDBVencimentos: TfrxDBDataset

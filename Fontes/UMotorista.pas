@@ -76,9 +76,12 @@ type
   private
     { Private declarations }
 
+    qryObjeto : TFDQuery;
+
     Procedure configurarEnables(status : integer);
     procedure procLimparCampos;
-
+    procedure procCommitOrRollback;
+    procedure procObjetoOuComponente;
 
   public
     { Public declarations }
@@ -101,23 +104,120 @@ procedure TfrmMotorista.btnCancelarClick(Sender: TObject);
 begin
  configurarEnables(0);
  qryMotorista.Cancel;
+ procLimparCampos;
  gridMotorista.Enabled := True;
 end;
 
-procedure TfrmMotorista.btnEditarClick(Sender: TObject);
+// verifica se a query utilizada por último foi a criada em memória como objeto da classe TMotorista ou se foi a query componente...
+// se for objeto, a procedure pega o registro, passa para a query componente e libera o objeto da memória.
+// proc necessária enquanto transição do paradígma atual para a POO....
+procedure TfrmMotorista.procObjetoOuComponente;
 begin
- configurarEnables(1);
- gridMotorista.Enabled := False;
- qryMotorista.Edit;
+
+   if Assigned(qryObjeto) then
+
+         begin
+              qryMotorista.Close;
+              qryMotorista.Open();
+
+              qryMotorista.Locate('MOTORISTAID', dsMotorista.DataSet.FieldByName('MOTORISTAID').AsInteger, []);
+
+              dsMotorista.DataSet := qryMotorista;
+              gridMotorista.DataSource := dsMotorista;
+
+              FreeAndNil(qryObjeto);
+         end;
+
 end;
 
+procedure TfrmMotorista.btnSalvarClick(Sender: TObject);
+var
+   erro            : String;
+   motorista       : TMotorista;
+   CodigoMotorista : Integer;
+begin
 
+   if qryMotorista.State in [dsEdit] then
+      begin
+         qryMotorista['NOME']   := editNome.Text;
+         qryMotorista['CIDADE'] := editCidade.Text;
+         qryMotorista['CPF']    := editCPF.Text;
+         qryMotorista.Post;
+      end
+   else
+      begin
+         try
+            motorista := TMotorista.Create(frmMenu.FDconexao);
+            motorista.NOME := editNome.Text;
+            motorista.CPF := editCPF.Text;
+            motorista.CIDADE := editCidade.Text;
+
+            motorista.Inserir(erro, CodigoMotorista);
+
+            if erro <> '' then
+            begin
+               MessageDlg(erro, TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+               Exit;
+            end;
+
+            procCommitOrRollback;
+
+            if Assigned(qryObjeto) then
+               FreeAndNil(qryObjeto);
+
+            qryObjeto := motorista.ListarMotoristas(erro);
+
+            if erro <> '' then
+            begin
+               MessageDlg(erro, TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+               Exit;
+            end;
+
+            dsMotorista.DataSet := qryObjeto;
+            gridMotorista.DataSource := dsMotorista;
+
+            qryObjeto.Locate('MOTORISTAID', CodigoMotorista, []);
+
+         finally
+            FreeAndNil(motorista);
+         end;
+      end;
+
+   configurarEnables(0);
+   gridMotorista.Enabled := True;
+
+end;
+
+procedure TfrmMotorista.btnEditarClick(Sender: TObject);
+var
+   codigo : Integer;
+begin
+      procObjetoOuComponente;
+
+       editNome.Text := qryMotorista['NOME'];
+
+    if qryMotorista['CIDADE'] <> null then
+       editCidade.Text := qryMotorista['CIDADE'];
+       
+    if qryMotorista['CPF'] <> null then    
+       editCPF.Text := qryMotorista['CPF'];
+
+       configurarEnables(1);
+       gridMotorista.Enabled := False;
+       qryMotorista.Edit;
+
+end;
 
 procedure TfrmMotorista.btnExcluirClick(Sender: TObject);
- var AuxErro : string;
-   begin
+var 
+   AuxErro: string;   
+   motorista : string;       
+begin
+    procObjetoOuComponente;
+    motorista := qryMotoristaNOME.Value;
+   
     configurarEnables(0);
-      if MessageBox(Application.Handle,'Deseja excluir esse registro?','Confirmação',MB_YESNO + MB_ICONQUESTION) = mrYes then
+        if Application.MessageBox(Pchar('Deseja excluir o(a) motorista ' + motorista + '?'),'Confirmação', MB_YESNO + MB_ICONQUESTION) = mrYes then
         begin
            try
               qryMotorista.Delete;
@@ -132,7 +232,7 @@ procedure TfrmMotorista.btnExcluirClick(Sender: TObject);
              end;
            end;
         end;
-   end;
+ end;
 
 
 procedure TfrmMotorista.procLimparCampos;
@@ -141,6 +241,7 @@ begin
    editCidade.Clear;
    editNome.Clear;
 end;
+
 
 procedure TfrmMotorista.btnNovoClick(Sender: TObject);
 begin
@@ -154,71 +255,47 @@ begin
 end;
 
 
-procedure TfrmMotorista.btnSalvarClick(Sender: TObject);
-var
-   erro      : String;
-   motorista : TMotorista;
+procedure TfrmMotorista.procCommitOrRollback;
 begin
    try
-      motorista := TMotorista.Create(frmMenu.FDconexao);
-      motorista.NOME := editNome.Text;
-      motorista.CPF := editCPF.Text;
-      motorista.CIDADE := editCidade.Text;
-
-      configurarEnables(0);
-      gridMotorista.Enabled := True;
-      procLimparCampos;
-
-      motorista.Inserir(erro);
-
-      if erro <> '' then
-      begin
-         MessageDlg(erro, TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-         Exit;
-      end;
-
-   finally
-      motorista.DisposeOf;
-   end;
-
-    try
-      tcMotorista.CommitRetaining;
-    finally
+       tcMotorista.CommitRetaining;
+   except
        tcMotorista.RollbackRetaining;
-    end;
-
-    qryMotorista.Close;
-    qryMotorista.Open();
-
+   end;
 end;
 
 
 procedure TfrmMotorista.CapturarMotorista;
 begin
  if qryMotorista.RecordCount > 0 then
+
       begin
+
        if Action = 'venda' then
          begin
-          frmVendaPostos.qryMotorista.Refresh;
-          frmVendaPostos.editMotorista.Text := qryMotorista['NOME'];
-          frmVendaPostos.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
-          frmVendaPostos.editTaxaFrete.SetFocus;
-          Close;
+            frmVendaPostos.qryMotorista.Refresh;
+            frmVendaPostos.editMotorista.Text := qryMotorista['NOME'];
+            frmVendaPostos.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
+            frmVendaPostos.editTaxaFrete.SetFocus;
+            Close;
          end;
+
        if Action = 'relatoriomotorista' then
           begin
-          frmRelatorioMotorista.qryMotorista.Refresh;
-          frmRelatorioMotorista.editPesquisaMotorista.Text := qryMotorista['NOME'];
-          frmRelatorioMotorista.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
-          Close;
-         end;
+             frmRelatorioMotorista.qryMotorista.Refresh;
+             frmRelatorioMotorista.editPesquisaMotorista.Text := qryMotorista['NOME'];
+             frmRelatorioMotorista.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
+             Close;
+          end;
+
        if Action = 'transferencia' then
-        begin
-        frmTransferencia.qryMotorista.Refresh;
-        frmTransferencia.editMotorista.Text := qryMotorista['NOME'];
-        frmTransferencia.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
-        Close;
-       end;
+          begin
+             frmTransferencia.qryMotorista.Refresh;
+             frmTransferencia.editMotorista.Text := qryMotorista['NOME'];
+             frmTransferencia.qryMotorista.Locate('motoristaid', qryMotorista['MOTORISTAID'] , []);
+             Close;
+          end;
+
       end;
 
 end;
@@ -235,7 +312,6 @@ procedure TfrmMotorista.configurarEnables(status: integer);
       editNome.Enabled := False;
       editCidade.Enabled := False;
       editCPF.Enabled := False;
-
     end
    else
     begin
@@ -251,24 +327,26 @@ procedure TfrmMotorista.configurarEnables(status: integer);
   end;
 
 
-
-
 procedure TfrmMotorista.dsMotoristaDataChange(Sender: TObject; Field: TField);
 begin
-   if qryMotorista['NOME'] <> null  then
-   editNome.Text := qryMotorista['NOME']
-   else
-   editNome.Text := '';
 
-   if qryMotorista['CIDADE'] <> null  then
-    editCidade.Text := qryMotorista['CIDADE']
-    else
-    editCidade.Text := '';
+   if TDataSource(Sender).State in [dsEdit] then
+      Exit;
 
-   if qryMotorista['CPF'] <> null  then
-   editCPF.Text := qryMotorista['CPF']
-   else
-   editCPF.Text := '';
+         if qryMotorista['NOME'] <> null  then
+              editNome.Text := qryMotorista['NOME']
+            else
+              editNome.Text := '';
+
+         if qryMotorista['CIDADE'] <> null  then
+              editCidade.Text := qryMotorista['CIDADE']
+            else
+              editCidade.Text := '';
+
+         if qryMotorista['CPF'] <> null  then
+              editCPF.Text := qryMotorista['CPF']
+            else
+              editCPF.Text := '';
 end;
 
 procedure TfrmMotorista.editCidadeKeyPress(Sender: TObject; var Key: Char);

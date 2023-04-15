@@ -368,6 +368,8 @@ object frmMotorista: TfrmMotorista
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 0
+        OnKeyDown = editNomeKeyDown
+        OnKeyPress = editNomeKeyPress
       end
       object editCPF: TEdit
         Left = 15
@@ -382,6 +384,8 @@ object frmMotorista: TfrmMotorista
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 1
+        OnKeyDown = editCPFKeyDown
+        OnKeyPress = editNomeKeyPress
       end
       object editCidade: TEdit
         Left = 216
@@ -396,6 +400,8 @@ object frmMotorista: TfrmMotorista
         Font.Style = [fsBold]
         ParentFont = False
         TabOrder = 2
+        OnKeyDown = editCidadeKeyDown
+        OnKeyPress = editCidadeKeyPress
       end
     end
   end
@@ -570,8 +576,7 @@ object frmMotorista: TfrmMotorista
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnExcluirClick
-          ExplicitLeft = 2
-          ExplicitWidth = 120
+          ExplicitLeft = 5
         end
       end
       object painelEditar: TPanel
@@ -604,10 +609,7 @@ object frmMotorista: TfrmMotorista
           Font.Style = [fsBold]
           ParentFont = False
           OnClick = btnEditarClick
-          ExplicitLeft = 64
-          ExplicitTop = 8
-          ExplicitWidth = 153
-          ExplicitHeight = 41
+          ExplicitLeft = -5
         end
       end
     end
@@ -679,8 +681,8 @@ object frmMotorista: TfrmMotorista
     SQL.Strings = (
       'select * from motorista'
       'order by nome')
-    Left = 136
-    Top = 456
+    Left = 104
+    Top = 440
     object qryMotoristaMOTORISTAID: TIntegerField
       FieldName = 'MOTORISTAID'
       Origin = 'MOTORISTAID'
@@ -714,7 +716,7 @@ object frmMotorista: TfrmMotorista
   object dsMotorista: TDataSource
     DataSet = qryMotorista
     OnDataChange = dsMotoristaDataChange
-    Left = 200
-    Top = 456
+    Left = 176
+    Top = 440
   end
 end
