@@ -218,6 +218,8 @@ type
       ToIndex: Integer);
     procedure editNFExit(Sender: TObject);
     procedure editJurosChange(Sender: TObject);
+    procedure editValorCombustivelKeyPress(Sender: TObject; var Key: Char);
+    procedure dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
 
@@ -256,7 +258,16 @@ implementation
 
 uses UPrincipalPetrotorque, URepresentante, Uposto, UProduto, UUsinas,
   UCorretores, UMotorista, UConverterFloat, UGerarParcelas,
-  UselecionarUsinaEproduto;
+  UselecionarUsinaEproduto, uFormat;
+
+procedure TfrmVendaPostos.dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+   begin
+      editMotorista.SetFocus;
+      Key := #0;
+   end;
+end;
 
 procedure TfrmVendaPostos.definirTamanhoDaLinhaDaGrid;
 begin
@@ -417,9 +428,11 @@ begin
        editTotalCorretagem.Text := '';
 end;
 
+
 procedure TfrmVendaPostos.calcularFrete;
  var Volume, TaxaFrete, TotalFrete : Double;
 begin
+
        Volume := 0;
        TaxaFrete := 0;
        TotalFrete := 0;
@@ -635,13 +648,28 @@ end;
 procedure TfrmVendaPostos.editNFExit(Sender: TObject);
 begin
   if editNF.Text <> '' then
-       begin
+     begin
+        with qryConfirmarNF do
+           begin
+             Close;
+             ParamByName('NF').AsInteger := StrToInt(editNF.Text);
+             Open;
+           end;
+
+           if qryConfirmarNF.RecordCount > 0 then
+              begin
+                 MessageDlg('Nota fiscal já cadastrada.',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+                 editNF.SetFocus;
+           end;
+     end;
+
+       {begin
         if (qryConfirmarNF.Locate('NF', editNF.Text, [])) then
            begin
               MessageDlg('Nota fiscal já cadastrada.',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
               editNF.SetFocus;
            end;
-       end;
+       end;}
 end;
 
 procedure TfrmVendaPostos.editNFKeyDown(Sender: TObject; var Key: Word;
@@ -654,7 +682,10 @@ end;
 procedure TfrmVendaPostos.editNFKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
+  begin
+      dateEmissaoNF.SetFocus;
       Key := #0;
+  end;
 end;
 
 procedure TfrmVendaPostos.editPostoKeyDown(Sender: TObject; var Key: Word;
@@ -806,6 +837,16 @@ begin
     SalvarRegistro;
 end;
 
+procedure TfrmVendaPostos.editValorCombustivelKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if Key = #13 then
+   begin
+      editUsina.SetFocus;
+      Key := #0;
+   end;
+end;
+
 procedure TfrmVendaPostos.editVolumeChange(Sender: TObject);
 begin
  calcularFrete;
@@ -828,7 +869,11 @@ end;
 procedure TfrmVendaPostos.editVolumeKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
+  begin
+      editValorCombustivel.SetFocus;
       Key := #0;
+  end;
+
 end;
 
 procedure TfrmVendaPostos.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -1065,11 +1110,11 @@ function TfrmVendaPostos.VerificarCamposVazios(campos: string): string;
         (editCorretor.Text = '') or
         (editTaxaFrete.Text = '') or
         (editTaxaCorretagem.Text = '') or
-        (dateEmissaoNF.Date) > date
+        (dateEmissaoNF.Date > date)
      then
       begin
         campos := 'empty';
-        ShowMessage('Verifique os campos vazios');
+        MessageDlg('Verifique se há campos vazios ou se você está '+ #13 +' informando uma data é futura!', mtInformation, [mbOK], 0);
       end
      else
        begin

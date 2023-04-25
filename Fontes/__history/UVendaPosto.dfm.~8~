@@ -1073,7 +1073,6 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = []
         ParentFont = False
         TabOrder = 8
-        OnKeyPress = editOrdemCarregamentoKeyPress
       end
     end
     object painelBOTTOM: TPanel

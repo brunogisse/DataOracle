@@ -71,7 +71,6 @@ type
     procedure dateDataParcelaKeyPress(Sender: TObject; var Key: Char);
     procedure btnEditarParcelasClick(Sender: TObject);
     procedure editQtdeParcelasKeyPress(Sender: TObject; var Key: Char);
-    procedure dbLookupFormaPgtoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
 
@@ -151,20 +150,7 @@ procedure TfrmGerarParcelas.dateDataParcelaKeyPress(Sender: TObject;
   var Key: Char);
 begin
  if Key = #13 then
-    begin
-         btnConfirmarParcelamento.Click;
-         Key := #0;
-    end;
-end;
-
-procedure TfrmGerarParcelas.dbLookupFormaPgtoKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-   if Key = #13 then
-   begin
-      editQtdeParcelas.SetFocus;
-      Key := #0;
-   end;
+    Key := #0;
 end;
 
 procedure TfrmGerarParcelas.definirTamanhoDaLinhaDaGrid;
@@ -179,10 +165,7 @@ procedure TfrmGerarParcelas.editQtdeParcelasKeyPress(Sender: TObject;
   var Key: Char);
 begin
    if ((key in ['0'..'9'] = false) and (word(key) <> vk_back)) then
-   begin
-     dateDataParcela.SetFocus;
      key := #0;
-   end;
 end;
 
 procedure TfrmGerarParcelas.FormClose(Sender: TObject;

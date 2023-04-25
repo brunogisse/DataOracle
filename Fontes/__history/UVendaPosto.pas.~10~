@@ -218,9 +218,6 @@ type
       ToIndex: Integer);
     procedure editNFExit(Sender: TObject);
     procedure editJurosChange(Sender: TObject);
-    procedure editValorCombustivelKeyPress(Sender: TObject; var Key: Char);
-    procedure dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
-    procedure editOrdemCarregamentoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
 
@@ -260,15 +257,6 @@ implementation
 uses UPrincipalPetrotorque, URepresentante, Uposto, UProduto, UUsinas,
   UCorretores, UMotorista, UConverterFloat, UGerarParcelas,
   UselecionarUsinaEproduto, uFormat;
-
-procedure TfrmVendaPostos.dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
-begin
-   if Key = #13 then
-   begin
-      editOrdemCarregamento.SetFocus;
-      Key := #0;
-   end;
-end;
 
 procedure TfrmVendaPostos.definirTamanhoDaLinhaDaGrid;
 begin
@@ -613,10 +601,8 @@ end;
 procedure TfrmVendaPostos.editCorretorKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
-   begin
-      editTaxaCorretagem.SetFocus;
       Key := #0;
-   end;
+
 end;
 
 procedure TfrmVendaPostos.editJurosChange(Sender: TObject);
@@ -645,10 +631,7 @@ end;
 procedure TfrmVendaPostos.editMotoristaKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
-   begin
-      editTaxaFrete.SetFocus;
       Key := #0;
-   end;
 end;
 
 procedure TfrmVendaPostos.editNFExit(Sender: TObject);
@@ -688,20 +671,7 @@ end;
 procedure TfrmVendaPostos.editNFKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
-  begin
-      dateEmissaoNF.SetFocus;
       Key := #0;
-  end;
-end;
-
-procedure TfrmVendaPostos.editOrdemCarregamentoKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-   if Key = #13 then
-   begin
-      editMotorista.SetFocus;
-      Key := #0;
-   end;
 end;
 
 procedure TfrmVendaPostos.editPostoKeyDown(Sender: TObject; var Key: Word;
@@ -794,10 +764,7 @@ procedure TfrmVendaPostos.editTaxaCorretagemKeyPress(Sender: TObject;
   var Key: Char);
 begin
   if Key = #13 then
-   begin
-      SalvarRegistro;
       Key := #0;
-   end;
 end;
 
 procedure TfrmVendaPostos.editTaxaFreteChange(Sender: TObject);
@@ -814,11 +781,8 @@ end;
 
 procedure TfrmVendaPostos.editTaxaFreteKeyPress(Sender: TObject; var Key: Char);
 begin
-   if Key = #13 then
-   begin
-      editCorretor.SetFocus;
+  if Key = #13 then
       Key := #0;
-   end;
 end;
 
 procedure TfrmVendaPostos.editUsinaKeyDown(Sender: TObject; var Key: Word;
@@ -859,16 +823,6 @@ begin
     SalvarRegistro;
 end;
 
-procedure TfrmVendaPostos.editValorCombustivelKeyPress(Sender: TObject;
-  var Key: Char);
-begin
-   if Key = #13 then
-   begin
-      editUsina.SetFocus;
-      Key := #0;
-   end;
-end;
-
 procedure TfrmVendaPostos.editVolumeChange(Sender: TObject);
 begin
  calcularFrete;
@@ -891,11 +845,7 @@ end;
 procedure TfrmVendaPostos.editVolumeKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
-  begin
-      editValorCombustivel.SetFocus;
       Key := #0;
-  end;
-
 end;
 
 procedure TfrmVendaPostos.FormClose(Sender: TObject; var Action: TCloseAction);

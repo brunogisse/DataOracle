@@ -181,7 +181,6 @@ object frmGerarParcelas: TfrmGerarParcelas
         ListSource = dsFormaPgto
         ParentFont = False
         TabOrder = 0
-        OnKeyPress = dbLookupFormaPgtoKeyPress
       end
       object dateDataParcela: TDateTimePicker
         Left = 5

@@ -151,10 +151,7 @@ procedure TfrmGerarParcelas.dateDataParcelaKeyPress(Sender: TObject;
   var Key: Char);
 begin
  if Key = #13 then
-    begin
-         btnConfirmarParcelamento.Click;
-         Key := #0;
-    end;
+    Key := #0;
 end;
 
 procedure TfrmGerarParcelas.dbLookupFormaPgtoKeyPress(Sender: TObject;
@@ -179,10 +176,7 @@ procedure TfrmGerarParcelas.editQtdeParcelasKeyPress(Sender: TObject;
   var Key: Char);
 begin
    if ((key in ['0'..'9'] = false) and (word(key) <> vk_back)) then
-   begin
-     dateDataParcela.SetFocus;
      key := #0;
-   end;
 end;
 
 procedure TfrmGerarParcelas.FormClose(Sender: TObject;

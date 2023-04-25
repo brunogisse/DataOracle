@@ -922,7 +922,6 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = []
         ParentFont = False
         TabOrder = 7
-        OnKeyPress = dateEmissaoNFKeyPress
       end
       object editEstoque: TEdit
         Left = 895
@@ -1073,7 +1072,6 @@ object frmVendaPostos: TfrmVendaPostos
         Font.Style = []
         ParentFont = False
         TabOrder = 8
-        OnKeyPress = editOrdemCarregamentoKeyPress
       end
     end
     object painelBOTTOM: TPanel
