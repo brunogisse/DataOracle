@@ -30,8 +30,6 @@ object frmMenu: TfrmMenu
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = -2
     DesignSize = (
       1383
       1036)
@@ -266,25 +264,6 @@ object frmMenu: TfrmMenu
           426082}
         ExplicitLeft = 308
         ExplicitTop = 3
-      end
-      object labelNomeSistema: TLabel
-        Left = 369
-        Top = 0
-        Width = 135
-        Height = 69
-        Align = alLeft
-        Alignment = taCenter
-        Caption = 'DataOracle v1.3'
-        Color = clBlack
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clGray
-        Font.Height = -19
-        Font.Name = 'Segoe UI Semibold'
-        Font.Style = [fsBold]
-        ParentColor = False
-        ParentFont = False
-        Layout = tlCenter
-        ExplicitHeight = 25
       end
       object btnMenu: TSpeedButton
         AlignWithMargins = True
@@ -742,6 +721,41 @@ object frmMenu: TfrmMenu
         ParentShowHint = False
         ShowHint = True
         OnClick = SpeedButton1Click
+      end
+      object btnBackupAutomatico: TSpeedButton
+        Left = 862
+        Top = 38
+        Width = 265
+        Height = 27
+        Anchors = [akTop, akRight]
+        Caption = 'Parar Backup autom'#225'tico'
+        Flat = True
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = []
+        ParentFont = False
+        OnClick = btnBackupAutomaticoClick
+      end
+      object labelNomeSistema: TLabel
+        Left = 369
+        Top = 0
+        Width = 135
+        Height = 69
+        Align = alLeft
+        Alignment = taCenter
+        Caption = 'DataOracle v1.3'
+        Color = clBlack
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clGray
+        Font.Height = -19
+        Font.Name = 'Segoe UI Semibold'
+        Font.Style = [fsBold]
+        ParentColor = False
+        ParentFont = False
+        Layout = tlCenter
+        ExplicitHeight = 25
       end
       object painelUnderlineTopo: TPanel
         Left = 0
@@ -2009,8 +2023,8 @@ object frmMenu: TfrmMenu
     CloseDataSource = False
     DataSet = dm.qryVencimentos
     BCDToCurrency = False
-    Left = 1254
-    Top = 775
+    Left = 574
+    Top = 311
   end
   object reportVencimentos: TfrxReport
     Version = '6.7.6'
@@ -2027,8 +2041,8 @@ object frmMenu: TfrmMenu
       'begin'
       ''
       'end.')
-    Left = 1120
-    Top = 776
+    Left = 464
+    Top = 304
     Datasets = <
       item
         DataSet = frxDBVencimentos
@@ -2998,5 +3012,12 @@ object frmMenu: TfrmMenu
         end
       end
     end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 30000
+    OnTimer = Timer1Timer
+    Left = 563
+    Top = 235
   end
 end

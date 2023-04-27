@@ -120,7 +120,11 @@ begin
      end;
 
      if dm.qryLogin.RecordCount > 0 then
-    close
+     begin
+         close;
+         frmMenu.Timer1.Enabled := True;
+     end
+
 
     else
 

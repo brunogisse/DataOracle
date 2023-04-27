@@ -20,7 +20,6 @@ type
     btnMaximizar: TSpeedButton;
     btnFechar: TSpeedButton;
     imagemLogo: TImage;
-    labelNomeSistema: TLabel;
     btnMenu: TSpeedButton;
     painelUnderlineTopo: TPanel;
     painelMenuLateral: TPanel;
@@ -63,6 +62,9 @@ type
     btnVencimentos: TSpeedButton;
     frxDBVencimentos: TfrxDBDataset;
     reportVencimentos: TfrxReport;
+    Timer1: TTimer;
+    btnBackupAutomatico: TSpeedButton;
+    labelNomeSistema: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure mCorretorClick(Sender: TObject);
     procedure mPostoClick(Sender: TObject);
@@ -96,6 +98,9 @@ type
     procedure btnTransferenciaClick(Sender: TObject);
     procedure btnVencimentosClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure labelBackupSistemaClick(Sender: TObject);
+    procedure btnBackupAutomaticoClick(Sender: TObject);
 
   private
     { Private declarations }
@@ -440,6 +445,7 @@ end;
 procedure TfrmMenu.FormShow(Sender: TObject);
 begin
   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName('NOME').AsString;
+
 end;
 
 procedure TfrmMenu.itemPesquisaVendasClick(Sender: TObject);
@@ -450,6 +456,11 @@ begin
   finally
      FreeAndNil(frmPesquisaVendas);
   end;
+end;
+
+procedure TfrmMenu.labelBackupSistemaClick(Sender: TObject);
+begin
+   Timer1.Enabled := False;
 end;
 
 procedure TfrmMenu.mCorretorClick(Sender: TObject);
@@ -522,14 +533,47 @@ try
    end;
 end;
 
+procedure TfrmMenu.btnBackupAutomaticoClick(Sender: TObject);
+begin
+   if Timer1.Enabled = True then
+   begin
+      Timer1.Enabled := False;
+      TSpeedButton(Sender).Caption := 'Iniciar Backup Automático';
+   end
+   else
+   begin
+      Timer1.Enabled := True;
+      TSpeedButton(Sender).Caption := 'Pausar Backup Automático';
+   end;
+
+end;
+
 procedure TfrmMenu.SpeedButton6Click(Sender: TObject);
 begin
- try
+try
    Application.CreateForm(TfrmCorretores, frmCorretores);
     frmCorretores.ShowModal;
   finally
      FreeAndNil(frmCorretores);
  end;
+end;
+
+procedure TfrmMenu.Timer1Timer(Sender: TObject);
+begin
+  // Caminho em produção - mudar timer para 30000 (backup a cada 5 minutos)
+  if not CopyFile(PChar('Y:\Dados\PETROTORQUEDADOS.FDB'),
+      PChar('C:\Users\Usuario\Desktop\Novo sistema\PETROTORQUEDADOS.FDB'), false) then
+
+   // Descomentar para testar no desenvolvimento - colocar timer de 5000 (5 segundos para testes)
+
+   // if not CopyFile(PChar('C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Fontes\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'),
+   //       PChar('C:\Users\bruno\OneDrive\Área de Trabalho\PETROTORQUEDADOS.FDB'), false) then
+
+
+      ShowMessage('Erro ao fazer backup');
+
+  //  else
+  //  ShowMessage('Arquivo copiado com sucesso!');
 end;
 
 end.

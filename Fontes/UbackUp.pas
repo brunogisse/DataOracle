@@ -48,7 +48,7 @@ begin
   Origem  := editBanco.Text;
   Destino := editBackup.Text;
 
-  if not CopyFile(PChar(Origem), PChar(Destino), true) then
+  if not CopyFile(PChar(Origem), PChar(Destino), false) then
     ShowMessage('Erro ao copiar ' + Origem + ' para ' + Destino)
     else
     ShowMessage('Arquivo copiado com sucesso!');
