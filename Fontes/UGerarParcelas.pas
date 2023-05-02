@@ -300,11 +300,11 @@ procedure TfrmGerarParcelas.TornarPainelGerarParcelaVISIVEL;
 begin
     if qryParcelas.RecordCount > 0 then
      begin
-     PainelGerarParcelas.Enabled := True;
-     qryParcelas.Cancel;
+        PainelGerarParcelas.Visible := False;
+        qryParcelas.Cancel;
      end
     else
-     PainelGerarParcelas.Enabled := True;
+     PainelGerarParcelas.Visible := True;
 end;
 
 end.

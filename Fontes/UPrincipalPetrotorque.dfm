@@ -3015,7 +3015,7 @@ object frmMenu: TfrmMenu
   end
   object Timer1: TTimer
     Enabled = False
-    Interval = 30000
+    Interval = 300000
     OnTimer = Timer1Timer
     Left = 563
     Top = 235
