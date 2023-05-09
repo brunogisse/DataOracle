@@ -958,7 +958,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 44991.705864328700000000
+    ReportOptions.LastChange = 45055.838219826390000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1564,6 +1564,42 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
           HightQuality = False
           Transparent = False
           TransparentColor = clWhite
+        end
+        object frxDBDataset1REPRESENTANTE: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 680.874460000000000000
+          Top = 34.015770000000000000
+          Width = 351.496290000000000000
+          Height = 15.118120000000000000
+          DataField = 'REPRESENTANTE'
+          DataSet = dbRelMotorista
+          DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."REPRESENTANTE"]')
+          ParentFont = False
+        end
+        object Memo21: TfrxMemoView
+          AllowVectorExport = True
+          Left = 597.945270000000000000
+          Top = 34.015770000000000000
+          Width = 83.149660000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Representante:')
+          ParentFont = False
         end
       end
       object PageHeader1: TfrxPageHeader

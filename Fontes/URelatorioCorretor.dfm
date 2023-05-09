@@ -32,7 +32,6 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1117
     object labelTitulo: TLabel
       Left = 740
       Top = 15
@@ -63,7 +62,6 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 1123
     object Image1: TImage
       Left = 9
       Top = 37
@@ -938,7 +936,7 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44826.452882592600000000
-    ReportOptions.LastChange = 45008.494643703710000000
+    ReportOptions.LastChange = 45055.840383055550000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1544,6 +1542,36 @@ object frmRelatorioCorretor: TfrmRelatorioCorretor
           HightQuality = False
           Transparent = False
           TransparentColor = clWhite
+        end
+        object frxDBDataset1REPRESENTANTE: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 705.567410000000000000
+          Top = 26.236240000000000000
+          Width = 336.378170000000000000
+          Height = 18.897650000000000000
+          DataField = 'REPRESENTANTE'
+          DataSet = dbRelCorretor
+          DataSetName = 'frxDBDataset1'
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."REPRESENTANTE"]')
+        end
+        object Memo19: TfrxMemoView
+          AllowVectorExport = True
+          Left = 600.945270000000000000
+          Top = 26.236240000000000000
+          Width = 102.047310000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Representante:')
+          ParentFont = False
         end
       end
       object PageHeader1: TfrxPageHeader
