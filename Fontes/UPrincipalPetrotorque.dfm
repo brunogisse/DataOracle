@@ -2023,8 +2023,8 @@ object frmMenu: TfrmMenu
     CloseDataSource = False
     DataSet = dm.qryVencimentos
     BCDToCurrency = False
-    Left = 574
-    Top = 311
+    Left = 566
+    Top = 303
   end
   object reportVencimentos: TfrxReport
     Version = '6.7.6'
@@ -2041,7 +2041,7 @@ object frmMenu: TfrmMenu
       'begin'
       ''
       'end.')
-    Left = 464
+    Left = 472
     Top = 304
     Datasets = <
       item
