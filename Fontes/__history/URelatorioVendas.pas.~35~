@@ -212,13 +212,15 @@ begin
                        SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                   ');
                        SQL.Add('(v.estoqueid = eu.estoqueid)                                                                                                                     ');
                        Sql.Add('and                                                                                                                                              ');
-
                    if rbFechamentoPago.Checked = True then
-
+                   begin
                        Sql.Add('(parc.status = ''PAGO'') and                                                                                                                     ');
-                       Sql.Add('(re.representanteid = :representante) and                                                                                                        ');
-                       Sql.Add('(PARC.DATA_PGTO_PARCELA between :INICIO and :FIM)                                                                                                ');
-                       Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc                                                                                                  ');
+                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                            ');
+                   end
+                    else
+                       Sql.Add('(PARC.DATA_PARCELA between :INICIO and :FIM) and                                                                                                 ');
+                       Sql.Add('(re.representanteid = :representante)                                                                                                            ');
+		                 Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc   	                                                                                             ');
                        ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);
                        ParamByName('FIM').AsDate := StrToDate(DateVencimentoATE.EditText);
                        ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
@@ -237,11 +239,15 @@ procedure TfrmRelatorioVenda.btnImprmirClick(Sender: TObject);
   var caminhorelatorio : string;
 begin
 
-         caminhoRelatorio := ExtractFilePath(Application.ExeName);
-         reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
-         reportVendas.Variables['InicioMes']     :=  QuotedStr( DateVencimentoDE.Text );
-         reportVendas.Variables['FimMes']        :=  QuotedStr( DateVencimentoATE.Text );
-         reportVendas.ShowReport();
+      caminhoRelatorio := ExtractFilePath(Application.ExeName);
+      reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
+      reportVendas.Variables['InicioMes']     := QuotedStr( DateVencimentoDE.Text );
+      reportVendas.Variables['FimMes']        := QuotedStr( DateVencimentoATE.Text );
+   if rbFechamentoPago.Checked = True then
+      reportVendas.Variables['STATUS_REL']    := 'Parcelas Pagas'
+   else
+      reportVendas.Variables['STATUS_REL']    := 'Todas as Parcelas';
+      reportVendas.ShowReport();
 
 
 end;
@@ -573,13 +579,14 @@ end;
 
 procedure TfrmRelatorioVenda.FormShow(Sender: TObject);
 begin
-    qryPosto.Open();
-    qryRepresentante.Open();
-    qryRepresentante.Locate('representanteid', 6, [] );
-    editRepresentantePrincipal.Text := qryRepresentante['NOME'];
-    rbFechamentoNaoPago.Checked := True;
-    DateVencimentoDE.Text := DateToStr(Date);
-    DateVencimentoATE.Text := DateToStr(Date);
+ qryPosto.Open();
+ qryRepresentante.Open();
+ qryRepresentante.Locate('representanteid', 6, [] );
+ editRepresentantePrincipal.Text := qryRepresentante['NOME'];
+ rbFechamentoNaoPago.Checked := True;
+
+ DateVencimentoDE.Text := DateToStr(Date);
+ DateVencimentoATE.Text := DateToStr(Date);
 end;
 
 end.

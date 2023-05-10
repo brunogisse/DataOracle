@@ -212,13 +212,15 @@ begin
                        SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                   ');
                        SQL.Add('(v.estoqueid = eu.estoqueid)                                                                                                                     ');
                        Sql.Add('and                                                                                                                                              ');
-
                    if rbFechamentoPago.Checked = True then
-
+                   begin
                        Sql.Add('(parc.status = ''PAGO'') and                                                                                                                     ');
-                       Sql.Add('(re.representanteid = :representante) and                                                                                                        ');
-                       Sql.Add('(PARC.DATA_PGTO_PARCELA between :INICIO and :FIM)                                                                                                ');
-                       Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc                                                                                                  ');
+                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                            ');
+                   end
+                    else
+                       Sql.Add('(PARC.DATA_PARCELA between :INICIO and :FIM) and                                                                                                 ');
+                       Sql.Add('(re.representanteid = :representante)                                                                                                            ');
+		                 Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc   	                                                                                             ');
                        ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);
                        ParamByName('FIM').AsDate := StrToDate(DateVencimentoATE.EditText);
                        ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
@@ -234,14 +236,22 @@ begin
 end;
 
 procedure TfrmRelatorioVenda.btnImprmirClick(Sender: TObject);
-  var caminhorelatorio : string;
+  var caminhorelatorio, statusRel : string;
 begin
 
-         caminhoRelatorio := ExtractFilePath(Application.ExeName);
-         reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
-         reportVendas.Variables['InicioMes']     :=  QuotedStr( DateVencimentoDE.Text );
-         reportVendas.Variables['FimMes']        :=  QuotedStr( DateVencimentoATE.Text );
-         reportVendas.ShowReport();
+      caminhoRelatorio := ExtractFilePath(Application.ExeName);
+      reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
+      reportVendas.Variables['InicioMes']     := QuotedStr( DateVencimentoDE.Text );
+      reportVendas.Variables['FimMes']        := QuotedStr( DateVencimentoATE.Text );
+   if rbFechamentoPago.Checked = True then
+      statusRel := 'Parcelas Pagas'
+   else
+      statusRel := 'Todas as Parcelas';
+      reportVendas.Variables['STATUS_REL']
+
+      reportVendas.Variables['STATUS_REL']    := QuotedStr( statusRel )
+
+      reportVendas.ShowReport();
 
 
 end;
@@ -577,7 +587,7 @@ begin
  qryRepresentante.Open();
  qryRepresentante.Locate('representanteid', 6, [] );
  editRepresentantePrincipal.Text := qryRepresentante['NOME'];
- rbFechamentoPago.Checked = True;
+ rbFechamentoNaoPago.Checked := True;
 
  DateVencimentoDE.Text := DateToStr(Date);
  DateVencimentoATE.Text := DateToStr(Date);
