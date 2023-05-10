@@ -181,17 +181,15 @@ implementation
 
 uses UPrincipalPetrotorque, Uposto, URepresentante;
 
-
-
 procedure TfrmRelatorioVenda.btnConsultarClick(Sender: TObject);
 begin
    if editRepresentantePrincipal.Text <> '' then
-         begin
+           begin
              with qryRelatorioVendaPosto do
                  begin
                        Close;
                        Sql.Clear;
-                       SQL.Add('select  ');
+                       SQL.Add('select                                                                                                                                           ');
                        SQL.Add('v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid,                                       ');
                        SQL.Add('v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete,                                         ');
                        SQL.Add('v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,                             ');
@@ -211,34 +209,35 @@ begin
                        SQL.Add('(v.usinaid = u.usinaid) and                                                                                                                      ');
                        SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                   ');
                        SQL.Add('(v.estoqueid = eu.estoqueid)                                                                                                                     ');
-                       Sql.Add('and                                                                                                                                              ');
-                   if rbFechamentoPago.Checked = True then
-                   begin
+                       Sql.Add('and
+                                                                                                                                                                    ');
+                    if rbFechamentoPago.Checked = True then
+                    begin
                        Sql.Add('(parc.status = ''PAGO'') and                                                                                                                     ');
-                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                            ');
-                   end
-                    else
-                       Sql.Add('(PARC.DATA_PARCELA between :INICIO and :FIM) and                                                                                                 ');
+                       Sql.Add('(PARC.DATA_PGTO_PARCELA between :INICIO and :FIM) and                                                                                            ');
+                    end
+                   else
+                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                                 ');
                        Sql.Add('(re.representanteid = :representante)                                                                                                            ');
 		                 Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc   	                                                                                             ');
+
                        ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);
                        ParamByName('FIM').AsDate := StrToDate(DateVencimentoATE.EditText);
                        ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
                        Open();
                  end;
-         end
-       else
-         begin
-            MessageDlg('Nenhum representante escolhido!', mtInformation, [mbOK], 0);
-            editRepresentantePrincipal.SetFocus;
-         end;
+            end
+          else
+            begin
+               MessageDlg('Nenhum representante escolhido!', mtInformation, [mbOK], 0);
+               editRepresentantePrincipal.SetFocus;
+            end;
 
 end;
 
 procedure TfrmRelatorioVenda.btnImprmirClick(Sender: TObject);
   var caminhorelatorio, statusRel : string;
 begin
-
       caminhoRelatorio := ExtractFilePath(Application.ExeName);
       reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
       reportVendas.Variables['InicioMes']     := QuotedStr( DateVencimentoDE.Text );
@@ -252,8 +251,6 @@ begin
       reportVendas.Variables['STATUS_REL']    := QuotedStr( statusRel );
 
       reportVendas.ShowReport();
-
-
 end;
 
 procedure TfrmRelatorioVenda.btnPagarParcelaStatusClick(Sender: TObject);

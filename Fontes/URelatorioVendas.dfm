@@ -544,6 +544,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          OnClick = rbFechamentoPagoClick
         end
         object rbFechamentoNaoPago: TRadioButton
           Left = 215
@@ -558,6 +559,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Font.Style = []
           ParentFont = False
           TabOrder = 1
+          OnClick = rbFechamentoNaoPagoClick
         end
       end
     end
