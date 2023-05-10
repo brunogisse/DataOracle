@@ -191,7 +191,7 @@ begin
                  begin
                        Close;
                        Sql.Clear;
-                       SQL.Add('select  ');
+                       SQL.Add('select                                                                                                                                           ');
                        SQL.Add('v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid,                                       ');
                        SQL.Add('v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete,                                         ');
                        SQL.Add('v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,                             ');
@@ -212,13 +212,13 @@ begin
                        SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                   ');
                        SQL.Add('(v.estoqueid = eu.estoqueid)                                                                                                                     ');
                        Sql.Add('and                                                                                                                                              ');
-                   if rbFechamentoPago.Checked = True then
-                   begin
+                    if rbFechamentoPago.Checked = True then
+                    begin
                        Sql.Add('(parc.status = ''PAGO'') and                                                                                                                     ');
-                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                            ');
-                   end
+                       Sql.Add('(PARC.DATA_PGTO_PARCELA between :INICIO and :FIM) and                                                                                                 ');
+                    end
                     else
-                       Sql.Add('(PARC.DATA_PARCELA between :INICIO and :FIM) and                                                                                                 ');
+                       Sql.Add('(v.data_emissao_nf between :INICIO and :FIM) and                                                                                                 ');
                        Sql.Add('(re.representanteid = :representante)                                                                                                            ');
 		                 Sql.Add('order by v.data_emissao_nf, nf, v.postoid  desc   	                                                                                             ');
                        ParamByName('INICIO').AsDate := StrToDate(DateVencimentoDE.EditText);

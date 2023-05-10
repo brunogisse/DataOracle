@@ -236,17 +236,21 @@ begin
 end;
 
 procedure TfrmRelatorioVenda.btnImprmirClick(Sender: TObject);
-  var caminhorelatorio : string;
+  var caminhorelatorio, statusRel : string;
 begin
 
       caminhoRelatorio := ExtractFilePath(Application.ExeName);
       reportVendas.LoadFromFile(caminhoRelatorio +'RelPesquisaVendasPrincipal.fr3');
       reportVendas.Variables['InicioMes']     := QuotedStr( DateVencimentoDE.Text );
       reportVendas.Variables['FimMes']        := QuotedStr( DateVencimentoATE.Text );
+
    if rbFechamentoPago.Checked = True then
-      reportVendas.Variables['STATUS_REL']    := QuotedStr( DateVencimentoATE.Text )'Parcelas Pagas'
+      statusRel := 'Parcelas Pagas'
    else
-      reportVendas.Variables['STATUS_REL']    := 'Todas as Parcelas';
+      statusRel := 'Todas as Parcelas [Pagas e não Pagas]';
+
+      reportVendas.Variables['STATUS_REL']    := QuotedStr( statusRel );
+
       reportVendas.ShowReport();
 
 
