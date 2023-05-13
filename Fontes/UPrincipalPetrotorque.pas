@@ -132,6 +132,45 @@ uses UCorretores, Uposto, UMotorista, URepresentante, UProduto, UUsinas,
 
 { TfrmMenu }
 
+procedure TfrmMenu.CaminhoBanco;
+  var
+      ArquivoINI : TIniFile;
+      server, user, password, database, AuxErro : string;
+   begin
+      if FDconexao.Connected = True then
+         FDconexao.Connected := False;
+         ArquivoINI := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'config.ini');
+         server := ArquivoINI.ReadString('Sistema','Server','');
+         user := ArquivoINI.ReadString('Sistema','User','');
+         password := ArquivoINI.ReadString('Sistema','Password','');
+         database := ArquivoINI.ReadString('Sistema','database','');
+        try
+          FDconexao.Params.Strings[0] := 'User_Name=' + user;
+          FDconexao.Params.Strings[1] := 'Password=' + password;
+          FDconexao.Params.Strings[2] := 'Database=' + database;
+          FDconexao.Params.Strings[3] := 'Server=' + server;
+          FDconexao.Connected := True;
+        except
+           on E : Exception do
+             begin
+               AuxErro := Copy(E.Message,20,500);
+               MessageDlg('Erro ao tentar se conectar com o banco de dados.'+#13
+                        +#13+'Sugestão: certifique-se de ter inserido o caminho correto no arquivo Config.INI'+#13
+                        +#13+'Notificação técnica do erro:'+#13+#13+'' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+               Application.Terminate;
+             end;
+        end;
+   end;
+
+procedure TfrmMenu.FormCreate(Sender: TObject);
+begin
+ //CaminhoBanco;
+
+  novaConexao := Tconexao.Create(FDconexao);
+
+end;
+
+
 procedure TfrmMenu.conferirVencimentos;
 begin
     with dm.qryVencimentos do
@@ -400,42 +439,6 @@ begin
    end;
 end;
 
-procedure TfrmMenu.CaminhoBanco;
-  var
-      ArquivoINI : TIniFile;
-      server, user, password, database, AuxErro : string;
-   begin
-      if FDconexao.Connected = True then
-         FDconexao.Connected := False;
-         ArquivoINI := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'config.ini');
-         server := ArquivoINI.ReadString('Sistema','Server','');
-         user := ArquivoINI.ReadString('Sistema','User','');
-         password := ArquivoINI.ReadString('Sistema','Password','');
-         database := ArquivoINI.ReadString('Sistema','database','');
-        try
-          FDconexao.Params.Strings[0] := 'User_Name=' + user;
-          FDconexao.Params.Strings[1] := 'Password=' + password;
-          FDconexao.Params.Strings[2] := 'Database=' + database;
-          FDconexao.Params.Strings[3] := 'Server=' + server;
-          FDconexao.Connected := True;
-        except
-           on E : Exception do
-             begin
-               AuxErro := Copy(E.Message,20,500);
-               MessageDlg('Erro ao tentar se conectar com o banco de dados.'+#13
-                        +#13+'Sugestão: certifique-se de ter inserido o caminho correto no arquivo Config.INI'+#13
-                        +#13+'Notificação técnica do erro:'+#13+#13+'' + AuxErro,TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
-               Application.Terminate;
-             end;
-        end;
-   end;
-
-procedure TfrmMenu.FormCreate(Sender: TObject);
-begin
- CaminhoBanco;
-
-  //novaConexao := Tconexao.Create(FDconexao);
-end;
 
 procedure TfrmMenu.FormDestroy(Sender: TObject);
 begin

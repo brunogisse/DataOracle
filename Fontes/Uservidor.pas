@@ -24,10 +24,6 @@ type
     btnEditar: TSpeedButton;
     PainelCentral: TPanel;
     Image1: TImage;
-    gbPesquisaPosto: TGroupBox;
-    rbNome: TRadioButton;
-    rbCPF: TRadioButton;
-    editPesquisaMotorista: TEdit;
     gbEdits: TGroupBox;
     labelDestino: TLabel;
     Label1: TLabel;
@@ -35,20 +31,27 @@ type
     editServidor: TEdit;
     editSenha: TEdit;
     editDatabase: TEdit;
-    editLogin: TEdit;
-    Edit5: TEdit;
+    editUser: TEdit;
     painelBotoes: TPanel;
     painelImprimir: TPanel;
     btnImprimir: TSpeedButton;
-    painelFundoConfirmar: TPanel;
     PainelConfirmar: TPanel;
     btnConfirmar: TSpeedButton;
     Label3: TLabel;
+    lbDriverID: TLabel;
+    editDriverID: TEdit;
+    btnBanco: TSpeedButton;
+    OpenDialog1: TOpenDialog;
     procedure btnConfirmarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+    procedure btnBancoClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
     { Public declarations }
+    PermissaoDeAcesso : Boolean;
   end;
 
 var
@@ -60,22 +63,49 @@ implementation
 
 uses UPrincipalPetrotorque, Uclasse.conexao;
 
+procedure TfrmConfiguar_servidor.btnBancoClick(Sender: TObject);
+begin
+      if OpenDialog1.Execute() then;
+         editDatabase.Text :=  OpenDialog1.FileName;
+end;
+
 procedure TfrmConfiguar_servidor.btnConfirmarClick(Sender: TObject);
 begin
-  frmMenu.novaConexao.Servidor := editServidor.Text;
-  frmMenu.novaConexao.Senha := editSenha.Text;
-  frmMenu.novaConexao.Database := editDatabase.Text;
-  frmMenu.novaConexao.Login := editLogin.Text;
+     frmMenu.novaConexao.Servidor := editServidor.Text;
+     frmMenu.novaConexao.User := editUser.Text;
+     frmMenu.novaConexao.Senha := editSenha.Text;
+     frmMenu.novaConexao.Database := editDatabase.Text;
+     frmMenu.novaConexao.DriverID := editDriverID.Text;
 
- //if frmMenu.novaConexao.fnc_conectar_banco_dados then
- //   begin
+ if frmMenu.novaConexao.fnc_conectar_banco_dados('form') then
+    begin
        frmMenu.novaConexao.prcGravarArquivoINI;
-       ShowMessage('Croada com sucesso!');
+       ShowMessage('Conexão com o banco efetuada com sucesso!');
+       PermissaoDeAcesso := True;
        Close;
- //   end else
- //     begin
-  //      ShowMessage('nada feito!');
-  //    end;
+    end
+  else
+    begin
+       ShowMessage('nada feito!');
+       Application.Terminate;
+    end;
+end;
+
+procedure TfrmConfiguar_servidor.btnImprimirClick(Sender: TObject);
+begin
+   Close;
+end;
+
+procedure TfrmConfiguar_servidor.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+      if PermissaoDeAcesso = False then
+         Application.Terminate;
+end;
+
+procedure TfrmConfiguar_servidor.FormShow(Sender: TObject);
+begin
+      PermissaoDeAcesso := False;
 end;
 
 end.

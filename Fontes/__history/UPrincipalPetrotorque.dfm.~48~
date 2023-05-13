@@ -43,7 +43,6 @@ object frmMenu: TfrmMenu
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitLeft = 3
       DesignSize = (
         1383
         70)
@@ -724,16 +723,16 @@ object frmMenu: TfrmMenu
         OnClick = SpeedButton1Click
       end
       object btnBackupAutomatico: TSpeedButton
-        Left = 847
-        Top = 14
+        Left = 862
+        Top = 38
         Width = 265
-        Height = 49
+        Height = 27
         Anchors = [akTop, akRight]
         Caption = 'Parar Backup autom'#225'tico'
         Flat = True
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGray
-        Font.Height = -19
+        Font.Height = -16
         Font.Name = 'Segoe UI Semibold'
         Font.Style = []
         ParentFont = False
@@ -2024,8 +2023,8 @@ object frmMenu: TfrmMenu
     CloseDataSource = False
     DataSet = dm.qryVencimentos
     BCDToCurrency = False
-    Left = 1254
-    Top = 775
+    Left = 566
+    Top = 303
   end
   object reportVencimentos: TfrxReport
     Version = '6.7.6'
@@ -2042,8 +2041,8 @@ object frmMenu: TfrmMenu
       'begin'
       ''
       'end.')
-    Left = 1120
-    Top = 776
+    Left = 472
+    Top = 304
     Datasets = <
       item
         DataSet = frxDBVencimentos
@@ -3015,9 +3014,10 @@ object frmMenu: TfrmMenu
     end
   end
   object Timer1: TTimer
-    Interval = 5000
+    Enabled = False
+    Interval = 300000
     OnTimer = Timer1Timer
-    Left = 803
-    Top = 643
+    Left = 563
+    Top = 235
   end
 end

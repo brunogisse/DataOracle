@@ -2015,7 +2015,7 @@ object frmMenu: TfrmMenu
       'DriverID=FB')
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
-    Left = 472
+    Left = 464
     Top = 232
   end
   object frxDBVencimentos: TfrxDBDataset

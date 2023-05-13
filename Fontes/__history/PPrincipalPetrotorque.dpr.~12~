@@ -32,28 +32,35 @@ uses
   UAlterarQtdeParcelas in 'UAlterarQtdeParcelas.pas' {frmAlterarQtdeParcelas},
   Uservidor in 'Uservidor.pas' {frmConfiguar_servidor},
   Vcl.Dialogs,
-  Uclasse.conexao in 'Uclasse.conexao.pas';
+  Uclasse.conexao in 'Uclasse.conexao.pas',
+  uFormat in 'Units\uFormat.pas',
+  cMotorista in 'classes\cMotorista.pas';
 
 {$R *.res}
 
 begin
-  Application.Initialize;
-  Application.MainFormOnTaskbar := True;
+        Application.Initialize;
+        Application.MainFormOnTaskbar := True;
 
-  frmLogin := TfrmLogin.Create(nil);
+        frmLogin := TfrmLogin.Create(nil);
 
-  Application.CreateForm(TfrmMenu, frmMenu);
- // if frmMenu.novaConexao.fnc_conectar_banco_dados then
-   // begin
-      Application.CreateForm(Tdm, dm);
-      Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
-      frmLogin.ShowModal;
+        Application.CreateForm(TfrmMenu, frmMenu);
 
-      frmLogin.Hide;
-      frmLogin.Free;
 
-      Application.Run;
- //   end else
-  //      Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
-   //     frmConfiguar_servidor.ShowModal;
+if not frmMenu.novaConexao.fnc_conectar_banco_dados then
+   begin
+       Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
+       frmConfiguar_servidor.ShowModal;
+   end;
+
+       Application.CreateForm(Tdm, dm);
+       Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
+       frmLogin.ShowModal;
+
+       frmLogin.Hide;
+       frmLogin.Free;
+
+       Application.Run;
+
+
 end.

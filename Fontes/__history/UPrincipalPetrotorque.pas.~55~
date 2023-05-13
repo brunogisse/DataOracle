@@ -432,9 +432,11 @@ procedure TfrmMenu.CaminhoBanco;
 
 procedure TfrmMenu.FormCreate(Sender: TObject);
 begin
- CaminhoBanco;
+ //CaminhoBanco;
 
-  //novaConexao := Tconexao.Create(FDconexao);
+  novaConexao := Tconexao.Create(FDconexao);
+
+
 end;
 
 procedure TfrmMenu.FormDestroy(Sender: TObject);
@@ -550,7 +552,7 @@ end;
 
 procedure TfrmMenu.SpeedButton6Click(Sender: TObject);
 begin
- try
+try
    Application.CreateForm(TfrmCorretores, frmCorretores);
     frmCorretores.ShowModal;
   finally
@@ -560,22 +562,20 @@ end;
 
 procedure TfrmMenu.Timer1Timer(Sender: TObject);
 begin
-  // Caminho em produção
-     if not CopyFile(PChar('Y:\Dados\PETROTORQUEDADOS.FDB'),
-         PChar('C:\Users\Usuario\Desktop\Novo sistema\PETROTORQUEDADOS.FDB'), false) then
+  // Caminho em produção - mudar timer para 30000 (backup a cada 5 minutos)
+  if not CopyFile(PChar('Y:\Dados\PETROTORQUEDADOS.FDB'),
+      PChar('C:\Users\Usuario\Desktop\Novo sistema\PETROTORQUEDADOS.FDB'), false) then
 
-   // Descomentar para testar no desenvolvimento
+   // Descomentar para testar no desenvolvimento - colocar timer de 5000 (5 segundos para testes)
 
    // if not CopyFile(PChar('C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Fontes\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'),
    //       PChar('C:\Users\bruno\OneDrive\Área de Trabalho\PETROTORQUEDADOS.FDB'), false) then
 
-  begin
+
       ShowMessage('Erro ao fazer backup');
 
-  end
-
-    else
-    ShowMessage('Arquivo copiado com sucesso!');
+  //  else
+  //  ShowMessage('Arquivo copiado com sucesso!');
 end;
 
 end.

@@ -13,19 +13,23 @@ uses
       FDatabase: String;
       FUserName: String;
       FConexao: TFDconnection;
+      FDriverID: String;
+
       public
 
       constructor Create(NomeConexao : TFDConnection);
       destructor Destroy; override;
 
-      function fnc_conectar_banco_dados: Boolean;
+      function fnc_conectar_banco_dados(origem : String) : Boolean;
       procedure prcGravarArquivoINI;
+      procedure prc_ler_arquiivoIni;
 
-      property Conexao : TFDconnection Read FConexao Write Fconexao;
-      property Servidor: String Read FServidor Write FServidor;
-      property Database: String REad FDatabase Write FDatabase;
-      property Login   : String Read FUserName Write FUserName;
-      property Senha   : String Read FSenha Write FSenha;
+      property Conexao  : TFDconnection Read FConexao Write Fconexao;
+      property Servidor : String Read FServidor Write FServidor;
+      property User     : String Read FUserName Write FUserName;
+      property Senha    : String Read FSenha Write FSenha;
+      property Database : String Read FDatabase Write FDatabase;
+      property DriverID : String Read FDriverID Write FDriverId;
     end;
 
 implementation
@@ -47,22 +51,40 @@ begin
   inherited;
 end;
 
-function Tconexao.fnc_conectar_banco_dados: Boolean;
+procedure Tconexao.prc_ler_arquiivoIni;
+var
+   Ini : TIniFile;
 begin
-   Result := True;
-   FConexao.Params.Clear;
-   FConexao.Params.Add('Server=' + FServidor);
-   FConexao.Params.Add('User_name=' + FUserName);
-   FConexao.Params.Add('Password=' + FSenha);
-   FConexao.Params.Add('Database=' + FDatabase);
-  try
-   FConexao.Connected := True;
+   if FConexao.Connected then
+      FConexao.Close;
+
+      Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'Config.ini');
+
+      FDatabase := Ini.ReadString('Sistema', 'Database', '');
+      FUserName := Ini.ReadString('Sistema', 'User', '');
+      FSenha    := Ini.ReadString('Sistema', 'Password', '');
+      FServidor := Ini.ReadString('Sistema', 'Server', '');
+      FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
+end;
+
+function Tconexao.fnc_conectar_banco_dados(origem : String): Boolean;
+begin
+   try
+      if origem <> 'form' then
+         prc_ler_arquiivoIni;
+         Result := True;
+         FConexao.Params.Strings[2] := 'Database='   + FDatabase;
+         FConexao.Params.Strings[0] := 'User_Name='  + FUserName;
+         FConexao.Params.Strings[1] := 'Password='   + FSenha;
+         FConexao.Params.Strings[3] := 'Server='     + FServidor;
+         FConexao.Params.Strings[3] := 'DriverID='   + FDriverID;
+         FConexao.Connected := True;
   Except
-    on E : Exception do
-      begin
-         showmessage('Não funcionou');
-         Result := False;
-      end;
+   on E : Exception do
+     begin
+       showmessage('Falha na conexão com o banco de dados ' + #13 + #13 + E.Message);
+       Result := False;
+     end;
   end;
 end;
 
@@ -71,14 +93,15 @@ procedure Tconexao.prcGravarArquivoINI;
     IniFile: String;
     Ini    : Tinifile;
 begin
-     IniFile := ChangeFileExt( Application.Exename, '.ini' );
-     Ini     := TIniFile.Create( IniFile );
+    // IniFile := ChangeFileExt( Application.Exename, '.ini' ); //cria uma copia do executável e muda a extensão para .ini
+     Ini     := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'Config.ini');
 
      try
-       Ini.WriteString('Sistema', 'Servidor', FServidor);
-       Ini.WriteString('Sistema', 'User_name', FUserName);
+       Ini.WriteString('Sistema', 'Server', FServidor);
+       Ini.WriteString('Sistema', 'User', FUserName);
        Ini.WriteString('Sistema', 'Password', FSenha);
        Ini.WriteString('Sistema', 'Database', FDatabase);
+       Ini.WriteString('Sistema', 'DriverID', FDriverID);
      finally
        Ini.Free;
      end;
