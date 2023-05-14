@@ -42,6 +42,11 @@ type
     editDriverID: TEdit;
     btnBanco: TSpeedButton;
     OpenDialog1: TOpenDialog;
+    cbProtocolo: TComboBox;
+    labelPorta: TLabel;
+    editPorta: TEdit;
+    labelProtocolo: TLabel;
+    labelTextoSobreConfig: TLabel;
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnBancoClick(Sender: TObject);
@@ -71,16 +76,18 @@ end;
 
 procedure TfrmConfiguar_servidor.btnConfirmarClick(Sender: TObject);
 begin
-     frmMenu.novaConexao.Servidor := editServidor.Text;
-     frmMenu.novaConexao.User := editUser.Text;
-     frmMenu.novaConexao.Senha := editSenha.Text;
-     frmMenu.novaConexao.Database := editDatabase.Text;
-     frmMenu.novaConexao.DriverID := editDriverID.Text;
+     frmMenu.novaConexao.Servidor  := editServidor.Text;
+     frmMenu.novaConexao.User      := editUser.Text;
+     frmMenu.novaConexao.Senha     := editSenha.Text;
+     frmMenu.novaConexao.Database  := editDatabase.Text;
+     frmMenu.novaConexao.DriverID  := editDriverID.Text;
+     frmMenu.novaConexao.Protocol  := cbProtocolo.Text;
+     frmMenu.novaConexao.Port      := editPorta.Text;
 
  if frmMenu.novaConexao.fnc_conectar_banco_dados('form') then
     begin
        frmMenu.novaConexao.prcGravarArquivoINI;
-       ShowMessage('Conexão com o banco efetuada com sucesso!');
+       ShowMessage('DataOracle - Conexão com o banco efetuada com sucesso!');
        PermissaoDeAcesso := True;
        Close;
     end

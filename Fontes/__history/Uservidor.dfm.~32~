@@ -1,8 +1,8 @@
 object frmConfiguar_servidor: TfrmConfiguar_servidor
   Left = 0
   Top = 0
-  ClientHeight = 321
-  ClientWidth = 877
+  ClientHeight = 355
+  ClientWidth = 706
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 871
-    Height = 315
+    Width = 700
+    Height = 349
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
@@ -32,8 +32,8 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 826
-    ExplicitHeight = 243
+    ExplicitWidth = 848
+    ExplicitHeight = 302
     object labelTituloEditsNF: TLabel
       Left = 584
       Top = 36
@@ -229,8 +229,8 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
   object PainelCentral: TPanel
     Left = 0
     Top = 0
-    Width = 877
-    Height = 321
+    Width = 706
+    Height = 355
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
@@ -242,11 +242,13 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitWidth = 832
-    ExplicitHeight = 249
+    ExplicitLeft = -336
+    ExplicitTop = -144
+    ExplicitWidth = 854
+    ExplicitHeight = 472
     object Image1: TImage
-      Left = 15
-      Top = 46
+      Left = 18
+      Top = 15
       Width = 97
       Height = 94
       Picture.Data = {
@@ -306,11 +308,39 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
         0B35151CEDF3656293979BAAA74BC4E36F4D46FB814E2E7083653DF87F02DF57
         B0342251DB0000000049454E44AE426082}
     end
+    object labelTextoSobreConfig: TLabel
+      Left = 129
+      Top = 71
+      Width = 442
+      Height = 17
+      Caption = 
+        'Configure o caminho para a conex'#227'o com o banco de dados DataOrac' +
+        'le'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 10395294
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 128
+      Top = 36
+      Width = 231
+      Height = 28
+      Caption = 'Conex'#227'o com o Servidor'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = 8224125
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object gbEdits: TGroupBox
-      Left = 138
-      Top = 39
-      Width = 687
-      Height = 186
+      Left = 29
+      Top = 119
+      Width = 648
+      Height = 162
       TabOrder = 0
       object labelDestino: TLabel
         Left = 12
@@ -378,7 +408,7 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
         ParentFont = False
       end
       object btnBanco: TSpeedButton
-        Left = 639
+        Left = 598
         Top = 24
         Width = 35
         Height = 21
@@ -404,34 +434,47 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
         Font.Style = [fsBold]
         ParentFont = False
       end
+      object labelProtocolo: TLabel
+        Left = 12
+        Top = 103
+        Width = 60
+        Height = 17
+        Caption = 'Protocolo'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = 10395294
+        Font.Height = -13
+        Font.Name = 'Segoe UI'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object editServidor: TEdit
         Left = 12
         Top = 76
         Width = 173
         Height = 21
-        TabOrder = 0
+        TabOrder = 1
       end
       object editSenha: TEdit
         Left = 371
         Top = 76
         Width = 179
         Height = 21
-        TabOrder = 1
+        TabOrder = 3
         Text = 'masterkey'
       end
       object editDatabase: TEdit
         Left = 12
         Top = 24
-        Width = 621
+        Width = 581
         Height = 21
-        TabOrder = 2
+        TabOrder = 0
       end
       object editUser: TEdit
         Left = 193
         Top = 76
         Width = 172
         Height = 21
-        TabOrder = 3
+        TabOrder = 2
         Text = 'SYSDBA'
       end
       object editDriverID: TEdit
@@ -462,8 +505,8 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
       end
     end
     object painelBotoes: TPanel
-      Left = 20
-      Top = 255
+      Left = 21
+      Top = 287
       Width = 246
       Height = 41
       BevelOuter = bvNone
@@ -545,6 +588,6 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
   end
   object OpenDialog1: TOpenDialog
     Left = 648
-    Top = 256
+    Top = 24
   end
 end

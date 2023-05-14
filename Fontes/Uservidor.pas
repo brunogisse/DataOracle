@@ -47,6 +47,7 @@ type
     editPorta: TEdit;
     labelProtocolo: TLabel;
     labelTextoSobreConfig: TLabel;
+    Label4: TLabel;
     procedure btnConfirmarClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure btnBancoClick(Sender: TObject);
@@ -113,6 +114,7 @@ end;
 procedure TfrmConfiguar_servidor.FormShow(Sender: TObject);
 begin
       PermissaoDeAcesso := False;
+      cbProtocolo.Text := cbProtocolo.Items[0];
 end;
 
 end.
