@@ -3,7 +3,7 @@ unit Uclasse.conexao;
 interface
 
 uses
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, System.SysUtils;
 
   Type
     Tconexao = class
@@ -14,6 +14,8 @@ uses
       FUserName: String;
       FConexao: TFDconnection;
       FDriverID: String;
+      FProtocol: String;
+      FPort: String;
 
       public
 
@@ -30,12 +32,14 @@ uses
       property Senha    : String Read FSenha Write FSenha;
       property Database : String Read FDatabase Write FDatabase;
       property DriverID : String Read FDriverID Write FDriverId;
+      property Protocol : String Read FProtocol Write FProtocol;
+      property Port     : String Read FPort Write FPort;
     end;
 
 implementation
 
 uses
-  FireDAC.Stan.Intf, System.SysUtils, Vcl.Dialogs, System.IniFiles, Vcl.Forms,
+  FireDAC.Stan.Intf, Vcl.Dialogs, System.IniFiles, Vcl.Forms,
   UPrincipalPetrotorque;
 
 { Tconexao }
@@ -65,6 +69,8 @@ begin
       FSenha    := Ini.ReadString('Sistema', 'Password', '');
       FServidor := Ini.ReadString('Sistema', 'Server', '');
       FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
+      FProtocol := Ini.ReadString('Sistema', 'Protocol', '');
+      FPort     := Ini.ReadString('Sistema', 'Port', '');
 end;
 
 function Tconexao.fnc_conectar_banco_dados(origem : String): Boolean;
@@ -73,11 +79,13 @@ begin
       if origem <> 'form' then
          prc_ler_arquiivoIni;
          Result := True;
-         FConexao.Params.Strings[2] := 'Database='   + FDatabase;
-         FConexao.Params.Strings[0] := 'User_Name='  + FUserName;
-         FConexao.Params.Strings[1] := 'Password='   + FSenha;
+         FConexao.Params.Strings[0] := 'Database='   + FDatabase;
+         FConexao.Params.Strings[1] := 'User_Name='  + FUserName;
+         FConexao.Params.Strings[2] := 'Password='   + FSenha;
          FConexao.Params.Strings[3] := 'Server='     + FServidor;
          FConexao.Params.Strings[3] := 'DriverID='   + FDriverID;
+         FConexao.Params.Strings[4] := 'Protocol='   + FProtocol;
+         FConexao.Params.Strings[4] := 'Port='       + FPort;
          FConexao.Connected := True;
   Except
    on E : Exception do
@@ -90,7 +98,6 @@ end;
 
 procedure Tconexao.prcGravarArquivoINI;
   var
-    IniFile: String;
     Ini    : Tinifile;
 begin
     // IniFile := ChangeFileExt( Application.Exename, '.ini' ); //cria uma copia do executável e muda a extensão para .ini
@@ -102,6 +109,8 @@ begin
        Ini.WriteString('Sistema', 'Password', FSenha);
        Ini.WriteString('Sistema', 'Database', FDatabase);
        Ini.WriteString('Sistema', 'DriverID', FDriverID);
+       Ini.WriteString('Sistema', 'Protocol', FProtocol);
+       Ini.WriteString('Sistema', 'Port',     FPort);
      finally
        Ini.Free;
      end;
