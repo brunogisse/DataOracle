@@ -32,8 +32,6 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 848
-    ExplicitHeight = 302
     object labelTituloEditsNF: TLabel
       Left = 584
       Top = 36
@@ -242,10 +240,6 @@ object frmConfiguar_servidor: TfrmConfiguar_servidor
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitLeft = -336
-    ExplicitTop = -144
-    ExplicitWidth = 854
-    ExplicitHeight = 472
     object Image1: TImage
       Left = 18
       Top = 15

@@ -88,7 +88,8 @@ implementation
 
 
 
-uses UPrincipalPetrotorque, UVendaPosto, URelatorioCorretor, UrelatorioCliente;
+uses UPrincipalPetrotorque, UVendaPosto, URelatorioCorretor, UrelatorioCliente,
+  URelatorioVendas;
 
 { TfrmCorretores }
 
@@ -167,6 +168,13 @@ begin
                 Close;
               end;
 
+            if Action = 'relatoriofechamento' then
+             begin
+                frmRelatorioVenda.qryCorretor.Refresh;
+                frmRelatorioVenda.editCorretor.Text := qryCorretores['NOME'];
+                frmRelatorioVenda.qryCorretor.Locate('corretorid', qryCorretores['corretorid'] , []);
+                Close;
+              end;
           end;
 
 end;

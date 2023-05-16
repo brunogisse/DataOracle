@@ -2,7 +2,7 @@ object frmMotorista: TfrmMotorista
   Left = 0
   Top = 0
   Caption = 'Cadastro de Motoristas'
-  ClientHeight = 647
+  ClientHeight = 608
   ClientWidth = 804
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -618,18 +618,19 @@ object frmMotorista: TfrmMotorista
     Left = 0
     Top = 341
     Width = 21
-    Height = 306
+    Height = 267
     Align = alLeft
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
+    ExplicitHeight = 306
   end
   object gridMotorista: TDBGrid
     Left = 21
     Top = 341
     Width = 783
-    Height = 306
+    Height = 267
     Align = alClient
     BorderStyle = bsNone
     DataSource = dsMotorista

@@ -263,7 +263,7 @@ begin
  if (qryPosto.RecordCount > 0) and (DuploClickNaGrid = 'relatoriofechamento') then
      begin
        frmRelatorioVenda.qryPosto.Refresh;
-       frmRelatorioVenda.editPesquisa.Text := qryPosto['NOME_FANTASIA'];
+       frmRelatorioVenda.editCliente.Text := qryPosto['NOME_FANTASIA'];
        frmRelatorioVenda.qryPosto.Locate('postoid', qryPosto['POSTOID'], []);
        DuploClickNaGrid := '';
        Close;

@@ -23,7 +23,7 @@ type
     GroupBox1: TGroupBox;
     painelBotoes: TPanel;
     painelImprimirParcelaStatus: TPanel;
-    btnPagarParcelaStatus: TSpeedButton;
+    btnImprimirRelAuxiliar: TSpeedButton;
     painelGrid: TPanel;
     gridRelatorioVendaPosto: TDBGrid;
     qryRelatorioVendaPosto: TFDQuery;
@@ -83,7 +83,7 @@ type
     rbPagas: TRadioButton;
     labelTituloReport: TLabel;
     Image1: TImage;
-    editPesquisa: TEdit;
+    editCliente: TEdit;
     labelCliente: TLabel;
     dsPosto: TDataSource;
     qryPosto: TFDQuery;
@@ -91,7 +91,6 @@ type
     qryPostoNOME_FANTASIA: TStringField;
     qryPostoRAZAO_SOCIAL: TStringField;
     qryPostoCNPJ: TStringField;
-    cbCliente: TCheckBox;
     qryRelatorioStatusParcelaESTOQUEID: TIntegerField;
     qryRepresentante: TFDQuery;
     dsRepresentante: TDataSource;
@@ -101,7 +100,6 @@ type
     qryRepresentanteCNPJ: TStringField;
     qryRelatorioStatusParcelaESTOQUEID_1: TIntegerField;
     Label3: TLabel;
-    cbNF: TCheckBox;
     labelNF: TLabel;
     editNF: TEdit;
     qryRelatorioVendaPostoVENDAID: TFDAutoIncField;
@@ -152,21 +150,42 @@ type
     rbFechamentoNaoPago: TRadioButton;
     gbPagoNaoPago: TGroupBox;
     Label1: TLabel;
+    Label5: TLabel;
+    editMotorista: TEdit;
+    Label6: TLabel;
+    editCorretor: TEdit;
+    Label7: TLabel;
+    editOC: TEdit;
+    qryCorretor: TFDQuery;
+    qryCorretorCORRETORID: TIntegerField;
+    qryCorretorNOME: TStringField;
+    qryCorretorCPF: TStringField;
+    qryCorretorCIDADE: TStringField;
+    qryMotorista: TFDQuery;
+    qryMotoristaMOTORISTAID: TIntegerField;
+    qryMotoristaNOME: TStringField;
+    qryMotoristaCIDADE: TStringField;
+    qryMotoristaCPF: TStringField;
+    dsCorretor: TDataSource;
+    dsMotorista: TDataSource;
+    qryRelatorioStatusParcelaORDEM_CARREGAMENTO: TIntegerField;
     procedure btnImprmirClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
-    procedure btnPagarParcelaStatusClick(Sender: TObject);
-    procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
+    procedure btnImprimirRelAuxiliarClick(Sender: TObject);
+    procedure editClienteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
-    procedure cbClienteClick(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
-    procedure cbNFClick(Sender: TObject);
     procedure editRepresentantePrincipalKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure rbFechamentoPagoClick(Sender: TObject);
     procedure rbFechamentoNaoPagoClick(Sender: TObject);
+    procedure editMotoristaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure editCorretorKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
 
   private
     { Private declarations }
@@ -181,7 +200,8 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, Uposto, URepresentante;
+uses UPrincipalPetrotorque, Uposto, URepresentante, cMotorista, UMotorista,
+  UCorretores;
 
 procedure TfrmRelatorioVenda.btnConsultarClick(Sender: TObject);
 begin
@@ -261,293 +281,185 @@ begin
       reportVendas.ShowReport();
 end;
 
-procedure TfrmRelatorioVenda.btnPagarParcelaStatusClick(Sender: TObject);
-var caminhoRelatorio, abertoFechado : string;
+procedure TfrmRelatorioVenda.btnImprimirRelAuxiliarClick(Sender: TObject);
+var
+   caminhoRelatorio,
+   abertoFechado,
+   motorista,
+   ordemCarregamento,
+   corretor,
+   NF,
+   cliente : string;
 begin
 
-      if rbAbertas.Checked = True then
-         abertoFechado := 'PARC.DATA_PARCELA';
-      if rbPagas.Checked = True then
-         abertoFechado := 'PARC.DATA_PGTO_PARCELA';
+      motorista          := '';
+      ordemCarregamento  := '';
+      corretor           := '';
+      NF                 := '';
+      cliente            := '';
 
-    if (cbCliente.Checked = True)  and (editPesquisa.Text <> '') and  (cbNF.Checked = True) and (editNF.Text <> '') then
+   if rbAbertas.Checked = True then
+      abertoFechado := 'PARC.DATA_PARCELA';
 
-       begin
-         with qryRelatorioStatusParcela do
-            begin
-             Close;
-             SQL.Clear;
-             SQL.Add(' select v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid, '
-                + 'v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                + ' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, '
-                + '  v.parcelas_geradas, V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, '
-                + ' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, '
-                + ' u.NOME_FANTASIA as usina, '
-                + ' parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA, '
-                + ' PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela, eu.estoqueid '
-                + ' from '
-                + ' venda_para_postos v, corretor c, motorista m, posto p, produto pr, '
-                + ' representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc,  estoque_usina eu '
-                + ' where '
-                + ' (v.representanteid = re.representanteid) and '
-                + ' (v.postoid = p.postoid) and '
-                + ' (v.produtoid = pr.produtoid) and '
-                + ' (v.motoristaid = m.motoristaid) and '
-                + ' (v.corretorid = c.corretorid) and '
-                + ' (v.usinaid = u.usinaid) and '
-                + ' (v.vendaid = parc.vendaid) and '
-                + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) and '
-                + ' (p.postoid = :POSTO) and '
-                + ' (re.representanteid = :representante) and '
-                + ' (v.nf = :NF) and '
-                + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
-                    ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
-                    ParamByName('representante').AsInteger  := qryRepresentante['REPRESENTANTEID'];
-                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
-                 if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'ABERTO';
-                 if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'PAGO';
-                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
-                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
-               Open();
-            end;
-       end;
+   if rbPagas.Checked = True then
+      abertoFechado := 'PARC.DATA_PGTO_PARCELA';
 
-   if (cbCliente.Checked = True)  and (editPesquisa.Text <> '')  and (cbNF.Checked = False) then
-       begin
-         with qryRelatorioStatusParcela do
-            begin
-             Close;
-             SQL.Clear;
-             SQL.Add(' select v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid, '
-                + 'v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                + ' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, '
-                + '  v.parcelas_geradas, V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, '
-                + ' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, '
-                + ' u.NOME_FANTASIA as usina, '
-                + ' parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA, '
-                + ' PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela, eu.estoqueid '
-                + ' from '
-                + ' venda_para_postos v, corretor c, motorista m, posto p, produto pr, '
-                + ' representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc,  estoque_usina eu '
-                + ' where '
-                + ' (v.representanteid = re.representanteid) and '
-                + ' (v.postoid = p.postoid) and '
-                + ' (v.produtoid = pr.produtoid) and '
-                + ' (v.motoristaid = m.motoristaid) and '
-                + ' (v.corretorid = c.corretorid) and '
-                + ' (v.usinaid = u.usinaid) and '
-                + ' (v.vendaid = parc.vendaid) and '
-                + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) and '
-                + ' (v.representanteid = :REPRESENTANTE) and '
-                + ' (p.postoid = :POSTO) and '
-                + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
-                    ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
-                 if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'ABERTO';
-                 if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'PAGO';
-                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
-                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
-                    ParamByName('REPRESENTANTE').AsInteger  := qryRepresentante['REPRESENTANTEID'];
-               Open();
-            end;
-       end;
+   if editMotorista.Text <> '' then
+      motorista := '(v.motoristaid = :motorista) and '
+   else
+      motorista := '';
 
-    if (cbCliente.Checked = False) and (cbNF.Checked = False) then
-       begin
-         with qryRelatorioStatusParcela do
-            begin
-             Close;
-             SQL.Clear;
-             SQL.Add(' select v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid, '
-                + 'v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                + ' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, '
-                + '  v.parcelas_geradas, V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, '
-                + ' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, '
-                + ' u.NOME_FANTASIA as usina, '
-                + ' parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA, '
-                + ' PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela, eu.estoqueid '
-                + ' from '
-                + ' venda_para_postos v, corretor c, motorista m, posto p, produto pr, '
-                + ' representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc,  estoque_usina eu '
-                + ' where '
-                + ' (v.representanteid = re.representanteid) and '
-                + ' (v.postoid = p.postoid) and '
-                + ' (v.produtoid = pr.produtoid) and '
-                + ' (v.motoristaid = m.motoristaid) and '
-                + ' (v.corretorid = c.corretorid) and '
-                + ' (v.usinaid = u.usinaid) and '
-                + ' (v.vendaid = parc.vendaid) and '
-                + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) and '
-                + ' (v.representanteid = :REPRESENTANTE) and '
-                + ' ('+abertoFechado+' between :inicio and :fim) '
-                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
-                 if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'ABERTO';
-                 if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'PAGO';
-                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
-                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
-                    ParamByName('REPRESENTANTE').AsInteger  := qryRepresentante['REPRESENTANTEID'];
-               Open();
-            end;
-       end;
+   if editCorretor.Text <> '' then
+      corretor := '(v.corretorid = :corretor) and '
+   else
+      corretor := '';
+
+   if editOC.Text <> '' then
+      ordemCarregamento := '(v.ordem_carregamento = :ordemCarregamento) and '
+   else
+      ordemCarregamento := '';
+
+   if editNF.Text <> '' then
+      NF := '(v.NF = :NF) and '
+   else
+      NF := '';
+
+   if editCliente.Text <> '' then
+      cliente := '(v.postoid = :posto) and'
+   else
+      cliente := '';
 
 
-       if (cbCliente.Checked = False)   and (cbNF.Checked = True)  then
-       begin
-         with qryRelatorioStatusParcela do
-            begin
-             Close;
-             SQL.Clear;
-             SQL.Add(' select v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid, '
-                + 'v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                + ' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, '
-                + '  v.parcelas_geradas, V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, '
-                + ' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, '
-                + ' u.NOME_FANTASIA as usina, '
-                + ' parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA, '
-                + ' PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela, eu.estoqueid '
-                + ' from '
-                + ' venda_para_postos v, corretor c, motorista m, posto p, produto pr, '
-                + ' representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc,  estoque_usina eu '
-                + ' where '
-                + ' (v.representanteid = re.representanteid) and '
-                + ' (v.postoid = p.postoid) and '
-                + ' (v.produtoid = pr.produtoid) and '
-                + ' (v.motoristaid = m.motoristaid) and '
-                + ' (v.corretorid = c.corretorid) and '
-                + ' (v.usinaid = u.usinaid) and '
-                + ' (v.vendaid = parc.vendaid) and '
-                + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) and '
-                + ' (v.NF = :NF) and '
-                + ' (v.representanteid = :REPRESENTANTE) and '
-                + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
-                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
-                    ParamByName('REPRESENTANTE').AsInteger  := qryRepresentante['REPRESENTANTEID'];
-                 if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'ABERTO';
-                 if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'PAGO';
-                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
-                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
-               Open();
-            end;
-       end;
+   with qryRelatorioStatusParcela do
+      begin
+            Close;
+            SQL.Clear;
+            SQL.Add('select                                                                                                                                             ');
+            SQL.Add('v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid,                                         ');
+            SQL.Add('v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete,                                           ');
+            SQL.Add('v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,                               ');
+            SQL.Add('V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, v.ordem_carregamento,                                   ');
+            SQL.Add('c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina,    ');
+            SQL.Add('parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA,                             ');
+            SQL.Add('PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela,                                         ');
+            SQL.Add('eu.estoqueid                                                                                                                                       ');
+            SQL.Add('from                                                                                                                                               ');
+            SQL.Add('venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc, estoque_usina eu     ');
+            SQL.Add('where                                                                                                                                              ');
+            SQL.Add('(v.representanteid = re.representanteid) and                                                                                                       ');
+            SQL.Add('(v.postoid = p.postoid) and                                                                                                                        ');
+            SQL.Add('(v.produtoid = pr.produtoid) and                                                                                                                   ');
+            SQL.Add('(v.motoristaid = m.motoristaid) and                                                                                                                ');
+            SQL.Add('(v.corretorid = c.corretorid) and                                                                                                                  ');
+            SQL.Add('(v.usinaid = u.usinaid) and                                                                                                                        ');
+            SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                     ');
+            SQL.Add('(v.estoqueid = eu.estoqueid) and                                                                                                                   ');
+            SQL.Add('(v.representanteid = :representante) and                                                                                                           ');
+            SQL.Add('(PARC.STATUS = :STATUS) and                                                                                                                        ');
+            SQL.Add('(v.data_emissao_nf between :inicio and :fim) and                                                                                                   ');
+
+            SQL.Add(ordemCarregamento);
+            SQL.Add(NF);
+            SQL.Add(motorista);
+            SQL.Add(corretor);
+            SQL.Add(cliente);
+            SQL.Add('1 = 1 ');
+
+            SQL.Add('Order by v.vendaid, v.postoid  desc                                                                                                               ');
+
+            ParamByName('representante').AsInteger  := qryRepresentante['REPRESENTANTEID'];
+
+         if cliente <> '' then
+            ParamByName('posto').AsInteger          := qryPosto['POSTOID'];
+
+         if editNF.Text <> '' then
+            ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
+
+         if ordemCarregamento <> '' then
+            ParamByName('ordemCarregamento').AsInteger := StrToInt(editOC.Text);
+
+         if corretor <> '' then
+            ParamByName('corretor').AsInteger       := qryCorretor['CORRETORID'];
+
+         if motorista <> '' then         
+            ParamByName('motorista').AsInteger      := qryMotorista['MOTORISTAID'];
+
+         if rbAbertas.Checked = True then
+            ParamByName('STATUS').AsString          := 'ABERTO';
+
+         if rbPagas.Checked = True then
+            ParamByName('STATUS').AsString          := 'PAGO';
+
+            ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
+            ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
+          Open();
+      end;
 
 
-       if (cbCliente.Checked = True) and (cbNF.Checked = True)  then
-       begin
-         with qryRelatorioStatusParcela do
-            begin
-             Close;
-             SQL.Clear;
-             SQL.Add(' select v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid, '
-                + 'v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete, '
-                + ' v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, '
-                + '  v.parcelas_geradas, V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES, '
-                + ' c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, '
-                + ' u.NOME_FANTASIA as usina, '
-                + ' parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA, '
-                + ' PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela, eu.estoqueid '
-                + ' from '
-                + ' venda_para_postos v, corretor c, motorista m, posto p, produto pr, '
-                + ' representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc,  estoque_usina eu '
-                + ' where '
-                + ' (v.representanteid = re.representanteid) and '
-                + ' (v.postoid = p.postoid) and '
-                + ' (v.produtoid = pr.produtoid) and '
-                + ' (v.motoristaid = m.motoristaid) and '
-                + ' (v.corretorid = c.corretorid) and '
-                + ' (v.usinaid = u.usinaid) and '
-                + ' (v.vendaid = parc.vendaid) and '
-                + ' (v.estoqueid = eu.estoqueid) and '
-                + ' (parc.status = :STATUS) and '
-                + ' (v.postoid = :POSTO) and '
-                + ' (v.nf = :NF) and '
-                + ' (v.representanteid = :REPRESENTANTE) and '
-                + ' (v.data_emissao_nf between :inicio and :fim)'
-                + ' order by v.data_emissao_nf, nf, v.postoid  desc');
-                    ParamByName('NF').AsInteger             := StrToInt(editNF.Text);
-                    ParamByName('REPRESENTANTE').AsInteger  := qryRepresentante['REPRESENTANTEID'];
-                    ParamByName('POSTO').AsInteger          := qryPosto['POSTOID'];
-                 if rbAbertas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'ABERTO';
-                 if rbPagas.Checked = True then
-                    ParamByName('STATUS').AsString          := 'PAGO';
-                    ParamByName('inicio').AsDate            := StrToDate(DateVencimentoDE.Text);
-                    ParamByName('fim').AsDate               := StrToDate(DateVencimentoATE.Text);
-               Open();
-            end;
-       end;
-
-
-                caminhoRelatorio := ExtractFilePath(Application.ExeName);
-                reportStatusParcela.LoadFromFile(caminhoRelatorio + 'RelVendaStatusParcela.fr3');
-                reportStatusParcela.Variables['RelDE']     :=  QuotedStr( DateVencimentoDE.Text );
-                reportStatusParcela.Variables['RelATE']    :=  QuotedStr( DateVencimentoATE.Text );
-             if rbAbertas.Checked = True then
-                reportStatusParcela.Variables['STATUS']    :=  QuotedStr( 'abertas' );
-             if rbAbertas.Checked = False then
-                reportStatusParcela.Variables['STATUS']    :=  QuotedStr( 'pagas' );
-               reportStatusParcela.ShowReport();
+          caminhoRelatorio := ExtractFilePath(Application.ExeName);
+          reportStatusParcela.LoadFromFile(caminhoRelatorio + 'RelVendaStatusParcela.fr3');
+          reportStatusParcela.Variables['RelDE']     :=  QuotedStr( DateVencimentoDE.Text );
+          reportStatusParcela.Variables['RelATE']    :=  QuotedStr( DateVencimentoATE.Text );
+       if rbAbertas.Checked = True then
+          reportStatusParcela.Variables['STATUS']    :=  QuotedStr( 'abertas' );
+       if rbAbertas.Checked = False then
+          reportStatusParcela.Variables['STATUS']    :=  QuotedStr( 'pagas' );
+         reportStatusParcela.ShowReport();
 
 end;
 
-procedure TfrmRelatorioVenda.cbClienteClick(Sender: TObject);
+procedure TfrmRelatorioVenda.editCorretorKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
- if cbCliente.Checked = True then
-     begin
-       labelCliente.Visible := True;
-       editPesquisa.Visible := True;
-       editPesquisa.Clear;
-       editPesquisa.SetFocus;
-     end;
- if cbCliente.Checked = False then
-     begin
-      labelCliente.Visible := False;
-      editPesquisa.Visible := False;
-     end;
+   if Key = VK_RETURN then
+      begin
+        try
+          Application.CreateForm( TfrmCorretores, frmCorretores );
+          frmCorretores.Action := 'relatoriofechamento';
+          frmCorretores.ShowModal;
+        finally
+           FreeAndNil( frmCorretores );
+        end;
+      end;
+
+   if Key = VK_DELETE then
+      Tedit(Sender).Clear;
 end;
 
-procedure TfrmRelatorioVenda.cbNFClick(Sender: TObject);
+procedure TfrmRelatorioVenda.editMotoristaKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
 begin
-if cbNF.Checked = True then
-     begin
-       labelNF.Visible := True;
-       editNF.Visible  := True;
-       editNF.Clear;
-       editNF.SetFocus;
-     end;
- if cbNF.Checked = False then
-     begin
-       labelNF.Visible := False;
-       editNF.Visible  := False;
-     end;
+   if Key = VK_RETURN then
+      begin
+        try
+          Application.CreateForm( TfrmMotorista, frmMotorista );
+          frmMotorista.Action := 'relatoriofechamento';
+          frmMotorista.ShowModal;
+        finally
+           FreeAndNil( frmMotorista );
+        end;
+      end;
+
+   if Key = VK_DELETE then
+      Tedit(Sender).Clear;
 end;
 
-procedure TfrmRelatorioVenda.editPesquisaKeyDown(Sender: TObject; var Key: Word;
+procedure TfrmRelatorioVenda.editClienteKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
      if Key = VK_RETURN then
-      begin
-        try
-          Application.CreateForm( TfrmPosto, frmPosto );
-          frmPosto.DuploClickNaGrid := 'relatoriofechamento';
-          frmPosto.ShowModal;
-        finally
-           FreeAndNil( frmPosto );
-        end;
-      end;
+         begin
+           try
+             Application.CreateForm( TfrmPosto, frmPosto );
+             frmPosto.DuploClickNaGrid := 'relatoriofechamento';
+             frmPosto.ShowModal;
+           finally
+              FreeAndNil( frmPosto );
+           end;
+         end;
+
+     if Key = VK_DELETE then
+        Tedit(Sender).Clear;
 end;
 
 procedure TfrmRelatorioVenda.editRepresentanteKeyDown(Sender: TObject;
@@ -583,13 +495,17 @@ end;
 procedure TfrmRelatorioVenda.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
- qryPosto.Close;
+  qryPosto.Close;
+  qryCorretor.Close;
+  qryMotorista.Close;
 end;
 
 procedure TfrmRelatorioVenda.FormShow(Sender: TObject);
 begin
  qryPosto.Open();
  qryRepresentante.Open();
+ qryCorretor.Open();
+ qryMotorista.Open();
  qryRepresentante.Locate('representanteid', 6, [] );
  editRepresentantePrincipal.Text := qryRepresentante['NOME'];
  rbFechamentoNaoPago.Checked := True;

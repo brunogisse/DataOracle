@@ -2,7 +2,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   Left = 0
   Top = 0
   Caption = 'frmRelatorioVenda'
-  ClientHeight = 663
+  ClientHeight = 612
   ClientWidth = 1140
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -51,7 +51,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     Left = 0
     Top = 52
     Width = 1140
-    Height = 181
+    Height = 244
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -64,8 +64,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     ParentFont = False
     TabOrder = 1
     object Image1: TImage
-      Left = 24
-      Top = 29
+      Left = 32
+      Top = 43
       Width = 135
       Height = 135
       Picture.Data = {
@@ -348,31 +348,31 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         3680ADE1460000000049454E44AE426082}
     end
     object gbPesquisaPosto: TGroupBox
-      Left = 186
-      Top = 14
+      Left = 182
+      Top = 8
       Width = 415
-      Height = 160
+      Height = 226
       Color = clWhite
       ParentBackground = False
       ParentColor = False
       TabOrder = 0
       object Label2: TLabel
         Left = 123
-        Top = 73
+        Top = 98
         Width = 21
         Height = 13
         Caption = 'At'#233':'
       end
       object labelVencimento: TLabel
         Left = 14
-        Top = 6
+        Top = 5
         Width = 192
         Height = 13
         Caption = 'GERAR RELAT'#211'RIO DE FECHAMENTO'
       end
       object Label4: TLabel
         Left = 14
-        Top = 28
+        Top = 53
         Width = 75
         Height = 13
         Caption = 'Representante'
@@ -385,14 +385,14 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object Label1: TLabel
         Left = 14
-        Top = 74
+        Top = 99
         Width = 17
         Height = 13
         Caption = 'De:'
       end
       object DateVencimentoDE: TMaskEdit
         Left = 14
-        Top = 89
+        Top = 114
         Width = 97
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -408,7 +408,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object DateVencimentoATE: TMaskEdit
         Left = 123
-        Top = 89
+        Top = 114
         Width = 98
         Height = 25
         EditMask = '!99/99/9999;1;_'
@@ -424,7 +424,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object Panel1: TPanel
         Left = 227
-        Top = 81
+        Top = 106
         Width = 90
         Height = 41
         BevelOuter = bvNone
@@ -467,7 +467,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object painelFundoImprimir: TPanel
         Left = 314
-        Top = 81
+        Top = 106
         Width = 93
         Height = 41
         BevelOuter = bvNone
@@ -512,7 +512,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object editRepresentantePrincipal: TEdit
         Left = 14
-        Top = 43
+        Top = 68
         Width = 383
         Height = 25
         Font.Charset = ANSI_CHARSET
@@ -527,7 +527,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       object gbPagoNaoPago: TGroupBox
         Left = 14
-        Top = 120
+        Top = 145
         Width = 387
         Height = 33
         TabOrder = 5
@@ -564,25 +564,24 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
     end
     object GroupBox1: TGroupBox
-      Left = 615
-      Top = 14
-      Width = 515
-      Height = 160
+      Left = 607
+      Top = 8
+      Width = 511
+      Height = 226
       Color = clWhite
       ParentBackground = False
       ParentColor = False
       TabOrder = 1
       object labelCliente: TLabel
-        Left = 12
-        Top = 67
-        Width = 43
+        Left = 11
+        Top = 142
+        Width = 36
         Height = 13
-        Caption = 'CLIENTE'
-        Visible = False
+        Caption = 'Cliente'
       end
       object Label3: TLabel
         Left = 12
-        Top = 8
+        Top = 4
         Width = 174
         Height = 13
         Caption = 'GERAR RELAT'#211'RIO DE PARCELAS '
@@ -593,11 +592,31 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         Width = 15
         Height = 13
         Caption = 'NF'
-        Visible = False
+      end
+      object Label5: TLabel
+        Left = 11
+        Top = 63
+        Width = 51
+        Height = 13
+        Caption = 'Motorista'
+      end
+      object Label6: TLabel
+        Left = 10
+        Top = 101
+        Width = 43
+        Height = 13
+        Caption = 'Corretor'
+      end
+      object Label7: TLabel
+        Left = 256
+        Top = 25
+        Width = 91
+        Height = 13
+        Caption = 'Ordem de Servi'#231'o'
       end
       object painelBotoes: TPanel
-        Left = 5
-        Top = 106
+        Left = 383
+        Top = 183
         Width = 125
         Height = 37
         BevelOuter = bvNone
@@ -620,7 +639,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          object btnPagarParcelaStatus: TSpeedButton
+          object btnImprimirRelAuxiliar: TSpeedButton
             Left = 0
             Top = 0
             Width = 103
@@ -633,15 +652,14 @@ object frmRelatorioVenda: TfrmRelatorioVenda
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnPagarParcelaStatusClick
-            ExplicitLeft = 1
-            ExplicitWidth = 75
+            OnClick = btnImprimirRelAuxiliarClick
+            ExplicitTop = 8
           end
         end
       end
       object rbAbertas: TRadioButton
-        Left = 156
-        Top = 107
+        Left = 22
+        Top = 199
         Width = 64
         Height = 17
         Caption = 'Abertas'
@@ -656,9 +674,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         TabStop = True
       end
       object rbPagas: TRadioButton
-        Left = 156
-        Top = 125
-        Width = 56
+        Left = 89
+        Top = 199
+        Width = 52
         Height = 17
         Caption = 'Pagas'
         Font.Charset = ANSI_CHARSET
@@ -669,70 +687,67 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         ParentFont = False
         TabOrder = 2
       end
-      object editPesquisa: TEdit
-        Left = 12
-        Top = 81
+      object editCliente: TEdit
+        Left = 11
+        Top = 156
         Width = 484
         Height = 21
         ReadOnly = True
         TabOrder = 3
-        Visible = False
-        OnKeyDown = editPesquisaKeyDown
-      end
-      object cbCliente: TCheckBox
-        Left = 253
-        Top = 125
-        Width = 121
-        Height = 17
-        Caption = 'Filtrar por cliente'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = 9408399
-        Font.Height = -11
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 4
-        OnClick = cbClienteClick
-      end
-      object cbNF: TCheckBox
-        Left = 253
-        Top = 107
-        Width = 86
-        Height = 17
-        Caption = 'Filtrar por NF'
-        Font.Charset = ANSI_CHARSET
-        Font.Color = 9408399
-        Font.Height = -11
-        Font.Name = 'Segoe UI'
-        Font.Style = []
-        ParentFont = False
-        TabOrder = 5
-        OnClick = cbNFClick
+        OnKeyDown = editClienteKeyDown
       end
       object editNF: TEdit
         Left = 11
         Top = 40
-        Width = 182
+        Width = 239
         Height = 21
+        TabOrder = 4
+      end
+      object editMotorista: TEdit
+        Left = 11
+        Top = 78
+        Width = 482
+        Height = 21
+        ReadOnly = True
+        TabOrder = 5
+        OnKeyDown = editMotoristaKeyDown
+      end
+      object editCorretor: TEdit
+        Left = 10
+        Top = 116
+        Width = 483
+        Height = 21
+        ReadOnly = True
         TabOrder = 6
-        Visible = False
+        OnKeyDown = editCorretorKeyDown
+      end
+      object editOC: TEdit
+        Left = 256
+        Top = 40
+        Width = 237
+        Height = 21
+        TabOrder = 7
       end
     end
   end
   object painelGrid: TPanel
     Left = 0
-    Top = 239
-    Width = 1130
-    Height = 418
+    Top = 296
+    Width = 1140
+    Height = 297
+    Align = alTop
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
+    ExplicitLeft = 3
+    ExplicitTop = 332
+    ExplicitWidth = 1130
     object gridRelatorioVendaPosto: TDBGrid
       Left = 0
       Top = 0
-      Width = 1130
-      Height = 418
+      Width = 1140
+      Height = 297
       Align = alClient
       BorderStyle = bsNone
       DataSource = dsRelatorioVendaPosto
@@ -935,7 +950,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ' (v.estoqueid = eu.estoqueid)'
       '')
     Left = 76
-    Top = 321
+    Top = 369
     object qryRelatorioVendaPostoVENDAID: TFDAutoIncField
       FieldName = 'VENDAID'
       Origin = 'VENDAID'
@@ -1197,13 +1212,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   object tcVendaPosto: TFDTransaction
     Options.AutoStop = False
     Connection = frmMenu.FDconexao
-    Left = 60
-    Top = 521
+    Left = 116
+    Top = 505
   end
   object dsRelatorioVendaPosto: TDataSource
     DataSet = qryRelatorioVendaPosto
-    Left = 196
-    Top = 322
+    Left = 204
+    Top = 370
   end
   object reportStatusParcela: TfrxReport
     Version = '6.7.6'
@@ -1215,14 +1230,14 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.740707060200000000
-    ReportOptions.LastChange = 44930.915574884260000000
+    ReportOptions.LastChange = 45062.805523437500000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
       ''
       'end.')
-    Left = 803
-    Top = 311
+    Left = 811
+    Top = 351
     Datasets = <
       item
         DataSet = dbReportStatusParcela
@@ -1920,11 +1935,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           AllowVectorExport = True
           Left = 2.779530000000000000
           Top = 0.440940000000000000
-          Width = 41.574830000000000000
+          Width = 37.795300000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1935,16 +1950,16 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1VENDAID: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 45.913420000000000000
+          Left = 37.913420000000000000
           Top = 0.440940000000000000
-          Width = 79.370130000000000000
+          Width = 56.692950000000000000
           Height = 15.118120000000000000
           DataField = 'VENDAID'
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -1956,11 +1971,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           AllowVectorExport = True
           Left = 3.118120000000000000
           Top = 13.677180000000000000
-          Width = 37.795300000000000000
+          Width = 34.015770000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -1990,13 +2005,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 127.283550000000000000
-          Top = 0.677180000000000000
+          Left = 94.283550000000000000
+          Top = 0.440940000000000000
           Width = 22.677180000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2007,16 +2022,16 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 150.181200000000000000
-          Top = 0.897650000000000000
-          Width = 68.031540000000000000
+          Left = 111.181200000000000000
+          Top = 0.440940000000000000
+          Width = 49.133890000000000000
           Height = 15.118120000000000000
           DataField = 'NF'
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2026,13 +2041,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 221.551330000000000000
-          Top = 0.236240000000000000
-          Width = 49.133890000000000000
+          Left = 163.551330000000000000
+          Top = 0.440940000000000000
+          Width = 41.574830000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2043,16 +2058,16 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1DATA_EMISSAO_NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 272.803340000000000000
-          Top = 0.236240000000000000
-          Width = 79.370130000000000000
+          Left = 203.803340000000000000
+          Top = 0.440940000000000000
+          Width = 52.913420000000000000
           Height = 15.118120000000000000
           DataField = 'DATA_EMISSAO_NF'
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2064,11 +2079,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           AllowVectorExport = True
           Left = 3.338590000000000000
           Top = 28.149660000000000000
-          Width = 45.354360000000000000
+          Width = 34.015770000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2084,7 +2099,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2100,7 +2115,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2110,13 +2125,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo10: TfrxMemoView
           AllowVectorExport = True
-          Left = 355.512060000000000000
-          Top = 0.118120000000000000
-          Width = 52.913420000000000000
+          Left = 389.512060000000000000
+          Top = 0.440940000000000000
+          Width = 45.354360000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2127,8 +2142,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1VALOR_NF: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 410.205010000000000000
-          Width = 94.488250000000000000
+          Left = 436.205010000000000000
+          Top = 0.440940000000000000
+          Width = 79.370130000000000000
           Height = 18.897650000000000000
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
@@ -2136,7 +2152,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2152,7 +2168,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2162,13 +2178,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo14: TfrxMemoView
           AllowVectorExport = True
-          Left = 509.354670000000000000
-          Top = 0.220470000000000000
-          Width = 90.708720000000000000
+          Left = 518.354670000000000000
+          Top = 0.440940000000000000
+          Width = 79.370130000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = [fsBold]
           Frame.Typ = []
@@ -2179,9 +2195,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset1VOLUME: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 599.622450000000000000
-          Top = 0.220470000000000000
-          Width = 151.181200000000000000
+          Left = 597.622450000000000000
+          Top = 0.440940000000000000
+          Width = 124.724490000000000000
           Height = 18.897650000000000000
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
@@ -2189,12 +2205,48 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."VOLUME"]')
+          ParentFont = False
+        end
+        object Memo22: TfrxMemoView
+          AllowVectorExport = True
+          Left = 260.787570000000000000
+          Top = 0.440940000000000000
+          Width = 56.692950000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Ord. Carreg.')
+          ParentFont = False
+        end
+        object frxDBDataset1ORDEM_CARREGAMENTO: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 316.362400000000000000
+          Top = 0.440940000000000000
+          Width = 71.811070000000000000
+          Height = 15.118120000000000000
+          DataField = 'ORDEM_CARREGAMENTO'
+          DataSet = dbReportStatusParcela
+          DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."ORDEM_CARREGAMENTO"]')
           ParentFont = False
         end
       end
@@ -2219,7 +2271,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2240,7 +2292,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2260,7 +2312,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DataSetName = 'frxDBDataset1'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2281,7 +2333,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           DisplayFormat.Kind = fkNumeric
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
-          Font.Height = -11
+          Font.Height = -9
           Font.Name = 'Segoe uI'
           Font.Style = []
           Frame.Typ = []
@@ -2293,13 +2345,13 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       object GroupFooter1: TfrxGroupFooter
         FillType = ftBrush
         Frame.Typ = []
-        Height = 34.015770000000000000
+        Height = 26.456710000000000000
         Top = 272.126160000000000000
         Width = 718.110700000000000000
         object Memo11: TfrxMemoView
           AllowVectorExport = True
           Left = 60.763760000000000000
-          Top = 1.661410000000000000
+          Top = 0.661410000000000000
           Width = 188.976500000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2m'
@@ -2317,7 +2369,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object Memo12: TfrxMemoView
           AllowVectorExport = True
           Left = 5.393630000000000000
-          Top = 1.661410000000000000
+          Top = 0.661410000000000000
           Width = 49.133890000000000000
           Height = 18.897650000000000000
           Font.Charset = DEFAULT_CHARSET
@@ -2333,7 +2385,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object Memo16: TfrxMemoView
           AllowVectorExport = True
           Left = 301.189240000000000000
-          Top = 1.779530000000000000
+          Top = 0.779530000000000000
           Width = 249.448980000000000000
           Height = 18.897650000000000000
           DisplayFormat.FormatStr = '%2.2n'
@@ -2367,7 +2419,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object Line1: TfrxLineView
           AllowVectorExport = True
           Left = 0.779530000000000000
-          Top = 30.236240000000000000
+          Top = 26.236240000000000000
           Width = 718.110700000000000000
           Color = clBlack
           Frame.Style = fsDot
@@ -2378,7 +2430,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         FillType = ftBrush
         Frame.Typ = []
         Height = 83.149660000000000000
-        Top = 328.819110000000000000
+        Top = 321.260050000000000000
         Width = 718.110700000000000000
         object Memo18: TfrxMemoView
           AllowVectorExport = True
@@ -2456,10 +2508,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     CloseDataSource = False
     DataSet = qryRelatorioStatusParcela
     BCDToCurrency = False
-    Left = 936
-    Top = 319
+    Left = 952
+    Top = 351
   end
   object qryRelatorioStatusParcela: TFDQuery
+    Active = True
     Connection = frmMenu.FDconexao
     SQL.Strings = (
       'select'
@@ -2473,9 +2526,10 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         'volume, v.taxa_frete, v.valor_total_frete,'
       
         '  v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustiv' +
-        'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas, V.TOTAL_N' +
-        'F_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOL' +
-        'UME_RECEBIDO_MES,'
+        'el, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,'
+      
+        '  V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO' +
+        '_MES, V.VOLUME_RECEBIDO_MES, v.ordem_carregamento,'
       ''
       
         '  c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as po' +
@@ -2511,8 +2565,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ' (v.estoqueid = eu.estoqueid)'
       ''
       'order by v.vendaid, v.postoid  desc')
-    Left = 800
-    Top = 391
+    Left = 808
+    Top = 407
     object qryRelatorioStatusParcelaVENDAID: TIntegerField
       FieldName = 'VENDAID'
       Origin = 'VENDAID'
@@ -2766,6 +2820,10 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       Precision = 18
       Size = 10
     end
+    object qryRelatorioStatusParcelaORDEM_CARREGAMENTO: TIntegerField
+      FieldName = 'ORDEM_CARREGAMENTO'
+      Origin = 'ORDEM_CARREGAMENTO'
+    end
   end
   object dsRelatorioStatusParcela: TDataSource
     DataSet = qryRelatorioStatusParcela
@@ -2788,7 +2846,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ''
       'end.')
     Left = 72
-    Top = 407
+    Top = 431
     Datasets = <
       item
         DataSet = frxDBDatasetPrincipal
@@ -4090,12 +4148,12 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     DataSet = qryRelatorioVendaPosto
     BCDToCurrency = False
     Left = 198
-    Top = 399
+    Top = 439
   end
   object dsPosto: TDataSource
     DataSet = qryPosto
-    Left = 544
-    Top = 296
+    Left = 563
+    Top = 448
   end
   object qryPosto: TFDQuery
     Connection = frmMenu.FDconexao
@@ -4106,8 +4164,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     UpdateOptions.AutoIncFields = 'POSTOID'
     SQL.Strings = (
       'select * from Posto')
-    Left = 480
-    Top = 294
+    Left = 499
+    Top = 446
     object qryPostoPOSTOID: TFDAutoIncField
       FieldName = 'POSTOID'
       Origin = 'POSTOID'
@@ -4136,8 +4194,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     Connection = frmMenu.FDconexao
     SQL.Strings = (
       'select * from representante')
-    Left = 480
-    Top = 376
+    Left = 499
+    Top = 512
     object qryRepresentanteREPRESENTANTEID: TIntegerField
       FieldName = 'REPRESENTANTEID'
       Origin = 'REPRESENTANTEID'
@@ -4162,7 +4220,81 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   end
   object dsRepresentante: TDataSource
     DataSet = qryRepresentante
-    Left = 592
-    Top = 375
+    Left = 611
+    Top = 511
+  end
+  object qryCorretor: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcVendaPosto
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_CORRETOR_ID'
+    UpdateOptions.KeyFields = 'CORRETORID'
+    SQL.Strings = (
+      'select * from corretor')
+    Left = 744
+    Top = 488
+    object qryCorretorCORRETORID: TIntegerField
+      FieldName = 'CORRETORID'
+      Origin = 'CORRETORID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryCorretorNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryCorretorCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 13
+    end
+    object qryCorretorCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+  end
+  object qryMotorista: TFDQuery
+    Connection = frmMenu.FDconexao
+    Transaction = tcVendaPosto
+    UpdateOptions.AssignedValues = [uvGeneratorName]
+    UpdateOptions.GeneratorName = 'GEN_MOTORISTA_ID'
+    UpdateOptions.KeyFields = 'MOTORISTAID'
+    SQL.Strings = (
+      'select * from motorista')
+    Left = 808
+    Top = 488
+    object qryMotoristaMOTORISTAID: TIntegerField
+      FieldName = 'MOTORISTAID'
+      Origin = 'MOTORISTAID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object qryMotoristaNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Size = 60
+    end
+    object qryMotoristaCIDADE: TStringField
+      FieldName = 'CIDADE'
+      Origin = 'CIDADE'
+      Size = 60
+    end
+    object qryMotoristaCPF: TStringField
+      FieldName = 'CPF'
+      Origin = 'CPF'
+      Size = 13
+    end
+  end
+  object dsCorretor: TDataSource
+    DataSet = qryCorretor
+    Left = 744
+    Top = 555
+  end
+  object dsMotorista: TDataSource
+    DataSet = qryMotorista
+    Left = 808
+    Top = 547
   end
 end

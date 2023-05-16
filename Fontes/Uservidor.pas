@@ -94,7 +94,7 @@ begin
     end
   else
     begin
-       ShowMessage('nada feito!');
+       ShowMessage('Falha na configuração - encerrando o sistema');
        Application.Terminate;
     end;
 end;

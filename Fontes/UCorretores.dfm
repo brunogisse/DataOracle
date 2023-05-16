@@ -2,7 +2,7 @@ object frmCorretores: TfrmCorretores
   Left = 0
   Top = 0
   Caption = 'Cadastro de Corretores'
-  ClientHeight = 561
+  ClientHeight = 589
   ClientWidth = 829
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -488,7 +488,7 @@ object frmCorretores: TfrmCorretores
     Left = 0
     Top = 321
     Width = 829
-    Height = 224
+    Height = 256
     Align = alTop
     BorderStyle = bsNone
     DataSource = dsCorretores
