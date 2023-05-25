@@ -3937,6 +3937,7 @@ object frmMenu: TfrmMenu
       'Password=masterkey'
       'Server=localhost'
       'DriverID=FB')
+    Connected = True
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
     Left = 464
