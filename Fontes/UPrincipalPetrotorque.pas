@@ -358,7 +358,7 @@ begin
     if Expandir then
       begin
        btnMenu.Width     := 58;
-       painelMenuLateral.Width := 53;
+       painelMenuLateral.Width := 85;
 
        painelMenuCategoria1.Height := 70;
        painelMenuCategoria2.Height := 70;

@@ -473,7 +473,7 @@ begin
   qryEstado.Open();
   qryMunicipio.Open();
   configurarEnables(0);
-  rbCNPJ.Checked := true;
+  rbNomeFantasia.Checked := true;
   if DuploClickNaGrid = 'ENVIAR' then
      editPesquisaPosto.SetFocus;
     definirTamanhoDaLinhaDaGrid;

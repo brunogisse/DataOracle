@@ -300,7 +300,7 @@ begin
    qryCorretor.Open();
    qryVendaPosto.Open();
    qryRepresentante.Open();
-   qryRepresentante.Locate('representanteid', 6, [] );
+   qryRepresentante.Locate('representanteid', 8, [] );
    editRepresentante.Text := qryRepresentante['NOME'];
 
    DateVencimentoDE.Text   := DateToStr(Date);

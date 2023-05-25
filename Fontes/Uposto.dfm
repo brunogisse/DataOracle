@@ -32,7 +32,6 @@ object frmPosto: TfrmPosto
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 1240
     object Image1: TImage
       Left = 25
       Top = 104

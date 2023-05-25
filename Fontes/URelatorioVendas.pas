@@ -356,7 +356,7 @@ begin
             SQL.Add('(v.estoqueid = eu.estoqueid) and                                                                                                                   ');
             SQL.Add('(v.representanteid = :representante) and                                                                                                           ');
             SQL.Add('(PARC.STATUS = :STATUS) and                                                                                                                        ');
-            SQL.Add('(v.data_emissao_nf between :inicio and :fim) and                                                                                                   ');
+            SQL.Add('(' + abertoFechado + ' between :inicio and :fim) and                                                                                                   ');
 
             SQL.Add(ordemCarregamento);
             SQL.Add(NF);
@@ -506,7 +506,7 @@ begin
  qryRepresentante.Open();
  qryCorretor.Open();
  qryMotorista.Open();
- qryRepresentante.Locate('representanteid', 6, [] );
+ qryRepresentante.Locate('representanteid', 8, [] );
  editRepresentantePrincipal.Text := qryRepresentante['NOME'];
  rbFechamentoNaoPago.Checked := True;
 
