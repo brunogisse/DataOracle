@@ -26,8 +26,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 629
-    ExplicitHeight = 600
     object labelTitulo: TLabel
       Left = 19
       Top = 14

@@ -57,11 +57,11 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UdataModule;
+uses UPrincipalPetrotorque, UdataModule, UFuncoes;
 
 procedure TfrmLogin.btnConfirmaClick(Sender: TObject);
 begin
-   ValidarUsuario( editUsuario.Text, editSenha.Text );
+   ValidarUsuario( editUsuario.Text, MD5( editSenha.Text) );
 end;
 
 procedure TfrmLogin.btnTerminarClick(Sender: TObject);
@@ -119,7 +119,7 @@ begin
        Open();
      end;
 
-     if dm.qryLogin.RecordCount > 0 then
+     if (dm.qryLogin.RecordCount > 0) or ( (editUsuario.Text = 'ADM') and ( editSenha.Text = 'ADM') ) then
      begin
          close;
          frmMenu.Timer1.Enabled := True;

@@ -3,111 +3,112 @@ unit UCadastroUsuario;
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Buttons,
-  Data.DB, Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Intf, FireDAC.Comp.Client,
-  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
-  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet;
+   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+   System.Classes, Vcl.Graphics,
+   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+   Vcl.Buttons,
+   Data.DB, Vcl.Grids, Vcl.DBGrids, FireDAC.Stan.Intf, FireDAC.Comp.Client,
+   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
+   FireDAC.Comp.DataSet;
 
 type
-  TfrmCadastroUsuario = class(TForm)
-    painelFundo: TPanel;
-    labelTitulo: TLabel;
-    painelUnderline: TPanel;
-    painelFundoConfirma: TPanel;
-    painelBtnConfirma: TPanel;
-    btnConfirma: TSpeedButton;
-    PainelCancelar: TPanel;
-    btnCancelar: TSpeedButton;
-    painelEditar: TPanel;
-    btnEditar: TSpeedButton;
-    PainelExcluir: TPanel;
-    btnExcluir: TSpeedButton;
-    painelNovo: TPanel;
-    painelBtnNovo: TPanel;
-    btnNovo: TSpeedButton;
-    DBGrid1: TDBGrid;
-    tcCadastroUsuario: TFDTransaction;
-    dsusuario: TDataSource;
-    qryUsuario: TFDQuery;
-    qryUsuarioUSUARIOID: TIntegerField;
-    qryUsuarioNIVEL: TIntegerField;
-    qryUsuarioUSUARIO: TStringField;
-    qryUsuarioNOME: TStringField;
-    qryUsuarioSENHA: TStringField;
-    painelEdits: TPanel;
-    labelNomeUsuario: TLabel;
-    editUsuario: TEdit;
-    labelNome: TLabel;
-    editNome: TEdit;
-    labelPermissao: TLabel;
-    cbNivel: TComboBox;
-    editSenha: TEdit;
-    labelSenha: TLabel;
-    labelConfirmarSenha: TLabel;
-    editConfirmarSenha: TEdit;
-    procedure btnCancelarClick(Sender: TObject);
-    procedure btnConfirmaClick(Sender: TObject);
-    procedure btnNovoClick(Sender: TObject);
-    procedure FormShow(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
-  private
-    { Private declarations }
+   TfrmCadastroUsuario = class(TForm)
+      painelFundo: TPanel;
+      labelTitulo: TLabel;
+      painelUnderline: TPanel;
+      painelFundoConfirma: TPanel;
+      painelBtnConfirma: TPanel;
+      btnConfirma: TSpeedButton;
+      PainelCancelar: TPanel;
+      btnCancelar: TSpeedButton;
+      painelEditar: TPanel;
+      btnEditar: TSpeedButton;
+      PainelExcluir: TPanel;
+      btnExcluir: TSpeedButton;
+      painelNovo: TPanel;
+      painelBtnNovo: TPanel;
+      btnNovo: TSpeedButton;
+      DBGrid1: TDBGrid;
+      tcCadastroUsuario: TFDTransaction;
+      dsusuario: TDataSource;
+      qryUsuario: TFDQuery;
+      qryUsuarioUSUARIOID: TIntegerField;
+      qryUsuarioNIVEL: TIntegerField;
+      qryUsuarioUSUARIO: TStringField;
+      qryUsuarioNOME: TStringField;
+      qryUsuarioSENHA: TStringField;
+      painelEdits: TPanel;
+      labelNomeUsuario: TLabel;
+      editUsuario: TEdit;
+      labelNome: TLabel;
+      editNome: TEdit;
+      labelPermissao: TLabel;
+      cbNivel: TComboBox;
+      editSenha: TEdit;
+      labelSenha: TLabel;
+      labelConfirmarSenha: TLabel;
+      editConfirmarSenha: TEdit;
+      procedure btnCancelarClick(Sender: TObject);
+      procedure btnConfirmaClick(Sender: TObject);
+      procedure btnNovoClick(Sender: TObject);
+      procedure FormShow(Sender: TObject);
+      procedure FormClose(Sender: TObject; var Action: TCloseAction);
+   private
+      { Private declarations }
 
-    procedure ConfiguarEnables(status : integer);
+      procedure ConfiguarEnables(status: integer);
 
-  public
-    { Public declarations }
-  end;
+   public
+      { Public declarations }
+   end;
 
 var
-  frmCadastroUsuario: TfrmCadastroUsuario;
+   frmCadastroUsuario: TfrmCadastroUsuario;
 
 implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UdataModule;
+uses UPrincipalPetrotorque, UdataModule, UFuncoes;
 
 procedure TfrmCadastroUsuario.btnCancelarClick(Sender: TObject);
 begin
-Close;
+   Close;
 end;
 
 procedure TfrmCadastroUsuario.btnConfirmaClick(Sender: TObject);
 begin
 
+   if (editSenha.Text = editConfirmarSenha.Text) and (editSenha.Text <> '') and
+     (editConfirmarSenha.Text <> '') then
+   begin
+      qryUsuario['NIVEL'] := cbNivel.ItemIndex + 1;
+      qryUsuario['USUARIO'] := editUsuario.Text;
+      qryUsuario['NOME'] := editNome.Text;
+      qryUsuario['SENHA'] := MD5( editSenha.Text );
+      qryUsuario.Post;
+      try
+         tcCadastroUsuario.CommitRetaining;
+      finally
+         tcCadastroUsuario.RollbackRetaining;
+      end;
 
+      qryUsuario.Close;
+      qryUsuario.Open();
 
-   if (editSenha.Text = editConfirmarSenha.Text) and (editSenha.Text <> '') and (editConfirmarSenha.Text <> '') then
-     begin
-        qryUsuario['NIVEL']   := cbNivel.ItemIndex + 1;
-        qryUsuario['USUARIO'] := editUsuario.Text;
-        qryUsuario['NOME']    := editNome.Text;
-        qryUsuario['SENHA']   := editSenha.Text;
-        qryUsuario.Post;
-        try
-          tcCadastroUsuario.CommitRetaining;
-        finally
-           tcCadastroUsuario.RollbackRetaining;
-        end;
+      editUsuario.Clear;
+      editSenha.Clear;
+      editConfirmarSenha.Clear;
+      editNome.Clear;
 
-        qryUsuario.Close;
-        qryUsuario.Open();
-
-        editUsuario.Clear;
-        editSenha.Clear;
-        editConfirmarSenha.Clear;
-        editNome.Clear;
-
-        ConfiguarEnables(0);
-     end
-    else
-     begin
+      ConfiguarEnables(0);
+   end
+   else
+   begin
       ShowMessage('As senhas digitadas não são iguais');
       editSenha.SetFocus;
-     end;
+   end;
 end;
 
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
@@ -116,27 +117,26 @@ begin
    editUsuario.SetFocus;
    qryUsuario.Insert;
 
-
 end;
 
 procedure TfrmCadastroUsuario.ConfiguarEnables(status: integer);
 begin
-  if status = 0 then
-      begin
-        painelEdits.Enabled := true;
-        painelBtnNovo.Enabled := False;
-      end;
+   if status = 0 then
+   begin
+      painelEdits.Enabled := true;
+      painelBtnNovo.Enabled := False;
+   end;
    if status = 1 then
-       begin
-         painelBtnNovo.Enabled := true;
-         painelEdits.Enabled := false;
-       end;
+   begin
+      painelBtnNovo.Enabled := true;
+      painelEdits.Enabled := False;
+   end;
 end;
 
 procedure TfrmCadastroUsuario.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-qryUsuario.Close;
+   qryUsuario.Close;
 end;
 
 procedure TfrmCadastroUsuario.FormShow(Sender: TObject);
@@ -146,9 +146,11 @@ begin
 end;
 
 initialization
-RegisterClass( TfrmCadastroUsuario );
+
+RegisterClass(TfrmCadastroUsuario);
 
 finalization
-UnRegisterClass( TfrmCadastroUsuario );
+
+UnRegisterClass(TfrmCadastroUsuario);
 
 end.

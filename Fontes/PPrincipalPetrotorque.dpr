@@ -34,7 +34,8 @@ uses
   Vcl.Dialogs,
   Uclasse.conexao in 'Uclasse.conexao.pas',
   uFormat in 'Units\uFormat.pas',
-  cMotorista in 'classes\cMotorista.pas';
+  cMotorista in 'classes\cMotorista.pas',
+  UFuncoes in 'Units\UFuncoes.pas';
 
 {$R *.res}
 
@@ -45,9 +46,7 @@ begin
         frmLogin := TfrmLogin.Create(nil);
 
         Application.CreateForm(TfrmMenu, frmMenu);
-
-
-if not frmMenu.novaConexao.fnc_conectar_banco_dados('') then
+  if not frmMenu.novaConexao.fnc_conectar_banco_dados('') then
    begin
        Application.CreateForm(TfrmConfiguar_servidor, frmConfiguar_servidor);
        frmConfiguar_servidor.ShowModal;

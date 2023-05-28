@@ -3,11 +3,12 @@ unit Uclasse.conexao;
 interface
 
 uses
-  FireDAC.Comp.Client, System.SysUtils;
+   FireDAC.Comp.Client,
+   System.SysUtils;
 
-  Type
-    Tconexao = class
-      private
+Type
+   Tconexao = class
+   private
       FServidor: String;
       FSenha: String;
       FDatabase: String;
@@ -17,103 +18,111 @@ uses
       FProtocol: String;
       FPort: String;
 
-      public
+   public
 
-      constructor Create(NomeConexao : TFDConnection);
+      constructor Create(NomeConexao: TFDconnection);
       destructor Destroy; override;
 
-      function fnc_conectar_banco_dados(origem : String) : Boolean;
+      function fnc_conectar_banco_dados(origem: String): Boolean;
       procedure prcGravarArquivoINI;
       procedure prc_ler_arquiivoIni;
 
-      property Conexao  : TFDconnection Read FConexao Write Fconexao;
-      property Servidor : String Read FServidor Write FServidor;
-      property User     : String Read FUserName Write FUserName;
-      property Senha    : String Read FSenha Write FSenha;
-      property Database : String Read FDatabase Write FDatabase;
-      property DriverID : String Read FDriverID Write FDriverId;
-      property Protocol : String Read FProtocol Write FProtocol;
-      property Port     : String Read FPort Write FPort;
-    end;
+      property conexao: TFDconnection Read FConexao Write FConexao;
+      property Servidor: String Read FServidor Write FServidor;
+      property User: String Read FUserName Write FUserName;
+      property Senha: String Read FSenha Write FSenha;
+      property Database: String Read FDatabase Write FDatabase;
+      property DriverID: String Read FDriverID Write FDriverID;
+      property Protocol: String Read FProtocol Write FProtocol;
+      property Port: String Read FPort Write FPort;
+   end;
 
 implementation
 
 uses
-  FireDAC.Stan.Intf, Vcl.Dialogs, System.IniFiles, Vcl.Forms,
-  UPrincipalPetrotorque;
+   FireDAC.Stan.Intf,
+   Vcl.Dialogs,
+   System.IniFiles,
+   Vcl.Forms,
+   UPrincipalPetrotorque,
+   UFuncoes;
 
 { Tconexao }
 
-constructor Tconexao.Create(NomeConexao: TFDConnection);
+constructor Tconexao.Create(NomeConexao: TFDconnection);
 begin
-  FConexao := NomeConexao;
+   FConexao := NomeConexao;
 end;
 
 destructor Tconexao.Destroy;
 begin
-  FConexao.Connected := False;
-  inherited;
+   FConexao.Connected := False;
+   inherited;
 end;
 
 procedure Tconexao.prc_ler_arquiivoIni;
 var
-   Ini : TIniFile;
+   Ini: TIniFile;
 begin
    if FConexao.Connected then
       FConexao.Close;
 
-      Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'Config.ini');
+   Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0)) +
+     'Config.ini');
 
-      FDatabase := Ini.ReadString('Sistema', 'Database', '');
-      FUserName := Ini.ReadString('Sistema', 'User', '');
-      FSenha    := Ini.ReadString('Sistema', 'Password', '');
-      FServidor := Ini.ReadString('Sistema', 'Server', '');
-      FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
-      FProtocol := Ini.ReadString('Sistema', 'Protocol', '');
-      FPort     := Ini.ReadString('Sistema', 'Port', '');
+   FDatabase := Ini.ReadString('Sistema', 'Database', '');
+   FUserName := Ini.ReadString('Sistema', 'User', '');
+   FSenha := Ini.ReadString('Sistema', 'Password', '');
+   FSenha := Criptografia( FSenha, '123' );
+   FServidor := Ini.ReadString('Sistema', 'Server', '');
+   FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
+   FProtocol := Ini.ReadString('Sistema', 'Protocol', '');
+   FPort := Ini.ReadString('Sistema', 'Port', '');
 end;
 
-function Tconexao.fnc_conectar_banco_dados(origem : String): Boolean;
+function Tconexao.fnc_conectar_banco_dados(origem: String): Boolean;
 begin
    try
       if origem <> 'form' then
          prc_ler_arquiivoIni;
-         Result := True;
-         FConexao.Params.Strings[0] := 'Database='   + FDatabase;
-         FConexao.Params.Strings[1] := 'User_Name='  + FUserName;
-         FConexao.Params.Strings[2] := 'Password='   + FSenha;
-         FConexao.Params.Strings[3] := 'Server='     + FServidor;
-         FConexao.Params.Strings[3] := 'DriverID='   + FDriverID;
-         FConexao.Params.Strings[4] := 'Protocol='   + FProtocol;
-         FConexao.Params.Strings[4] := 'Port='       + FPort;
-         FConexao.Connected := True;
-  Except
-   on E : Exception do
-     begin
-       showmessage('Falha na conexão com o banco de dados ' + #13 + #13 + E.Message);
-       Result := False;
-     end;
-  end;
+      Result := True;
+      FConexao.Params.Strings[0] := 'Database=' + FDatabase;
+      FConexao.Params.Strings[1] := 'User_Name=' + FUserName;
+      FConexao.Params.Strings[2] := 'Password=' + FSenha;
+      FConexao.Params.Strings[3] := 'Server=' + FServidor;
+      FConexao.Params.Strings[3] := 'DriverID=' + FDriverID;
+      FConexao.Params.Strings[4] := 'Protocol=' + FProtocol;
+      FConexao.Params.Strings[4] := 'Port=' + FPort;
+      FConexao.Connected := True;
+   Except
+      on E: Exception do
+      begin
+         showmessage('Falha na conexão com o banco de dados ' + #13 + #13 +
+           E.Message);
+         Result := False;
+      end;
+   end;
 end;
 
 procedure Tconexao.prcGravarArquivoINI;
-  var
-    Ini    : Tinifile;
+var
+   Ini: TIniFile;
 begin
-    // IniFile := ChangeFileExt( Application.Exename, '.ini' ); //cria uma copia do executável e muda a extensão para .ini
-     Ini     := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0))+'Config.ini');
+   // IniFile := ChangeFileExt( Application.Exename, '.ini' ); //cria uma copia do executável e muda a extensão para .ini
+   Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0)) +
+     'Config.ini');
 
-     try
-       Ini.WriteString('Sistema', 'Server', FServidor);
-       Ini.WriteString('Sistema', 'User', FUserName);
-       Ini.WriteString('Sistema', 'Password', FSenha);
-       Ini.WriteString('Sistema', 'Database', FDatabase);
-       Ini.WriteString('Sistema', 'DriverID', FDriverID);
-       Ini.WriteString('Sistema', 'Protocol', FProtocol);
-       Ini.WriteString('Sistema', 'Port',     FPort);
-     finally
-       Ini.Free;
-     end;
+   try
+      Ini.WriteString('Sistema', 'Server', FServidor);
+      Ini.WriteString('Sistema', 'User', FUserName);
+      Ini.WriteString('Sistema', 'Password', Criptografia( FSenha, '123' ));
+      Ini.WriteString('Sistema', 'Database', FDatabase);
+      Ini.WriteString('Sistema', 'DriverID', FDriverID);
+      Ini.WriteString('Sistema', 'Protocol', FProtocol);
+      Ini.WriteString('Sistema', 'Port', FPort);
+   finally
+      Ini.Free;
+   end;
 end;
 
 end.
