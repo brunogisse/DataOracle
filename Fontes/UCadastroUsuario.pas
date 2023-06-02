@@ -54,6 +54,8 @@ type
       procedure btnNovoClick(Sender: TObject);
       procedure FormShow(Sender: TObject);
       procedure FormClose(Sender: TObject; var Action: TCloseAction);
+      procedure btnEditarClick(Sender: TObject);
+      procedure btnExcluirClick(Sender: TObject);
    private
       { Private declarations }
 
@@ -74,7 +76,8 @@ uses UPrincipalPetrotorque, UdataModule, UFuncoes;
 
 procedure TfrmCadastroUsuario.btnCancelarClick(Sender: TObject);
 begin
-   Close;
+    if MessageBox(Application.Handle,'Deseja realmente sair?' , 'Confirmação', MB_YESNO + MB_ICONQUESTION) = mrYes then
+       Close;
 end;
 
 procedure TfrmCadastroUsuario.btnConfirmaClick(Sender: TObject);
@@ -86,7 +89,7 @@ begin
       qryUsuario['NIVEL'] := cbNivel.ItemIndex + 1;
       qryUsuario['USUARIO'] := editUsuario.Text;
       qryUsuario['NOME'] := editNome.Text;
-      qryUsuario['SENHA'] := MD5( editSenha.Text );
+      qryUsuario['SENHA'] := MD5(editSenha.Text);
       qryUsuario.Post;
       try
          tcCadastroUsuario.CommitRetaining;
@@ -102,13 +105,56 @@ begin
       editConfirmarSenha.Clear;
       editNome.Clear;
 
-      ConfiguarEnables(0);
+      ConfiguarEnables(1);
    end
    else
    begin
       ShowMessage('As senhas digitadas não são iguais');
       editSenha.SetFocus;
    end;
+end;
+
+procedure TfrmCadastroUsuario.btnEditarClick(Sender: TObject);
+begin
+
+   ConfiguarEnables(0);
+
+   editUsuario.Text := qryUsuario['USUARIO'];
+   editNome.Text := qryUsuario['NOME'];
+   cbNivel.ItemIndex := qryUsuario['NIVEL'] - 1;
+   cbNivel.Text := IntToStr(qryUsuario['NIVEL']);
+
+   qryUsuario.Edit;
+
+end;
+
+procedure TfrmCadastroUsuario.btnExcluirClick(Sender: TObject);
+var
+   ErrorMsg: String;
+begin
+
+   if qryUsuario.RecordCount = 1  then
+   begin
+     MessageDlg('Impossível excluir o usuário.' +
+              #13 + 'Motivo: Ao menos um usuário deve permanecer cadastrado.' + ErrorMsg,
+              TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+     Exit;
+   end;
+
+
+   if MessageBox(Application.Handle,'Deseja excluir esse usuário?' , 'Confirmação', MB_YESNO + MB_ICONQUESTION) = mrYes then
+      try
+         qryUsuario.Delete;
+      except
+         on E: Exception do
+         begin
+            ErrorMsg := Copy(E.Message, 1, 500);
+            MessageDlg('Erro ao excluir usuário.' +
+              #13 + 'Motivo: ' + ErrorMsg,
+              TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+         end;
+      end;
+
 end;
 
 procedure TfrmCadastroUsuario.btnNovoClick(Sender: TObject);
@@ -125,11 +171,17 @@ begin
    begin
       painelEdits.Enabled := true;
       painelBtnNovo.Enabled := False;
+     // PainelCancelar.Enabled := True;
+      PainelExcluir.Enabled := False;
+      painelEditar.Enabled := False;
    end;
    if status = 1 then
    begin
       painelBtnNovo.Enabled := true;
       painelEdits.Enabled := False;
+   //   PainelCancelar.Enabled := False;
+      PainelExcluir.Enabled := True;
+      painelEditar.Enabled := True;
    end;
 end;
 

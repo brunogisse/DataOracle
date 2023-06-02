@@ -2,8 +2,8 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   Left = 0
   Top = 0
   BorderStyle = bsSingle
-  ClientHeight = 571
-  ClientWidth = 623
+  ClientHeight = 503
+  ClientWidth = 490
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clSilver
@@ -19,13 +19,15 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   object painelFundo: TPanel
     Left = 0
     Top = 0
-    Width = 623
-    Height = 571
+    Width = 490
+    Height = 503
     Align = alClient
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 623
+    ExplicitHeight = 571
     object labelTitulo: TLabel
       Left = 19
       Top = 14
@@ -56,9 +58,9 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       TabOrder = 0
     end
     object painelFundoConfirma: TPanel
-      Left = 90
-      Top = 301
-      Width = 465
+      Left = 19
+      Top = 312
+      Width = 454
       Height = 50
       BevelOuter = bvNone
       Color = clWhite
@@ -163,6 +165,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnEditarClick
           ExplicitLeft = 64
           ExplicitTop = 8
           ExplicitWidth = 153
@@ -198,6 +201,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           Font.Name = 'Segoe UI'
           Font.Style = [fsBold]
           ParentFont = False
+          OnClick = btnExcluirClick
           ExplicitLeft = 2
           ExplicitWidth = 120
         end
@@ -205,7 +209,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     end
     object painelNovo: TPanel
       Left = 19
-      Top = 79
+      Top = 53
       Width = 138
       Height = 42
       BevelOuter = bvNone
@@ -251,9 +255,9 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     end
     object DBGrid1: TDBGrid
       Left = 0
-      Top = 368
-      Width = 623
-      Height = 203
+      Top = 375
+      Width = 490
+      Height = 128
       Align = alBottom
       DataSource = dsusuario
       Font.Charset = DEFAULT_CHARSET
@@ -271,12 +275,6 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       Columns = <
         item
           Expanded = False
-          FieldName = 'USUARIOID'
-          Width = 49
-          Visible = True
-        end
-        item
-          Expanded = False
           FieldName = 'NIVEL'
           Width = 52
           Visible = True
@@ -284,21 +282,21 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         item
           Expanded = False
           FieldName = 'USUARIO'
-          Width = 177
+          Width = 165
           Visible = True
         end
         item
           Expanded = False
           FieldName = 'NOME'
-          Width = 310
+          Width = 224
           Visible = True
         end>
     end
     object painelEdits: TPanel
       Left = 27
-      Top = 119
-      Width = 577
-      Height = 170
+      Top = 94
+      Width = 432
+      Height = 205
       BevelKind = bkFlat
       BevelOuter = bvNone
       TabOrder = 4
@@ -330,7 +328,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       end
       object labelPermissao: TLabel
         Left = 10
-        Top = 104
+        Top = 152
         Width = 118
         Height = 17
         Caption = 'N'#237'vel de Permiss'#227'o:'
@@ -342,7 +340,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         ParentFont = False
       end
       object labelSenha: TLabel
-        Left = 152
+        Left = 10
         Top = 104
         Width = 40
         Height = 17
@@ -355,7 +353,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         ParentFont = False
       end
       object labelConfirmarSenha: TLabel
-        Left = 346
+        Left = 216
         Top = 104
         Width = 104
         Height = 17
@@ -370,7 +368,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       object editUsuario: TEdit
         Left = 10
         Top = 24
-        Width = 529
+        Width = 409
         Height = 25
         CharCase = ecUpperCase
         Font.Charset = DEFAULT_CHARSET
@@ -384,7 +382,7 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       object editNome: TEdit
         Left = 10
         Top = 73
-        Width = 529
+        Width = 409
         Height = 25
         CharCase = ecUpperCase
         Font.Charset = DEFAULT_CHARSET
@@ -397,8 +395,8 @@ object frmCadastroUsuario: TfrmCadastroUsuario
       end
       object cbNivel: TComboBox
         Left = 10
-        Top = 122
-        Width = 129
+        Top = 170
+        Width = 55
         Height = 25
         CharCase = ecUpperCase
         Font.Charset = DEFAULT_CHARSET
@@ -416,9 +414,9 @@ object frmCadastroUsuario: TfrmCadastroUsuario
           '5')
       end
       object editSenha: TEdit
-        Left = 152
+        Left = 10
         Top = 122
-        Width = 180
+        Width = 195
         Height = 25
         CharCase = ecUpperCase
         Font.Charset = DEFAULT_CHARSET
@@ -431,9 +429,9 @@ object frmCadastroUsuario: TfrmCadastroUsuario
         TabOrder = 3
       end
       object editConfirmarSenha: TEdit
-        Left = 346
+        Left = 215
         Top = 122
-        Width = 193
+        Width = 204
         Height = 25
         CharCase = ecUpperCase
         Font.Charset = DEFAULT_CHARSET
@@ -450,13 +448,13 @@ object frmCadastroUsuario: TfrmCadastroUsuario
   object tcCadastroUsuario: TFDTransaction
     Options.AutoStop = False
     Connection = frmMenu.FDconexao
-    Left = 440
-    Top = 480
+    Left = 144
+    Top = 443
   end
   object dsusuario: TDataSource
     DataSet = qryUsuario
-    Left = 363
-    Top = 475
+    Left = 83
+    Top = 443
   end
   object qryUsuario: TFDQuery
     Connection = frmMenu.FDconexao
@@ -469,8 +467,8 @@ object frmCadastroUsuario: TfrmCadastroUsuario
     UpdateOptions.AutoIncFields = 'USUARIOID'
     SQL.Strings = (
       'select * from usuario')
-    Left = 283
-    Top = 475
+    Left = 19
+    Top = 443
     object qryUsuarioUSUARIOID: TIntegerField
       DisplayLabel = 'ID'
       FieldName = 'USUARIOID'
