@@ -257,6 +257,7 @@ begin
     with qryCorretores do
       begin
         Close;
+        frmMenu.WriteLog('  SQL.Clear;');
         SQL.Clear;
         SQL.Add('select * from corretor where nome like '+ QuotedStr('%' + editPesquisa.Text + '%') +' order by NOME asc ');
         Open();
