@@ -1,0 +1,506 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Condition="Exists('$(BDS)\bin\CodeGear.Deployment.targets')" Project="$(BDS)\bin\CodeGear.Deployment.targets"/>
+    <ProjectExtensions>
+        <ProjectFileVersion>12</ProjectFileVersion>
+    </ProjectExtensions>
+    <PropertyGroup/>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win64'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSDevice32'"/>
+    <ItemGroup Condition="'$(Platform)'=='Win32'">
+        <DeployFile Include="Win32\Debug\RelContasVencendoBASE.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelContasVencendoBASE.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelPesquisaVenda.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelPesquisaVenda.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\ULogin.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>ULogin.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\cMotorista.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>cMotorista.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UPrincipalPetrotorque.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UPrincipalPetrotorque.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UPesquisaVendas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UPesquisaVendas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UdataModule.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UdataModule.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelCorretores.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelCorretores.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UEditarParcelas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UEditarParcelas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\Uclasse.conexao.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>Uclasse.conexao.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UConverterFloat.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UConverterFloat.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Release\PPrincipalPetrotorque.exe" Condition="'$(Config)'=='Release'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>PPrincipalPetrotorque.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_idialogsrtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_idialogsrtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UAlterarQtdeParcelas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UAlterarQtdeParcelas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UUsinas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UUsinas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_isysrtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_isysrtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UCompraUsina.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UCompraUsina.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_iclassesrtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_iclassesrtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelClientes.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelClientes.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\URelatorioVendas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>URelatorioVendas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UProduto.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UProduto.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelMovimentoEstoque.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelMovimentoEstoque.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UbackUp.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UbackUp.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UCorretores.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UCorretores.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\Uservidor.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>Uservidor.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelContasVencendo.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelContasVencendo.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UReverterPagamentos.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UReverterPagamentos.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UTransferenciaEstoque.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UTransferenciaEstoque.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UCadastroUsuario.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UCadastroUsuario.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelVendaPosto.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelVendaPosto.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UFuncoes.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UFuncoes.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\uFormat.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>uFormat.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UdefinirEstoque.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UdefinirEstoque.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\URelatorioCorretor.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>URelatorioCorretor.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UVendaPosto.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UVendaPosto.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UMovimentoEstoqueUsina.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UMovimentoEstoqueUsina.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\URepresentante.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>URepresentante.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_iinirtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_iinirtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\Config.ini" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>Config.ini</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UselecionarUsinaEproduto.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UselecionarUsinaEproduto.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\URelatorioMotorista.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>URelatorioMotorista.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UMotorista.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UMotorista.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelMotoristas.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelMotoristas.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UGerarParcelas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UGerarParcelas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UpagarParcelas.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UpagarParcelas.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelPesquisaVendasPrincipal.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelPesquisaVendasPrincipal.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\PPrincipalPetrotorque.exe" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>PPrincipalPetrotorque.exe</RemoteName>
+            <DeployClass>ProjectOutput</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+            <Required>True</Required>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_igraphicsrtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_igraphicsrtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\Dados\PETROTORQUEDADOS.FDB" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\Dados\</RemoteDir>
+            <RemoteName>PETROTORQUEDADOS.FDB</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\UrelatorioCliente.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>UrelatorioCliente.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\CartaoColaborador.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>CartaoColaborador.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\fs_iformsrtti.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>fs_iformsrtti.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\Uposto.dcu" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>Uposto.dcu</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\RelVendaStatusParcela.fr3" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>PPrincipalPetrotorque\</RemoteDir>
+            <RemoteName>RelVendaStatusParcela.fr3</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
+    <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSX32'"/>
+    <ItemGroup Condition="'$(Platform)'=='Android'"/>
+    <ItemGroup Condition="'$(Platform)'=='OSX64'"/>
+    <ItemGroup Condition="'$(Platform)'=='iOSSimulator'"/>
+    <ItemGroup Condition="'$(Platform)'=='Android64'"/>
+</Project>

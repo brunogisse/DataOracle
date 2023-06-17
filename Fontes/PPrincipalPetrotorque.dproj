@@ -246,15 +246,329 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\PPrincipalPetrotorque.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\RelContasVencendoBASE.fr3" Configuration="Debug" Class="File">
                     <Platform Name="Win32">
-                        <RemoteName>PPrincipalPetrotorque.exe</RemoteName>
+                        <RemoteName>RelContasVencendoBASE.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelPesquisaVenda.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelPesquisaVenda.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\ULogin.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>ULogin.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\cMotorista.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>cMotorista.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UPrincipalPetrotorque.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UPrincipalPetrotorque.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UPesquisaVendas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UPesquisaVendas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UdataModule.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UdataModule.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelCorretores.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelCorretores.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UEditarParcelas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UEditarParcelas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\Uclasse.conexao.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Uclasse.conexao.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UConverterFloat.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UConverterFloat.dcu</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="Win32\Release\PPrincipalPetrotorque.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PPrincipalPetrotorque.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_idialogsrtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_idialogsrtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UAlterarQtdeParcelas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UAlterarQtdeParcelas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UUsinas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UUsinas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_isysrtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_isysrtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UCompraUsina.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UCompraUsina.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_iclassesrtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_iclassesrtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelClientes.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelClientes.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\URelatorioVendas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>URelatorioVendas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UProduto.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UProduto.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelMovimentoEstoque.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelMovimentoEstoque.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UbackUp.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UbackUp.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UCorretores.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UCorretores.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\Uservidor.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Uservidor.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelContasVencendo.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelContasVencendo.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UReverterPagamentos.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UReverterPagamentos.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UTransferenciaEstoque.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UTransferenciaEstoque.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UCadastroUsuario.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UCadastroUsuario.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelVendaPosto.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelVendaPosto.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UFuncoes.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UFuncoes.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\uFormat.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>uFormat.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UdefinirEstoque.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UdefinirEstoque.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\URelatorioCorretor.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>URelatorioCorretor.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UVendaPosto.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UVendaPosto.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UMovimentoEstoqueUsina.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UMovimentoEstoqueUsina.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\URepresentante.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>URepresentante.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_iinirtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_iinirtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\Config.ini" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Config.ini</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UselecionarUsinaEproduto.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UselecionarUsinaEproduto.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\URelatorioMotorista.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>URelatorioMotorista.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UMotorista.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UMotorista.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelMotoristas.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelMotoristas.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UGerarParcelas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UGerarParcelas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UpagarParcelas.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UpagarParcelas.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelPesquisaVendasPrincipal.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelPesquisaVendasPrincipal.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\PPrincipalPetrotorque.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <RemoteName>PPrincipalPetrotorque.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_igraphicsrtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_igraphicsrtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\Dados\PETROTORQUEDADOS.FDB" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteDir>Dados\</RemoteDir>
+                        <RemoteName>PETROTORQUEDADOS.FDB</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\UrelatorioCliente.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>UrelatorioCliente.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\CartaoColaborador.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>CartaoColaborador.fr3</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\fs_iformsrtti.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>fs_iformsrtti.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\Uposto.dcu" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>Uposto.dcu</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\Debug\RelVendaStatusParcela.fr3" Configuration="Debug" Class="File">
+                    <Platform Name="Win32">
+                        <RemoteName>RelVendaStatusParcela.fr3</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
