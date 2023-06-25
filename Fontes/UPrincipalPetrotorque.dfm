@@ -3936,7 +3936,8 @@ object frmMenu: TfrmMenu
       'User_Name=SYSDBA'
       'Password=masterkey'
       'Server=localhost'
-      'DriverID=FB')
+      'DriverID=FB'
+      'MonitorBy=FlatFile')
     LoginPrompt = False
     Transaction = frmCorretores.tcCorretores
     Left = 464
@@ -4943,5 +4944,11 @@ object frmMenu: TfrmMenu
     OnTimer = Timer1Timer
     Left = 563
     Top = 235
+  end
+  object MoniFlatFile: TFDMoniFlatFileClientLink
+    FileName = 'C:\temp\trace3.txt'
+    ShowTraces = False
+    Left = 467
+    Top = 371
   end
 end

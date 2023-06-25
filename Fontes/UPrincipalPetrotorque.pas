@@ -13,7 +13,7 @@ uses
    Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls, FireDAC.Stan.Param,
    FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
    frxClass,
-   frxDBSet, Uclasse.conexao;
+   frxDBSet, Uclasse.conexao, FireDAC.Moni.Base, FireDAC.Moni.FlatFile;
 
 type
    TfrmMenu = class(TForm)
@@ -67,6 +67,7 @@ type
       Timer1: TTimer;
       btnBackupAutomatico: TSpeedButton;
       labelNomeSistema: TLabel;
+    MoniFlatFile: TFDMoniFlatFileClientLink;
       procedure FormCreate(Sender: TObject);
       procedure mCorretorClick(Sender: TObject);
       procedure mPostoClick(Sender: TObject);

@@ -8,7 +8,8 @@ uses
   Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.Mask, Vcl.DBCtrls, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Imaging.pngimage;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Imaging.pngimage,
+  FireDAC.Moni.Base, FireDAC.Moni.FlatFile;
 
 type
   TdbGridPadrao = class(TDBGrid);
@@ -45,6 +46,7 @@ type
     editCidade: TDBEdit;
     labelCidade: TLabel;
     Label1: TLabel;
+    FDMoniFlatFileClientLink1: TFDMoniFlatFileClientLink;
     procedure btnNovoClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -88,7 +90,8 @@ implementation
 
 
 
-uses UPrincipalPetrotorque, UVendaPosto, URelatorioCorretor, UrelatorioCliente;
+uses UPrincipalPetrotorque, UVendaPosto, URelatorioCorretor, UrelatorioCliente,
+  URelatorioVendas;
 
 { TfrmCorretores }
 
@@ -167,6 +170,13 @@ begin
                 Close;
               end;
 
+            if Action = 'relatoriofechamento' then
+             begin
+                frmRelatorioVenda.qryCorretor.Refresh;
+                frmRelatorioVenda.editCorretor.Text := qryCorretores['NOME'];
+                frmRelatorioVenda.qryCorretor.Locate('corretorid', qryCorretores['corretorid'] , []);
+                Close;
+              end;
           end;
 
 end;
