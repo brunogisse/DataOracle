@@ -13,7 +13,7 @@ uses
    Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls, FireDAC.Stan.Param,
    FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
    frxClass,
-   frxDBSet, Uclasse.conexao;
+   frxDBSet, Uclasse.conexao, FireDAC.Moni.Base, FireDAC.Moni.FlatFile;
 
 type
    TfrmMenu = class(TForm)
@@ -67,6 +67,11 @@ type
       Timer1: TTimer;
       btnBackupAutomatico: TSpeedButton;
       labelNomeSistema: TLabel;
+      MoniFlatFile: TFDMoniFlatFileClientLink;
+      painelMenuCategoria6: TPanel;
+      btnMenuCategoria6: TSpeedButton;
+      painelSubmenuCategoria6: TPanel;
+      btnHabilitarTracing: TSpeedButton;
       procedure FormCreate(Sender: TObject);
       procedure mCorretorClick(Sender: TObject);
       procedure mPostoClick(Sender: TObject);
@@ -103,13 +108,14 @@ type
       procedure Timer1Timer(Sender: TObject);
       procedure labelBackupSistemaClick(Sender: TObject);
       procedure btnBackupAutomaticoClick(Sender: TObject);
+      procedure btnHabilitarTracingClick(Sender: TObject);
 
    private
       { Private declarations }
 
       procedure CaminhoBanco;
       procedure conferirVencimentos;
-
+      procedure ChecarTracing(Local : String);
 
    public
       { Public declarations }
@@ -182,6 +188,17 @@ begin
 
    novaConexao := Tconexao.Create(FDconexao);
 
+end;
+
+procedure TfrmMenu.FormShow(Sender: TObject);
+begin
+   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName
+     ('NOME').AsString;
+
+     ChecarTracing('onshow');
+
+   // Desabilitar a procedure abaixo para criar o arquivo de log...
+   // CriarArquivoLog(Self);
 end;
 
 procedure TfrmMenu.writeLog(aMsg: string);
@@ -367,6 +384,47 @@ begin
    end;
 end;
 
+procedure TfrmMenu.ChecarTracing(local : String);
+var
+   Ini: TIniFile;
+   Tracing : String;
+begin
+   try
+      Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0)) +
+        'Config.ini');
+
+      Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
+
+      if (Tracing = 'N')  then
+      begin
+         if local = 'config' then
+         begin
+            Ini.WriteString('Sistema', 'EnableTracing', 'S');
+            btnHabilitarTracing.Caption := 'Desabilitar tracing'
+         end
+         else
+            btnHabilitarTracing.Caption := 'Desabilitar tracing';
+       end;
+      if (Tracing = 'S')  then
+      begin
+         if local = 'config' then
+         begin
+            Ini.WriteString('Sistema', 'EnableTracing', 'N');
+            btnHabilitarTracing.Caption := 'Habilitar tracing'
+         end
+         else
+            btnHabilitarTracing.Caption := 'Habilitar tracing';
+       end;
+   finally
+     Ini.Free;
+   end;
+end;
+
+procedure TfrmMenu.btnHabilitarTracingClick(Sender: TObject);
+begin
+   ChecarTracing('config');
+end;
+
 procedure TfrmMenu.btnMaximizarClick(Sender: TObject);
 begin
 
@@ -468,27 +526,18 @@ begin
    FDconexao.Destroy;
 end;
 
-procedure TfrmMenu.CriarArquivoLog(Sender : TObject);
+procedure TfrmMenu.CriarArquivoLog(Sender: TObject);
 begin
    dataArquivoLog := DateTimeToStr(now);
    dataArquivoLog := StringReplace(dataArquivoLog, '/', '-', [rfReplaceAll]);
    dataArquivoLog := StringReplace(dataArquivoLog, ' ', '_', [rfReplaceAll]);
    dataArquivoLog := StringReplace(dataArquivoLog, ':', '', [rfReplaceAll]);
-   nomeArquivoLog := ExtractFilePath(ParamStr(0)) + 'logDataOracle_'+dataArquivoLog+'.txt';
+   nomeArquivoLog := ExtractFilePath(ParamStr(0)) + 'logDataOracle_' +
+     dataArquivoLog + '.txt';
    AssignFile(fArq, nomeArquivoLog);
 
-     if (not FileExists(nomeArquivoLog)) then
-     ReWrite(fArq);
-end;
-
-procedure TfrmMenu.FormShow(Sender: TObject);
-begin
-   StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName
-     ('NOME').AsString;
-
-
-  //Desabilitar comentário para criar o arquivo de log...
- //  CriarArquivoLog(Self);
+   if (not FileExists(nomeArquivoLog)) then
+      ReWrite(fArq);
 end;
 
 procedure TfrmMenu.itemPesquisaVendasClick(Sender: TObject);
@@ -613,7 +662,7 @@ begin
       // if not CopyFile(PChar('C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Fontes\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'),
       // PChar('C:\Users\bruno\OneDrive\Área de Trabalho\PETROTORQUEDADOS.FDB'), false) then
 
-      ShowMessage('Erro ao fazer backup');
+      showmessage('Erro ao fazer backup');
 
    // else
    // ShowMessage('Arquivo copiado com sucesso!');

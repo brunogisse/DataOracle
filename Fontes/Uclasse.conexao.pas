@@ -47,7 +47,8 @@ uses
    System.IniFiles,
    Vcl.Forms,
    UPrincipalPetrotorque,
-   UFuncoes;
+   UFuncoes,
+   StrUtils;
 
 { Tconexao }
 
@@ -65,6 +66,7 @@ end;
 procedure Tconexao.prc_ler_arquiivoIni;
 var
    Ini: TIniFile;
+   Tracing : String;
 begin
    if FConexao.Connected then
       FConexao.Close;
@@ -81,6 +83,15 @@ begin
    FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
    FProtocol := Ini.ReadString('Sistema', 'Protocol', '');
    FPort     := Ini.ReadString('Sistema', 'Port', '');
+
+   Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
+
+   if Tracing = 'S' then
+   frmMenu.MoniFlatFile.Tracing := True
+
+   else if Tracing = 'N' then
+   frmMenu.MoniFlatFile.Tracing := False;
+
 end;
 
 function Tconexao.fnc_conectar_banco_dados(origem: String): Boolean;
@@ -126,6 +137,7 @@ begin
       Ini.WriteString('Sistema', 'Protocol', FProtocol);
       Ini.WriteString('Sistema', 'Port', FPort);
       Ini.WriteString('Sistema', 'MonitorBy', 'FlatFile');
+      Ini.WriteString('Sistema', 'EnableTracing', 'N');
    finally
       Ini.Free;
    end;

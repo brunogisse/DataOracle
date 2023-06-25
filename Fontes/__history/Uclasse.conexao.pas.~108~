@@ -17,6 +17,7 @@ Type
       FDriverID: String;
       FProtocol: String;
       FPort: String;
+      FMonitor: String;
 
    public
 
@@ -35,6 +36,7 @@ Type
       property DriverID: String Read FDriverID Write FDriverID;
       property Protocol: String Read FProtocol Write FProtocol;
       property Port: String Read FPort Write FPort;
+      property Monitor: String Read FMonitor Write FMonitor;
    end;
 
 implementation
@@ -63,6 +65,7 @@ end;
 procedure Tconexao.prc_ler_arquiivoIni;
 var
    Ini: TIniFile;
+   Tracing : String;
 begin
    if FConexao.Connected then
       FConexao.Close;
@@ -72,11 +75,16 @@ begin
 
    FDatabase := Ini.ReadString('Sistema', 'Database', '');
    FUserName := Ini.ReadString('Sistema', 'User', '');
-   FSenha := Ini.ReadString('Sistema', 'Password', '');
+   FSenha    := Ini.ReadString('Sistema', 'Password', '');
+   FSenha    := Criptografia( FSenha, '123' );
+   Monitor   := Ini.ReadString('Sistema', 'MonitorBy', '');
    FServidor := Ini.ReadString('Sistema', 'Server', '');
    FDriverID := Ini.ReadString('Sistema', 'DriverID', '');
    FProtocol := Ini.ReadString('Sistema', 'Protocol', '');
-   FPort := Ini.ReadString('Sistema', 'Port', '');
+   FPort     := Ini.ReadString('Sistema', 'Port', '');
+
+   Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
+
 end;
 
 function Tconexao.fnc_conectar_banco_dados(origem: String): Boolean;
@@ -88,6 +96,7 @@ begin
       FConexao.Params.Strings[0] := 'Database=' + FDatabase;
       FConexao.Params.Strings[1] := 'User_Name=' + FUserName;
       FConexao.Params.Strings[2] := 'Password=' + FSenha;
+      FConexao.Params.Strings[3] := 'MonitorBy=' + Monitor;
       FConexao.Params.Strings[3] := 'Server=' + FServidor;
       FConexao.Params.Strings[3] := 'DriverID=' + FDriverID;
       FConexao.Params.Strings[4] := 'Protocol=' + FProtocol;
@@ -114,11 +123,14 @@ begin
    try
       Ini.WriteString('Sistema', 'Server', FServidor);
       Ini.WriteString('Sistema', 'User', FUserName);
-      Ini.WriteString('Sistema', 'Password', Criptografia( FSenha ));
+      Ini.WriteString('Sistema', 'Password', Criptografia( FSenha, '123' ));
+      Ini.WriteString('Sistema', 'MonitorBy', 'FlatFile');
       Ini.WriteString('Sistema', 'Database', FDatabase);
       Ini.WriteString('Sistema', 'DriverID', FDriverID);
       Ini.WriteString('Sistema', 'Protocol', FProtocol);
       Ini.WriteString('Sistema', 'Port', FPort);
+      Ini.WriteString('Sistema', 'MonitorBy', 'FlatFile');
+      Ini.WriteString('Sistema', 'EnableTracing', 'N');
    finally
       Ini.Free;
    end;
