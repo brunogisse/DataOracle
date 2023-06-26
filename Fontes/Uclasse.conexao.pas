@@ -95,6 +95,8 @@ begin
 end;
 
 function Tconexao.fnc_conectar_banco_dados(origem: String): Boolean;
+var
+   MsgErro: String;
 begin
    try
       if origem <> 'form' then
@@ -112,9 +114,17 @@ begin
    Except
       on E: Exception do
       begin
-         showmessage('Falha na conexão com o banco de dados ' + #13 + #13 +
-           E.Message);
-         Result := False;
+         MsgErro := Copy(E.Message,23,3);
+         if MsgErro = '340' then   
+         begin      
+           MessageDlg('Primeira conexão? ' + #13 + #13 + 'Será necessário configurar o servidor.' + #13 + #13 + 'Iniciaremos o ambiente de configuração', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+           Result := False;
+         end
+         else
+         begin
+            MessageDlg('Falha na conexão com o banco de dados ' + #13 + #13 + 'Será necessário configurar o servidor.', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+            Result := False;
+         end;
       end;
    end;
 end;

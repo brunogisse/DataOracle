@@ -12,8 +12,8 @@ uses
    FireDAC.Phys.FBDef, Vcl.Menus, System.UITypes, Vcl.ExtCtrls, Vcl.Buttons,
    Vcl.Imaging.pngimage, Vcl.StdCtrls, Vcl.ComCtrls, FireDAC.Stan.Param,
    FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
-   frxClass,
-   frxDBSet, Uclasse.conexao, FireDAC.Moni.Base, FireDAC.Moni.FlatFile;
+   frxClass, Winapi.ShellAPI, FireDAC.Moni.Base,
+   FireDAC.Moni.FlatFile, frxDBSet, Uclasse.conexao;
 
 type
    TfrmMenu = class(TForm)
@@ -115,7 +115,9 @@ type
 
       procedure CaminhoBanco;
       procedure conferirVencimentos;
-      procedure ChecarTracing(Local : String);
+      procedure ChecarTracing(Local: String);
+      procedure RestartApplication;
+      procedure procMensagensTracing(situacao: String);
 
    public
       { Public declarations }
@@ -195,10 +197,21 @@ begin
    StatusBar1.Panels[0].Text := 'Usuário Logado: ' + dm.qryLogin.FieldByName
      ('NOME').AsString;
 
-     ChecarTracing('onshow');
+   ChecarTracing('onshow');
 
    // Desabilitar a procedure abaixo para criar o arquivo de log...
    // CriarArquivoLog(Self);
+end;
+
+procedure TfrmMenu.RestartApplication;
+var
+   ExePath: string;
+begin
+   // Obtendo o caminho do executável atual
+   ExePath := ParamStr(0);
+
+   // função ShellExecute para iniciar novamente o executável
+   ShellExecute(0, 'open', PChar(ExePath), nil, nil, SW_SHOWNORMAL);
 end;
 
 procedure TfrmMenu.writeLog(aMsg: string);
@@ -384,39 +397,66 @@ begin
    end;
 end;
 
-procedure TfrmMenu.ChecarTracing(local : String);
+procedure TfrmMenu.procMensagensTracing(situacao: String);
+begin
+   if situacao = 'confirmar' then
+   begin
+      if MessageBox(Application.Handle,
+        'Olá!' + #13 + 'Deseja realmente iniciar o tracing? ' + #13 +
+        'Caso escolha sim, o DataOracle será reiniciado', 'Confirmação',
+        MB_YESNO + MB_ICONQUESTION) = mrNo then
+         Exit;
+   end;
+
+   if situacao = 'avisar' then
+   begin
+      MessageDlg('Falha na conexão com o banco de dados ' + #13 + #13 +
+        'Será necessário configurar o servidor.', TMsgDlgType.mtWarning,
+        [TMsgDlgBtn.mbOK], 0);
+   end;
+end;
+
+procedure TfrmMenu.ChecarTracing(Local: String);
 var
    Ini: TIniFile;
-   Tracing : String;
+   Tracing: String;
 begin
    try
       Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0)) +
         'Config.ini');
-
       Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
 
-      if (Tracing = 'N')  then
+      if (Tracing = 'N') then
       begin
          if local = 'config' then
          begin
+            procMensagensTracing('confirmar');
             Ini.WriteString('Sistema', 'EnableTracing', 'S');
-            btnHabilitarTracing.Caption := 'Tracing habilitado'
-         end
-         else
             btnHabilitarTracing.Caption := 'Tracing habilitado';
-       end;
-      if (Tracing = 'S')  then
-      begin
-         if local = 'config' then
-         begin
-            Ini.WriteString('Sistema', 'EnableTracing', 'N');
-            btnHabilitarTracing.Caption := 'Tracing desabilitado'
+            procMensagensTracing('avisar');
+            Application.Terminate;
+            RestartApplication;
          end
          else
             btnHabilitarTracing.Caption := 'Tracing desabilitado';
-       end;
+      end;
+
+      if (Tracing = 'S') then
+      begin
+         if local = 'config' then
+         begin
+            procMensagensTracing('confirmar');
+            Ini.WriteString('Sistema', 'EnableTracing', 'N');
+            btnHabilitarTracing.Caption := 'Tracing desabilitado';
+            procMensagensTracing('avisar');
+            Application.Terminate;
+            RestartApplication;
+         end
+         else
+            btnHabilitarTracing.Caption := 'Tracing habilitado';
+      end;
    finally
-     Ini.Free;
+      Ini.Free;
    end;
 end;
 
@@ -662,7 +702,7 @@ begin
       // if not CopyFile(PChar('C:\PROGRAMAS\Petrotorque\Em Desevnvolvimento\Fontes\Win32\Debug\Dados\PETROTORQUEDADOS.FDB'),
       // PChar('C:\Users\bruno\OneDrive\Área de Trabalho\PETROTORQUEDADOS.FDB'), false) then
 
-      showmessage('Erro ao fazer backup');
+      ShowMessage('Erro ao fazer backup');
 
    // else
    // ShowMessage('Arquivo copiado com sucesso!');

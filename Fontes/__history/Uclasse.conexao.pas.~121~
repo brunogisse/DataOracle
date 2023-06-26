@@ -47,7 +47,8 @@ uses
    System.IniFiles,
    Vcl.Forms,
    UPrincipalPetrotorque,
-   UFuncoes;
+   UFuncoes,
+   StrUtils;
 
 { Tconexao }
 
@@ -85,9 +86,17 @@ begin
 
    Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
 
+   if Tracing = 'S' then
+   frmMenu.MoniFlatFile.Tracing := True
+
+   else if Tracing = 'N' then
+   frmMenu.MoniFlatFile.Tracing := False;
+
 end;
 
 function Tconexao.fnc_conectar_banco_dados(origem: String): Boolean;
+var
+   MsgErro: String;
 begin
    try
       if origem <> 'form' then
@@ -105,9 +114,11 @@ begin
    Except
       on E: Exception do
       begin
-         showmessage('Falha na conexão com o banco de dados ' + #13 + #13 +
-           E.Message);
-         Result := False;
+      MsgErro := Copy(E.Message,23,3);
+      if MsgErro = '340' then
+         
+      MessageDlg('Falha na conexão com o banco de dados ' + #13 + #13 + 'Será necessário configurar o servidor.', TMsgDlgType.mtWarning, [TMsgDlgBtn.mbOK], 0);
+      Result := False;
       end;
    end;
 end;
