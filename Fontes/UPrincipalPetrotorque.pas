@@ -57,7 +57,6 @@ type
       btnfrmRelatorioVenda: TSpeedButton;
       StatusBar1: TStatusBar;
       btnCadastroUsuario: TSpeedButton;
-      SpeedButton1: TSpeedButton;
       btnRelatorioClientes: TSpeedButton;
       btnTransferencia: TSpeedButton;
       painelVencimentos: TPanel;
@@ -65,13 +64,14 @@ type
       frxDBVencimentos: TfrxDBDataset;
       reportVencimentos: TfrxReport;
       Timer1: TTimer;
-      btnBackupAutomatico: TSpeedButton;
       labelNomeSistema: TLabel;
       MoniFlatFile: TFDMoniFlatFileClientLink;
       painelMenuCategoria6: TPanel;
       btnMenuCategoria6: TSpeedButton;
       painelSubmenuCategoria6: TPanel;
       btnHabilitarTracing: TSpeedButton;
+    btnBackupAutomatico: TSpeedButton;
+    btnBackUpManual: TSpeedButton;
       procedure FormCreate(Sender: TObject);
       procedure mCorretorClick(Sender: TObject);
       procedure mPostoClick(Sender: TObject);
@@ -100,15 +100,15 @@ type
       procedure btnfrmRelatorioMotoristaClick(Sender: TObject);
       procedure btnfrmRelatorioVendaClick(Sender: TObject);
       procedure FormShow(Sender: TObject);
-      procedure SpeedButton1Click(Sender: TObject);
       procedure btnRelatorioClientesClick(Sender: TObject);
       procedure btnTransferenciaClick(Sender: TObject);
       procedure btnVencimentosClick(Sender: TObject);
       procedure FormDestroy(Sender: TObject);
       procedure Timer1Timer(Sender: TObject);
       procedure labelBackupSistemaClick(Sender: TObject);
-      procedure btnBackupAutomaticoClick(Sender: TObject);
       procedure btnHabilitarTracingClick(Sender: TObject);
+    procedure btnBackupAutomaticoClick(Sender: TObject);
+    procedure btnBackUpManualClick(Sender: TObject);
 
    private
       { Private declarations }
@@ -306,6 +306,31 @@ begin
    begin
       btnMenu.Width := 294;
       painelMenuLateral.Width := 298;
+   end;
+end;
+
+procedure TfrmMenu.btnBackupAutomaticoClick(Sender: TObject);
+begin
+   if Timer1.Enabled = True then
+   begin
+      Timer1.Enabled := False;
+      TSpeedButton(Sender).Caption := 'Iniciar Backup Automático';
+   end
+   else
+   begin
+      Timer1.Enabled := True;
+      TSpeedButton(Sender).Caption := 'Pausar Backup Automático';
+   end;
+
+end;
+
+procedure TfrmMenu.btnBackUpManualClick(Sender: TObject);
+begin
+   try
+      Application.CreateForm(TfrmBackUp, frmBackUp);
+      frmBackUp.ShowModal;
+   finally
+      FreeAndNil(frmBackUp);
    end;
 end;
 
@@ -649,31 +674,6 @@ begin
    finally
       FreeAndNil(frmUsinas);
    end;
-end;
-
-procedure TfrmMenu.SpeedButton1Click(Sender: TObject);
-begin
-   try
-      Application.CreateForm(TfrmBackUp, frmBackUp);
-      frmBackUp.ShowModal;
-   finally
-      FreeAndNil(frmBackUp);
-   end;
-end;
-
-procedure TfrmMenu.btnBackupAutomaticoClick(Sender: TObject);
-begin
-   if Timer1.Enabled = True then
-   begin
-      Timer1.Enabled := False;
-      TSpeedButton(Sender).Caption := 'Iniciar Backup Automático';
-   end
-   else
-   begin
-      Timer1.Enabled := True;
-      TSpeedButton(Sender).Caption := 'Pausar Backup Automático';
-   end;
-
 end;
 
 procedure TfrmMenu.SpeedButton6Click(Sender: TObject);
