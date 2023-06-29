@@ -169,6 +169,7 @@ type
     dsCorretor: TDataSource;
     dsMotorista: TDataSource;
     qryRelatorioStatusParcelaORDEM_CARREGAMENTO: TIntegerField;
+    qryRelatorioVendaPostoFORMA_PAGAMENTO: TStringField;
     procedure btnImprmirClick(Sender: TObject);
     procedure btnConsultarClick(Sender: TObject);
     procedure btnImprimirRelAuxiliarClick(Sender: TObject);
@@ -211,27 +212,28 @@ begin
                  begin
                        Close;
                        Sql.Clear;
-                       SQL.Add('select                                                                                                                                           ');
-                       SQL.Add('v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid,                                       ');
-                       SQL.Add('v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete,                                         ');
-                       SQL.Add('v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,                             ');
-                       SQL.Add('V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES,                                                       ');
-                       SQL.Add('c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina,  ');
-                       SQL.Add('parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA,                           ');
-                       SQL.Add('PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela,                                       ');
-                       SQL.Add('eu.estoqueid                                                                                                                                     ');
-                       SQL.Add('from                                                                                                                                             ');
-                       SQL.Add('venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc, estoque_usina eu   ');
-                       SQL.Add('where                                                                                                                                            ');
-                       SQL.Add('(v.representanteid = re.representanteid) and                                                                                                     ');
-                       SQL.Add('(v.postoid = p.postoid) and                                                                                                                      ');
-                       SQL.Add('(v.produtoid = pr.produtoid) and                                                                                                                 ');
-                       SQL.Add('(v.motoristaid = m.motoristaid) and                                                                                                              ');
-                       SQL.Add('(v.corretorid = c.corretorid) and                                                                                                                ');
-                       SQL.Add('(v.usinaid = u.usinaid) and                                                                                                                      ');
-                       SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                   ');
-                       SQL.Add('(v.estoqueid = eu.estoqueid)                                                                                                                     ');
-                       Sql.Add('and                                                                                                                                              ');
+                       SQL.Add('select                                                                                                                                                          ');
+                       SQL.Add('v.vendaid, v.representanteid, v.postoid, v.produtoid, v.motoristaid, v.corretorid, v.usinaid, v.estoqueid,                                                      ');
+                       SQL.Add('v.nf, v.valor_nf, v.data_emissao_nf, v.vencimento_nf_atual, v.volume, v.taxa_frete, v.valor_total_frete,                                                        ');
+                       SQL.Add('v.taxa_corretagem, v.valor_total_corretagem, v.valor_combustivel, V.STATUS, V.ATUALIZAR_PARCELA, v.parcelas_geradas,                                            ');
+                       SQL.Add('V.TOTAL_NF_RECEBIDO, V.VOLUME_TOTAL_RETIRADO, V.VALOR_RECEBIDO_MES, V.VOLUME_RECEBIDO_MES,                                                                      ');
+                       SQL.Add('c.nome as corretor, m.nome as motorista, p.NOME_FANTASIA as posto, pr.descricao as produto, re.nome as representante, u.NOME_FANTASIA as usina,                 ');
+                       SQL.Add('parc.nf as NFdeParcela, parc.parcela as ParcelaDeParcelas, PARC.VALOR_PARCELA, PARC.DATA_PARCELA AS VENCIMENTOPARCELA,                                          ');
+                       SQL.Add('PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA, parc.acesso , PARC.status AS statusParcela,                                                      ');
+                       SQL.Add('eu.estoqueid, f.descricao as forma_pagamento                                                                                                                    ');
+                       SQL.Add('from                                                                                                                                                            ');
+                       SQL.Add('venda_para_postos v, corretor c, motorista m, posto p, produto pr, representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc, estoque_usina eu, forma_pgto f    ');
+                       SQL.Add('where                                                                                                                                                           ');
+                       SQL.Add('(v.representanteid = re.representanteid) and                                                                                                                    ');
+                       SQL.Add('(v.postoid = p.postoid) and                                                                                                                                     ');
+                       SQL.Add('(v.produtoid = pr.produtoid) and                                                                                                                                ');
+                       SQL.Add('(v.motoristaid = m.motoristaid) and                                                                                                                             ');
+                       SQL.Add('(v.corretorid = c.corretorid) and                                                                                                                               ');
+                       SQL.Add('(v.usinaid = u.usinaid) and                                                                                                                                     ');
+                       SQL.Add('(v.vendaid = parc.vendaid) and                                                                                                                                  ');
+                       SQL.Add('(v.estoqueid = eu.estoqueid) and                                                                                                                                ');
+                       SQL.Add('(parc.forma_pgto_id = f.formaid)                                                                                                                                ');
+                       Sql.Add('and                                                                                                                                                             ');
 
                     if rbFechamentoPago.Checked = True then
                     begin

@@ -925,14 +925,16 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         '  PARC.VOLUME_PARCELADO, PARC.DOCUMENTO, PARC.DATA_PGTO_PARCELA,' +
         ' parc.acesso , PARC.status AS statusParcela,'
       ''
-      '  eu.estoqueid'
+      '  eu.estoqueid,'
+      ''
+      '  f.descricao as forma_pagamento'
       ''
       'from'
       ''
       
         ' venda_para_postos v, corretor c, motorista m, posto p, produto ' +
         'pr, representante re, usina u, PARCELA_VENDA_PARA_POSTOS parc, e' +
-        'stoque_usina eu'
+        'stoque_usina eu, forma_pgto f'
       ''
       ''
       'where'
@@ -944,7 +946,8 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       ' (v.corretorid = c.corretorid) and'
       ' (v.usinaid = u.usinaid) and'
       ' (v.vendaid = parc.vendaid) and'
-      ' (v.estoqueid = eu.estoqueid)'
+      ' (v.estoqueid = eu.estoqueid) and'
+      ' (parc.forma_pgto_id = f.formaid)'
       '')
     Left = 76
     Top = 369
@@ -1204,6 +1207,12 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       Origin = 'VALOR_COMBUSTIVEL'
       Precision = 18
       Size = 10
+    end
+    object qryRelatorioVendaPostoFORMA_PAGAMENTO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'FORMA_PAGAMENTO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
     end
   end
   object tcVendaPosto: TFDTransaction
@@ -2545,7 +2554,6 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     Top = 351
   end
   object qryRelatorioStatusParcela: TFDQuery
-    Active = True
     Connection = frmMenu.FDconexao
     SQL.Strings = (
       'select'
@@ -2872,7 +2880,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.880585381900000000
-    ReportOptions.LastChange = 45056.739657060190000000
+    ReportOptions.LastChange = 45106.829670266200000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -2904,7 +2912,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       end
       item
         Name = 'STATUS_REL'
-        Value = ''
+        Value = Null
       end>
     Style = <>
     object Data: TfrxDataPage
@@ -3680,7 +3688,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           AllowVectorExport = True
           Left = 122.181200000000000000
           Top = -1.000000000000000000
-          Width = 298.582870000000000000
+          Width = 272.126160000000000000
           Height = 15.118120000000000000
           DataField = 'POSTO'
           DataSet = frxDBDatasetPrincipal
@@ -3698,7 +3706,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2VALOR_PARCELA: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 459.811380000000000000
+          Left = 437.811380000000000000
           Top = -1.559060000000000000
           Width = 98.267780000000000000
           Height = 15.118120000000000000
@@ -3719,9 +3727,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2VOLUME_PARCELADO: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 555.417750000000000000
+          Left = 535.417750000000000000
           Top = -1.779530000000000000
-          Width = 75.590600000000000000
+          Width = 68.031540000000000000
           Height = 15.118120000000000000
           DataSet = frxDBDatasetPrincipal
           DataSetName = 'frxDBDataset2'
@@ -3740,9 +3748,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2VALOR_COMBUSTIVEL: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 633.126470000000000000
+          Left = 601.126470000000000000
           Top = -1.779530000000000000
-          Width = 37.795300000000000000
+          Width = 30.236240000000000000
           Height = 15.118120000000000000
           DataField = 'VALOR_COMBUSTIVEL'
           DataSet = frxDBDatasetPrincipal
@@ -3760,7 +3768,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2PARCELADEPARCELAS: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 421.575140000000000000
+          Left = 395.575140000000000000
           Top = -1.559060000000000000
           Width = 41.574830000000000000
           Height = 15.118120000000000000
@@ -3780,9 +3788,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         object frxDBDataset2DATA_PGTO_PARCELA: TfrxMemoView
           IndexTag = 1
           AllowVectorExport = True
-          Left = 673.535870000000000000
+          Left = 630.535870000000000000
           Top = -3.000000000000000000
-          Width = 79.370130000000000000
+          Width = 45.354360000000000000
           Height = 15.118120000000000000
           DataField = 'DATA_PGTO_PARCELA'
           DataSet = frxDBDatasetPrincipal
@@ -3795,6 +3803,26 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset2."DATA_PGTO_PARCELA"]')
+          ParentFont = False
+        end
+        object frxDBDataset2FORMA_PAGAMENTO: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 680.094930000000000000
+          Top = -3.000000000000000000
+          Width = 41.574830000000000000
+          Height = 15.118120000000000000
+          DataField = 'FORMA_PAGAMENTO'
+          DataSet = frxDBDatasetPrincipal
+          DataSetName = 'frxDBDataset2'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset2."FORMA_PAGAMENTO"]')
           ParentFont = False
         end
       end
@@ -4094,9 +4122,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo5: TfrxMemoView
           AllowVectorExport = True
-          Left = 455.252320000000000000
+          Left = 437.252320000000000000
           Top = -3.779530000000000000
-          Width = 83.149660000000000000
+          Width = 71.811070000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -4110,7 +4138,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo6: TfrxMemoView
           AllowVectorExport = True
-          Left = 544.299630000000000000
+          Left = 525.299630000000000000
           Top = -3.779530000000000000
           Width = 71.811070000000000000
           Height = 15.118120000000000000
@@ -4126,9 +4154,9 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo7: TfrxMemoView
           AllowVectorExport = True
-          Left = 624.567410000000000000
+          Left = 598.567410000000000000
           Top = -3.779530000000000000
-          Width = 41.574830000000000000
+          Width = 26.456710000000000000
           Height = 15.118120000000000000
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
@@ -4137,12 +4165,12 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Font.Style = [fsBold]
           Frame.Typ = []
           Memo.UTF8W = (
-            'V. unit.')
+            'V. u.')
           ParentFont = False
         end
         object Memo8: TfrxMemoView
           AllowVectorExport = True
-          Left = 410.354670000000000000
+          Left = 392.354670000000000000
           Top = -3.779530000000000000
           Width = 41.574830000000000000
           Height = 15.118120000000000000
@@ -4158,7 +4186,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
         end
         object Memo17: TfrxMemoView
           AllowVectorExport = True
-          Left = 678.976810000000000000
+          Left = 637.976810000000000000
           Top = -3.779530000000000000
           Width = 34.015770000000000000
           Height = 15.118120000000000000
@@ -4170,6 +4198,22 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Frame.Typ = []
           Memo.UTF8W = (
             'Pgto.')
+          ParentFont = False
+        end
+        object Memo25: TfrxMemoView
+          AllowVectorExport = True
+          Left = 679.535870000000000000
+          Top = -3.779530000000000000
+          Width = 30.236240000000000000
+          Height = 15.118120000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -11
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Tipo')
           ParentFont = False
         end
       end

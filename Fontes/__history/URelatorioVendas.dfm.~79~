@@ -2,7 +2,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   Left = 0
   Top = 0
   Caption = 'frmRelatorioVenda'
-  ClientHeight = 636
+  ClientHeight = 612
   ClientWidth = 1140
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -51,7 +51,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     Left = 0
     Top = 52
     Width = 1140
-    Height = 274
+    Height = 244
     Align = alTop
     BevelOuter = bvNone
     Color = clWhite
@@ -639,7 +639,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          object btnPagarParcelaStatus: TSpeedButton
+          object btnImprimirRelAuxiliar: TSpeedButton
             Left = 0
             Top = 0
             Width = 103
@@ -652,7 +652,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
             Font.Name = 'Segoe UI'
             Font.Style = [fsBold]
             ParentFont = False
-            OnClick = btnPagarParcelaStatusClick
+            OnClick = btnImprimirRelAuxiliarClick
             ExplicitTop = 8
           end
         end
@@ -731,10 +731,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     end
   end
   object painelGrid: TPanel
-    Left = 3
-    Top = 332
-    Width = 1130
+    Left = 0
+    Top = 296
+    Width = 1140
     Height = 297
+    Align = alTop
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
@@ -742,7 +743,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     object gridRelatorioVendaPosto: TDBGrid
       Left = 0
       Top = 0
-      Width = 1130
+      Width = 1140
       Height = 297
       Align = alClient
       BorderStyle = bsNone
@@ -1226,7 +1227,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     PrintOptions.Printer = 'Default'
     PrintOptions.PrintOnSheet = 0
     ReportOptions.CreateDate = 44817.740707060200000000
-    ReportOptions.LastChange = 45062.805523437500000000
+    ReportOptions.LastChange = 45070.851901655090000000
     ScriptLanguage = 'PascalScript'
     ScriptText.Strings = (
       'begin'
@@ -1985,7 +1986,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Left = 42.031540000000000000
           Top = 14.118120000000000000
           Width = 385.512060000000000000
-          Height = 30.236240000000000000
+          Height = 15.118120000000000000
           DataField = 'POSTO'
           DataSet = dbReportStatusParcela
           DataSetName = 'frxDBDataset1'
@@ -2243,6 +2244,42 @@ object frmRelatorioVenda: TfrmRelatorioVenda
           Frame.Typ = []
           Memo.UTF8W = (
             '[frxDBDataset1."ORDEM_CARREGAMENTO"]')
+          ParentFont = False
+        end
+        object Memo23: TfrxMemoView
+          AllowVectorExport = True
+          Left = 519.575140000000000000
+          Top = 18.338590000000000000
+          Width = 71.811070000000000000
+          Height = 18.897650000000000000
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = [fsBold]
+          Frame.Typ = []
+          Memo.UTF8W = (
+            'Data pgto parc:')
+          ParentFont = False
+        end
+        object frxDBDataset1DATA_PGTO_PARCELA: TfrxMemoView
+          IndexTag = 1
+          AllowVectorExport = True
+          Left = 595.945270000000000000
+          Top = 19.118120000000000000
+          Width = 79.370130000000000000
+          Height = 15.118120000000000000
+          DataField = 'DATA_PGTO_PARCELA'
+          DataSet = dbReportStatusParcela
+          DataSetName = 'frxDBDataset1'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Height = -9
+          Font.Name = 'Segoe uI'
+          Font.Style = []
+          Frame.Typ = []
+          Memo.UTF8W = (
+            '[frxDBDataset1."DATA_PGTO_PARCELA"]')
           ParentFont = False
         end
       end
