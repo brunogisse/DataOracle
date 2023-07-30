@@ -144,16 +144,19 @@ end;
 
 procedure TfrmPosto.navegarEstadosMunicipios;
 begin
-  cbUF.KeyValue := qryPosto['ESTADO_ID'];
-  cbMunicipio.KeyValue := qryPosto['MUNICIPIO_ID'];
+   if not (qryPosto.State in [dsEdit]) then
+   begin
+      cbUF.KeyValue := qryPosto['ESTADO_ID'];
+      cbMunicipio.KeyValue := qryPosto['MUNICIPIO_ID'];
+   end;
 end;
 
 procedure TfrmPosto.salvarRegistro;
   var posicao : Integer;
 begin
          posicao := qryPosto['POSTOID'];
-         qryPosto['ESTADO_ID']    := qryEstado['ID'];
-         qryPosto['MUNICIPIO_ID'] := qryMunicipio['ID'];
+         qryPosto['ESTADO_ID']    :=  cbUF.KeyValue;
+         qryPosto['MUNICIPIO_ID'] := cbMunicipio.KeyValue;
          qryPosto.Post;
 
           try
@@ -194,7 +197,7 @@ procedure TfrmPosto.btnEditarClick(Sender: TObject);
 begin
  configurarEnables(1);
  gbPesquisaPosto.Enabled := False;
- navegarEstadosMunicipios;
+ //navegarEstadosMunicipios;
  qryPosto.Edit;
 end;
 
@@ -343,13 +346,6 @@ end;
 procedure TfrmPosto.EfetuarPesquisaOnChange;
 begin
 
-{select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome
-from Posto p, estado e, municipio m
-where
-(p.estado_id = e.id) and
-(p.municipio_id = m.id) and cnpj like }
-
-
   if rbCNPJ.Checked = True then
 
    with qryPosto do
@@ -357,10 +353,10 @@ where
        Close;
        SQL.Clear;
        SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
-    +' from Posto p, estado e, municipio m '
-    +' where '
-    +'(p.estado_id = e.id) and '
-    +'(p.municipio_id = m.id) and cnpj like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by cnpj asc');
+       +' from Posto p, estado e, municipio m '
+       +' where '
+       +'(p.estado_id = e.id) and '
+       +'(p.municipio_id = m.id) and cnpj like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by cnpj asc');
        Open;
      end;
 
@@ -370,11 +366,11 @@ where
       begin
        Close;
        SQL.Clear;
-       SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
-    +' from Posto p, estado e, municipio m '
-    +' where '
-    +'(p.estado_id = e.id) and '
-    +'(p.municipio_id = m.id) and nome_fantasia like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by nome_fantasia asc');
+          SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
+       +' from Posto p, estado e, municipio m '
+       +' where '
+       +'(p.estado_id = e.id) and '
+       +'(p.municipio_id = m.id) and nome_fantasia like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by nome_fantasia asc');
        Open;
      end;
 
@@ -385,10 +381,10 @@ where
        Close;
        SQL.Clear;
        SQL.Add('select p.postoid, p.nome_fantasia, p.razao_social, p.cnpj,  p.estado_id, p.municipio_id, e.uf, m.nome '
-    +' from Posto p, estado e, municipio m '
-    +' where '
-    +'(p.estado_id = e.id) and '
-    +'(p.municipio_id = m.id) and razao_social like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by razao_social asc');
+       +' from Posto p, estado e, municipio m '
+       +' where '
+       +'(p.estado_id = e.id) and '
+       +'(p.municipio_id = m.id) and razao_social like ' + QuotedStr('%' + editPesquisaPosto.Text + '%') + 'order by razao_social asc');
        Open;
      end;
 

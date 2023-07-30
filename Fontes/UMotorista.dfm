@@ -624,7 +624,6 @@ object frmMotorista: TfrmMotorista
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
-    ExplicitHeight = 306
   end
   object gridMotorista: TDBGrid
     Left = 21
