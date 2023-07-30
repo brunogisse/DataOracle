@@ -449,7 +449,7 @@ var
    Tracing: String;
 begin
    try
-      Ini := TIniFile.Create(System.SysUtils.ExtractFilePath(ParamStr(0)) +
+      Ini := TIniFile.Create(ExtractFilePath(ParamStr(0)) +
         'Config.ini');
       Tracing := Ini.ReadString('Sistema', 'EnableTracing', '');
 
