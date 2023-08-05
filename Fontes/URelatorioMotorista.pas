@@ -9,7 +9,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, Vcl.Grids, Vcl.DBGrids,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons, Vcl.Mask,
-  Vcl.Imaging.pngimage, frxClass, frxDBSet;
+  Vcl.Imaging.pngimage, frxClass, frxDBSet, System.UITypes;
 
 type
   TfrmRelatorioMotorista = class(TForm)
@@ -212,6 +212,7 @@ begin
                ParamByName('DE').AsDate             := StrToDate(DateVencimentoDE.Text);
                ParamByName('ATE').AsDate             := StrToDate(DateVencimentoATE.Text);
                ParamByName('representante').AsInteger := qryRepresentante['REPRESENTANTEID'];
+               //showmessage(qryVendaPosto.SQL.Text);
                Open();
              end;
         end;
