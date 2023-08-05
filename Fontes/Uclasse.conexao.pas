@@ -4,7 +4,8 @@ interface
 
 uses
    FireDAC.Comp.Client,
-   System.SysUtils;
+   System.SysUtils,
+   System.UITypes;
 
 Type
    Tconexao = class
