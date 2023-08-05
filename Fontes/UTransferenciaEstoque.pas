@@ -184,7 +184,7 @@ implementation
 {$R *.dfm}
 
 uses URepresentante, UPrincipalPetrotorque, UselecionarUsinaEproduto,
-  UMotorista, UConverterFloat;
+  UMotorista, UConverterFloat, UFuncoes;
 
 
 

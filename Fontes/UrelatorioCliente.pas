@@ -96,6 +96,7 @@ type
     procedure gridRelatorioClienteDrawColumnCell(Sender: TObject;
       const Rect: TRect; DataCol: Integer; Column: TColumn;
       State: TGridDrawState);
+    procedure gridRelatorioClienteTitleClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -109,7 +110,7 @@ implementation
 
 {$R *.dfm}
 
-uses UVendaPosto, Uposto;
+uses UVendaPosto, Uposto, UFuncoes;
 
 procedure TfrmRelatorioClientes.btnConfirmarStatusClick(Sender: TObject);
 var confirmar : String;
@@ -282,6 +283,11 @@ begin
      if qryVendaPosto.FieldByName('STATUS_PGTO_CLIENTE').AsString = 'PGO' then
         gridRelatorioCliente.Canvas.Brush.Color := clSilver;
         gridRelatorioCliente.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
+procedure TfrmRelatorioClientes.gridRelatorioClienteTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmRelatorioClientes.rbAbertoClick(Sender: TObject);

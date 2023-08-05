@@ -221,6 +221,7 @@ type
     procedure editValorCombustivelKeyPress(Sender: TObject; var Key: Char);
     procedure dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
     procedure editOrdemCarregamentoKeyPress(Sender: TObject; var Key: Char);
+    procedure gridVendaPostoTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -259,7 +260,7 @@ implementation
 
 uses UPrincipalPetrotorque, URepresentante, Uposto, UProduto, UUsinas,
   UCorretores, UMotorista, UConverterFloat, UGerarParcelas,
-  UselecionarUsinaEproduto, uFormat;
+  UselecionarUsinaEproduto, uFormat, UFuncoes;
 
 procedure TfrmVendaPostos.dateEmissaoNFKeyPress(Sender: TObject; var Key: Char);
 begin
@@ -981,6 +982,11 @@ begin
            //  mudando a posição e alinhamento vertical do texto de cada linha
      gridVendaPosto.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
     }
+end;
+
+procedure TfrmVendaPostos.gridVendaPostoTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmVendaPostos.ImgFecharTelaClick(Sender: TObject);

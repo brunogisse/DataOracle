@@ -73,6 +73,7 @@ type
     procedure editPesquisaUsinaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editPesquisaUsinaKeyPress(Sender: TObject; var Key: Char);
+    procedure gridEstoqueUsinaTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -98,7 +99,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UVendaPosto, UCompraUsina, UMovimentoEstoqueUsina,
-  UTransferenciaEstoque, UConverterFloat;
+  UTransferenciaEstoque, UConverterFloat, UFuncoes;
 
 procedure TfrmSelecionarEstoqueProduto.definirTamanhoDaLinhaDaGrid;
 begin
@@ -315,6 +316,12 @@ procedure TfrmSelecionarEstoqueProduto.FormShow(Sender: TObject);
 begin
   AbrirQuerryUsina; //parametriza a querry com o representante que vem de vendas;
   editPesquisaUsina.SetFocus;
+end;
+
+procedure TfrmSelecionarEstoqueProduto.gridEstoqueUsinaTitleClick(
+  Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmSelecionarEstoqueProduto.rbCidadeClick(Sender: TObject);

@@ -574,6 +574,7 @@ object frmRelatorioMotorista: TfrmRelatorioMotorista
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridMotoristaDrawColumnCell
+    OnTitleClick = gridMotoristaTitleClick
     Columns = <
       item
         Expanded = False

@@ -113,6 +113,7 @@ type
     procedure editOrdemCarregamentoKeyPress(Sender: TObject; var Key: Char);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure gridMotoristaTitleClick(Column: TColumn);
   private
     { Private declarations }
     procedure mudarTipoDeFiltro;
@@ -127,7 +128,7 @@ implementation
 
 {$R *.dfm}
 
-uses UMotorista, UPrincipalPetrotorque, URepresentante;
+uses UMotorista, UPrincipalPetrotorque, URepresentante, UFuncoes;
 
 procedure TfrmRelatorioMotorista.mudarTipoDeFiltro;
 begin
@@ -375,6 +376,11 @@ begin
         gridMotorista.Canvas.Brush.Color := clSilver;
         gridMotorista.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
+end;
+
+procedure TfrmRelatorioMotorista.gridMotoristaTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmRelatorioMotorista.rbAbertoClick(Sender: TObject);

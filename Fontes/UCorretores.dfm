@@ -510,6 +510,7 @@ object frmCorretores: TfrmCorretores
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridCorretorDrawColumnCell
     OnDblClick = gridCorretorDblClick
+    OnTitleClick = gridCorretorTitleClick
     Columns = <
       item
         Expanded = False

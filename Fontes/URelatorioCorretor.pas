@@ -107,6 +107,7 @@ type
     procedure rbAbertoClick(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure gridMotoristaTitleClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -120,7 +121,7 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UCorretores, UVendaPosto, URepresentante;
+uses UPrincipalPetrotorque, UCorretores, UVendaPosto, URepresentante, UFuncoes;
 
 procedure TfrmRelatorioCorretor.btnConfirmarStatusClick(Sender: TObject);
 var confirmar : String;
@@ -315,6 +316,11 @@ begin
         gridMotorista.Canvas.Brush.Color := clSilver;
         gridMotorista.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 
+end;
+
+procedure TfrmRelatorioCorretor.gridMotoristaTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmRelatorioCorretor.rbAbertoClick(Sender: TObject);

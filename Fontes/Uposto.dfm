@@ -545,6 +545,7 @@ object frmPosto: TfrmPosto
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridPostoDrawColumnCell
     OnDblClick = gridPostoDblClick
+    OnTitleClick = gridPostoTitleClick
     Columns = <
       item
         Expanded = False

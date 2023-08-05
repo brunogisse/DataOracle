@@ -1113,6 +1113,7 @@ object frmVendaPostos: TfrmVendaPostos
         TitleFont.Style = [fsBold]
         OnColumnMoved = gridVendaPostoColumnMoved
         OnDrawColumnCell = gridVendaPostoDrawColumnCell
+        OnTitleClick = gridVendaPostoTitleClick
         Columns = <
           item
             Expanded = False

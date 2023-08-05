@@ -557,6 +557,7 @@ object frmRepresentante: TfrmRepresentante
       TitleFont.Style = [fsBold]
       OnDrawColumnCell = gridRepresentanteDrawColumnCell
       OnDblClick = gridRepresentanteDblClick
+      OnTitleClick = gridRepresentanteTitleClick
       Columns = <
         item
           Expanded = False

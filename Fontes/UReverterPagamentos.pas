@@ -153,6 +153,7 @@ type
     procedure memoMotivoChange(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure gridReverterPagamentosTitleClick(Column: TColumn);
 
 
   private
@@ -172,7 +173,8 @@ implementation
 
 {$R *.dfm}
 
-uses UGerarParcelas, UPrincipalPetrotorque, URepresentante, UpagarParcelas;
+uses UGerarParcelas, UPrincipalPetrotorque, URepresentante, UpagarParcelas,
+  UFuncoes;
 
 procedure TfrmReverterPagamentos.btnConsultarClick(Sender: TObject);
 begin
@@ -464,6 +466,12 @@ begin
 end;
 
 
+
+procedure TfrmReverterPagamentos.gridReverterPagamentosTitleClick(
+  Column: TColumn);
+begin
+   procGridIndex(Column);
+end;
 
 procedure TfrmReverterPagamentos.memoMotivoChange(Sender: TObject);
 begin

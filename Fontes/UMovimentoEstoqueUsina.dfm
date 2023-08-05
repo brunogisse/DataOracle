@@ -315,6 +315,7 @@ object frmMovimentoEstoqueUsina: TfrmMovimentoEstoqueUsina
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridMovimentoDrawColumnCell
+    OnTitleClick = gridMovimentoTitleClick
     Columns = <
       item
         Expanded = False

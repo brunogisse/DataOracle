@@ -450,6 +450,7 @@ object frmReverterPagamentos: TfrmReverterPagamentos
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
+      OnTitleClick = gridReverterPagamentosTitleClick
       Columns = <
         item
           Expanded = False

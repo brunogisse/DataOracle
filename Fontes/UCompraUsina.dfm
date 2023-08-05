@@ -231,6 +231,7 @@ object frmCompraUsina: TfrmCompraUsina
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridCompraDrawColumnCell
+    OnTitleClick = gridCompraTitleClick
     Columns = <
       item
         Expanded = False

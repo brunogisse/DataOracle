@@ -40,6 +40,7 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridRelatorioClienteDrawColumnCell
+    OnTitleClick = gridRelatorioClienteTitleClick
     Columns = <
       item
         Expanded = False
@@ -110,8 +111,6 @@ object frmRelatorioClientes: TfrmRelatorioClientes
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
-    ExplicitTop = 84
-    ExplicitWidth = 1154
     object Image1: TImage
       Left = 9
       Top = 0

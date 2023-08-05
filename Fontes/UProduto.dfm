@@ -482,6 +482,7 @@ object frmProdutos: TfrmProdutos
     TitleFont.Style = [fsBold]
     OnDblClick = gridProdutoDblClick
     OnKeyDown = gridProdutoKeyDown
+    OnTitleClick = gridProdutoTitleClick
     Columns = <
       item
         Expanded = False

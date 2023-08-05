@@ -170,7 +170,7 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UVendaPosto, UProduto, URepresentante;
+uses UPrincipalPetrotorque, UVendaPosto, UProduto, URepresentante, UFuncoes;
 
 procedure TfrmUsinas.btnOKClick(Sender: TObject);
 

@@ -13,9 +13,11 @@ uses
    frxClass, frxDBSet, System.ImageList, Vcl.ImgList;
 
 type
-  THackDBGrid = class (TDBGrid)
-  procedure AllRows (DBGrid: TDBGrid; NewHeight: Word);
-end;
+   THackDBGrid = class(TDBGrid)
+      procedure AllRows(DBGrid: TDBGrid; NewHeight: Word);
+   end;
+
+   TdbGridPadrao = class(TDBGrid);
 
 type
    TfrmRelatorioVenda = class(TForm)
@@ -176,9 +178,9 @@ type
       dsMotorista: TDataSource;
       qryRelatorioStatusParcelaORDEM_CARREGAMENTO: TIntegerField;
       qryRelatorioVendaPostoFORMA_PAGAMENTO: TStringField;
-    imgTipoPagamento: TImageList;
+      imgTipoPagamento: TImageList;
       pnlLateralGrid: TPanel;
-    Image2: TImage;
+      Image2: TImage;
       procedure btnImprmirClick(Sender: TObject);
       procedure btnConsultarClick(Sender: TObject);
       procedure btnImprimirRelAuxiliarClick(Sender: TObject);
@@ -199,9 +201,10 @@ type
       procedure gridRelatorioVendaPostoDrawColumnCell(Sender: TObject;
         const Rect: TRect; DataCol: Integer; Column: TColumn;
         State: TGridDrawState);
-    procedure gridRelatorioVendaPostoTitleClick(Column: TColumn);
+      procedure gridRelatorioVendaPostoTitleClick(Column: TColumn);
 
    private
+    procedure definirTamanhoDaLinhaDaGrid(Sender : TObject);
       { Private declarations }
    public
       { Public declarations }
@@ -214,16 +217,15 @@ implementation
 
 {$R *.dfm}
 
-
 uses UPrincipalPetrotorque, Uposto, URepresentante, cMotorista, UMotorista,
    UCorretores, UFuncoes;
 
 procedure THackDBGrid.AllRows(DBGrid: TDBGrid; NewHeight: Word);
 var
-  i: DWord;
+   i: DWord;
 begin
-  for i := 0 to THackDBGrid (DBGrid).RowCount - 1 do
-    THackDBGrid (DBGrid).RowHeights [i] := NewHeight;
+   for i := 0 to THackDBGrid(DBGrid).RowCount - 1 do
+      THackDBGrid(DBGrid).RowHeights[i] := NewHeight;
 end;
 
 procedure TfrmRelatorioVenda.btnConsultarClick(Sender: TObject);
@@ -280,6 +282,7 @@ begin
       editRepresentantePrincipal.SetFocus;
    end;
 
+   definirTamanhoDaLinhaDaGrid(gridRelatorioVendaPosto)
 end;
 
 procedure TfrmRelatorioVenda.btnImprmirClick(Sender: TObject);
@@ -536,6 +539,8 @@ begin
 
    DateVencimentoDE.Text := DateToStr(Date);
    DateVencimentoATE.Text := DateToStr(Date);
+
+   definirTamanhoDaLinhaDaGrid(gridRelatorioVendaPosto)
 end;
 
 procedure TfrmRelatorioVenda.gridRelatorioVendaPostoDrawColumnCell
@@ -545,9 +550,33 @@ var
    Grid: TDBGrid;
    ImageIndex: Integer;
    ImageRect: TRect;
-   RectTeste : TRect;
+   RectTeste: TRect;
 
 begin
+
+   // zebrando o dbgrid
+   if Odd(TDBGrid(Sender).DataSource.DataSet.RecNo) then
+      TDBGrid(Sender).Canvas.Brush.Color := $00CFCFCF
+   else
+      TDBGrid(Sender).Canvas.Brush.Color := clWhite;
+
+   // mudando a cor da seleção
+   if (gdSelected in State) then
+   begin
+      TDBGrid(Sender).Canvas.Brush.Color := $00BC7B50;
+      TDBGrid(Sender).Canvas.Font.Color := clWhite;
+      TDBGrid(Sender).Canvas.Font.Style := [fsBold];
+   end;
+
+   TDBGrid(Sender).Canvas.FillRect(Rect);
+   TDBGrid(Sender).DefaultDrawColumnCell(Rect, DataCol, Column, State);
+
+   // mudando a posição e alinhamento vertical do texto de cada linha
+   TDBGrid(Sender).Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8,
+     Column.Field.DisplayText);
+
+
+
    if Column.FieldName = 'FORMA_PAGAMENTO' then
    begin
       Grid := Sender as TDBGrid;
@@ -572,6 +601,15 @@ begin
          imgTipoPagamento.Draw(Grid.Canvas, ImageRect.Left, ImageRect.Top,
            ImageIndex);
    end;
+
+end;
+
+procedure TfrmRelatorioVenda.definirTamanhoDaLinhaDaGrid(Sender : TObject);
+begin
+   // Define o tamanho de cada linha do DBgrid após ativar a QUERY
+   TdbGridPadrao(TDBGrid(Sender)).DefaultRowHeight := 25;
+   TdbGridPadrao(TDBGrid(Sender)).ClientHeight :=
+     (25 * TdbGridPadrao(TDBGrid(Sender)).RowCount) + 25;
 
 end;
 

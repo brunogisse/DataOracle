@@ -78,6 +78,7 @@ type
       State: TGridDrawState);
     procedure editPesquisaRepresentantesKeyPress(Sender: TObject;
       var Key: Char);
+    procedure gridRepresentanteTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -101,7 +102,7 @@ implementation
 uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UCompraUsina,
   UMovimentoEstoqueUsina, URelatorioVendas, UTransferenciaEstoque,
   UEditarParcelas, UpagarParcelas, UReverterPagamentos, URelatorioMotorista,
-  URelatorioCorretor, UdataModule;
+  URelatorioCorretor, UdataModule, UFuncoes;
 
 procedure TfrmRepresentante.definirTamanhoDaLinhaDaGrid;
 begin
@@ -486,6 +487,11 @@ begin
    //  mudando a posição e alinhamento vertical do texto de cada linha
      gridRepresentante.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 
+end;
+
+procedure TfrmRepresentante.gridRepresentanteTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmRepresentante.rbCNPJClick(Sender: TObject);

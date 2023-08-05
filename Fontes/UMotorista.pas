@@ -74,6 +74,7 @@ type
         Shift: TShiftState);
       procedure editPesquisaMotoristaKeyPress(Sender: TObject; var Key: Char);
       procedure dsMotoristaDataChange(Sender: TObject; Field: TField);
+    procedure gridMotoristaTitleClick(Column: TColumn);
    private
       { Private declarations }
 
@@ -101,7 +102,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UVendaPosto, URelatorioMotorista,
-   UTransferenciaEstoque, cMotorista, URelatorioVendas;
+   UTransferenciaEstoque, cMotorista, URelatorioVendas, UFuncoes;
 
 procedure TfrmMotorista.btnCancelarClick(Sender: TObject);
 begin
@@ -503,6 +504,11 @@ begin
 
    // mudando a posição e alinhamento vertical do texto de cada linha
    // gridPosto.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
+end;
+
+procedure TfrmMotorista.gridMotoristaTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmMotorista.rbCPFClick(Sender: TObject);

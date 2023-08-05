@@ -526,6 +526,7 @@ object frmPagarParcelas: TfrmPagarParcelas
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
       OnDrawColumnCell = gridPagarParcelasDrawColumnCell
+      OnTitleClick = gridPagarParcelasTitleClick
       Columns = <
         item
           Expanded = False

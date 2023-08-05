@@ -366,6 +366,7 @@ object frmSelecionarEstoqueProduto: TfrmSelecionarEstoqueProduto
       TitleFont.Height = -12
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
+      OnTitleClick = gridEstoqueUsinaTitleClick
       Columns = <
         item
           Expanded = False

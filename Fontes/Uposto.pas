@@ -97,6 +97,7 @@ type
     procedure cbUFCloseUp(Sender: TObject);
     procedure dsPostoDataChange(Sender: TObject; Field: TField);
     procedure cbUFExit(Sender: TObject);
+    procedure gridPostoTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -126,7 +127,8 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UVendaPosto, URelatorioVendas, UrelatorioCliente;
+uses UPrincipalPetrotorque, UVendaPosto, URelatorioVendas, UrelatorioCliente,
+  UFuncoes;
 
 procedure TfrmPosto.prepararListaCidades;
 begin
@@ -515,6 +517,11 @@ begin
    //  gridPosto.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 
 
+end;
+
+procedure TfrmPosto.gridPostoTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmPosto.mascararCNPJ;

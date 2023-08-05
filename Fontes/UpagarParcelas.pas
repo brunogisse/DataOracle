@@ -143,6 +143,7 @@ type
     procedure memoMotivoChange(Sender: TObject);
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure gridPagarParcelasTitleClick(Column: TColumn);
 
   private
     { Private declarations }
@@ -164,7 +165,7 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UReverterPagamentos, URepresentante;
+uses UPrincipalPetrotorque, UReverterPagamentos, URepresentante, UFuncoes;
 
 
 
@@ -539,6 +540,11 @@ begin
      gridPagarParcelas.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
 
 
+end;
+
+procedure TfrmPagarParcelas.gridPagarParcelasTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmPagarParcelas.memoMotivoChange(Sender: TObject);

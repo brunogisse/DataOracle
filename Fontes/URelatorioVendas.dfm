@@ -2,9 +2,10 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   Left = 0
   Top = 0
   Caption = 'frmRelatorioVenda'
-  ClientHeight = 612
-  ClientWidth = 1140
+  ClientHeight = 654
+  ClientWidth = 1128
   Color = clBtnFace
+  Constraints.MinWidth = 1144
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -26,7 +27,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 1134
+    Width = 1122
     Height = 46
     Align = alTop
     BevelOuter = bvNone
@@ -39,6 +40,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     ParentBackground = False
     ParentFont = False
     TabOrder = 0
+    ExplicitWidth = 1134
     object labelTituloReport: TLabel
       Left = 9
       Top = 4
@@ -56,7 +58,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   object PainelCentral: TPanel
     Left = 0
     Top = 52
-    Width = 1140
+    Width = 1128
     Height = 244
     Align = alTop
     BevelOuter = bvNone
@@ -69,6 +71,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
     ParentBackground = False
     ParentFont = False
     TabOrder = 1
+    ExplicitWidth = 1140
     object Image1: TImage
       Left = 32
       Top = 43
@@ -739,18 +742,20 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   object painelGrid: TPanel
     Left = 0
     Top = 296
-    Width = 1140
-    Height = 297
-    Align = alTop
+    Width = 1128
+    Height = 358
+    Align = alClient
     BevelOuter = bvNone
     Color = clWhite
     ParentBackground = False
     TabOrder = 2
+    ExplicitWidth = 1140
+    ExplicitHeight = 297
     object gridRelatorioVendaPosto: TDBGrid
       Left = 17
       Top = 0
-      Width = 1123
-      Height = 297
+      Width = 1111
+      Height = 358
       Align = alClient
       BorderStyle = bsNone
       DataSource = dsRelatorioVendaPosto
@@ -758,7 +763,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       FixedColor = 7428151
       Font.Charset = ANSI_CHARSET
       Font.Color = 7428151
-      Font.Height = 15
+      Font.Height = -11
       Font.Name = 'Segoe UI Semibold'
       Font.Style = [fsBold]
       Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -923,10 +928,11 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       Left = 0
       Top = 0
       Width = 17
-      Height = 297
+      Height = 358
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
+      ExplicitHeight = 297
     end
   end
   object qryRelatorioVendaPosto: TFDQuery

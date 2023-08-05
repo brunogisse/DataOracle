@@ -140,6 +140,7 @@ type
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editRepresentanteKeyPress(Sender: TObject; var Key: Char);
+    procedure gridCompraTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -167,7 +168,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UselecionarUsinaEproduto, UProduto, UUsinas,
-  UdefinirEstoque, UConverterFloat, URepresentante, uFormat;
+  UdefinirEstoque, UConverterFloat, URepresentante, uFormat, UFuncoes;
 
 
 procedure TfrmCompraUsina.definirTamanhoDaLinhaDaGrid;
@@ -595,7 +596,12 @@ begin
 end;
 
 
-    procedure TfrmCompraUsina.memoMotivoChange(Sender: TObject);
+    procedure TfrmCompraUsina.gridCompraTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
+end;
+
+procedure TfrmCompraUsina.memoMotivoChange(Sender: TObject);
 begin
   if ( memoMotivo.GetTextLen > 9 ) then
        PainelExcluir.Visible := True

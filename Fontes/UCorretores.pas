@@ -68,6 +68,7 @@ type
     procedure editPesquisaKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editPesquisaKeyPress(Sender: TObject; var Key: Char);
+    procedure gridCorretorTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -90,7 +91,7 @@ implementation
 
 
 uses UPrincipalPetrotorque, UVendaPosto, URelatorioCorretor, UrelatorioCliente,
-  URelatorioVendas;
+  URelatorioVendas, UFuncoes;
 
 { TfrmCorretores }
 
@@ -326,6 +327,11 @@ begin
 
    //  mudando a posição e alinhamento vertical do texto de cada linha
      gridCorretor.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
+end;
+
+procedure TfrmCorretores.gridCorretorTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 initialization

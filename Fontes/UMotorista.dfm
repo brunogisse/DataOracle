@@ -651,6 +651,7 @@ object frmMotorista: TfrmMotorista
     TitleFont.Style = [fsBold]
     OnDrawColumnCell = gridMotoristaDrawColumnCell
     OnDblClick = gridMotoristaDblClick
+    OnTitleClick = gridMotoristaTitleClick
     Columns = <
       item
         Expanded = False

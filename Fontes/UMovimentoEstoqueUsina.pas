@@ -99,6 +99,7 @@ type
     procedure DateVencimentoATEKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure DateVencimentoATEKeyPress(Sender: TObject; var Key: Char);
+    procedure gridMovimentoTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -117,7 +118,7 @@ implementation
 {$R *.dfm}
 
 uses UCompraUsina, UpagarParcelas, UPrincipalPetrotorque, UReverterPagamentos,
-  UselecionarUsinaEproduto, URepresentante;
+  UselecionarUsinaEproduto, URepresentante, UFuncoes;
 
 
 procedure TfrmMovimentoEstoqueUsina.btnConsultarClick(Sender: TObject);
@@ -270,6 +271,11 @@ begin
 
            //  mudando a posição e alinhamento vertical do texto de cada linha
      gridMovimento.Canvas.TextRect(Rect, Rect.Left + 8, Rect.Top + 8, Column.Field.DisplayText);
+end;
+
+procedure TfrmMovimentoEstoqueUsina.gridMovimentoTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 end.

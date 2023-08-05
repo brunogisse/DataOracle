@@ -53,6 +53,7 @@ type
     procedure editLocalizarKeyPress(Sender: TObject; var Key: Char);
     procedure gridProdutoKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure gridProdutoTitleClick(Column: TColumn);
   private
     { Private declarations }
 
@@ -73,7 +74,7 @@ implementation
 
 {$R *.dfm}
 
-uses UPrincipalPetrotorque, UVendaPosto, UUsinas;
+uses UPrincipalPetrotorque, UVendaPosto, UUsinas, UFuncoes;
 
 procedure TfrmProdutos.btnCancelarClick(Sender: TObject);
 begin
@@ -238,6 +239,11 @@ procedure TfrmProdutos.gridProdutoKeyDown(Sender: TObject; var Key: Word;
 begin
 if Key = VK_RETURN then
      capturarProduto;
+end;
+
+procedure TfrmProdutos.gridProdutoTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 end.

@@ -9,9 +9,11 @@ uses
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons, Vcl.Mask,
-  Vcl.Imaging.pngimage, System.UITypes;
+  Vcl.Imaging.pngimage, System.UITypes, System.ImageList, Vcl.ImgList;
 
 type
+  TdbGridPadrao = class(TDBGrid);
+
   TfrmEditarParcelas = class(TForm)
     painelTopo: TPanel;
     PainelCentro: TPanel;
@@ -105,6 +107,7 @@ type
     qryRepresentanteCIDADE: TStringField;
     qryRepresentanteCNPJ: TStringField;
     dsRepresentante: TDataSource;
+    imgTipoPagamento: TImageList;
     procedure editNFKeyPress(Sender: TObject; var Key: Char);
     procedure editNFKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -117,6 +120,10 @@ type
     procedure editRepresentanteKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure editValorParcelaChange(Sender: TObject);
+    procedure gridEditarParcelaTitleClick(Column: TColumn);
+    procedure gridEditarParcelaDrawColumnCell(Sender: TObject;
+      const Rect: TRect; DataCol: Integer; Column: TColumn;
+      State: TGridDrawState);
 
   private
     function TratarValor(str: String): double;
@@ -136,7 +143,7 @@ implementation
 {$R *.dfm}
 
 uses UPrincipalPetrotorque, UConverterFloat, UVendaPosto, UAlterarQtdeParcelas,
-  URepresentante, uFormat;
+  URepresentante, uFormat, UFuncoes;
 
 
 procedure TfrmEditarParcelas.btnCancelarClick(Sender: TObject);
@@ -342,6 +349,47 @@ begin
   end
    else
       MessageDlg('Não há parcelas para serem alteradas',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbOK],0);
+end;
+
+procedure TfrmEditarParcelas.gridEditarParcelaDrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+   Grid: TDBGrid;
+   ImageIndex: Integer;
+   ImageRect: TRect;
+   RectTeste : TRect;
+
+begin
+   if Column.FieldName = 'DESCRICAO' then
+   begin
+      Grid := Sender as TDBGrid;
+      ImageRect := Rect;
+      ImageRect.Left := ImageRect.Left +
+        (ImageRect.Width - imgTipoPagamento.Width) div 2;
+      ImageRect.Top := ImageRect.Top +
+        (ImageRect.Height - imgTipoPagamento.Height) div 2;
+
+      Grid.Canvas.FillRect(Rect);
+
+      if Grid.DataSource.DataSet.FieldByName('DESCRICAO').AsString = 'BOLETO'
+      then
+         ImageIndex := 0
+      else if Grid.DataSource.DataSet.FieldByName('DESCRICAO').AsString = 'PIX'
+      then
+         ImageIndex := 1
+      else
+         Exit; // Caso não haja imagem correspondente
+
+      if ImageIndex >= 0 then
+         imgTipoPagamento.Draw(Grid.Canvas, ImageRect.Left, ImageRect.Top,
+           ImageIndex);
+   end;
+
+end;
+
+procedure TfrmEditarParcelas.gridEditarParcelaTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 end.
