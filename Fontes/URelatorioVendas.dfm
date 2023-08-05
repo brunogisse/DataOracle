@@ -16,6 +16,12 @@ object frmRelatorioVenda: TfrmRelatorioVenda
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
+  object Image2: TImage
+    Left = 496
+    Top = 376
+    Width = 97
+    Height = 105
+  end
   object PainelTopo: TPanel
     AlignWithMargins = True
     Left = 3
@@ -765,6 +771,7 @@ object frmRelatorioVenda: TfrmRelatorioVenda
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = [fsBold]
       OnDrawColumnCell = gridRelatorioVendaPostoDrawColumnCell
+      OnTitleClick = gridRelatorioVendaPostoTitleClick
       Columns = <
         item
           Expanded = False

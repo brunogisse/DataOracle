@@ -178,6 +178,7 @@ type
       qryRelatorioVendaPostoFORMA_PAGAMENTO: TStringField;
     imgTipoPagamento: TImageList;
       pnlLateralGrid: TPanel;
+    Image2: TImage;
       procedure btnImprmirClick(Sender: TObject);
       procedure btnConsultarClick(Sender: TObject);
       procedure btnImprimirRelAuxiliarClick(Sender: TObject);
@@ -198,6 +199,7 @@ type
       procedure gridRelatorioVendaPostoDrawColumnCell(Sender: TObject;
         const Rect: TRect; DataCol: Integer; Column: TColumn;
         State: TGridDrawState);
+    procedure gridRelatorioVendaPostoTitleClick(Column: TColumn);
 
    private
       { Private declarations }
@@ -214,7 +216,7 @@ implementation
 
 
 uses UPrincipalPetrotorque, Uposto, URepresentante, cMotorista, UMotorista,
-   UCorretores;
+   UCorretores, UFuncoes;
 
 procedure THackDBGrid.AllRows(DBGrid: TDBGrid; NewHeight: Word);
 var
@@ -571,6 +573,11 @@ begin
            ImageIndex);
    end;
 
+end;
+
+procedure TfrmRelatorioVenda.gridRelatorioVendaPostoTitleClick(Column: TColumn);
+begin
+   procGridIndex(Column);
 end;
 
 procedure TfrmRelatorioVenda.rbFechamentoNaoPagoClick(Sender: TObject);

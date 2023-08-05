@@ -4,7 +4,6 @@ interface
 
 function Criptografia(Senha, Chave: String): String;
 function MD5(const Value: String): String;
-procedure procGridIndex(Sender: TObject);
 
 implementation
 
@@ -59,6 +58,10 @@ procedure procGridIndex(Sender: TObject);
 // cxGridTableView, cxGridDBTableView, cxGrid,
 // Data.DB, Datasnap.DBClient,
 // Vcl.Grids, Vcl.DBGrids;
+// ---------------------------------------------------------------------------
+// Como chamar o index direto.
+// procGridIndex(dbgrdDocumentos.Columns.Items[dbgrdDocumentos.DataSource.DataSet.FieldByName('COD_DOCUMENTO').Index]);
+// procGridIndex(cxGridDBTableView1.Columns[cxGridDBTableView1.DataController.DataSource.DataSet.FieldByName('DESCRICAO_02').Index]);
 // ---------------------------------------------------------------------------
 // No cxGrid
 // procGridIndex(AColumn);

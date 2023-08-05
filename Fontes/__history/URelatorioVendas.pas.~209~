@@ -176,8 +176,9 @@ type
       dsMotorista: TDataSource;
       qryRelatorioStatusParcelaORDEM_CARREGAMENTO: TIntegerField;
       qryRelatorioVendaPostoFORMA_PAGAMENTO: TStringField;
-      ImageList1: TImageList;
+    imgTipoPagamento: TImageList;
       pnlLateralGrid: TPanel;
+    Image2: TImage;
       procedure btnImprmirClick(Sender: TObject);
       procedure btnConsultarClick(Sender: TObject);
       procedure btnImprimirRelAuxiliarClick(Sender: TObject);
@@ -214,7 +215,7 @@ implementation
 
 
 uses UPrincipalPetrotorque, Uposto, URepresentante, cMotorista, UMotorista,
-   UCorretores;
+   UCorretores, UFuncoes;
 
 procedure THackDBGrid.AllRows(DBGrid: TDBGrid; NewHeight: Word);
 var
@@ -543,6 +544,7 @@ var
    Grid: TDBGrid;
    ImageIndex: Integer;
    ImageRect: TRect;
+   RectTeste : TRect;
 
 begin
    if Column.FieldName = 'FORMA_PAGAMENTO' then
@@ -550,9 +552,9 @@ begin
       Grid := Sender as TDBGrid;
       ImageRect := Rect;
       ImageRect.Left := ImageRect.Left +
-        (ImageRect.Width - ImageList1.Width) div 2;
+        (ImageRect.Width - imgTipoPagamento.Width) div 2;
       ImageRect.Top := ImageRect.Top +
-        (ImageRect.Height - ImageList1.Height) div 2;
+        (ImageRect.Height - imgTipoPagamento.Height) div 2;
 
       Grid.Canvas.FillRect(Rect);
 
@@ -566,13 +568,10 @@ begin
          Exit; // Caso não haja imagem correspondente
 
       if ImageIndex >= 0 then
-         ImageList1.Draw(Grid.Canvas, ImageRect.Left, ImageRect.Top,
+         imgTipoPagamento.Draw(Grid.Canvas, ImageRect.Left, ImageRect.Top,
            ImageIndex);
    end;
 
-   THackDBGrid(gridRelatorioVendaPosto).AllRows (gridRelatorioVendaPosto, 40);
-
-   ImageRect.Top := 20;
 end;
 
 procedure TfrmRelatorioVenda.rbFechamentoNaoPagoClick(Sender: TObject);

@@ -4,7 +4,6 @@ interface
 
 function Criptografia(Senha, Chave: String): String;
 function MD5(const Value: String): String;
-procedure procGridIndex(Sender: TObject);
 
 implementation
 
